@@ -2,28 +2,31 @@
 const uploadArea = document.getElementById('upload-area');
 const fileInput = document.getElementById('file-input');
 const imagePreviews = document.getElementById('image-previews');
-const controls = document.getElementById('controls'); // New reference
-const convertAllBtn = document.getElementById('convert-all-btn'); // New reference
+const controls = document.getElementById('controls');
+const convertAllBtn = document.getElementById('convert-all-btn');
 
 // --- EVENT LISTENERS ---
 
 uploadArea.addEventListener('click', () => fileInput.click());
+
 fileInput.addEventListener('change', (event) => {
     handleFiles(event.target.files);
     event.target.value = null;
 });
+
 uploadArea.addEventListener('dragover', (event) => {
     event.preventDefault();
     uploadArea.classList.add('drag-over');
 });
+
 uploadArea.addEventListener('dragleave', () => uploadArea.classList.remove('drag-over'));
+
 uploadArea.addEventListener('drop', (event) => {
     event.preventDefault();
     uploadArea.classList.remove('drag-over');
     handleFiles(event.dataTransfer.files);
 });
 
-// New: Event listener for the "Convert All" button
 convertAllBtn.addEventListener('click', handleConvertAll);
 
 // --- CORE FUNCTIONS ---
@@ -33,7 +36,7 @@ function handleFiles(files) {
     for (const file of files) {
         createImagePreview(file);
     }
-    // New: Show the controls if there are previews
+    // Show the controls if there are previews
     if (imagePreviews.children.length > 0) {
         controls.classList.remove('hidden');
     }
@@ -44,7 +47,7 @@ function createImagePreview(file) {
     reader.onload = (event) => {
         const previewWrapper = document.createElement('div');
         previewWrapper.className = 'preview-wrapper';
-        // New: Attach the file object directly to the element for later access
+        // Attach the file object directly to the element for later access
         previewWrapper.fileData = file;
 
         const img = document.createElement('img');
@@ -79,7 +82,7 @@ function convertImageToWebP(previewWrapper) {
     const file = previewWrapper.fileData; // Get the file from the element
     const convertBtn = previewWrapper.querySelector('.convert-btn');
 
-    // Prevent double-conversion if a button is somehow clicked twice
+    // Prevent double-conversion
     if (!convertBtn) return;
 
     convertBtn.textContent = 'Converting...';
@@ -104,11 +107,12 @@ function convertImageToWebP(previewWrapper) {
 
         convertBtn.replaceWith(downloadLink);
     };
-    img.src = URL.createObjectURL(file); // More efficient than using FileReader again
+    // Use createObjectURL for better performance with canvas
+    img.src = URL.createObjectURL(file);
 }
 
 /**
- * New: Handles the "Convert All" button click.
+ * Handles the "Convert All" button click.
  */
 function handleConvertAll() {
     convertAllBtn.textContent = 'Converting All...';
