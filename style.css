@@ -51,6 +51,7 @@ h1 {
 }
 
 .preview-wrapper {
+    position: relative; /* For positioning the remove button */
     width: 200px;
     border: 1px solid #ddd;
     border-radius: 8px;
@@ -175,11 +176,19 @@ h1 {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 86, 179, 0.85);
+    background-color: rgba(0, 86, 179, 0.7); /* Reduced opacity for less "stuck" feeling */
     z-index: 9999;
     display: flex;
     align-items: center;
     justify-content: center;
+    pointer-events: none; /* NEW: Allows clicks/events to pass through when not in use */
+    opacity: 0; /* NEW: Start completely transparent */
+    transition: opacity 0.2s ease-in-out; /* NEW: Smooth transition */
+}
+
+#drag-overlay.active { /* NEW: Class to make it visible */
+    opacity: 1;
+    pointer-events: auto; /* NEW: Make it clickable/interactive when active */
 }
 
 #drag-overlay p {
@@ -189,12 +198,10 @@ h1 {
     border: 3px dashed white;
     padding: 40px 60px;
     border-radius: 15px;
+    text-align: center; /* Ensure text is centered within the box */
 }
 
 /* 2. Remove Button ('x') on Preview Cards */
-.preview-wrapper {
-    position: relative; /* Required for absolute positioning of the child button */
-}
 
 .remove-btn {
     position: absolute;
