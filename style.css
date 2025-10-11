@@ -36,3 +36,9 @@ h1 {
 #file-input {
     display: none;
 }
+
+/* Add a style for when a file is being dragged over the upload area */
+#upload-area.drag-over {
+    border-color: #0056b3;
+    background-color: #e9f5ff; /* A light blue feedback color */
+}
