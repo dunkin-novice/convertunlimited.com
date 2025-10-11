@@ -166,3 +166,74 @@ h1 {
     cursor: default;
     pointer-events: none; /* Makes it unclickable */
 }
+/* --- New Styles for Feature Update --- */
+
+/* 1. Global Drag & Drop Overlay */
+#drag-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 86, 179, 0.85);
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#drag-overlay p {
+    color: white;
+    font-size: 2em;
+    font-weight: bold;
+    border: 3px dashed white;
+    padding: 40px 60px;
+    border-radius: 15px;
+}
+
+/* 2. Remove Button ('x') on Preview Cards */
+.preview-wrapper {
+    position: relative; /* Required for absolute positioning of the child button */
+}
+
+.remove-btn {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    width: 24px;
+    height: 24px;
+    background-color: rgba(0, 0, 0, 0.6);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    font-size: 16px;
+    font-weight: bold;
+    line-height: 24px;
+    text-align: center;
+    cursor: pointer;
+    opacity: 0.5;
+    transition: opacity 0.2s, background-color 0.2s;
+}
+
+.preview-wrapper:hover .remove-btn {
+    opacity: 1;
+}
+
+.remove-btn:hover {
+    background-color: #d9534f; /* Red on hover */
+}
+
+/* 3. 'Clear All' Button Style */
+#clear-all-btn {
+    background: none;
+    border: none;
+    color: #6c757d;
+    text-decoration: underline;
+    cursor: pointer;
+    font-size: 0.9em;
+    margin-left: 15px;
+}
+
+#clear-all-btn:hover {
+    color: #d9534f;
+}
