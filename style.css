@@ -244,3 +244,27 @@ h1 {
 #clear-all-btn:hover {
     color: #d9534f;
 }
+
+
+/* --- Styles for Output Options --- */
+#output-options {
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+#output-options label {
+    font-size: 1.1em;
+    font-weight: 500;
+    color: #333;
+}
+
+#format-select {
+    font-size: 1.1em;
+    padding: 8px 12px;
+    border-radius: 6px;
+    border: 1px solid #ccd0d5;
+    background-color: #fff;
+}
