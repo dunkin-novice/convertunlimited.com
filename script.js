@@ -6,6 +6,7 @@ const controls = document.getElementById('controls');
 const convertAllBtn = document.getElementById('convert-all-btn');
 const clearAllBtn = document.getElementById('clear-all-btn');
 const dragOverlay = document.getElementById('drag-overlay');
+const formatSelect = document.getElementById('format-select'); // New
 
 let conversionProgress = 0;
 let totalToConvert = 0;
@@ -23,18 +24,14 @@ window.addEventListener('dragenter', (e) => {
     e.preventDefault();
     if (e.dataTransfer.types && Array.from(e.dataTransfer.types).includes('Files')) {
         dragCounter++;
-        if (dragCounter === 1) {
-            dragOverlay.classList.add('active');
-        }
+        if (dragCounter === 1) dragOverlay.classList.add('active');
     }
 });
 
 window.addEventListener('dragleave', (e) => {
     e.preventDefault();
     dragCounter--;
-    if (dragCounter === 0) {
-        dragOverlay.classList.remove('active');
-    }
+    if (dragCounter === 0) dragOverlay.classList.remove('active');
 });
 
 window.addEventListener('dragover', (e) => e.preventDefault());
@@ -49,6 +46,9 @@ window.addEventListener('drop', (event) => {
 convertAllBtn.addEventListener('click', handleConvertAll);
 clearAllBtn.addEventListener('click', handleClearAll);
 
+// NEW: Update button text when format changes
+formatSelect.addEventListener('change', updateButtonText);
+
 // --- CORE LOGIC ---
 
 function handleFiles(files) {
@@ -56,7 +56,6 @@ function handleFiles(files) {
     for (const file of files) {
         createImagePreview(file);
     }
-    // The call to updateControlsState() was REMOVED from here.
 }
 
 function createImagePreview(file) {
@@ -76,8 +75,9 @@ function createImagePreview(file) {
 
         const convertBtn = document.createElement('button');
         convertBtn.className = 'convert-btn';
-        convertBtn.textContent = 'Convert to WebP';
-        convertBtn.onclick = () => convertImageToWebP(previewWrapper);
+        const selectedFormat = formatSelect.value.toUpperCase();
+        convertBtn.textContent = `Convert to ${selectedFormat}`;
+        convertBtn.onclick = () => convertImage(previewWrapper);
 
         const removeBtn = document.createElement('button');
         removeBtn.className = 'remove-btn';
@@ -85,7 +85,7 @@ function createImagePreview(file) {
         removeBtn.onclick = (e) => {
             e.stopPropagation();
             previewWrapper.remove();
-            updateControlsState(); // This call is correct.
+            updateControlsState();
         };
 
         previewWrapper.appendChild(removeBtn);
@@ -94,13 +94,13 @@ function createImagePreview(file) {
         previewWrapper.appendChild(convertBtn);
         imagePreviews.appendChild(previewWrapper);
 
-        // MOVED HERE: This now runs AFTER the preview is on the page.
         updateControlsState(); 
     };
     reader.readAsDataURL(file);
 }
 
-function convertImageToWebP(previewWrapper, onCompleteCallback) {
+// MODIFIED: Renamed to be generic, and now reads the dropdown value
+function convertImage(previewWrapper, onCompleteCallback) {
     const file = previewWrapper.fileData;
     const convertBtn = previewWrapper.querySelector('.convert-btn');
     if (!convertBtn) { if (onCompleteCallback) onCompleteCallback(); return; }
@@ -114,14 +114,24 @@ function convertImageToWebP(previewWrapper, onCompleteCallback) {
         canvas.width = img.width;
         canvas.height = img.height;
         const ctx = canvas.getContext('2d');
+
+        // For PNGs with transparency, we need a white background when converting to JPEG
+        const targetFormat = formatSelect.value;
+        if (targetFormat === 'jpeg') {
+            ctx.fillStyle = '#FFFFFF';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+        }
+
         ctx.drawImage(img, 0, 0);
-        const webpDataUrl = canvas.toDataURL('image/webp', 0.9);
-        const newFileName = file.name.split('.').slice(0, -1).join('.') + '.webp';
+
+        const mimeType = `image/${targetFormat}`;
+        const dataUrl = canvas.toDataURL(mimeType, 0.9); // 0.9 is quality for JPEG/WebP
+        const newFileName = file.name.split('.').slice(0, -1).join('.') + `.${targetFormat}`;
 
         const downloadLink = document.createElement('a');
-        downloadLink.href = webpDataUrl;
+        downloadLink.href = dataUrl;
         downloadLink.download = newFileName;
-        downloadLink.textContent = 'Download WebP';
+        downloadLink.textContent = `Download ${targetFormat.toUpperCase()}`;
         downloadLink.className = 'download-link';
         downloadLink.onclick = () => {
             downloadLink.textContent = 'Done ✅';
@@ -144,7 +154,7 @@ function handleConvertAll() {
     convertAllBtn.disabled = true;
 
     wrappersToConvert.forEach(wrapper => {
-        convertImageToWebP(wrapper, () => {
+        convertImage(wrapper, () => {
             conversionProgress++;
             convertAllBtn.textContent = `Converting... (${conversionProgress}/${totalToConvert})`;
             if (conversionProgress === totalToConvert) {
@@ -172,7 +182,7 @@ async function handleDownloadAll() {
          zip.generateAsync({ type: 'blob' }).then(content => {
             const link = document.createElement('a');
             link.href = URL.createObjectURL(content);
-            link.download = 'ConvertUnlimited.zip';
+            link.download = `ConvertUnlimited_${formatSelect.value}.zip`;
             document.body.appendChild(link);
             link.click();
             document.body.removeChild(link);
@@ -184,6 +194,18 @@ async function handleDownloadAll() {
 function handleClearAll() {
     imagePreviews.innerHTML = '';
     updateControlsState();
+}
+
+// NEW: Function to update button text based on dropdown
+function updateButtonText() {
+    const selectedFormat = formatSelect.value.toUpperCase();
+    document.querySelectorAll('.convert-btn').forEach(btn => {
+        btn.textContent = `Convert to ${selectedFormat}`;
+    });
+    const hasUnconverted = document.querySelectorAll('.convert-btn').length > 0;
+    if (hasUnconverted) {
+        resetConvertAllButtonState();
+    }
 }
 
 function updateControlsState() {
@@ -204,13 +226,15 @@ function updateControlsState() {
 }
 
 function updateToDownloadAllState() {
-    convertAllBtn.textContent = 'Download All (.zip)';
+    const selectedFormat = formatSelect.value.toUpperCase();
+    convertAllBtn.textContent = `Download All (.zip)`;
     convertAllBtn.disabled = false;
     convertAllBtn.onclick = handleDownloadAll;
 }
 
 function resetConvertAllButtonState() {
-    convertAllBtn.textContent = 'Convert All to WebP';
+    const selectedFormat = formatSelect.value.toUpperCase();
+    convertAllBtn.textContent = `Convert All to ${selectedFormat}`;
     convertAllBtn.disabled = false;
     convertAllBtn.onclick = handleConvertAll;
 }
