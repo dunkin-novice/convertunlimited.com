@@ -268,3 +268,9 @@ h1 {
     border: 1px solid #ccd0d5;
     background-color: #fff;
 }
+
+/* --- AdSense Container Style --- */
+#ad-container {
+    margin: 30px auto;
+    max-width: 840px;
+}
