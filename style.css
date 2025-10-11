@@ -158,3 +158,11 @@ h1 {
 .download-link:hover {
     background-color: #1e7e34;
 }
+
+/* New style for a download link after it has been clicked */
+.download-link.downloaded {
+    background-color: #6c757d; /* A muted gray color */
+    color: #f0f2f5;
+    cursor: default;
+    pointer-events: none; /* Makes it unclickable */
+}
