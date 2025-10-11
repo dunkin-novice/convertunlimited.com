@@ -6,10 +6,10 @@ const controls = document.getElementById('controls');
 const convertAllBtn = document.getElementById('convert-all-btn');
 const clearAllBtn = document.getElementById('clear-all-btn');
 const dragOverlay = document.getElementById('drag-overlay');
-const formatSelect = document.getElementById('format-select'); // New
+const formatSelect = document.getElementById('format-select');
 
-let conversionProgress = 0;
-let totalToConvert = 0;
+// NEW: State management flags
+let isConverting = false;
 let dragCounter = 0;
 
 // --- EVENT LISTENERS ---
@@ -22,6 +22,7 @@ fileInput.addEventListener('change', (event) => {
 
 window.addEventListener('dragenter', (e) => {
     e.preventDefault();
+    if (isConverting) return; // Don't allow drops during conversion
     if (e.dataTransfer.types && Array.from(e.dataTransfer.types).includes('Files')) {
         dragCounter++;
         if (dragCounter === 1) dragOverlay.classList.add('active');
@@ -40,13 +41,12 @@ window.addEventListener('drop', (event) => {
     event.preventDefault();
     dragOverlay.classList.remove('active');
     dragCounter = 0;
+    if (isConverting) return; // Don't allow drops during conversion
     handleFiles(event.dataTransfer.files);
 });
 
 convertAllBtn.addEventListener('click', handleConvertAll);
 clearAllBtn.addEventListener('click', handleClearAll);
-
-// NEW: Update button text when format changes
 formatSelect.addEventListener('change', updateButtonText);
 
 // --- CORE LOGIC ---
@@ -83,6 +83,7 @@ function createImagePreview(file) {
         removeBtn.className = 'remove-btn';
         removeBtn.innerHTML = '&times;';
         removeBtn.onclick = (e) => {
+            if (isConverting) return; // Don't allow removal during conversion
             e.stopPropagation();
             previewWrapper.remove();
             updateControlsState();
@@ -99,8 +100,8 @@ function createImagePreview(file) {
     reader.readAsDataURL(file);
 }
 
-// MODIFIED: Renamed to be generic, and now reads the dropdown value
 function convertImage(previewWrapper, onCompleteCallback) {
+    // ... (This function remains unchanged)
     const file = previewWrapper.fileData;
     const convertBtn = previewWrapper.querySelector('.convert-btn');
     if (!convertBtn) { if (onCompleteCallback) onCompleteCallback(); return; }
@@ -115,7 +116,6 @@ function convertImage(previewWrapper, onCompleteCallback) {
         canvas.height = img.height;
         const ctx = canvas.getContext('2d');
 
-        // For PNGs with transparency, we need a white background when converting to JPEG
         const targetFormat = formatSelect.value;
         if (targetFormat === 'jpeg') {
             ctx.fillStyle = '#FFFFFF';
@@ -125,7 +125,7 @@ function convertImage(previewWrapper, onCompleteCallback) {
         ctx.drawImage(img, 0, 0);
 
         const mimeType = `image/${targetFormat}`;
-        const dataUrl = canvas.toDataURL(mimeType, 0.9); // 0.9 is quality for JPEG/WebP
+        const dataUrl = canvas.toDataURL(mimeType, 0.9);
         const newFileName = file.name.split('.').slice(0, -1).join('.') + `.${targetFormat}`;
 
         const downloadLink = document.createElement('a');
@@ -145,19 +145,26 @@ function convertImage(previewWrapper, onCompleteCallback) {
 }
 
 function handleConvertAll() {
+    if (isConverting) return; // Guard clause
+
     const wrappersToConvert = Array.from(document.querySelectorAll('.preview-wrapper')).filter(w => w.querySelector('.convert-btn'));
-    totalToConvert = wrappersToConvert.length;
+    const totalToConvert = wrappersToConvert.length;
     if (totalToConvert === 0) return;
 
-    conversionProgress = 0;
+    isConverting = true; // Set state to converting
+    let conversionProgress = 0; // Use a local variable for progress
+
     convertAllBtn.textContent = `Converting... (0/${totalToConvert})`;
     convertAllBtn.disabled = true;
+    clearAllBtn.style.display = 'none'; // Hide clear button during conversion
 
     wrappersToConvert.forEach(wrapper => {
         convertImage(wrapper, () => {
             conversionProgress++;
             convertAllBtn.textContent = `Converting... (${conversionProgress}/${totalToConvert})`;
             if (conversionProgress === totalToConvert) {
+                isConverting = false; // Unset state
+                clearAllBtn.style.display = 'inline-block'; // Show clear button again
                 updateToDownloadAllState();
             }
         });
@@ -165,8 +172,13 @@ function handleConvertAll() {
 }
 
 async function handleDownloadAll() {
+    if (isConverting) return; // Guard clause
+
+    isConverting = true; // Set state to zipping
     convertAllBtn.textContent = 'Zipping...';
     convertAllBtn.disabled = true;
+    clearAllBtn.style.display = 'none';
+
     const zip = new JSZip();
     const downloadLinks = document.querySelectorAll('.download-link:not(.downloaded)');
 
@@ -179,7 +191,7 @@ async function handleDownloadAll() {
     }
 
     if (Object.keys(zip.files).length > 0) {
-         zip.generateAsync({ type: 'blob' }).then(content => {
+         await zip.generateAsync({ type: 'blob' }).then(content => {
             const link = document.createElement('a');
             link.href = URL.createObjectURL(content);
             link.download = `ConvertUnlimited_${formatSelect.value}.zip`;
@@ -188,15 +200,18 @@ async function handleDownloadAll() {
             document.body.removeChild(link);
         });
     }
+
+    isConverting = false; // Unset state
+    clearAllBtn.style.display = 'inline-block';
     updateControlsState(); 
 }
 
 function handleClearAll() {
+    if (isConverting) return; // Guard clause
     imagePreviews.innerHTML = '';
     updateControlsState();
 }
 
-// NEW: Function to update button text based on dropdown
 function updateButtonText() {
     const selectedFormat = formatSelect.value.toUpperCase();
     document.querySelectorAll('.convert-btn').forEach(btn => {
@@ -226,7 +241,6 @@ function updateControlsState() {
 }
 
 function updateToDownloadAllState() {
-    const selectedFormat = formatSelect.value.toUpperCase();
     convertAllBtn.textContent = `Download All (.zip)`;
     convertAllBtn.disabled = false;
     convertAllBtn.onclick = handleDownloadAll;
