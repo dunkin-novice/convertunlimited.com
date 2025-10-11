@@ -9,24 +9,21 @@ const dragOverlay = document.getElementById('drag-overlay');
 
 let conversionProgress = 0;
 let totalToConvert = 0;
-let dragCounter = 0; // NEW: To track dragenter/dragleave events
+let dragCounter = 0;
 
 // --- EVENT LISTENERS ---
 
-// Standard input methods
 uploadArea.addEventListener('click', () => fileInput.click());
 fileInput.addEventListener('change', (event) => {
     handleFiles(event.target.files);
     event.target.value = null;
 });
 
-// MODIFIED: Global Drag & Drop Listeners
 window.addEventListener('dragenter', (e) => {
     e.preventDefault();
-    // Only show overlay if dragging files
-    if (e.dataTransfer.types && (Array.from(e.dataTransfer.types).includes('Files') || Array.from(e.dataTransfer.types).includes('text/uri-list'))) {
-        dragCounter++; // Increment counter
-        if (dragCounter === 1) { // Only add 'active' class on first dragenter
+    if (e.dataTransfer.types && Array.from(e.dataTransfer.types).includes('Files')) {
+        dragCounter++;
+        if (dragCounter === 1) {
             dragOverlay.classList.add('active');
         }
     }
@@ -34,29 +31,21 @@ window.addEventListener('dragenter', (e) => {
 
 window.addEventListener('dragleave', (e) => {
     e.preventDefault();
-    if (e.dataTransfer.types && (Array.from(e.dataTransfer.types).includes('Files') || Array.from(e.dataTransfer.types).includes('text/uri-list'))) {
-        // Ensure the event target is outside our window to hide overlay
-        // This prevents hiding when dragging over child elements of the overlay
-        if (e.target === document.body || e.target === document.documentElement) {
-            dragCounter--; // Decrement counter
-            if (dragCounter === 0) { // Only hide when drag leaves main window entirely
-                dragOverlay.classList.remove('active');
-            }
-        }
+    dragCounter--;
+    if (dragCounter === 0) {
+        dragOverlay.classList.remove('active');
     }
 });
 
-window.addEventListener('dragover', (e) => e.preventDefault()); // Allow drop
+window.addEventListener('dragover', (e) => e.preventDefault());
 
-// MODIFIED: Drop event for global drop zone
 window.addEventListener('drop', (event) => {
     event.preventDefault();
-    dragOverlay.classList.remove('active'); // Hide overlay on drop
-    dragCounter = 0; // Reset counter
+    dragOverlay.classList.remove('active');
+    dragCounter = 0;
     handleFiles(event.dataTransfer.files);
 });
 
-// Button listeners
 convertAllBtn.addEventListener('click', handleConvertAll);
 clearAllBtn.addEventListener('click', handleClearAll);
 
@@ -67,7 +56,7 @@ function handleFiles(files) {
     for (const file of files) {
         createImagePreview(file);
     }
-    updateControlsState();
+    // The call to updateControlsState() was REMOVED from here.
 }
 
 function createImagePreview(file) {
@@ -94,9 +83,9 @@ function createImagePreview(file) {
         removeBtn.className = 'remove-btn';
         removeBtn.innerHTML = '&times;';
         removeBtn.onclick = (e) => {
-            e.stopPropagation(); // Prevent click from bubbling to parent (if any)
+            e.stopPropagation();
             previewWrapper.remove();
-            updateControlsState();
+            updateControlsState(); // This call is correct.
         };
 
         previewWrapper.appendChild(removeBtn);
@@ -104,6 +93,9 @@ function createImagePreview(file) {
         previewWrapper.appendChild(info);
         previewWrapper.appendChild(convertBtn);
         imagePreviews.appendChild(previewWrapper);
+
+        // MOVED HERE: This now runs AFTER the preview is on the page.
+        updateControlsState(); 
     };
     reader.readAsDataURL(file);
 }
@@ -184,10 +176,8 @@ async function handleDownloadAll() {
             document.body.appendChild(link);
             link.click();
             document.body.removeChild(link);
-            // No reset here, as user might want to re-download if they removed a file
         });
     }
-    // Always enable the button again, even if no files were zipped or if error
     updateControlsState(); 
 }
 
@@ -200,21 +190,16 @@ function updateControlsState() {
     const numPreviews = document.querySelectorAll('.preview-wrapper').length;
     const numUnconverted = document.querySelectorAll('.convert-btn').length;
 
-    if (numPreviews > 1) { // Show controls if 2 or more images
+    if (numPreviews > 1) {
         controls.classList.remove('hidden');
     } else {
         controls.classList.add('hidden');
     }
 
-    if (numUnconverted > 0) { // If there are any unconverted, show convert all
+    if (numUnconverted > 0) {
         resetConvertAllButtonState();
-    } else if (numPreviews > 0) { // If all are converted, show download all
+    } else if (numPreviews > 0) {
         updateToDownloadAllState();
-    } else { // No images at all
-        convertAllBtn.textContent = 'Convert All to WebP'; // Reset text
-        convertAllBtn.disabled = false; // Ensure it's not disabled if no images
-        convertAllBtn.removeEventListener('click', handleDownloadAll);
-        convertAllBtn.addEventListener('click', handleConvertAll);
     }
 }
 
