@@ -7,12 +7,51 @@ const convertAllBtn = document.getElementById('convert-all-btn');
 const clearAllBtn = document.getElementById('clear-all-btn');
 const dragOverlay = document.getElementById('drag-overlay');
 const formatSelect = document.getElementById('format-select');
+const adContainer = document.getElementById('ad-container'); // New
 
-// NEW: State management flags
 let isConverting = false;
 let dragCounter = 0;
 
-// --- EVENT LISTENERS ---
+// ... (All event listeners and other functions remain the same) ...
+
+// MODIFIED FUNCTION: updateControlsState
+function updateControlsState() {
+    const numPreviews = document.querySelectorAll('.preview-wrapper').length;
+    const numUnconverted = document.querySelectorAll('.convert-btn').length;
+
+    if (numPreviews > 1) {
+        controls.classList.remove('hidden');
+        adContainer.classList.remove('hidden'); // Show ad container
+        // Request a new ad from Google
+        (window.adsbygoogle = window.adsbygoogle || []).push({});
+    } else {
+        controls.classList.add('hidden');
+        adContainer.classList.add('hidden'); // Hide ad container
+    }
+
+    if (numUnconverted > 0) {
+        resetConvertAllButtonState();
+    } else if (numPreviews > 0) {
+        updateToDownloadAllState();
+    }
+}
+
+// ... (The rest of your JavaScript file remains unchanged) ...
+// The full, correct JS is below for easy copy-pasting
+
+// FULL JAVASCRIPT FILE:
+const uploadArea = document.getElementById('upload-area');
+const fileInput = document.getElementById('file-input');
+const imagePreviews = document.getElementById('image-previews');
+const controls = document.getElementById('controls');
+const convertAllBtn = document.getElementById('convert-all-btn');
+const clearAllBtn = document.getElementById('clear-all-btn');
+const dragOverlay = document.getElementById('drag-overlay');
+const formatSelect = document.getElementById('format-select');
+const adContainer = document.getElementById('ad-container');
+
+let isConverting = false;
+let dragCounter = 0;
 
 uploadArea.addEventListener('click', () => fileInput.click());
 fileInput.addEventListener('change', (event) => {
@@ -22,7 +61,7 @@ fileInput.addEventListener('change', (event) => {
 
 window.addEventListener('dragenter', (e) => {
     e.preventDefault();
-    if (isConverting) return; // Don't allow drops during conversion
+    if (isConverting) return;
     if (e.dataTransfer.types && Array.from(e.dataTransfer.types).includes('Files')) {
         dragCounter++;
         if (dragCounter === 1) dragOverlay.classList.add('active');
@@ -41,15 +80,13 @@ window.addEventListener('drop', (event) => {
     event.preventDefault();
     dragOverlay.classList.remove('active');
     dragCounter = 0;
-    if (isConverting) return; // Don't allow drops during conversion
+    if (isConverting) return;
     handleFiles(event.dataTransfer.files);
 });
 
 convertAllBtn.addEventListener('click', handleConvertAll);
 clearAllBtn.addEventListener('click', handleClearAll);
 formatSelect.addEventListener('change', updateButtonText);
-
-// --- CORE LOGIC ---
 
 function handleFiles(files) {
     if (files.length === 0) return;
@@ -83,7 +120,7 @@ function createImagePreview(file) {
         removeBtn.className = 'remove-btn';
         removeBtn.innerHTML = '&times;';
         removeBtn.onclick = (e) => {
-            if (isConverting) return; // Don't allow removal during conversion
+            if (isConverting) return;
             e.stopPropagation();
             previewWrapper.remove();
             updateControlsState();
@@ -101,7 +138,6 @@ function createImagePreview(file) {
 }
 
 function convertImage(previewWrapper, onCompleteCallback) {
-    // ... (This function remains unchanged)
     const file = previewWrapper.fileData;
     const convertBtn = previewWrapper.querySelector('.convert-btn');
     if (!convertBtn) { if (onCompleteCallback) onCompleteCallback(); return; }
@@ -145,26 +181,26 @@ function convertImage(previewWrapper, onCompleteCallback) {
 }
 
 function handleConvertAll() {
-    if (isConverting) return; // Guard clause
+    if (isConverting) return;
 
     const wrappersToConvert = Array.from(document.querySelectorAll('.preview-wrapper')).filter(w => w.querySelector('.convert-btn'));
     const totalToConvert = wrappersToConvert.length;
     if (totalToConvert === 0) return;
 
-    isConverting = true; // Set state to converting
-    let conversionProgress = 0; // Use a local variable for progress
+    isConverting = true;
+    let conversionProgress = 0;
 
     convertAllBtn.textContent = `Converting... (0/${totalToConvert})`;
     convertAllBtn.disabled = true;
-    clearAllBtn.style.display = 'none'; // Hide clear button during conversion
+    clearAllBtn.style.display = 'none';
 
     wrappersToConvert.forEach(wrapper => {
         convertImage(wrapper, () => {
             conversionProgress++;
             convertAllBtn.textContent = `Converting... (${conversionProgress}/${totalToConvert})`;
             if (conversionProgress === totalToConvert) {
-                isConverting = false; // Unset state
-                clearAllBtn.style.display = 'inline-block'; // Show clear button again
+                isConverting = false;
+                clearAllBtn.style.display = 'inline-block';
                 updateToDownloadAllState();
             }
         });
@@ -172,9 +208,9 @@ function handleConvertAll() {
 }
 
 async function handleDownloadAll() {
-    if (isConverting) return; // Guard clause
+    if (isConverting) return;
 
-    isConverting = true; // Set state to zipping
+    isConverting = true;
     convertAllBtn.textContent = 'Zipping...';
     convertAllBtn.disabled = true;
     clearAllBtn.style.display = 'none';
@@ -201,13 +237,13 @@ async function handleDownloadAll() {
         });
     }
 
-    isConverting = false; // Unset state
+    isConverting = false;
     clearAllBtn.style.display = 'inline-block';
     updateControlsState(); 
 }
 
 function handleClearAll() {
-    if (isConverting) return; // Guard clause
+    if (isConverting) return;
     imagePreviews.innerHTML = '';
     updateControlsState();
 }
@@ -229,8 +265,16 @@ function updateControlsState() {
 
     if (numPreviews > 1) {
         controls.classList.remove('hidden');
+        adContainer.classList.remove('hidden'); // Show ad container
+        // Request a new ad from Google
+        try {
+            (window.adsbygoogle = window.adsbygoogle || []).push({});
+        } catch (e) {
+            console.error("AdSense error:", e);
+        }
     } else {
         controls.classList.add('hidden');
+        adContainer.classList.add('hidden'); // Hide ad container
     }
 
     if (numUnconverted > 0) {
