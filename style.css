@@ -32,25 +32,20 @@ h1 {
     border-color: #0056b3;
 }
 
-/* Hide the default file input */
 #file-input {
     display: none;
 }
 
-/* Add a style for when a file is being dragged over the upload area */
 #upload-area.drag-over {
     border-color: #0056b3;
-    background-color: #e9f5ff; /* A light blue feedback color */
+    background-color: #e9f5ff;
 }
 
-/* Styles for the image preview area */
 #image-previews {
     display: flex;
     flex-wrap: wrap;
     gap: 15px;
     justify-content: center;
-    margin-top: 20px;
-    /* We add a max-width to align with the upload box */
     max-width: 840px; 
     margin: 40px auto;
 }
@@ -69,7 +64,7 @@ h1 {
 .preview-image {
     width: 100%;
     height: 150px;
-    object-fit: cover; /* This prevents images from being stretched */
+    object-fit: cover;
     display: block;
 }
 
@@ -87,7 +82,7 @@ h1 {
     color: #333;
     white-space: nowrap;
     overflow: hidden;
-    text-overflow: ellipsis; /* Adds "..." if the filename is too long */
+    text-overflow: ellipsis;
 }
 
 .file-size {
@@ -123,4 +118,43 @@ h1 {
 #convert-all-btn:disabled {
     background-color: #8c8c8c;
     cursor: not-allowed;
+}
+
+/* UPDATED Button and Link Styles */
+.convert-btn, .download-link {
+    display: block;
+    width: calc(100% - 20px);
+    margin: 10px auto;
+    padding: 10px 0;
+    font-size: 0.9em;
+    font-weight: bold;
+    text-align: center;
+    border-radius: 5px;
+    text-decoration: none;
+    cursor: pointer;
+    border: none;
+    transition: background-color 0.2s;
+}
+
+.convert-btn {
+    background-color: #0056b3;
+    color: white;
+}
+
+.convert-btn:hover:not(:disabled) {
+    background-color: #003d82;
+}
+
+.convert-btn:disabled {
+    background-color: #8c8c8c;
+    cursor: not-allowed;
+}
+
+.download-link {
+    background-color: #28a745;
+    color: white;
+}
+
+.download-link:hover {
+    background-color: #1e7e34;
 }
