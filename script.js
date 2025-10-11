@@ -5,22 +5,21 @@ const imagePreviews = document.getElementById('image-previews');
 const controls = document.getElementById('controls');
 const convertAllBtn = document.getElementById('convert-all-btn');
 
+let conversionProgress = 0;
+let totalToConvert = 0;
+
 // --- EVENT LISTENERS ---
 
 uploadArea.addEventListener('click', () => fileInput.click());
-
 fileInput.addEventListener('change', (event) => {
     handleFiles(event.target.files);
     event.target.value = null;
 });
-
 uploadArea.addEventListener('dragover', (event) => {
     event.preventDefault();
     uploadArea.classList.add('drag-over');
 });
-
 uploadArea.addEventListener('dragleave', () => uploadArea.classList.remove('drag-over'));
-
 uploadArea.addEventListener('drop', (event) => {
     event.preventDefault();
     uploadArea.classList.remove('drag-over');
@@ -36,10 +35,12 @@ function handleFiles(files) {
     for (const file of files) {
         createImagePreview(file);
     }
-    // Show the controls if there are previews
-    if (imagePreviews.children.length > 0) {
+    // MODIFIED: Show controls if there are 2 or more images
+    if (document.querySelectorAll('.preview-wrapper').length > 1) {
         controls.classList.remove('hidden');
     }
+    // NEW: Reset the 'Convert All' button if new files are added
+    resetConvertAllButtonState();
 }
 
 function createImagePreview(file) {
@@ -47,25 +48,17 @@ function createImagePreview(file) {
     reader.onload = (event) => {
         const previewWrapper = document.createElement('div');
         previewWrapper.className = 'preview-wrapper';
-        // Attach the file object directly to the element for later access
         previewWrapper.fileData = file;
-
         const img = document.createElement('img');
         img.src = event.target.result;
         img.className = 'preview-image';
-
         const info = document.createElement('div');
         info.className = 'preview-info';
-        info.innerHTML = `
-            <span class="file-name">${file.name}</span>
-            <span class="file-size">${(file.size / 1024).toFixed(1)} KB</span>
-        `;
-
+        info.innerHTML = `<span class="file-name">${file.name}</span><span class="file-size">${(file.size / 1024).toFixed(1)} KB</span>`;
         const convertBtn = document.createElement('button');
         convertBtn.className = 'convert-btn';
         convertBtn.textContent = 'Convert to WebP';
         convertBtn.onclick = () => convertImageToWebP(previewWrapper);
-
         previewWrapper.appendChild(img);
         previewWrapper.appendChild(info);
         previewWrapper.appendChild(convertBtn);
@@ -74,16 +67,10 @@ function createImagePreview(file) {
     reader.readAsDataURL(file);
 }
 
-/**
- * Converts a single image to WebP, using the preview wrapper as its source of data.
- * @param {HTMLElement} previewWrapper The preview card element for this image.
- */
-function convertImageToWebP(previewWrapper) {
-    const file = previewWrapper.fileData; // Get the file from the element
+function convertImageToWebP(previewWrapper, onCompleteCallback) {
+    const file = previewWrapper.fileData;
     const convertBtn = previewWrapper.querySelector('.convert-btn');
-
-    // Prevent double-conversion
-    if (!convertBtn) return;
+    if (!convertBtn) { if (onCompleteCallback) onCompleteCallback(); return; }
 
     convertBtn.textContent = 'Converting...';
     convertBtn.disabled = true;
@@ -95,34 +82,86 @@ function convertImageToWebP(previewWrapper) {
         canvas.height = img.height;
         const ctx = canvas.getContext('2d');
         ctx.drawImage(img, 0, 0);
-
         const webpDataUrl = canvas.toDataURL('image/webp', 0.9);
+        const newFileName = file.name.split('.').slice(0, -1).join('.') + '.webp';
 
         const downloadLink = document.createElement('a');
         downloadLink.href = webpDataUrl;
-        const newFileName = file.name.split('.').slice(0, -1).join('.') + '.webp';
         downloadLink.download = newFileName;
         downloadLink.textContent = 'Download WebP';
         downloadLink.className = 'download-link';
 
+        // MODIFIED: Add click listener for post-download feedback
+        downloadLink.onclick = () => {
+            downloadLink.textContent = 'Done ✅';
+            downloadLink.classList.add('downloaded');
+        };
+
         convertBtn.replaceWith(downloadLink);
+        if (onCompleteCallback) onCompleteCallback();
     };
-    // Use createObjectURL for better performance with canvas
     img.src = URL.createObjectURL(file);
 }
 
-/**
- * Handles the "Convert All" button click.
- */
 function handleConvertAll() {
-    convertAllBtn.textContent = 'Converting All...';
+    const wrappersToConvert = Array.from(document.querySelectorAll('.preview-wrapper')).filter(w => w.querySelector('.convert-btn'));
+    totalToConvert = wrappersToConvert.length;
+    if (totalToConvert === 0) return;
+
+    conversionProgress = 0;
+    convertAllBtn.textContent = `Converting... (0/${totalToConvert})`;
     convertAllBtn.disabled = true;
 
-    const wrappersToConvert = document.querySelectorAll('.preview-wrapper');
     wrappersToConvert.forEach(wrapper => {
-        // Check if it has a convert button (i.e., not already converted)
-        if (wrapper.querySelector('.convert-btn')) {
-            convertImageToWebP(wrapper);
-        }
+        convertImageToWebP(wrapper, () => {
+            conversionProgress++;
+            convertAllBtn.textContent = `Converting... (${conversionProgress}/${totalToConvert})`;
+            if (conversionProgress === totalToConvert) {
+                updateToDownloadAllState();
+            }
+        });
     });
+}
+
+// NEW: Function to change the button to 'Download All'
+function updateToDownloadAllState() {
+    convertAllBtn.textContent = 'Download All (.zip)';
+    convertAllBtn.disabled = false;
+    convertAllBtn.removeEventListener('click', handleConvertAll);
+    convertAllBtn.addEventListener('click', handleDownloadAll);
+}
+
+// NEW: Function to handle downloading all files as a zip
+async function handleDownloadAll() {
+    convertAllBtn.textContent = 'Zipping...';
+    convertAllBtn.disabled = true;
+
+    const zip = new JSZip();
+    const downloadLinks = document.querySelectorAll('.download-link');
+
+    for (const link of downloadLinks) {
+        const response = await fetch(link.href);
+        const blob = await response.blob();
+        zip.file(link.download, blob);
+    }
+
+    zip.generateAsync({ type: 'blob' }).then(content => {
+        const link = document.createElement('a');
+        link.href = URL.createObjectURL(content);
+        link.download = 'ConvertUnlimited.zip';
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+
+        // Reset button after zipping is complete
+        resetConvertAllButtonState();
+    });
+}
+
+// NEW: Function to reset the main button's state
+function resetConvertAllButtonState() {
+    convertAllBtn.textContent = 'Convert All to WebP';
+    convertAllBtn.disabled = false;
+    convertAllBtn.removeEventListener('click', handleDownloadAll);
+    convertAllBtn.addEventListener('click', handleConvertAll);
 }
