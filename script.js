@@ -4,11 +4,12 @@ const fileInput = document.getElementById('file-input');
 const imagePreviews = document.getElementById('image-previews');
 const controls = document.getElementById('controls');
 const convertAllBtn = document.getElementById('convert-all-btn');
-const clearAllBtn = document.getElementById('clear-all-btn'); // New
-const dragOverlay = document.getElementById('drag-overlay'); // New
+const clearAllBtn = document.getElementById('clear-all-btn');
+const dragOverlay = document.getElementById('drag-overlay');
 
 let conversionProgress = 0;
 let totalToConvert = 0;
+let dragCounter = 0; // NEW: To track dragenter/dragleave events
 
 // --- EVENT LISTENERS ---
 
@@ -19,28 +20,45 @@ fileInput.addEventListener('change', (event) => {
     event.target.value = null;
 });
 
-// NEW: Global Drag & Drop Listeners
+// MODIFIED: Global Drag & Drop Listeners
 window.addEventListener('dragenter', (e) => {
     e.preventDefault();
-    dragOverlay.classList.remove('hidden');
+    // Only show overlay if dragging files
+    if (e.dataTransfer.types && (Array.from(e.dataTransfer.types).includes('Files') || Array.from(e.dataTransfer.types).includes('text/uri-list'))) {
+        dragCounter++; // Increment counter
+        if (dragCounter === 1) { // Only add 'active' class on first dragenter
+            dragOverlay.classList.add('active');
+        }
+    }
 });
 
-dragOverlay.addEventListener('dragleave', (e) => {
+window.addEventListener('dragleave', (e) => {
     e.preventDefault();
-    dragOverlay.classList.add('hidden');
+    if (e.dataTransfer.types && (Array.from(e.dataTransfer.types).includes('Files') || Array.from(e.dataTransfer.types).includes('text/uri-list'))) {
+        // Ensure the event target is outside our window to hide overlay
+        // This prevents hiding when dragging over child elements of the overlay
+        if (e.target === document.body || e.target === document.documentElement) {
+            dragCounter--; // Decrement counter
+            if (dragCounter === 0) { // Only hide when drag leaves main window entirely
+                dragOverlay.classList.remove('active');
+            }
+        }
+    }
 });
 
-dragOverlay.addEventListener('dragover', (e) => e.preventDefault());
+window.addEventListener('dragover', (e) => e.preventDefault()); // Allow drop
 
-dragOverlay.addEventListener('drop', (event) => {
+// MODIFIED: Drop event for global drop zone
+window.addEventListener('drop', (event) => {
     event.preventDefault();
-    dragOverlay.classList.add('hidden');
+    dragOverlay.classList.remove('active'); // Hide overlay on drop
+    dragCounter = 0; // Reset counter
     handleFiles(event.dataTransfer.files);
 });
 
 // Button listeners
 convertAllBtn.addEventListener('click', handleConvertAll);
-clearAllBtn.addEventListener('click', handleClearAll); // New
+clearAllBtn.addEventListener('click', handleClearAll);
 
 // --- CORE LOGIC ---
 
@@ -72,16 +90,16 @@ function createImagePreview(file) {
         convertBtn.textContent = 'Convert to WebP';
         convertBtn.onclick = () => convertImageToWebP(previewWrapper);
 
-        // NEW: 'Remove' button
         const removeBtn = document.createElement('button');
         removeBtn.className = 'remove-btn';
-        removeBtn.innerHTML = '&times;'; // HTML entity for 'x'
-        removeBtn.onclick = () => {
+        removeBtn.innerHTML = '&times;';
+        removeBtn.onclick = (e) => {
+            e.stopPropagation(); // Prevent click from bubbling to parent (if any)
             previewWrapper.remove();
             updateControlsState();
         };
 
-        previewWrapper.appendChild(removeBtn); // Add 'x' button
+        previewWrapper.appendChild(removeBtn);
         previewWrapper.appendChild(img);
         previewWrapper.appendChild(info);
         previewWrapper.appendChild(convertBtn);
@@ -154,7 +172,7 @@ async function handleDownloadAll() {
         const response = await fetch(link.href);
         const blob = await response.blob();
         zip.file(link.download, blob);
-        link.textContent = 'Done ✅'; // Mark as done after adding to zip
+        link.textContent = 'Done ✅';
         link.classList.add('downloaded');
     }
 
@@ -166,34 +184,37 @@ async function handleDownloadAll() {
             document.body.appendChild(link);
             link.click();
             document.body.removeChild(link);
-            resetConvertAllButtonState();
+            // No reset here, as user might want to re-download if they removed a file
         });
-    } else {
-         resetConvertAllButtonState();
     }
+    // Always enable the button again, even if no files were zipped or if error
+    updateControlsState(); 
 }
 
-// NEW: Clear all previews
 function handleClearAll() {
     imagePreviews.innerHTML = '';
     updateControlsState();
 }
 
-// NEW: Central function to manage the state of the control buttons
 function updateControlsState() {
     const numPreviews = document.querySelectorAll('.preview-wrapper').length;
     const numUnconverted = document.querySelectorAll('.convert-btn').length;
 
-    if (numPreviews > 1) {
+    if (numPreviews > 1) { // Show controls if 2 or more images
         controls.classList.remove('hidden');
     } else {
         controls.classList.add('hidden');
     }
 
-    if (numUnconverted > 0) {
+    if (numUnconverted > 0) { // If there are any unconverted, show convert all
         resetConvertAllButtonState();
-    } else if (numPreviews > 0) {
+    } else if (numPreviews > 0) { // If all are converted, show download all
         updateToDownloadAllState();
+    } else { // No images at all
+        convertAllBtn.textContent = 'Convert All to WebP'; // Reset text
+        convertAllBtn.disabled = false; // Ensure it's not disabled if no images
+        convertAllBtn.removeEventListener('click', handleDownloadAll);
+        convertAllBtn.addEventListener('click', handleConvertAll);
     }
 }
 
