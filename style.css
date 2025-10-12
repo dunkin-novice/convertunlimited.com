@@ -6,16 +6,8 @@ body {
     padding: 20px;
     text-align: center;
 }
-
-header {
-    margin-bottom: 40px;
-}
-
-h1 {
-    font-size: 2.5em;
-    color: #0056b3;
-}
-
+header { margin-bottom: 40px; }
+h1 { font-size: 2.5em; color: #0056b3; }
 #upload-area {
     border: 3px dashed #ccd0d5;
     border-radius: 10px;
@@ -26,20 +18,32 @@ h1 {
     background-color: #ffffff;
     transition: background-color 0.2s;
 }
+#upload-area:hover { background-color: #f7f8fa; border-color: #0056b3; }
+#file-input { display: none; }
 
-#upload-area:hover {
-    background-color: #f7f8fa;
-    border-color: #0056b3;
+/* UPDATED Styles for Options */
+#output-options {
+    margin-bottom: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    flex-wrap: wrap;
 }
+.option-group { display: flex; align-items: center; gap: 10px; }
+#output-options label { font-size: 1.1em; font-weight: 500; color: #333; }
+#format-select, #quality-select {
+    font-size: 1.1em;
+    padding: 8px 12px;
+    border-radius: 6px;
+    border: 1px solid #ccd0d5;
+    background-color: #fff;
+}
+#quality-control.disabled { opacity: 0.4; pointer-events: none; }
 
-#file-input {
-    display: none;
-}
-
-#upload-area.drag-over {
-    border-color: #0056b3;
-    background-color: #e9f5ff;
-}
+/* NEW Styles for the results area */
+#results-area { margin-top: 20px; }
+#controls { margin-bottom: 25px; }
 
 #image-previews {
     display: flex;
@@ -49,9 +53,8 @@ h1 {
     max-width: 840px; 
     margin: 40px auto;
 }
-
 .preview-wrapper {
-    position: relative; /* For positioning the remove button */
+    position: relative;
     width: 200px;
     border: 1px solid #ddd;
     border-radius: 8px;
@@ -61,14 +64,7 @@ h1 {
     display: flex;
     flex-direction: column;
 }
-
-.preview-image {
-    width: 100%;
-    height: 150px;
-    object-fit: cover;
-    display: block;
-}
-
+.preview-image { width: 100%; height: 150px; object-fit: cover; display: block; }
 .preview-info {
     padding: 10px;
     background-color: #f9f9f9;
@@ -77,237 +73,55 @@ h1 {
     display: flex;
     flex-direction: column;
 }
+.file-name { font-weight: bold; color: #333; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.file-size { color: #666; }
 
-.file-name {
-    font-weight: bold;
-    color: #333;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-
-.file-size {
-    color: #666;
-}
-
-/* Utility class to hide elements */
-.hidden {
-    display: none;
-}
-
-/* Styles for the controls container and Convert All button */
-#controls {
-    margin-bottom: 25px;
-}
+.hidden { display: none; }
 
 #convert-all-btn {
-    background-color: #0056b3;
-    color: white;
-    font-size: 1.1em;
-    font-weight: bold;
-    padding: 12px 25px;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background-color 0.2s;
+    background-color: #0056b3; color: white; font-size: 1.1em; font-weight: bold;
+    padding: 12px 25px; border: none; border-radius: 8px; cursor: pointer; transition: background-color 0.2s;
 }
+#convert-all-btn:hover:not(:disabled) { background-color: #003d82; }
+#convert-all-btn:disabled { background-color: #8c8c8c; cursor: not-allowed; }
 
-#convert-all-btn:hover:not(:disabled) {
-    background-color: #003d82;
-}
-
-#convert-all-btn:disabled {
-    background-color: #8c8c8c;
-    cursor: not-allowed;
-}
-
-/* UPDATED Button and Link Styles */
 .convert-btn, .download-link {
-    display: block;
-    width: calc(100% - 20px);
-    margin: 10px auto;
-    padding: 10px 0;
-    font-size: 0.9em;
-    font-weight: bold;
-    text-align: center;
-    border-radius: 5px;
-    text-decoration: none;
-    cursor: pointer;
-    border: none;
-    transition: background-color 0.2s;
+    display: block; width: calc(100% - 20px); margin: 10px auto; padding: 10px 0;
+    font-size: 0.9em; font-weight: bold; text-align: center; border-radius: 5px;
+    text-decoration: none; cursor: pointer; border: none; transition: background-color 0.2s;
 }
+.convert-btn { background-color: #0056b3; color: white; }
+.convert-btn:hover:not(:disabled) { background-color: #003d82; }
+.convert-btn:disabled { background-color: #8c8c8c; cursor: not-allowed; }
+.download-link { background-color: #28a745; color: white; }
+.download-link:hover { background-color: #1e7e34; }
+.download-link.downloaded { background-color: #6c757d; color: #f0f2f5; cursor: default; pointer-events: none; }
 
-.convert-btn {
-    background-color: #0056b3;
-    color: white;
-}
-
-.convert-btn:hover:not(:disabled) {
-    background-color: #003d82;
-}
-
-.convert-btn:disabled {
-    background-color: #8c8c8c;
-    cursor: not-allowed;
-}
-
-.download-link {
-    background-color: #28a745;
-    color: white;
-}
-
-.download-link:hover {
-    background-color: #1e7e34;
-}
-
-/* New style for a download link after it has been clicked */
-.download-link.downloaded {
-    background-color: #6c757d; /* A muted gray color */
-    color: #f0f2f5;
-    cursor: default;
-    pointer-events: none; /* Makes it unclickable */
-}
-/* --- New Styles for Feature Update --- */
-
-/* 1. Global Drag & Drop Overlay */
 #drag-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 86, 179, 0.7); /* Reduced opacity for less "stuck" feeling */
-    z-index: 9999;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    pointer-events: none; /* NEW: Allows clicks/events to pass through when not in use */
-    opacity: 0; /* NEW: Start completely transparent */
-    transition: opacity 0.2s ease-in-out; /* NEW: Smooth transition */
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background-color: rgba(0, 86, 179, 0.7); z-index: 9999; display: flex;
+    align-items: center; justify-content: center; pointer-events: none;
+    opacity: 0; transition: opacity 0.2s ease-in-out;
 }
-
-#drag-overlay.active { /* NEW: Class to make it visible */
-    opacity: 1;
-    pointer-events: auto; /* NEW: Make it clickable/interactive when active */
-}
-
+#drag-overlay.active { opacity: 1; pointer-events: auto; }
 #drag-overlay p {
-    color: white;
-    font-size: 2em;
-    font-weight: bold;
-    border: 3px dashed white;
-    padding: 40px 60px;
-    border-radius: 15px;
-    text-align: center; /* Ensure text is centered within the box */
+    color: white; font-size: 2em; font-weight: bold; border: 3px dashed white;
+    padding: 40px 60px; border-radius: 15px; text-align: center;
 }
-
-/* 2. Remove Button ('x') on Preview Cards */
 
 .remove-btn {
-    position: absolute;
-    top: 5px;
-    right: 5px;
-    width: 24px;
-    height: 24px;
-    background-color: rgba(0, 0, 0, 0.6);
-    color: white;
-    border: none;
-    border-radius: 50%;
-    font-size: 16px;
-    font-weight: bold;
-    line-height: 24px;
-    text-align: center;
-    cursor: pointer;
-    opacity: 0.5;
+    position: absolute; top: 5px; right: 5px; width: 24px; height: 24px;
+    background-color: rgba(0, 0, 0, 0.6); color: white; border: none;
+    border-radius: 50%; font-size: 16px; font-weight: bold; line-height: 24px;
+    text-align: center; cursor: pointer; opacity: 0.5;
     transition: opacity 0.2s, background-color 0.2s;
 }
+.preview-wrapper:hover .remove-btn { opacity: 1; }
+.remove-btn:hover { background-color: #d9534f; }
 
-.preview-wrapper:hover .remove-btn {
-    opacity: 1;
-}
-
-.remove-btn:hover {
-    background-color: #d9534f; /* Red on hover */
-}
-
-/* 3. 'Clear All' Button Style */
 #clear-all-btn {
-    background: none;
-    border: none;
-    color: #6c757d;
-    text-decoration: underline;
-    cursor: pointer;
-    font-size: 0.9em;
-    margin-left: 15px;
+    background: none; border: none; color: #6c757d; text-decoration: underline;
+    cursor: pointer; font-size: 0.9em; margin-left: 15px;
 }
-
-#clear-all-btn:hover {
-    color: #d9534f;
-}
-
-
-/* UPDATED Styles for Output Options */
-#output-options {
-    margin-bottom: 20px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 30px; /* Increased gap */
-    flex-wrap: wrap; /* Allow wrapping on small screens */
-}
-
-.option-group {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-#output-options label {
-    font-size: 1.1em;
-    font-weight: 500;
-    color: #333;
-}
-
-#format-select {
-    font-size: 1.1em;
-    padding: 8px 12px;
-    border-radius: 6px;
-    border: 1px solid #ccd0d5;
-    background-color: #fff;
-}
-
-/* --- AdSense Container Style --- */
-#ad-container {
-    margin: 30px auto;
-    max-width: 840px;
-}
-
-/* --- New Styles for Quality Slider --- */
-#output-options label {
-    font-size: 1.1em;
-    font-weight: 500;
-    color: #333;
-}
-
-#format-select, #quality-value {
-    font-size: 1.1em;
-    padding: 8px 12px;
-    border-radius: 6px;
-    border: 1px solid #ccd0d5;
-    background-color: #fff;
-}
-
-#quality-value {
-    font-variant-numeric: tabular-nums; /* Prevents text from jumping around */
-    min-width: 50px; /* Set a minimum width */
-    text-align: center;
-}
-
-#quality-slider {
-    width: 150px; /* Give the slider a set width */
-}
-
-#quality-control.disabled {
-    opacity: 0.4;
-    pointer-events: none;
-}
+#clear-all-btn:hover { color: #d9534f; }
+#ad-container { margin: 30px auto; max-width: 840px; }
