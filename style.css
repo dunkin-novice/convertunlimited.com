@@ -246,11 +246,18 @@ h1 {
 }
 
 
-/* --- Styles for Output Options --- */
+/* UPDATED Styles for Output Options */
 #output-options {
     margin-bottom: 20px;
     display: flex;
     justify-content: center;
+    align-items: center;
+    gap: 30px; /* Increased gap */
+    flex-wrap: wrap; /* Allow wrapping on small screens */
+}
+
+.option-group {
+    display: flex;
     align-items: center;
     gap: 10px;
 }
