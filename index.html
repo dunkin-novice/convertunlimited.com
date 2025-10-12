@@ -5,8 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ConvertUnlimited | Free & Unlimited WebP Converter</title>
     <link rel="stylesheet" href="style.css">
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2823470980745945"
-     crossorigin="anonymous"></script>
 </head>
 <body>
     <header>
@@ -16,42 +14,48 @@
 
     <main>
         <div id="output-options">
-    <div class="option-group">
-        <label for="format-select">Convert to:</label>
-        <select id="format-select">
-            <option value="webp" selected>WebP</option>
-            <option value="png">PNG</option>
-            <option value="jpeg">JPEG</option>
-        </select>
-    </div>
-    <div class="option-group" id="quality-control">
-        <label for="quality-slider">Quality:</label>
-        <input type="range" id="quality-slider" min="1" max="100" value="90">
-        <span id="quality-value">90%</span>
-    </div>
-</div>
+            <div class="option-group">
+                <label>Convert to:</label>
+                <select id="format-select">
+                    <option value="webp" selected>WebP</option>
+                    <option value="png">PNG</option>
+                    <option value="jpeg">JPEG</option>
+                </select>
+            </div>
+            <div class="option-group" id="quality-control">
+                <label>Quality:</label>
+                <select id="quality-select">
+                    <option value="1.0">Similar to Original</option>
+                    <option value="0.9">Little Compression</option>
+                    <option value="0.75" selected>Recommended</option>
+                    <option value="0.5">Best Compression</option>
+                </select>
+            </div>
+        </div>
+
         <div id="upload-area">
             <p>Drag & drop your images here, or click to select files</p>
             <input type="file" id="file-input" multiple accept=".jpg, .jpeg, .png, .gif, .svg">
         </div>
 
-        <div id="controls" class="hidden">
-            <button id="convert-all-btn">Convert All to WebP</button>
-            <button id="clear-all-btn">Clear All</button> 
-        </div>
-        </div> <div id="ad-container" class="hidden">
-            <ins class="adsbygoogle"
-                 style="display:block"
-                 data-ad-client="ca-pub-2823470980745945"
-                 data-ad-slot="YOUR_AD_SLOT_ID"
-                 data-ad-format="auto"
-                 data-full-width-responsive="true"></ins>
-        </div>
-
-        <div id="image-previews">
-
-        <div id="image-previews">
+        <div id="results-area" class="hidden">
+            <div id="controls">
+                <button id="convert-all-btn">Convert All to WebP</button>
+                <button id="clear-all-btn">Clear All</button>
             </div>
+
+            <div id="ad-container">
+                <ins class="adsbygoogle"
+                     style="display:block"
+                     data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+                     data-ad-slot="YOUR_AD_SLOT_ID"
+                     data-ad-format="auto"
+                     data-full-width-responsive="true"></ins>
+            </div>
+
+            <div id="image-previews">
+                </div>
+        </div>
     </main>
 
     <footer>
@@ -63,6 +67,8 @@
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX"
+         crossorigin="anonymous"></script>
     <script src="script.js"></script>
 </body>
 </html>
