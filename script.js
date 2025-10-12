@@ -7,51 +7,16 @@ const convertAllBtn = document.getElementById('convert-all-btn');
 const clearAllBtn = document.getElementById('clear-all-btn');
 const dragOverlay = document.getElementById('drag-overlay');
 const formatSelect = document.getElementById('format-select');
-const adContainer = document.getElementById('ad-container'); // New
-
-let isConverting = false;
-let dragCounter = 0;
-
-// ... (All event listeners and other functions remain the same) ...
-
-// MODIFIED FUNCTION: updateControlsState
-function updateControlsState() {
-    const numPreviews = document.querySelectorAll('.preview-wrapper').length;
-    const numUnconverted = document.querySelectorAll('.convert-btn').length;
-
-    if (numPreviews > 1) {
-        controls.classList.remove('hidden');
-        adContainer.classList.remove('hidden'); // Show ad container
-        // Request a new ad from Google
-        (window.adsbygoogle = window.adsbygoogle || []).push({});
-    } else {
-        controls.classList.add('hidden');
-        adContainer.classList.add('hidden'); // Hide ad container
-    }
-
-    if (numUnconverted > 0) {
-        resetConvertAllButtonState();
-    } else if (numPreviews > 0) {
-        updateToDownloadAllState();
-    }
-}
-
-// ... (The rest of your JavaScript file remains unchanged) ...
-// The full, correct JS is below for easy copy-pasting
-
-// FULL JAVASCRIPT FILE:
-const uploadArea = document.getElementById('upload-area');
-const fileInput = document.getElementById('file-input');
-const imagePreviews = document.getElementById('image-previews');
-const controls = document.getElementById('controls');
-const convertAllBtn = document.getElementById('convert-all-btn');
-const clearAllBtn = document.getElementById('clear-all-btn');
-const dragOverlay = document.getElementById('drag-overlay');
-const formatSelect = document.getElementById('format-select');
 const adContainer = document.getElementById('ad-container');
+// New references for quality slider
+const qualityControl = document.getElementById('quality-control');
+const qualitySlider = document.getElementById('quality-slider');
+const qualityValue = document.getElementById('quality-value');
 
 let isConverting = false;
 let dragCounter = 0;
+
+// --- EVENT LISTENERS ---
 
 uploadArea.addEventListener('click', () => fileInput.click());
 fileInput.addEventListener('change', (event) => {
@@ -86,7 +51,18 @@ window.addEventListener('drop', (event) => {
 
 convertAllBtn.addEventListener('click', handleConvertAll);
 clearAllBtn.addEventListener('click', handleClearAll);
-formatSelect.addEventListener('change', updateButtonText);
+
+// MODIFIED: Event listener for format and quality controls
+formatSelect.addEventListener('change', () => {
+    toggleQualitySlider();
+    updateButtonText();
+});
+
+qualitySlider.addEventListener('input', () => {
+    qualityValue.textContent = `${qualitySlider.value}%`;
+});
+
+// --- CORE LOGIC ---
 
 function handleFiles(files) {
     if (files.length === 0) return;
@@ -96,6 +72,7 @@ function handleFiles(files) {
 }
 
 function createImagePreview(file) {
+    // ... (This function remains unchanged)
     const reader = new FileReader();
     reader.onload = (event) => {
         const previewWrapper = document.createElement('div');
@@ -161,7 +138,9 @@ function convertImage(previewWrapper, onCompleteCallback) {
         ctx.drawImage(img, 0, 0);
 
         const mimeType = `image/${targetFormat}`;
-        const dataUrl = canvas.toDataURL(mimeType, 0.9);
+        // MODIFIED: Get quality from slider and pass it to toDataURL
+        const quality = qualitySlider.value / 100;
+        const dataUrl = canvas.toDataURL(mimeType, quality);
         const newFileName = file.name.split('.').slice(0, -1).join('.') + `.${targetFormat}`;
 
         const downloadLink = document.createElement('a');
@@ -181,8 +160,8 @@ function convertImage(previewWrapper, onCompleteCallback) {
 }
 
 function handleConvertAll() {
+    // ... (This function remains unchanged)
     if (isConverting) return;
-
     const wrappersToConvert = Array.from(document.querySelectorAll('.preview-wrapper')).filter(w => w.querySelector('.convert-btn'));
     const totalToConvert = wrappersToConvert.length;
     if (totalToConvert === 0) return;
@@ -208,8 +187,8 @@ function handleConvertAll() {
 }
 
 async function handleDownloadAll() {
+    // ... (This function remains unchanged)
     if (isConverting) return;
-
     isConverting = true;
     convertAllBtn.textContent = 'Zipping...';
     convertAllBtn.disabled = true;
@@ -243,12 +222,14 @@ async function handleDownloadAll() {
 }
 
 function handleClearAll() {
+    // ... (This function remains unchanged)
     if (isConverting) return;
     imagePreviews.innerHTML = '';
     updateControlsState();
 }
 
 function updateButtonText() {
+    // ... (This function remains unchanged)
     const selectedFormat = formatSelect.value.toUpperCase();
     document.querySelectorAll('.convert-btn').forEach(btn => {
         btn.textContent = `Convert to ${selectedFormat}`;
@@ -259,14 +240,23 @@ function updateButtonText() {
     }
 }
 
+// NEW function to show/hide the quality slider
+function toggleQualitySlider() {
+    if (formatSelect.value === 'png') {
+        qualityControl.classList.add('disabled');
+    } else {
+        qualityControl.classList.remove('disabled');
+    }
+}
+
 function updateControlsState() {
+    // ... (This function remains unchanged)
     const numPreviews = document.querySelectorAll('.preview-wrapper').length;
     const numUnconverted = document.querySelectorAll('.convert-btn').length;
 
     if (numPreviews > 1) {
         controls.classList.remove('hidden');
-        adContainer.classList.remove('hidden'); // Show ad container
-        // Request a new ad from Google
+        adContainer.classList.remove('hidden');
         try {
             (window.adsbygoogle = window.adsbygoogle || []).push({});
         } catch (e) {
@@ -274,7 +264,7 @@ function updateControlsState() {
         }
     } else {
         controls.classList.add('hidden');
-        adContainer.classList.add('hidden'); // Hide ad container
+        adContainer.classList.add('hidden');
     }
 
     if (numUnconverted > 0) {
@@ -285,12 +275,14 @@ function updateControlsState() {
 }
 
 function updateToDownloadAllState() {
+    // ... (This function remains unchanged)
     convertAllBtn.textContent = `Download All (.zip)`;
     convertAllBtn.disabled = false;
     convertAllBtn.onclick = handleDownloadAll;
 }
 
 function resetConvertAllButtonState() {
+    // ... (This function remains unchanged)
     const selectedFormat = formatSelect.value.toUpperCase();
     convertAllBtn.textContent = `Convert All to ${selectedFormat}`;
     convertAllBtn.disabled = false;
