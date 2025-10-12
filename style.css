@@ -281,3 +281,33 @@ h1 {
     margin: 30px auto;
     max-width: 840px;
 }
+
+/* --- New Styles for Quality Slider --- */
+#output-options label {
+    font-size: 1.1em;
+    font-weight: 500;
+    color: #333;
+}
+
+#format-select, #quality-value {
+    font-size: 1.1em;
+    padding: 8px 12px;
+    border-radius: 6px;
+    border: 1px solid #ccd0d5;
+    background-color: #fff;
+}
+
+#quality-value {
+    font-variant-numeric: tabular-nums; /* Prevents text from jumping around */
+    min-width: 50px; /* Set a minimum width */
+    text-align: center;
+}
+
+#quality-slider {
+    width: 150px; /* Give the slider a set width */
+}
+
+#quality-control.disabled {
+    opacity: 0.4;
+    pointer-events: none;
+}
