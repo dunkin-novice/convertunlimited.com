@@ -16,13 +16,20 @@
 
     <main>
         <div id="output-options">
-            <label for="format-select">Convert to:</label>
-            <select id="format-select">
+    <div class="option-group">
+        <label for="format-select">Convert to:</label>
+        <select id="format-select">
             <option value="webp" selected>WebP</option>
             <option value="png">PNG</option>
             <option value="jpeg">JPEG</option>
-            </select>
-        </div>
+        </select>
+    </div>
+    <div class="option-group" id="quality-control">
+        <label for="quality-slider">Quality:</label>
+        <input type="range" id="quality-slider" min="1" max="100" value="90">
+        <span id="quality-value">90%</span>
+    </div>
+</div>
         <div id="upload-area">
             <p>Drag & drop your images here, or click to select files</p>
             <input type="file" id="file-input" multiple accept=".jpg, .jpeg, .png, .gif, .svg">
