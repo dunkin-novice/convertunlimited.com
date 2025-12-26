@@ -2,10 +2,22 @@ const fs = require('fs');
 const path = require('path');
 const { execFileSync } = require('child_process');
 
-const BASE_URL = (process.env.BASE_URL || 'https://<MY_DOMAIN>').replace(/\/+$/, '');
+const DEFAULT_BASE_URL = 'https://convertunlimited.com';
+const RAW_BASE_URL = process.env.BASE_URL || DEFAULT_BASE_URL;
+const BASE_URL = RAW_BASE_URL.replace(/\/+$/, '');
 const ROOT_DIR = process.cwd();
-const OUTPUT_SITEMAP = path.join(ROOT_DIR, 'sitemap.xml');
-const OUTPUT_ROBOTS = path.join(ROOT_DIR, 'robots.txt');
+const DEPLOY_DIR = process.env.DEPLOY_DIR || '.';
+const SOURCE_DIR = path.resolve(ROOT_DIR, DEPLOY_DIR);
+const OUTPUT_SITEMAP = path.join(SOURCE_DIR, 'sitemap.xml');
+const OUTPUT_ROBOTS = path.join(SOURCE_DIR, 'robots.txt');
+
+if (/[<>]/.test(BASE_URL)) {
+  throw new Error(`BASE_URL contains invalid characters: ${BASE_URL}`);
+}
+
+if (!/^https?:\/\//i.test(BASE_URL)) {
+  throw new Error(`BASE_URL must be an absolute URL, got: ${BASE_URL}`);
+}
 
 const EXCLUDED_DIRS = new Set([
   'assets',
@@ -69,13 +81,30 @@ const getLastMod = (relPath) => {
 };
 
 const formatUrlPath = (relPath) => {
-  const posixPath = toPosix(relPath);
+  const posixPath = toPosix(path.relative(SOURCE_DIR, path.resolve(ROOT_DIR, relPath)));
   if (posixPath === 'index.html') return '/';
   if (posixPath.endsWith('/index.html')) {
     return `/${posixPath.replace(/index\.html$/, '')}`;
   }
   return `/${posixPath}`;
 };
+
+const xmlEscape = (value) => value.replace(/[&<>"']/g, (char) => {
+  switch (char) {
+    case '&':
+      return '&amp;';
+    case '<':
+      return '&lt;';
+    case '>':
+      return '&gt;';
+    case '"':
+      return '&quot;';
+    case "'":
+      return '&apos;';
+    default:
+      return char;
+  }
+});
 
 const generateSitemap = (paths) => {
   const urls = [];
@@ -85,8 +114,9 @@ const generateSitemap = (paths) => {
     const urlPath = formatUrlPath(relPath);
     if (seen.has(urlPath)) continue;
     seen.add(urlPath);
+    const encodedPath = encodeURI(urlPath);
     urls.push({
-      loc: `${BASE_URL}${urlPath}`,
+      loc: `${BASE_URL}${encodedPath}`,
       lastmod: getLastMod(relPath),
     });
   }
@@ -100,8 +130,8 @@ const generateSitemap = (paths) => {
 
   for (const entry of urls) {
     lines.push('  <url>');
-    lines.push(`    <loc>${entry.loc}</loc>`);
-    lines.push(`    <lastmod>${entry.lastmod}</lastmod>`);
+    lines.push(`    <loc>${xmlEscape(entry.loc)}</loc>`);
+    lines.push(`    <lastmod>${xmlEscape(entry.lastmod)}</lastmod>`);
     lines.push('    <changefreq>weekly</changefreq>');
     lines.push('    <priority>0.5</priority>');
     lines.push('  </url>');
@@ -118,7 +148,7 @@ const generateRobots = () => [
   '',
 ].join('\n');
 
-const htmlFiles = walk(ROOT_DIR);
+const htmlFiles = walk(SOURCE_DIR);
 const sitemap = generateSitemap(htmlFiles);
 const robots = generateRobots();
 
