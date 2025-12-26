@@ -15,6 +15,13 @@ const qualitySelect = document.getElementById('quality-select'); // New quality 
 let isConverting = false;
 let dragCounter = 0;
 
+const adSlots = document.querySelectorAll('.adsbygoogle');
+if (adSlots.length > 0 && window.adsbygoogle) {
+    adSlots.forEach(() => {
+        window.adsbygoogle.push({});
+    });
+}
+
 // --- EVENT LISTENERS ---
 uploadArea.addEventListener('click', () => fileInput.click());
 fileInput.addEventListener('change', (event) => {
