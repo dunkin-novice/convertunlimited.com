@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <rect width="1200" height="630" fill="#f7f6f1"/>
+
+  <!-- subtle diagonal pattern -->
+  <defs>
+    <pattern id="hatch" patternUnits="userSpaceOnUse" width="22" height="22" patternTransform="rotate(45)">
+      <line x1="0" y1="0" x2="0" y2="22" stroke="#e9e6dc" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <rect width="1200" height="630" fill="url(#hatch)" opacity="0.6"/>
+
+  <!-- brand mark + wordmark -->
+  <g transform="translate(80, 80)">
+    <rect width="56" height="56" rx="13" fill="#222220"/>
+    <text x="28" y="38" text-anchor="middle"
+          font-family="ui-monospace, 'JetBrains Mono', Menlo, monospace"
+          font-size="22" font-weight="600" fill="#f7f6f1">CU</text>
+    <text x="74" y="38"
+          font-family="Inter, system-ui, sans-serif"
+          font-size="28" font-weight="700" fill="#222220" letter-spacing="-0.6">ConvertUnlimited</text>
+  </g>
+
+  <!-- pill -->
+  <g transform="translate(80, 510)">
+    <rect width="220" height="34" rx="17" fill="#3aa17e" fill-opacity="0.15"/>
+    <circle cx="22" cy="17" r="4" fill="#3aa17e"/>
+    <text x="36" y="22"
+          font-family="Inter, system-ui, sans-serif"
+          font-size="14" font-weight="600" fill="#2c8a68">100% free, no signup</text>
+  </g>
+
+  <!-- headline -->
+  <g font-family="Inter, system-ui, sans-serif" fill="#222220" font-weight="700" letter-spacing="-2.5">
+    <text x="80" y="280" font-size="78">Free bulk image</text>
+    <text x="80" y="370" font-size="78">converter, in your browser.</text>
+  </g>
+
+  <!-- subhead -->
+  <text x="80" y="430"
+        font-family="Inter, system-ui, sans-serif"
+        font-size="24" font-weight="500" fill="#5e564b">JPG · PNG · WebP · GIF · BMP · SVG &#160;·&#160; drag in hundreds, download as ZIP.</text>
+</svg>

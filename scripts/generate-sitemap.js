@@ -118,6 +118,7 @@ const generateSitemap = (paths) => {
     urls.push({
       loc: `${BASE_URL}${encodedPath}`,
       lastmod: getLastMod(relPath),
+      isHome: urlPath === '/',
     });
   }
 
@@ -133,7 +134,7 @@ const generateSitemap = (paths) => {
     lines.push(`    <loc>${xmlEscape(entry.loc)}</loc>`);
     lines.push(`    <lastmod>${xmlEscape(entry.lastmod)}</lastmod>`);
     lines.push('    <changefreq>weekly</changefreq>');
-    lines.push('    <priority>0.5</priority>');
+    lines.push(`    <priority>${entry.isHome ? '1.0' : '0.5'}</priority>`);
     lines.push('  </url>');
   }
 

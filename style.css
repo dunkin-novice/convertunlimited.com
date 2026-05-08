@@ -24,7 +24,9 @@
 }
 
 * { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
 html, body { margin: 0; padding: 0; }
+main { display: block; }
 body {
   font-family: var(--font-sans);
   background: var(--bg);
@@ -54,13 +56,16 @@ a { color: inherit; }
   padding: 8px 0 22px;
 }
 .brand {
-  display: flex;
+  display: inline-flex;
   align-items: center;
   gap: 10px;
   font-weight: 700;
   font-size: 17px;
   letter-spacing: -0.01em;
+  color: var(--ink);
+  text-decoration: none;
 }
+.brand:hover .word { color: var(--ink-2); }
 .brand .mark {
   width: 22px; height: 22px; border-radius: 6px;
   background: var(--ink);
@@ -642,7 +647,7 @@ a { color: inherit; }
   flex-wrap: wrap;
   gap: 12px;
 }
-.footer .links { display: flex; gap: 18px; }
+.footer .links { display: flex; gap: 14px 18px; flex-wrap: wrap; }
 .footer a { text-decoration: none; }
 .footer a:hover { color: var(--ink); }
 
