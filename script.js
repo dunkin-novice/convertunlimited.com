@@ -48,6 +48,55 @@
     } catch (_) { /* noop */ }
   }
 
+  // ---- i18n: dynamic strings rendered by JS. Static page text is translated in each /<lang>/index.html. ----
+  const STRINGS = {
+    en: {
+      status_ready: "Ready", status_busy: "Converting…", status_done: "Converted", status_err: "Failed",
+      file_one: "file", file_other: "files",
+      save: "Save", saved: "Saved", convert: "Convert", converting: "Converting…",
+      convert_all_to: "Convert all to {fmt}", download_all_zip: "Download all as ZIP", download_format: "Download {fmt}",
+      saved_summary: "· saved {bytes} ({pct}%)", n_converted: "· {n} converted",
+    },
+    th: {
+      status_ready: "พร้อม", status_busy: "กำลังแปลง…", status_done: "เสร็จแล้ว", status_err: "ล้มเหลว",
+      file_one: "ไฟล์", file_other: "ไฟล์",
+      save: "บันทึก", saved: "บันทึกแล้ว", convert: "แปลง", converting: "กำลังแปลง…",
+      convert_all_to: "แปลงทั้งหมดเป็น {fmt}", download_all_zip: "ดาวน์โหลดเป็น ZIP", download_format: "ดาวน์โหลด {fmt}",
+      saved_summary: "· ประหยัด {bytes} ({pct}%)", n_converted: "· แปลงแล้ว {n}",
+    },
+    vi: {
+      status_ready: "Sẵn sàng", status_busy: "Đang chuyển…", status_done: "Đã chuyển", status_err: "Thất bại",
+      file_one: "tệp", file_other: "tệp",
+      save: "Lưu", saved: "Đã lưu", convert: "Chuyển", converting: "Đang chuyển…",
+      convert_all_to: "Chuyển tất cả sang {fmt}", download_all_zip: "Tải về dạng ZIP", download_format: "Tải {fmt}",
+      saved_summary: "· tiết kiệm {bytes} ({pct}%)", n_converted: "· đã chuyển {n}",
+    },
+    zh: {
+      status_ready: "就绪", status_busy: "转换中…", status_done: "已完成", status_err: "失败",
+      file_one: "个文件", file_other: "个文件",
+      save: "保存", saved: "已保存", convert: "转换", converting: "转换中…",
+      convert_all_to: "全部转换为 {fmt}", download_all_zip: "下载为 ZIP", download_format: "下载 {fmt}",
+      saved_summary: "· 节省 {bytes}（{pct}%）", n_converted: "· 已转换 {n}",
+    },
+    ja: {
+      status_ready: "準備完了", status_busy: "変換中…", status_done: "完了", status_err: "失敗",
+      file_one: "ファイル", file_other: "ファイル",
+      save: "保存", saved: "保存済み", convert: "変換", converting: "変換中…",
+      convert_all_to: "すべて {fmt} に変換", download_all_zip: "ZIP でダウンロード", download_format: "{fmt} をダウンロード",
+      saved_summary: "· {bytes} 節約（{pct}%）", n_converted: "· {n} 件変換済み",
+    },
+    es: {
+      status_ready: "Listo", status_busy: "Convirtiendo…", status_done: "Convertido", status_err: "Falló",
+      file_one: "archivo", file_other: "archivos",
+      save: "Guardar", saved: "Guardado", convert: "Convertir", converting: "Convirtiendo…",
+      convert_all_to: "Convertir todo a {fmt}", download_all_zip: "Descargar como ZIP", download_format: "Descargar {fmt}",
+      saved_summary: "· ahorraste {bytes} ({pct}%)", n_converted: "· {n} convertido",
+    },
+  };
+  const lang = (document.documentElement.lang || "en").toLowerCase().split("-")[0];
+  const t = STRINGS[lang] || STRINGS.en;
+  const fmtStr = (s, vars) => s.replace(/\{(\w+)\}/g, (_, k) => (vars && vars[k] != null ? vars[k] : ""));
+
   const ICON_DOWNLOAD = '<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>';
   const ICON_REFRESH = '<svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15A9 9 0 1 1 17 4.6L23 10"/></svg>';
   const ICON_X = '<svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>';
@@ -330,7 +379,7 @@
   function rowHtml(it) {
     const saved = it.outSize ? it.srcSize - it.outSize : 0;
     const savedPct = it.outSize ? (saved / it.srcSize) * 100 : 0;
-    const statusLabel = { ready: "Ready", busy: "Converting…", done: "Converted", err: "Failed" }[it.status];
+    const statusLabel = { ready: t.status_ready, busy: t.status_busy, done: t.status_done, err: t.status_err }[it.status];
     const meta =
       (it.ext ? it.ext.toUpperCase() : "—") +
       " → " + format.toUpperCase() +
@@ -338,9 +387,9 @@
 
     let actionMain = "";
     if (it.status === "done") {
-      actionMain = `<button class="dlbtn ${it.downloaded ? "done" : ""}" data-act="download" data-id="${it.id}" ${it.downloaded ? "disabled" : ""}>${ICON_DOWNLOAD} ${it.downloaded ? "Saved" : "Save"}</button>`;
+      actionMain = `<button class="dlbtn ${it.downloaded ? "done" : ""}" data-act="download" data-id="${it.id}" ${it.downloaded ? "disabled" : ""}>${ICON_DOWNLOAD} ${it.downloaded ? t.saved : t.save}</button>`;
     } else if (it.status !== "busy") {
-      actionMain = `<button class="iconbtn" data-act="convert" data-id="${it.id}" title="Convert">${ICON_REFRESH}</button>`;
+      actionMain = `<button class="iconbtn" data-act="convert" data-id="${it.id}" title="${t.convert}">${ICON_REFRESH}</button>`;
     }
     const removeBtn = `<button class="iconbtn danger" data-act="remove" data-id="${it.id}" title="Remove">${ICON_X}</button>`;
 
@@ -375,11 +424,11 @@
       (it.outSize ? " → " + formatBytes(it.outSize) : "");
     let actionBtn;
     if (it.status === "done") {
-      actionBtn = `<button class="dlbtn ${it.downloaded ? "done" : ""}" data-act="download" data-id="${it.id}" ${it.downloaded ? "disabled" : ""}>${it.downloaded ? "Saved" : "Download " + format.toUpperCase()}</button>`;
+      actionBtn = `<button class="dlbtn ${it.downloaded ? "done" : ""}" data-act="download" data-id="${it.id}" ${it.downloaded ? "disabled" : ""}>${it.downloaded ? t.saved : fmtStr(t.download_format, { fmt: format.toUpperCase() })}</button>`;
     } else if (it.status === "busy") {
-      actionBtn = `<button class="dlbtn" disabled>Converting…</button>`;
+      actionBtn = `<button class="dlbtn" disabled>${t.converting}</button>`;
     } else {
-      actionBtn = `<button class="dlbtn" data-act="convert" data-id="${it.id}">Convert</button>`;
+      actionBtn = `<button class="dlbtn" data-act="convert" data-id="${it.id}">${t.convert}</button>`;
     }
     const imgwrap = it.previewUrl
       ? `<img src="${it.previewUrl}" alt="">`
@@ -421,12 +470,12 @@
     qualitySelect.disabled = format === "png";
 
     summaryCount.textContent = String(s.total);
-    summaryNoun.textContent = s.total === 1 ? "file" : "files";
+    summaryNoun.textContent = s.total === 1 ? t.file_one : t.file_other;
     if (s.done > 0) {
       summarySavings.classList.remove("hidden");
       summarySavings.textContent = s.savedBytes > 0
-        ? `· saved ${formatBytes(s.savedBytes)} (${s.savedPct.toFixed(0)}%)`
-        : `· ${s.done} converted`;
+        ? fmtStr(t.saved_summary, { bytes: formatBytes(s.savedBytes), pct: s.savedPct.toFixed(0) })
+        : fmtStr(t.n_converted, { n: s.done });
     } else {
       summarySavings.classList.add("hidden");
       summarySavings.textContent = "";
@@ -436,16 +485,16 @@
       primaryBtn.disabled = false;
       primaryBtn.dataset.action = "download-all";
       primaryBtnIcon.innerHTML = ICON_ARCHIVE;
-      primaryBtnLabel.textContent = "Download all as ZIP";
+      primaryBtnLabel.textContent = t.download_all_zip;
     } else if (bulkBusy) {
       primaryBtn.disabled = true;
       primaryBtnIcon.innerHTML = "";
-      primaryBtnLabel.innerHTML = `Converting… <span class="num mono">${s.done}/${s.total}</span>`;
+      primaryBtnLabel.innerHTML = `${t.converting} <span class="num mono">${s.done}/${s.total}</span>`;
     } else {
       primaryBtn.disabled = (s.ready + s.err) === 0;
       primaryBtn.dataset.action = "convert-all";
       primaryBtnIcon.innerHTML = ICON_BOLT;
-      primaryBtnLabel.textContent = "Convert all to " + fmt;
+      primaryBtnLabel.textContent = fmtStr(t.convert_all_to, { fmt });
     }
 
     statTotal.textContent = String(s.total);

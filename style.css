@@ -101,6 +101,46 @@ a { color: inherit; }
   box-shadow: 0 0 0 3px color-mix(in oklch, var(--accent) 25%, transparent);
 }
 
+/* Language switcher (uses native <details>) */
+.lang-switcher { position: relative; }
+.lang-switcher > summary {
+  list-style: none;
+  cursor: pointer;
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 4px 9px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--ink-3);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--bg);
+  user-select: none;
+}
+.lang-switcher > summary::-webkit-details-marker { display: none; }
+.lang-switcher > summary:hover { color: var(--ink); border-color: var(--line-2); }
+.lang-switcher[open] > summary { color: var(--ink); border-color: var(--line-2); }
+.lang-switcher .lang-menu {
+  position: absolute; right: 0; top: calc(100% + 6px);
+  min-width: 180px;
+  padding: 6px;
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  box-shadow: var(--shadow-md);
+  display: flex; flex-direction: column;
+  z-index: 60;
+}
+.lang-switcher .lang-menu a {
+  display: block;
+  padding: 7px 10px;
+  font-size: 13.5px;
+  color: var(--ink-2);
+  text-decoration: none;
+  border-radius: 6px;
+}
+.lang-switcher .lang-menu a:hover { background: var(--bg-3); color: var(--ink); }
+.lang-switcher .lang-menu a[aria-current="page"] { color: var(--ink); font-weight: 600; background: var(--bg-3); }
+
 /* ===== Hero line ===== */
 .hero {
   display: flex; align-items: baseline; gap: 14px;

@@ -106,6 +106,21 @@ const xmlEscape = (value) => value.replace(/[&<>"']/g, (char) => {
   }
 });
 
+// Localised homepage variants. Each <url> below that matches one of these
+// paths gets a full set of xhtml:link hreflang alternates so search engines
+// can dedupe and serve the right language by region.
+const HREFLANG_ALTERNATES = [
+  { hreflang: 'en', path: '/' },
+  { hreflang: 'th', path: '/th/' },
+  { hreflang: 'vi', path: '/vi/' },
+  { hreflang: 'zh-Hans', path: '/zh/' },
+  { hreflang: 'ja', path: '/ja/' },
+  { hreflang: 'es', path: '/es/' },
+  { hreflang: 'x-default', path: '/' },
+];
+const HREFLANG_PATHS = new Set(HREFLANG_ALTERNATES.map((a) => a.path));
+const LOCALIZED_HOME_PATHS = new Set(['/', '/th/', '/vi/', '/zh/', '/ja/', '/es/']);
+
 const generateSitemap = (paths) => {
   const urls = [];
   const seen = new Set();
@@ -118,7 +133,8 @@ const generateSitemap = (paths) => {
     urls.push({
       loc: `${BASE_URL}${encodedPath}`,
       lastmod: getLastMod(relPath),
-      isHome: urlPath === '/',
+      urlPath,
+      isLocalizedHome: LOCALIZED_HOME_PATHS.has(urlPath),
     });
   }
 
@@ -126,7 +142,7 @@ const generateSitemap = (paths) => {
 
   const lines = [
     '<?xml version="1.0" encoding="UTF-8"?>',
-    '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">',
+    '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">',
   ];
 
   for (const entry of urls) {
@@ -134,7 +150,12 @@ const generateSitemap = (paths) => {
     lines.push(`    <loc>${xmlEscape(entry.loc)}</loc>`);
     lines.push(`    <lastmod>${xmlEscape(entry.lastmod)}</lastmod>`);
     lines.push('    <changefreq>weekly</changefreq>');
-    lines.push(`    <priority>${entry.isHome ? '1.0' : '0.5'}</priority>`);
+    lines.push(`    <priority>${entry.isLocalizedHome ? '1.0' : '0.5'}</priority>`);
+    if (entry.isLocalizedHome) {
+      for (const alt of HREFLANG_ALTERNATES) {
+        lines.push(`    <xhtml:link rel="alternate" hreflang="${alt.hreflang}" href="${BASE_URL}${alt.path}"/>`);
+      }
+    }
     lines.push('  </url>');
   }
 
