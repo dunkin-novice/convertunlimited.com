@@ -16,7 +16,9 @@
     <link rel="alternate" hreflang="vi" href="https://convertunlimited.com/vi/">
     <link rel="alternate" hreflang="zh-Hans" href="https://convertunlimited.com/zh/">
     <link rel="alternate" hreflang="ja" href="https://convertunlimited.com/ja/">
+    <link rel="alternate" hreflang="ko" href="https://convertunlimited.com/ko/">
     <link rel="alternate" hreflang="es" href="https://convertunlimited.com/es/">
+    <link rel="alternate" hreflang="fr" href="https://convertunlimited.com/fr/">
     <link rel="alternate" hreflang="x-default" href="https://convertunlimited.com/">
 
     <meta property="og:title" content="無料の一括画像変換ツール — JPG・PNG・WebP・GIF・BMP・SVG | ConvertUnlimited">
@@ -94,7 +96,7 @@
       "@type": "FAQPage",
       "mainEntity": [
         {"@type":"Question","name":"利用に制限はありますか?","acceptedAnswer":{"@type":"Answer","text":"ソフトウェア側の上限はありません。限界はブラウザとパソコンの性能だけです。最初は 1 回あたり 50 枚程度を目安に。最近のノート PC ならその 2〜3 倍でも問題なく扱えます。"}},
-        {"@type":"Question","name":"ファイルはサーバーにアップロードされますか?","acceptedAnswer":{"@type":"Answer","text":"いいえ。ConvertUnlimited は HTML canvas API を使ってブラウザ内で完結します。ファイルが端末から外に出ることはなく、私たちが見る・保存する・共有することもできません。"}},
+        {"@type":"Question","name":"ファイルはサーバーにアップロードされますか?","acceptedAnswer":{"@type":"Answer","text":"いいえ。ConvertUnlimited は HTML canvas API を使ってブラウザ内で完結します。ファイルが端末から外に出ることはなく、見ることも、保存することも、共有することもできない仕組みです。"}},
         {"@type":"Question","name":"大量変換でパソコンが重くなりますか?","acceptedAnswer":{"@type":"Answer","text":"一時的に重くなる可能性があります。デコードとエンコードのたびに CPU と RAM を使うため、大きなバッチ(高解像度 200 枚以上)ではメモリ使用が一時的にピークに達することがあります。ご自身の環境に合わせてご利用ください。"}},
         {"@type":"Question","name":"なぜ無料なのですか?","acceptedAnswer":{"@type":"Answer","text":"右レールとフッターの小さな広告でホスティング費用を賄っています。何もアップロードしないため、ユーザーごとのストレージコストが発生せず、サブスクリプションは不要です。"}},
         {"@type":"Question","name":"WebP・JPEG・PNG の違いは?","acceptedAnswer":{"@type":"Answer","text":"WebP は同等画質で最も小さく透過にも対応 — Web の既定にお勧めです。JPEG は互換性が最も広く、写真の汎用フォーマットです。PNG はロスレスで透過対応 — スクリーンショット、ロゴ、アイコン向きです。"}},
@@ -127,7 +129,9 @@
                         <a href="/vi/" hreflang="vi" lang="vi">Tiếng Việt</a>
                         <a href="/zh/" hreflang="zh-Hans" lang="zh-Hans">中文(简体)</a>
                         <a href="/ja/" hreflang="ja" lang="ja" aria-current="page">日本語</a>
+                        <a href="/ko/" hreflang="ko" lang="ko">한국어</a>
                         <a href="/es/" hreflang="es" lang="es">Español</a>
+                        <a href="/fr/" hreflang="fr" lang="fr">Français</a>
                     </div>
                 </details>
             </nav>
@@ -283,8 +287,8 @@
 
         <section id="how" class="article">
             <h2>ConvertUnlimited のしくみ</h2>
-            <p>ConvertUnlimited はブラウザ内で完結する無料の画像変換ツールです。JPG、PNG、GIF、WebP、BMP、SVG をドロップして、出力形式を選ぶだけ。数秒で変換済みのコピーが手に入ります。サーバーには何もアップロードされません。各画像はあなたの端末内で、HTML canvas API によりデコード・再描画・再エンコードされます。</p>
-            <p>このローカル処理モデルには、実用上ふたつの利点があります。ひとつは、ツールがプライベートであること —— ファイルが端末から外に出ないため、私たち(も含めて誰も)記録・閲覧・流出させようがありません。もうひとつは、ユーザーごとのストレージコストを抱えないこと —— だから無料、無制限、登録不要、透かしなしで提供できます。唯一の運用コストはサイトをオンラインに保つことで、それは右レールの小さな広告でまかなわれます。</p>
+            <p>ConvertUnlimited はブラウザ内で完結する無料の画像変換ツールです。JPG、PNG、GIF、WebP、BMP、SVG をドロップして出力形式を選ぶだけ。数秒で変換済みのコピーが手に入ります。サーバーには何もアップロードされません。各画像はお手元の端末内で、HTML canvas API によりデコード・再描画・再エンコードされます。</p>
+            <p>このローカル処理にはふたつの実用的な利点があります。ひとつは、ツールがプライベートであること —— ファイルが端末から外に出ないため、誰にも記録・閲覧・流出させようがありません。もうひとつは、ユーザーごとのストレージコストを抱える必要がないこと —— だから無料、無制限、登録不要、透かしなしで提供できます。唯一の運用コストはサイトをオンラインに保つことで、それは右レールの小さな広告でまかなわれます。</p>
             <p>変換はパソコンの CPU とメモリを使います。多くのノート PC では、スマホで撮ったぐらいの解像度の写真を 30〜80 枚ドロップしても、ほぼ瞬時に終わります。とても大きなバッチ —— 高解像度の画像を一度に数百枚 —— だと RAM の使用量が増え、エンコード中に動作が一瞬重くなることがあります。1 回あたり 50 枚程度をひとつの目安にすると快適ですが、ツール側で上限は設けていません。マシンが快適に扱える範囲でお使いください。より大きな処理は<a href="#batches">大量変換のコツ</a>を参考に。</p>
         </section>
 
@@ -336,7 +340,7 @@
             <p>ソフトウェア側の上限はありません。限界はブラウザとパソコンの性能だけです。最初は 1 回あたり 50 枚程度を目安に。最近のノート PC ならその 2〜3 倍でも問題なく扱えます。</p>
 
             <h3>ファイルはサーバーにアップロードされますか?</h3>
-            <p>いいえ。ConvertUnlimited は HTML canvas API を使ってブラウザ内で完結します。ファイルが端末から外に出ることはなく、私たちが見る・保存する・共有することもできません。</p>
+            <p>いいえ。ConvertUnlimited は HTML canvas API を使ってブラウザ内で完結します。ファイルが端末から外に出ることはなく、見ることも、保存することも、共有することもできない仕組みです。</p>
 
             <h3>大量変換でパソコンが重くなりますか?</h3>
             <p>一時的に重くなる可能性があります。デコードとエンコードのたびに CPU と RAM を使うため、大きなバッチ(高解像度 200 枚以上)ではメモリ使用が一時的にピークに達することがあります。ご自身の環境に合わせてご利用ください。</p>
@@ -365,8 +369,8 @@
 
         <section id="privacy" class="article">
             <h2>プライバシー</h2>
-            <p><b>あなたの画像。</b>ConvertUnlimited は完全にブラウザ内で画像を変換します。ファイルがサーバーにアップロードされることはなく、私たちがあなたの画像を見たり、保存したり、転送したりすることもありません。送信していないので、記録のしようもありません。</p>
-            <p><b>分析。</b>機能の使われ方やサイト全体の調子を把握するために Google Analytics 4 を使っています。GA4 はファーストパーティー Cookie(通常 <code>_ga</code> と <code>_ga_&lt;property&gt;</code> という名前)を設定して訪問者を集計し、Google は保存前に IP を切り詰めます。私たちが収集するのはページ単位のデータ —— 何が読み込まれたか、どこから来たか、どんな端末か —— であり、変換するファイルの中身ではありません(そもそも端末から出ません)。オプトアウトしたい場合は、<a href="https://tools.google.com/dlpage/gaoptout" rel="noopener" target="_blank">Google Analytics オプトアウト アドオン</a>のインストール、ブラウザのトラッカー遮断、シークレット/プライベートモードでの閲覧などが利用できます。</p>
+            <p><b>画像について。</b>ConvertUnlimited はブラウザ内だけで画像を変換します。ファイルがサーバーにアップロードされることはなく、こちらで画像を見たり、保存したり、転送したりすることもありません。何も送信されないので、ログとして残しようもありません。</p>
+            <p><b>分析。</b>機能の使われ方やサイト全体の調子を把握するために Google Analytics 4 を使っています。GA4 はファーストパーティー Cookie(通常 <code>_ga</code> と <code>_ga_&lt;property&gt;</code> という名前)を設定して訪問者を集計し、Google が保存前に IP を切り詰めます。収集されるのはページ単位のデータ —— 何が読み込まれたか、どこから来たか、どんな端末か —— であり、変換するファイルの中身ではありません(そもそも端末から出ません)。オプトアウトしたい場合は、<a href="https://tools.google.com/dlpage/gaoptout" rel="noopener" target="_blank">Google Analytics オプトアウト アドオン</a>のインストール、ブラウザのトラッカー遮断、シークレット/プライベートモードでの閲覧などが利用できます。</p>
             <p><b>広告。</b>ツールを無料に保つため Google AdSense を使っています。Google および広告パートナーは、関連性の高い広告配信や効果測定のため、広告 iframe 上で追加の Cookie を設定する場合があります。パーソナライズ広告の設定は <a href="https://www.google.com/settings/ads" rel="noopener" target="_blank">google.com/settings/ads</a> から、欧州の方は <a href="https://www.youronlinechoices.eu/" rel="noopener" target="_blank">youronlinechoices.eu</a> からオプトアウトできます。</p>
             <p><b>サーバーログ。</b>ホスティング事業者の標準ログ(IP アドレス、ブラウザ種別、リファラ)は、不正利用対策とセキュリティ目的でのみ保持され、分析や広告には使いません。</p>
             <p><b>連絡先。</b>プライバシーに関するお問い合わせは、プロジェクトの GitHub からどうぞ。</p>
@@ -375,7 +379,7 @@
         <section id="terms" class="article">
             <h2>利用規約</h2>
             <p>ConvertUnlimited は現状有姿で、無料で、個人利用にも商用利用にもご利用いただけます。本サイトを利用することで、以下に同意したものとみなされます:</p>
-            <p>変換する画像については、利用および処理の権利を含めご自身で責任を負うものとします。本ツールは無保証で提供されます —— 私たちは誠意をもって稼働を維持しますが、サービスの中断がないことや、特定の変換が必ず成功することは保証できません。端末上でローカルにファイルを変換した結果として生じうるデータ損失、ハードウェアの摩耗、その他の間接的損害について、私たちは責任を負いません。バグ報告や機能要望は、プロジェクトの GitHub に Issue を立てるのが最良の窓口です。</p>
+            <p>変換する画像については、利用および処理の権利を含めご自身で責任を負うものとします。本ツールは無保証で提供されます —— 誠意をもって稼働を維持していきますが、サービスの中断がないことや、特定の変換が必ず成功することは保証できません。端末上でローカルにファイルを変換した結果として生じうるデータ損失、ハードウェアの摩耗、その他の間接的損害について、当方は責任を負いかねます。バグ報告や機能要望は、プロジェクトの GitHub に Issue を立てるのが最良の窓口です。</p>
         </section>
         </main>
 

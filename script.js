@@ -92,6 +92,20 @@
       convert_all_to: "Convertir todo a {fmt}", download_all_zip: "Descargar como ZIP", download_format: "Descargar {fmt}",
       saved_summary: "· ahorraste {bytes} ({pct}%)", n_converted: "· {n} convertido",
     },
+    ko: {
+      status_ready: "준비됨", status_busy: "변환 중…", status_done: "완료", status_err: "실패",
+      file_one: "개 파일", file_other: "개 파일",
+      save: "저장", saved: "저장됨", convert: "변환", converting: "변환 중…",
+      convert_all_to: "전체 {fmt}로 변환", download_all_zip: "ZIP으로 다운로드", download_format: "{fmt} 다운로드",
+      saved_summary: "· {bytes} 절약 ({pct}%)", n_converted: "· {n}개 변환됨",
+    },
+    fr: {
+      status_ready: "Prêt", status_busy: "Conversion…", status_done: "Converti", status_err: "Échec",
+      file_one: "fichier", file_other: "fichiers",
+      save: "Enregistrer", saved: "Enregistré", convert: "Convertir", converting: "Conversion…",
+      convert_all_to: "Tout convertir en {fmt}", download_all_zip: "Télécharger en ZIP", download_format: "Télécharger {fmt}",
+      saved_summary: "· {bytes} économisés ({pct}%)", n_converted: "· {n} converti",
+    },
   };
   const lang = (document.documentElement.lang || "en").toLowerCase().split("-")[0];
   const t = STRINGS[lang] || STRINGS.en;

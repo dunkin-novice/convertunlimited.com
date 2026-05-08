@@ -115,11 +115,13 @@ const HREFLANG_ALTERNATES = [
   { hreflang: 'vi', path: '/vi/' },
   { hreflang: 'zh-Hans', path: '/zh/' },
   { hreflang: 'ja', path: '/ja/' },
+  { hreflang: 'ko', path: '/ko/' },
   { hreflang: 'es', path: '/es/' },
+  { hreflang: 'fr', path: '/fr/' },
   { hreflang: 'x-default', path: '/' },
 ];
 const HREFLANG_PATHS = new Set(HREFLANG_ALTERNATES.map((a) => a.path));
-const LOCALIZED_HOME_PATHS = new Set(['/', '/th/', '/vi/', '/zh/', '/ja/', '/es/']);
+const LOCALIZED_HOME_PATHS = new Set(['/', '/th/', '/vi/', '/zh/', '/ja/', '/ko/', '/es/', '/fr/']);
 
 const generateSitemap = (paths) => {
   const urls = [];
