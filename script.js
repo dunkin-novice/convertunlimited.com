@@ -39,6 +39,15 @@
   let _idCounter = 0;
   const nextId = () => ++_idCounter;
 
+  // GA4 event helper — silently no-ops if gtag is unavailable (ad-blocker, offline).
+  function track(name, params) {
+    try {
+      if (typeof window.gtag === "function") {
+        window.gtag("event", name, params || {});
+      }
+    } catch (_) { /* noop */ }
+  }
+
   const ICON_DOWNLOAD = '<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>';
   const ICON_REFRESH = '<svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15A9 9 0 1 1 17 4.6L23 10"/></svg>';
   const ICON_X = '<svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>';
@@ -115,7 +124,7 @@
     });
   }
 
-  async function addFiles(filelist) {
+  async function addFiles(filelist, source) {
     const arr = Array.from(filelist || []).filter(
       (f) => f.type.startsWith("image/") || /\.(jpe?g|png|gif|svg|webp|bmp)$/i.test(f.name)
     );
@@ -142,6 +151,11 @@
     );
     items = items.concat(newItems);
     render();
+    track("add_files", {
+      count: arr.length,
+      source: source || "picker",
+      total_bytes: arr.reduce((a, b) => a + (b.size || 0), 0),
+    });
   }
 
   function removeItem(id) {
@@ -163,6 +177,12 @@
     target.status = "busy";
     target.error = null;
     render();
+    track("convert_started", {
+      count: 1,
+      format,
+      quality,
+      total_bytes: target.srcSize || 0,
+    });
     try {
       const { blob } = await convertFile(target.file, format, quality);
       target.status = "done";
@@ -170,9 +190,29 @@
       target.outUrl = URL.createObjectURL(blob);
       target.outSize = blob.size;
       target.downloaded = false;
+      const inB = target.srcSize || 0;
+      const outB = blob.size || 0;
+      track("convert_completed", {
+        count: 1,
+        format,
+        quality,
+        total_in_bytes: inB,
+        total_out_bytes: outB,
+        saved_pct: inB > 0 ? Math.round(((inB - outB) / inB) * 100) : 0,
+        errors: 0,
+      });
     } catch (e) {
       target.status = "err";
       target.error = String(e && e.message || e);
+      track("convert_completed", {
+        count: 0,
+        format,
+        quality,
+        total_in_bytes: target.srcSize || 0,
+        total_out_bytes: 0,
+        saved_pct: 0,
+        errors: 1,
+      });
     }
     render();
   }
@@ -183,6 +223,17 @@
     bulkBusy = true;
     targets.forEach((t) => { t.status = "busy"; t.error = null; });
     render();
+    const startedBytes = targets.reduce((a, b) => a + (b.srcSize || 0), 0);
+    track("convert_started", {
+      count: targets.length,
+      format,
+      quality,
+      total_bytes: startedBytes,
+    });
+    let successCount = 0;
+    let errorCount = 0;
+    let totalInBytes = 0;
+    let totalOutBytes = 0;
     const BATCH = 3;
     for (let i = 0; i < targets.length; i += BATCH) {
       const slice = targets.slice(i, i + BATCH);
@@ -194,15 +245,31 @@
           target.outUrl = URL.createObjectURL(blob);
           target.outSize = blob.size;
           target.downloaded = false;
+          successCount++;
+          totalInBytes += target.srcSize || 0;
+          totalOutBytes += blob.size || 0;
         } catch (e) {
           target.status = "err";
           target.error = String(e && e.message || e);
+          errorCount++;
         }
         render();
       }));
     }
     bulkBusy = false;
     render();
+    const savedPct = totalInBytes > 0
+      ? Math.round(((totalInBytes - totalOutBytes) / totalInBytes) * 100)
+      : 0;
+    track("convert_completed", {
+      count: successCount,
+      format,
+      quality,
+      total_in_bytes: totalInBytes,
+      total_out_bytes: totalOutBytes,
+      saved_pct: savedPct,
+      errors: errorCount,
+    });
   }
 
   function downloadOne(it) {
@@ -215,6 +282,7 @@
     document.body.removeChild(a);
     it.downloaded = true;
     render();
+    track("download_single", { format, bytes: it.outSize || 0 });
   }
 
   async function downloadAllZip() {
@@ -235,6 +303,11 @@
     URL.revokeObjectURL(url);
     dones.forEach((it) => { it.downloaded = true; });
     render();
+    track("download_zip", {
+      count: dones.length,
+      format,
+      bytes: content.size || 0,
+    });
   }
 
   function statsOf() {
@@ -401,6 +474,9 @@
   formatSeg.addEventListener("click", (e) => {
     const btn = e.target.closest("button[data-format]");
     if (!btn) return;
+    if (btn.dataset.format !== format) {
+      track("select_format", { format: btn.dataset.format });
+    }
     format = btn.dataset.format;
     render();
   });
@@ -425,7 +501,7 @@
   dropzone.addEventListener("drop", () => dropzone.classList.remove("drag"));
 
   fileInput.addEventListener("change", (e) => {
-    addFiles(e.target.files);
+    addFiles(e.target.files, "picker");
     e.target.value = "";
   });
 
@@ -469,7 +545,7 @@
     dragCount = 0;
     dragOverlay.classList.remove("active");
     if (e.dataTransfer && e.dataTransfer.files && e.dataTransfer.files.length) {
-      addFiles(e.dataTransfer.files);
+      addFiles(e.dataTransfer.files, "drop");
     }
   });
 
