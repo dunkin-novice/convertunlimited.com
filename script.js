@@ -1,244 +1,484 @@
-// Get references to our HTML elements
-const uploadArea = document.getElementById('upload-area');
-const fileInput = document.getElementById('file-input');
-const imagePreviews = document.getElementById('image-previews');
-const resultsArea = document.getElementById('results-area'); // New layout container
-const controls = document.getElementById('controls');
-const convertAllBtn = document.getElementById('convert-all-btn');
-const clearAllBtn = document.getElementById('clear-all-btn');
-const dragOverlay = document.getElementById('drag-overlay');
-const formatSelect = document.getElementById('format-select');
-const adContainer = document.getElementById('ad-container');
-const qualityControl = document.getElementById('quality-control');
-const qualitySelect = document.getElementById('quality-select'); // New quality dropdown
+/* ConvertUnlimited — vanilla JS port of the design's converter logic */
+(function () {
+  "use strict";
 
-let isConverting = false;
-let dragCounter = 0;
+  const $ = (id) => document.getElementById(id);
+  const layout = $("layout");
+  const formatSeg = $("format-seg");
+  const qualityField = $("quality-field");
+  const qualitySelect = $("quality-select");
+  const viewSeg = $("view-seg");
+  const emptyState = $("empty-state");
+  const filledState = $("filled-state");
+  const dropzone = $("dropzone");
+  const fileInput = $("file-input");
+  const dragOverlay = $("drag-overlay");
+  const summaryCount = $("summary-count");
+  const summaryNoun = $("summary-noun");
+  const summarySavings = $("summary-savings");
+  const addMoreBtn = $("add-more-btn");
+  const primaryBtn = $("primary-btn");
+  const primaryBtnLabel = $("primary-btn-label");
+  const primaryBtnIcon = $("primary-btn-icon");
+  const clearBtn = $("clear-btn");
+  const listView = $("list-view");
+  const listRows = $("list-rows");
+  const gridView = $("grid-view");
+  const statTotal = $("stat-total");
+  const statDone = $("stat-done");
+  const statSrc = $("stat-src");
+  const statOut = $("stat-out");
+  const statSaved = $("stat-saved");
 
-const adSlots = document.querySelectorAll('.adsbygoogle');
-if (adSlots.length > 0 && window.adsbygoogle) {
-    adSlots.forEach(() => {
-        window.adsbygoogle.push({});
+  let items = [];
+  let format = "webp";
+  let quality = 0.75;
+  let view = "list";
+  let bulkBusy = false;
+  let dragCount = 0;
+  let _idCounter = 0;
+  const nextId = () => ++_idCounter;
+
+  const ICON_DOWNLOAD = '<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>';
+  const ICON_REFRESH = '<svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15A9 9 0 1 1 17 4.6L23 10"/></svg>';
+  const ICON_X = '<svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>';
+  const ICON_BOLT = '<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>';
+  const ICON_ARCHIVE = '<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="4" rx="1"/><path d="M5 7v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7"/><line x1="10" y1="12" x2="14" y2="12"/></svg>';
+  const ICON_IMAGE = '<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="9" cy="9" r="2"/><path d="M21 15l-5-5L5 21"/></svg>';
+
+  function formatBytes(b) {
+    if (b == null || isNaN(b)) return "—";
+    if (b < 1024) return b + " B";
+    if (b < 1024 * 1024) return (b / 1024).toFixed(1) + " KB";
+    return (b / 1024 / 1024).toFixed(2) + " MB";
+  }
+  function extOf(name) {
+    const i = name.lastIndexOf(".");
+    return i >= 0 ? name.slice(i + 1).toLowerCase() : "";
+  }
+  function baseOf(name) {
+    const i = name.lastIndexOf(".");
+    return i >= 0 ? name.slice(0, i) : name;
+  }
+  function escapeHtml(s) {
+    return String(s).replace(/[&<>"']/g, (c) => ({
+      "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;",
+    }[c]));
+  }
+
+  function readPreview(file) {
+    return new Promise((resolve, reject) => {
+      const r = new FileReader();
+      r.onload = () => resolve(r.result);
+      r.onerror = () => reject(r.error);
+      r.readAsDataURL(file);
     });
-}
+  }
 
-// --- EVENT LISTENERS ---
-uploadArea.addEventListener('click', () => fileInput.click());
-fileInput.addEventListener('change', (event) => {
-    handleFiles(event.target.files);
-    event.target.value = null;
-});
-
-window.addEventListener('dragenter', (e) => {
-    e.preventDefault();
-    if (isConverting) return;
-    if (e.dataTransfer.types && Array.from(e.dataTransfer.types).includes('Files')) {
-        dragCounter++;
-        if (dragCounter === 1) dragOverlay.classList.add('active');
-    }
-});
-window.addEventListener('dragleave', (e) => {
-    e.preventDefault();
-    dragCounter--;
-    if (dragCounter === 0) dragOverlay.classList.remove('active');
-});
-window.addEventListener('dragover', (e) => e.preventDefault());
-window.addEventListener('drop', (event) => {
-    event.preventDefault();
-    dragOverlay.classList.remove('active');
-    dragCounter = 0;
-    if (isConverting) return;
-    handleFiles(event.dataTransfer.files);
-});
-
-convertAllBtn.addEventListener('click', handleConvertAll);
-clearAllBtn.addEventListener('click', handleClearAll);
-
-formatSelect.addEventListener('change', () => {
-    toggleQualityControl();
-    updateButtonText();
-});
-
-// --- CORE LOGIC ---
-function handleFiles(files) {
-    if (files.length === 0) return;
-    for (const file of files) {
-        createImagePreview(file);
-    }
-}
-
-function createImagePreview(file) {
-    const reader = new FileReader();
-    reader.onload = (event) => {
-        const previewWrapper = document.createElement('div');
-        previewWrapper.className = 'preview-wrapper';
-        previewWrapper.fileData = file;
-        const img = document.createElement('img');
-        img.src = event.target.result;
-        img.className = 'preview-image';
-        const info = document.createElement('div');
-        info.className = 'preview-info';
-        info.innerHTML = `<span class="file-name">${file.name}</span><span class="file-size">${(file.size / 1024).toFixed(1)} KB</span>`;
-        const convertBtn = document.createElement('button');
-        convertBtn.className = 'convert-btn';
-        const selectedFormat = formatSelect.value.toUpperCase();
-        convertBtn.textContent = `Convert to ${selectedFormat}`;
-        convertBtn.onclick = () => convertImage(previewWrapper);
-        const removeBtn = document.createElement('button');
-        removeBtn.className = 'remove-btn';
-        removeBtn.innerHTML = '&times;';
-        removeBtn.onclick = (e) => {
-            if (isConverting) return;
-            e.stopPropagation();
-            previewWrapper.remove();
-            updateControlsState();
-        };
-        previewWrapper.appendChild(removeBtn);
-        previewWrapper.appendChild(img);
-        previewWrapper.appendChild(info);
-        previewWrapper.appendChild(convertBtn);
-        imagePreviews.appendChild(previewWrapper);
-        updateControlsState();
-    };
-    reader.readAsDataURL(file);
-}
-
-function convertImage(previewWrapper, onCompleteCallback) {
-    const file = previewWrapper.fileData;
-    const convertBtn = previewWrapper.querySelector('.convert-btn');
-    if (!convertBtn) { if (onCompleteCallback) onCompleteCallback(); return; }
-    convertBtn.textContent = 'Converting...';
-    convertBtn.disabled = true;
-
-    const img = new Image();
-    img.onload = () => {
-        const canvas = document.createElement('canvas');
-        canvas.width = img.width;
-        canvas.height = img.height;
-        const ctx = canvas.getContext('2d');
-        const targetFormat = formatSelect.value;
-        if (targetFormat === 'jpeg') {
-            ctx.fillStyle = '#FFFFFF';
+  function convertFile(file, fmt, q) {
+    return new Promise((resolve, reject) => {
+      const img = new Image();
+      const objUrl = URL.createObjectURL(file);
+      img.onload = () => {
+        try {
+          const canvas = document.createElement("canvas");
+          canvas.width = img.naturalWidth || img.width;
+          canvas.height = img.naturalHeight || img.height;
+          const ctx = canvas.getContext("2d");
+          if (fmt === "jpeg") {
+            ctx.fillStyle = "#FFFFFF";
             ctx.fillRect(0, 0, canvas.width, canvas.height);
+          }
+          ctx.drawImage(img, 0, 0);
+          canvas.toBlob(
+            (blob) => {
+              URL.revokeObjectURL(objUrl);
+              if (!blob) { reject(new Error("Encode failed")); return; }
+              resolve({ blob });
+            },
+            "image/" + fmt,
+            fmt === "png" ? undefined : q
+          );
+        } catch (e) {
+          URL.revokeObjectURL(objUrl);
+          reject(e);
         }
-        ctx.drawImage(img, 0, 0);
-        const mimeType = `image/${targetFormat}`;
-        const quality = parseFloat(qualitySelect.value); // Read from dropdown
-        const dataUrl = canvas.toDataURL(mimeType, quality);
-        const newFileName = file.name.split('.').slice(0, -1).join('.') + `.${targetFormat}`;
-        const downloadLink = document.createElement('a');
-        downloadLink.href = dataUrl;
-        downloadLink.download = newFileName;
-        downloadLink.textContent = `Download ${targetFormat.toUpperCase()}`;
-        downloadLink.className = 'download-link';
-        downloadLink.onclick = () => {
-            downloadLink.textContent = 'Done ✅';
-            downloadLink.classList.add('downloaded');
+      };
+      img.onerror = () => {
+        URL.revokeObjectURL(objUrl);
+        reject(new Error("Cannot read image"));
+      };
+      img.src = objUrl;
+    });
+  }
+
+  async function addFiles(filelist) {
+    const arr = Array.from(filelist || []).filter(
+      (f) => f.type.startsWith("image/") || /\.(jpe?g|png|gif|svg|webp|bmp)$/i.test(f.name)
+    );
+    if (!arr.length) return;
+    const newItems = await Promise.all(
+      arr.map(async (file) => {
+        let previewUrl = null;
+        try { previewUrl = await readPreview(file); } catch (e) { /* ignore */ }
+        return {
+          id: nextId(),
+          file,
+          name: file.name,
+          ext: extOf(file.name) || (file.type.split("/")[1] || ""),
+          srcSize: file.size,
+          previewUrl,
+          status: "ready",
+          outBlob: null,
+          outUrl: null,
+          outSize: 0,
+          downloaded: false,
+          error: null,
         };
-        convertBtn.replaceWith(downloadLink);
-        if (onCompleteCallback) onCompleteCallback();
+      })
+    );
+    items = items.concat(newItems);
+    render();
+  }
+
+  function removeItem(id) {
+    const it = items.find((x) => x.id === id);
+    if (it && it.outUrl) URL.revokeObjectURL(it.outUrl);
+    items = items.filter((x) => x.id !== id);
+    render();
+  }
+
+  function clearAll() {
+    items.forEach((it) => { if (it.outUrl) URL.revokeObjectURL(it.outUrl); });
+    items = [];
+    render();
+  }
+
+  async function convertOne(id) {
+    const target = items.find((x) => x.id === id);
+    if (!target) return;
+    target.status = "busy";
+    target.error = null;
+    render();
+    try {
+      const { blob } = await convertFile(target.file, format, quality);
+      target.status = "done";
+      target.outBlob = blob;
+      target.outUrl = URL.createObjectURL(blob);
+      target.outSize = blob.size;
+      target.downloaded = false;
+    } catch (e) {
+      target.status = "err";
+      target.error = String(e && e.message || e);
+    }
+    render();
+  }
+
+  async function convertAll() {
+    const targets = items.filter((it) => it.status === "ready" || it.status === "err");
+    if (!targets.length) return;
+    bulkBusy = true;
+    targets.forEach((t) => { t.status = "busy"; t.error = null; });
+    render();
+    const BATCH = 3;
+    for (let i = 0; i < targets.length; i += BATCH) {
+      const slice = targets.slice(i, i + BATCH);
+      await Promise.all(slice.map(async (target) => {
+        try {
+          const { blob } = await convertFile(target.file, format, quality);
+          target.status = "done";
+          target.outBlob = blob;
+          target.outUrl = URL.createObjectURL(blob);
+          target.outSize = blob.size;
+          target.downloaded = false;
+        } catch (e) {
+          target.status = "err";
+          target.error = String(e && e.message || e);
+        }
+        render();
+      }));
+    }
+    bulkBusy = false;
+    render();
+  }
+
+  function downloadOne(it) {
+    if (!it.outUrl) return;
+    const a = document.createElement("a");
+    a.href = it.outUrl;
+    a.download = baseOf(it.name) + "." + format;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    it.downloaded = true;
+    render();
+  }
+
+  async function downloadAllZip() {
+    const dones = items.filter((x) => x.status === "done" && x.outBlob);
+    if (!dones.length || !window.JSZip) return;
+    const zip = new window.JSZip();
+    dones.forEach((it) => {
+      zip.file(baseOf(it.name) + "." + format, it.outBlob);
+    });
+    const content = await zip.generateAsync({ type: "blob" });
+    const url = URL.createObjectURL(content);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "convertunlimited_" + format + ".zip";
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+    dones.forEach((it) => { it.downloaded = true; });
+    render();
+  }
+
+  function statsOf() {
+    const done = items.filter((x) => x.status === "done");
+    const totalSrc = items.reduce((a, b) => a + (b.srcSize || 0), 0);
+    const totalOut = done.reduce((a, b) => a + (b.outSize || 0), 0);
+    const doneSrc = done.reduce((a, b) => a + (b.srcSize || 0), 0);
+    const savedBytes = doneSrc - totalOut;
+    const savedPct = doneSrc > 0 ? (savedBytes / doneSrc) * 100 : 0;
+    return {
+      total: items.length,
+      done: done.length,
+      ready: items.filter((x) => x.status === "ready").length,
+      busy: items.filter((x) => x.status === "busy").length,
+      err: items.filter((x) => x.status === "err").length,
+      totalSrc, totalOut, savedBytes, savedPct,
     };
-    img.src = URL.createObjectURL(file);
-}
+  }
 
-function handleConvertAll() {
-    if (isConverting) return;
-    const wrappersToConvert = Array.from(document.querySelectorAll('.preview-wrapper')).filter(w => w.querySelector('.convert-btn'));
-    const totalToConvert = wrappersToConvert.length;
-    if (totalToConvert === 0) return;
-    isConverting = true;
-    let conversionProgress = 0;
-    convertAllBtn.textContent = `Converting... (0/${totalToConvert})`;
-    convertAllBtn.disabled = true;
-    clearAllBtn.style.display = 'none';
-    wrappersToConvert.forEach(wrapper => {
-        convertImage(wrapper, () => {
-            conversionProgress++;
-            convertAllBtn.textContent = `Converting... (${conversionProgress}/${totalToConvert})`;
-            if (conversionProgress === totalToConvert) {
-                isConverting = false;
-                clearAllBtn.style.display = 'inline-block';
-                updateToDownloadAllState();
-            }
-        });
-    });
-}
+  function rowHtml(it) {
+    const saved = it.outSize ? it.srcSize - it.outSize : 0;
+    const savedPct = it.outSize ? (saved / it.srcSize) * 100 : 0;
+    const statusLabel = { ready: "Ready", busy: "Converting…", done: "Converted", err: "Failed" }[it.status];
+    const meta =
+      (it.ext ? it.ext.toUpperCase() : "—") +
+      " → " + format.toUpperCase() +
+      (it.error ? " · " + escapeHtml(it.error) : "");
 
-async function handleDownloadAll() {
-    if (isConverting) return;
-    isConverting = true;
-    convertAllBtn.textContent = 'Zipping...';
-    convertAllBtn.disabled = true;
-    clearAllBtn.style.display = 'none';
-    const zip = new JSZip();
-    const downloadLinks = document.querySelectorAll('.download-link:not(.downloaded)');
-    for (const link of downloadLinks) {
-        const response = await fetch(link.href);
-        const blob = await response.blob();
-        zip.file(link.download, blob);
-        link.textContent = 'Done ✅';
-        link.classList.add('downloaded');
+    let actionMain = "";
+    if (it.status === "done") {
+      actionMain = `<button class="dlbtn ${it.downloaded ? "done" : ""}" data-act="download" data-id="${it.id}" ${it.downloaded ? "disabled" : ""}>${ICON_DOWNLOAD} ${it.downloaded ? "Saved" : "Save"}</button>`;
+    } else if (it.status !== "busy") {
+      actionMain = `<button class="iconbtn" data-act="convert" data-id="${it.id}" title="Convert">${ICON_REFRESH}</button>`;
     }
-    if (Object.keys(zip.files).length > 0) {
-        await zip.generateAsync({ type: 'blob' }).then(content => {
-            const link = document.createElement('a');
-            link.href = URL.createObjectURL(content);
-            link.download = `ConvertUnlimited_${formatSelect.value}.zip`;
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
-        });
-    }
-    isConverting = false;
-    clearAllBtn.style.display = 'inline-block';
-    updateControlsState();
-}
+    const removeBtn = `<button class="iconbtn danger" data-act="remove" data-id="${it.id}" title="Remove">${ICON_X}</button>`;
 
-function handleClearAll() {
-    if (isConverting) return;
-    imagePreviews.innerHTML = '';
-    updateControlsState();
-}
+    const thumb = it.previewUrl
+      ? `<img src="${it.previewUrl}" alt="">`
+      : `<span class="ext">${escapeHtml(it.ext)}</span>`;
 
-function updateButtonText() {
-    const selectedFormat = formatSelect.value.toUpperCase();
-    document.querySelectorAll('.convert-btn').forEach(btn => {
-        btn.textContent = `Convert to ${selectedFormat}`;
-    });
-    if (document.querySelectorAll('.convert-btn').length > 0) {
-        resetConvertAllButtonState();
-    }
-}
+    return `
+      <div class="row" data-id="${it.id}">
+        <div class="thumb">${thumb}</div>
+        <div class="name">
+          <span class="fn" title="${escapeHtml(it.name)}">${escapeHtml(it.name)}</span>
+          <span class="meta">${meta}</span>
+        </div>
+        <div class="size before num">${formatBytes(it.srcSize)}</div>
+        <div class="arrow">→</div>
+        <div class="size after num">${it.outSize ? formatBytes(it.outSize) : "—"}</div>
+        <div class="save num ${saved <= 0 ? "zero" : ""}">${
+          it.status === "done" ? (saved > 0 ? "−" + savedPct.toFixed(0) + "%" : "—") : ""
+        }</div>
+        <div class="status ${it.status}"><span class="stdot"></span>${statusLabel}</div>
+        <div class="actions">${actionMain}${removeBtn}</div>
+      </div>
+    `;
+  }
 
-function toggleQualityControl() {
-    qualityControl.classList.toggle('disabled', formatSelect.value === 'png');
-}
-
-function updateControlsState() {
-    const numPreviews = document.querySelectorAll('.preview-wrapper').length;
-    if (numPreviews > 0) {
-        resultsArea.classList.remove('hidden');
+  function cardHtml(it) {
+    const saved = it.outSize ? it.srcSize - it.outSize : 0;
+    const savedPct = it.outSize ? (saved / it.srcSize) * 100 : 0;
+    const meta =
+      formatBytes(it.srcSize) +
+      (it.outSize ? " → " + formatBytes(it.outSize) : "");
+    let actionBtn;
+    if (it.status === "done") {
+      actionBtn = `<button class="dlbtn ${it.downloaded ? "done" : ""}" data-act="download" data-id="${it.id}" ${it.downloaded ? "disabled" : ""}>${it.downloaded ? "Saved" : "Download " + format.toUpperCase()}</button>`;
+    } else if (it.status === "busy") {
+      actionBtn = `<button class="dlbtn" disabled>Converting…</button>`;
     } else {
-        resultsArea.classList.add('hidden');
+      actionBtn = `<button class="dlbtn" data-act="convert" data-id="${it.id}">Convert</button>`;
     }
+    const imgwrap = it.previewUrl
+      ? `<img src="${it.previewUrl}" alt="">`
+      : ICON_IMAGE;
+    return `
+      <div class="card" data-id="${it.id}">
+        <button class="remove" data-act="remove" data-id="${it.id}" aria-label="Remove">×</button>
+        <div class="imgwrap">${imgwrap}</div>
+        <div class="info">
+          <span class="fn" title="${escapeHtml(it.name)}">${escapeHtml(it.name)}</span>
+          <span class="meta">
+            <span>${meta}</span>
+            ${it.status === "done" && saved > 0 ? `<span class="save">−${savedPct.toFixed(0)}%</span>` : ""}
+          </span>
+          <div class="actions">${actionBtn}</div>
+        </div>
+      </div>
+    `;
+  }
 
-    const hasUnconverted = document.querySelectorAll('.convert-btn').length > 0;
-    if(hasUnconverted) {
-        resetConvertAllButtonState();
+  function render() {
+    const s = statsOf();
+    const hasItems = s.total > 0;
+    const allDone = hasItems && s.done === s.total;
+    const fmt = format.toUpperCase();
+
+    emptyState.classList.toggle("hidden", hasItems);
+    filledState.classList.toggle("hidden", !hasItems);
+    viewSeg.classList.toggle("hidden", !hasItems);
+
+    Array.from(formatSeg.querySelectorAll("button")).forEach((btn) => {
+      btn.setAttribute("aria-pressed", String(btn.dataset.format === format));
+    });
+    Array.from(viewSeg.querySelectorAll("button")).forEach((btn) => {
+      btn.setAttribute("aria-pressed", String(btn.dataset.view === view));
+    });
+
+    qualityField.classList.toggle("disabled", format === "png");
+    qualitySelect.disabled = format === "png";
+
+    summaryCount.textContent = String(s.total);
+    summaryNoun.textContent = s.total === 1 ? "file" : "files";
+    if (s.done > 0) {
+      summarySavings.classList.remove("hidden");
+      summarySavings.textContent = s.savedBytes > 0
+        ? `· saved ${formatBytes(s.savedBytes)} (${s.savedPct.toFixed(0)}%)`
+        : `· ${s.done} converted`;
     } else {
-        updateToDownloadAllState();
+      summarySavings.classList.add("hidden");
+      summarySavings.textContent = "";
     }
-}
 
-function updateToDownloadAllState() {
-    convertAllBtn.textContent = `Download All (.zip)`;
-    convertAllBtn.disabled = false;
-    convertAllBtn.onclick = handleDownloadAll;
-}
+    if (allDone) {
+      primaryBtn.disabled = false;
+      primaryBtn.dataset.action = "download-all";
+      primaryBtnIcon.innerHTML = ICON_ARCHIVE;
+      primaryBtnLabel.textContent = "Download all as ZIP";
+    } else if (bulkBusy) {
+      primaryBtn.disabled = true;
+      primaryBtnIcon.innerHTML = "";
+      primaryBtnLabel.innerHTML = `Converting… <span class="num mono">${s.done}/${s.total}</span>`;
+    } else {
+      primaryBtn.disabled = (s.ready + s.err) === 0;
+      primaryBtn.dataset.action = "convert-all";
+      primaryBtnIcon.innerHTML = ICON_BOLT;
+      primaryBtnLabel.textContent = "Convert all to " + fmt;
+    }
 
-function resetConvertAllButtonState() {
-    const selectedFormat = formatSelect.value.toUpperCase();
-    convertAllBtn.textContent = `Convert All to ${selectedFormat}`;
-    convertAllBtn.disabled = false;
-    convertAllBtn.onclick = handleConvertAll;
-}
+    statTotal.textContent = String(s.total);
+    statDone.textContent = String(s.done);
+    statSrc.textContent = s.totalSrc > 0 ? formatBytes(s.totalSrc) : "—";
+    statOut.textContent = s.totalOut > 0 ? formatBytes(s.totalOut) : "—";
+    if (s.savedBytes > 0) {
+      statSaved.textContent = `${formatBytes(s.savedBytes)} · ${s.savedPct.toFixed(0)}%`;
+      statSaved.classList.add("green");
+    } else {
+      statSaved.textContent = "—";
+      statSaved.classList.remove("green");
+    }
+
+    if (view === "list") {
+      listView.classList.remove("hidden");
+      gridView.classList.add("hidden");
+      listRows.innerHTML = items.map(rowHtml).join("");
+    } else {
+      listView.classList.add("hidden");
+      gridView.classList.remove("hidden");
+      gridView.innerHTML = items.map(cardHtml).join("");
+    }
+  }
+
+  formatSeg.addEventListener("click", (e) => {
+    const btn = e.target.closest("button[data-format]");
+    if (!btn) return;
+    format = btn.dataset.format;
+    render();
+  });
+
+  qualitySelect.addEventListener("change", () => {
+    quality = parseFloat(qualitySelect.value);
+  });
+
+  viewSeg.addEventListener("click", (e) => {
+    const btn = e.target.closest("button[data-view]");
+    if (!btn) return;
+    view = btn.dataset.view;
+    render();
+  });
+
+  dropzone.addEventListener("click", () => fileInput.click());
+  dropzone.addEventListener("keydown", (e) => {
+    if (e.key === "Enter" || e.key === " ") { e.preventDefault(); fileInput.click(); }
+  });
+  dropzone.addEventListener("dragenter", () => dropzone.classList.add("drag"));
+  dropzone.addEventListener("dragleave", () => dropzone.classList.remove("drag"));
+  dropzone.addEventListener("drop", () => dropzone.classList.remove("drag"));
+
+  fileInput.addEventListener("change", (e) => {
+    addFiles(e.target.files);
+    e.target.value = "";
+  });
+
+  addMoreBtn.addEventListener("click", () => fileInput.click());
+
+  primaryBtn.addEventListener("click", () => {
+    if (primaryBtn.disabled) return;
+    if (primaryBtn.dataset.action === "download-all") downloadAllZip();
+    else convertAll();
+  });
+
+  clearBtn.addEventListener("click", clearAll);
+
+  function delegate(e) {
+    const btn = e.target.closest("[data-act]");
+    if (!btn) return;
+    const id = parseInt(btn.dataset.id, 10);
+    const it = items.find((x) => x.id === id);
+    const act = btn.dataset.act;
+    if (act === "remove") removeItem(id);
+    else if (act === "convert") convertOne(id);
+    else if (act === "download" && it) downloadOne(it);
+  }
+  listRows.addEventListener("click", delegate);
+  gridView.addEventListener("click", delegate);
+
+  window.addEventListener("dragenter", (e) => {
+    if (!e.dataTransfer || !Array.from(e.dataTransfer.types || []).includes("Files")) return;
+    e.preventDefault();
+    dragCount++;
+    if (dragCount === 1) dragOverlay.classList.add("active");
+  });
+  window.addEventListener("dragleave", (e) => {
+    e.preventDefault();
+    dragCount = Math.max(0, dragCount - 1);
+    if (dragCount === 0) dragOverlay.classList.remove("active");
+  });
+  window.addEventListener("dragover", (e) => e.preventDefault());
+  window.addEventListener("drop", (e) => {
+    e.preventDefault();
+    dragCount = 0;
+    dragOverlay.classList.remove("active");
+    if (e.dataTransfer && e.dataTransfer.files && e.dataTransfer.files.length) {
+      addFiles(e.dataTransfer.files);
+    }
+  });
+
+  // Initialise each AdSense <ins> on the page (one push() per slot).
+  // Manual slots coexist with Auto Ads — Auto Ads will fill remaining
+  // opportunities (incl. vignette/popup) once enabled in your AdSense dashboard.
+  try {
+    const adUnits = document.querySelectorAll("ins.adsbygoogle");
+    adUnits.forEach(() => {
+      (window.adsbygoogle = window.adsbygoogle || []).push({});
+    });
+  } catch (_) { /* noop */ }
+
+  render();
+})();

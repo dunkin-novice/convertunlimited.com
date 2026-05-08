@@ -16,8 +16,16 @@
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="ConvertUnlimited | Free & Unlimited WebP Converter">
     <meta name="twitter:description" content="Convert JPG, PNG, GIF, and SVG to WebP, PNG, or JPEG instantly for free.">
-    <meta name="theme-color" content="#0056b3">
+    <meta name="theme-color" content="#3aa17e">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+
+    <!-- Google AdSense (loads Auto Ads + serves manual <ins> units below) -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2823470980745945" crossorigin="anonymous"></script>
+
     <script type="application/ld+json">
         {
             "@context": "https://schema.org",
@@ -31,77 +39,222 @@
     </script>
 </head>
 <body>
-    <header>
-        <h1>ConvertUnlimited</h1>
-        <p>Convert JPG, PNG, GIF, and SVG to WebP — instantly and for free.</p>
-    </header>
+    <div class="app">
+        <header class="topbar">
+            <div class="brand">
+                <div class="mark" aria-hidden="true"></div>
+                <h1 class="word"><b>Convert</b><span>Unlimited</span></h1>
+            </div>
+            <nav class="topnav">
+                <span class="pill"><span class="dot"></span>100% free, no signup</span>
+                <a href="#how">How it works</a>
+                <a href="#faq">FAQ</a>
+            </nav>
+        </header>
 
-    <div id="ad-banner">
-        <ins class="adsbygoogle"
-             style="display:block"
-             data-ad-client="ca-pub-2823470980745945"
-             data-ad-slot="YOUR_AD_SLOT_ID"
-             data-ad-format="auto"
-             data-full-width-responsive="true"></ins>
+        <section class="hero">
+            <h2 class="hero-title">Bulk image converter, in your browser.</h2>
+            <p class="sub hero-sub"><b>WebP</b>, JPEG &amp; PNG · drag in hundreds at once · download as ZIP. Free, forever.</p>
+        </section>
+
+        <div class="grid" id="layout">
+            <section class="converter" aria-label="Image converter">
+                <div class="settings">
+                    <div class="seg" role="group" aria-label="Output format" id="format-seg">
+                        <button data-format="webp" aria-pressed="true">WebP</button>
+                        <button data-format="jpeg" aria-pressed="false">JPEG</button>
+                        <button data-format="png" aria-pressed="false">PNG</button>
+                    </div>
+                    <div class="field" id="quality-field">
+                        <label for="quality-select">Quality</label>
+                        <select id="quality-select">
+                            <option value="1">Original</option>
+                            <option value="0.9">High</option>
+                            <option value="0.75" selected>Recommended</option>
+                            <option value="0.5">Compact</option>
+                        </select>
+                    </div>
+                    <div class="spacer"></div>
+                    <div class="seg hidden" role="group" aria-label="View" id="view-seg">
+                        <button data-view="list" aria-pressed="true" title="List">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><circle cx="4" cy="6" r="1" fill="currentColor" stroke="none"/><circle cx="4" cy="12" r="1" fill="currentColor" stroke="none"/><circle cx="4" cy="18" r="1" fill="currentColor" stroke="none"/></svg>
+                        </button>
+                        <button data-view="grid" aria-pressed="false" title="Grid">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+                        </button>
+                    </div>
+                </div>
+
+                <div id="empty-state">
+                    <div class="dropzone" id="dropzone" tabindex="0" role="button" aria-label="Drop images here, or click to browse">
+                        <div>
+                            <div class="icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+                            </div>
+                            <div class="title">Drop images here, or click to browse</div>
+                            <div class="hint">JPG, PNG, GIF, SVG, WebP, BMP &nbsp;·&nbsp; we suggest up to ~50 at a time</div>
+                            <div class="types">
+                                <span>JPG</span><span>PNG</span><span>GIF</span><span>SVG</span><span>WebP</span><span>BMP</span>
+                            </div>
+                            <p class="note">Conversion runs on your computer's CPU &amp; memory — large batches can slow your machine. Use at your own discretion.</p>
+                        </div>
+                    </div>
+                    <div class="privacy">
+                        <div class="item"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l8 4v6c0 5-3.5 9-8 10-4.5-1-8-5-8-10V6l8-4z"/><polyline points="9 12 11 14 15 10"/></svg> No upload — runs in your browser</div>
+                        <div class="item"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M18.6 6.6a4 4 0 0 0-5.66 0L12 7.5l-.94-.95a4 4 0 1 0 0 5.65L12 11.5l.94.95a4 4 0 1 0 0-5.65L12 7.5"/></svg> No file or count limits</div>
+                        <div class="item"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> No signup, no watermarks</div>
+                    </div>
+                </div>
+
+                <div id="filled-state" class="hidden">
+                    <div class="actionbar">
+                        <div class="summary">
+                            <span class="count num" id="summary-count">0</span>
+                            <span id="summary-noun">files</span>
+                            <span class="savings hidden" id="summary-savings"></span>
+                        </div>
+                        <div class="spacer"></div>
+                        <button class="btn btn-ghost" id="add-more-btn">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+                            Add more
+                        </button>
+                        <button class="btn btn-accent" id="primary-btn">
+                            <span id="primary-btn-icon"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></span>
+                            <span id="primary-btn-label">Convert all to WEBP</span>
+                        </button>
+                        <button class="btn btn-text" id="clear-btn" title="Remove all files">Clear</button>
+                    </div>
+
+                    <!-- Below-action banner: appears once files are loaded so it gets viewability without blocking the dropzone -->
+                    <div class="banner-ad">
+                        <span class="ad-label">Ad</span>
+                        <!-- AdSense slot: BELOW_ACTIONS (responsive in-content banner) -->
+                        <ins class="adsbygoogle ad-below"
+                             style="display:block"
+                             data-ad-client="ca-pub-2823470980745945"
+                             data-ad-slot="REPLACE_BELOW_ACTIONS_SLOT_ID"
+                             data-ad-format="auto"
+                             data-full-width-responsive="true"></ins>
+                    </div>
+
+                    <div class="results" id="list-view">
+                        <div class="row head">
+                            <div></div>
+                            <div>File</div>
+                            <div>From</div>
+                            <div></div>
+                            <div>To</div>
+                            <div>Saved</div>
+                            <div>Status</div>
+                            <div></div>
+                        </div>
+                        <div id="list-rows"></div>
+                    </div>
+
+                    <div class="gridview hidden" id="grid-view"></div>
+                </div>
+
+                <input type="file" id="file-input" multiple accept=".jpg,.jpeg,.png,.gif,.svg,.webp,.bmp" hidden>
+            </section>
+
+            <aside class="rail" aria-label="Sidebar">
+                <div class="rail-card trust">
+                    <h3>Why ConvertUnlimited</h3>
+                    <div class="item">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l8 4v6c0 5-3.5 9-8 10-4.5-1-8-5-8-10V6l8-4z"/><polyline points="9 12 11 14 15 10"/></svg>
+                        <div><b>Stays on your device.</b> Files never leave your browser.</div>
+                    </div>
+                    <div class="item">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M18.6 6.6a4 4 0 0 0-5.66 0L12 7.5l-.94-.95a4 4 0 1 0 0 5.65L12 11.5l.94.95a4 4 0 1 0 0-5.65L12 7.5"/></svg>
+                        <div><b>No limits.</b> Convert as many as you want, free.</div>
+                    </div>
+                    <div class="item">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+                        <div><b>No signup, no watermark.</b> Just convert and go.</div>
+                    </div>
+                </div>
+
+                <div class="rail-card" id="session-card">
+                    <h3>Session</h3>
+                    <div class="stat"><span class="k">Files added</span><span class="v num" id="stat-total">0</span></div>
+                    <div class="stat"><span class="k">Converted</span><span class="v num" id="stat-done">0</span></div>
+                    <div class="stat"><span class="k">Original size</span><span class="v" id="stat-src">—</span></div>
+                    <div class="stat"><span class="k">Output size</span><span class="v" id="stat-out">—</span></div>
+                    <div class="stat"><span class="k">You saved</span><span class="v" id="stat-saved">—</span></div>
+                </div>
+
+                <div class="ad-slot">
+                    <span class="ad-label">Ad</span>
+                    <div class="ad-body">
+                        <!-- AdSense slot: RAIL (300x250-ish, in right rail) -->
+                        <ins class="adsbygoogle ad-rail"
+                             style="display:block"
+                             data-ad-client="ca-pub-2823470980745945"
+                             data-ad-slot="REPLACE_RAIL_SLOT_ID"
+                             data-ad-format="auto"
+                             data-full-width-responsive="true"></ins>
+                    </div>
+                    <div class="ad-foot">
+                        <span>Keeps the tool free.</span>
+                        <a href="#privacy">Why ads?</a>
+                    </div>
+                </div>
+            </aside>
+        </div>
+
+        <!-- Footer banner: leaderboard above the small print -->
+        <div class="footer-ad">
+            <span class="ad-label">Ad</span>
+            <!-- AdSense slot: FOOTER (leaderboard / responsive) -->
+            <ins class="adsbygoogle ad-footer"
+                 style="display:block"
+                 data-ad-client="ca-pub-2823470980745945"
+                 data-ad-slot="REPLACE_FOOTER_SLOT_ID"
+                 data-ad-format="auto"
+                 data-full-width-responsive="true"></ins>
+        </div>
+
+        <section id="how" class="section-block">
+            <h3 class="section-eyebrow">How it works</h3>
+            <p class="section-body">
+                Drop in your images, pick a format, and ConvertUnlimited converts them with the canvas API right in your browser. Nothing is uploaded — your files never leave your device. Save individually, or grab everything as a ZIP.
+            </p>
+        </section>
+
+        <section id="faq" class="section-block">
+            <h3 class="section-eyebrow">FAQ</h3>
+            <p class="section-body"><b>Are there any limits?</b> No software-imposed cap. We suggest ~50 images at a time so your browser stays responsive.</p>
+            <p class="section-body"><b>Are my files uploaded?</b> No. Conversion happens locally with the HTML canvas API — files never leave your device.</p>
+            <p class="section-body"><b>Will big batches slow my computer?</b> Yes — converting many images uses your CPU and memory. Use at your own discretion.</p>
+            <p class="section-body"><b>Why is it free?</b> Ads cover hosting and keep the tool unlimited. That's it.</p>
+        </section>
+
+        <section id="privacy" class="section-block">
+            <h3 class="section-eyebrow">Privacy</h3>
+            <p class="section-body"><b>Your images.</b> ConvertUnlimited converts images entirely inside your browser. No file is ever uploaded to a server, and we never see, store, or transmit your images.</p>
+            <p class="section-body"><b>Ads.</b> We use Google AdSense to keep the tool free. Google and its ad partners may use cookies to serve relevant ads and measure performance. You can manage personalised-ad settings at <a href="https://www.google.com/settings/ads" rel="noopener" target="_blank">google.com/settings/ads</a>.</p>
+            <p class="section-body"><b>Analytics.</b> We do not run third-party analytics or fingerprinting on this site.</p>
+            <p class="section-body"><b>Contact.</b> Questions about privacy? Reach out via the project's GitHub.</p>
+        </section>
+
+        <footer class="footer">
+            <div>© 2026 ConvertUnlimited.com — runs entirely in your browser.</div>
+            <div class="links">
+                <a href="#how">How it works</a>
+                <a href="#privacy">Privacy</a>
+                <a href="#faq">FAQ</a>
+            </div>
+        </footer>
     </div>
 
-    <main>
-        <div id="output-options">
-            <div class="option-group">
-                <label>Convert to:</label>
-                <select id="format-select">
-                    <option value="webp" selected>WebP</option>
-                    <option value="png">PNG</option>
-                    <option value="jpeg">JPEG</option>
-                </select>
-            </div>
-            <div class="option-group" id="quality-control">
-                <label>Quality:</label>
-                <select id="quality-select">
-                    <option value="1.0">Similar to Original</option>
-                    <option value="0.9">Little Compression</option>
-                    <option value="0.75" selected>Recommended</option>
-                    <option value="0.5">Best Compression</option>
-                </select>
-            </div>
+    <div class="drag-overlay" id="drag-overlay">
+        <div class="box">
+            Drop to add images
+            <span class="sub">Files stay on your device — no upload.</span>
         </div>
-
-        <div id="upload-area">
-            <p>Drag & drop your images here, or click to select files</p>
-            <input type="file" id="file-input" multiple accept=".jpg, .jpeg, .png, .gif, .svg">
-        </div>
-
-        <div id="results-area" class="hidden">
-            <div id="controls">
-                <button id="convert-all-btn">Convert All to WebP</button>
-                <button id="clear-all-btn">Clear All</button>
-            </div>
-
-            <div id="ad-container">
-                <ins class="adsbygoogle"
-                     style="display:block"
-                     data-ad-client="ca-pub-2823470980745945"
-                     data-ad-slot="YOUR_AD_SLOT_ID"
-                     data-ad-format="auto"
-                     data-full-width-responsive="true"></ins>
-            </div>
-
-            <div id="image-previews">
-                </div>
-        </div>
-    </main>
-
-    <footer>
-        <p>&copy; 2025 ConvertUnlimited.com</p>
-    </footer>
-
-    <div id="drag-overlay" class="hidden">
-        <p>Drop your files anywhere to upload</p>
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2823470980745945"
-         crossorigin="anonymous"></script>
     <script src="script.js"></script>
 </body>
 </html>
