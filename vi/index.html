@@ -93,7 +93,7 @@
       "@context": "https://schema.org",
       "@type": "FAQPage",
       "mainEntity": [
-        {"@type":"Question","name":"Có giới hạn nào không?","acceptedAnswer":{"@type":"Answer","text":"Không có giới hạn từ phần mềm. Trần duy nhất là khả năng của trình duyệt và máy tính của bạn. Chúng tôi đề nghị khoảng 50 ảnh mỗi lần làm điểm khởi đầu — phần lớn laptop hiện đại xử lý 2–3 lần con số đó vẫn ổn."}},
+        {"@type":"Question","name":"Có giới hạn nào không?","acceptedAnswer":{"@type":"Answer","text":"Không có giới hạn từ phần mềm. Trần duy nhất là khả năng của trình duyệt và máy tính của bạn. Nên bắt đầu ở khoảng 50 ảnh mỗi lần cho thoải mái — đa phần laptop hiện đại xử lý 2–3 lần con số đó vẫn mượt."}},
         {"@type":"Question","name":"Tệp của tôi có được tải lên máy chủ không?","acceptedAnswer":{"@type":"Answer","text":"Không. ConvertUnlimited chạy hoàn toàn trong trình duyệt của bạn qua HTML canvas API. Tệp không bao giờ rời khỏi thiết bị — không có gì để chúng tôi nhìn, lưu hay chia sẻ."}},
         {"@type":"Question","name":"Chuyển đổi hàng loạt có làm máy chậm không?","acceptedAnswer":{"@type":"Answer","text":"Có thể chậm tạm thời. Mỗi lần giải mã và mã hoá ảnh đều dùng CPU và RAM. Lô lớn (200+ ảnh độ phân giải cao) có thể đẩy bộ nhớ lên đỉnh trong chốc lát. Hãy dùng theo phán đoán của bạn."}},
         {"@type":"Question","name":"Vì sao công cụ miễn phí?","acceptedAnswer":{"@type":"Answer","text":"Một quảng cáo nhỏ ở thanh phải và một ở chân trang đủ trang trải chi phí lưu trữ. Vì không có gì được tải lên, chúng tôi không phải trả chi phí lưu trữ trên đầu người dùng — nên không cần mô hình thuê bao."}},
@@ -283,9 +283,9 @@
 
         <section id="how" class="article">
             <h2>ConvertUnlimited hoạt động ra sao</h2>
-            <p>ConvertUnlimited là công cụ chuyển đổi hình ảnh miễn phí chạy hoàn toàn bên trong trình duyệt. Bạn kéo thả JPG, PNG, GIF, WebP, BMP hoặc SVG, chọn định dạng đầu ra, và bản đã chuyển sẽ sẵn sàng để tải về sau vài giây. Không có gì được tải lên máy chủ: mỗi ảnh được giải mã, vẽ lại và mã hoá lại ngay trên thiết bị của bạn bằng HTML canvas API.</p>
-            <p>Mô hình chạy cục bộ này có hai hệ quả thực tế. Thứ nhất, công cụ riêng tư — tệp không rời thiết bị, nên không có gì để chúng tôi (hoặc bất kỳ ai) ghi nhận, xem hay làm rò rỉ. Thứ hai, không có chi phí lưu trữ trên đầu người dùng — vì vậy chúng tôi có thể cung cấp miễn phí, không giới hạn, không cần đăng ký, không watermark. Chi phí vận hành duy nhất là giữ trang web online, được trang trải bởi quảng cáo nhỏ ở thanh phải.</p>
-            <p>Quá trình chuyển đổi dùng CPU và RAM máy bạn. Với hầu hết laptop, kéo thả 30–80 ảnh ở độ phân giải máy ảnh điện thoại thấy gần như tức thì. Lô lớn — hàng trăm ảnh độ phân giải cao cùng lúc — sẽ dùng nhiều RAM hơn và có thể làm máy chậm chốc lát khi mã hoá. Chúng tôi đề nghị xếp khoảng 50 ảnh mỗi lần làm điểm thoải mái, nhưng công cụ không ép giới hạn; dùng đến mức máy bạn còn xử lý ổn. Xem <a href="#batches">Mẹo cho lô lớn</a> để có hướng dẫn cho công việc quy mô lớn hơn.</p>
+            <p>ConvertUnlimited là công cụ chuyển đổi hình ảnh miễn phí, chạy hoàn toàn bên trong trình duyệt. Kéo thả JPG, PNG, GIF, WebP, BMP hoặc SVG vào, chọn định dạng đầu ra, vài giây sau là có bản chuyển xong để tải về. Không có gì được tải lên máy chủ: mỗi ảnh đều được giải mã, vẽ lại và mã hoá lại ngay trên thiết bị của bạn bằng HTML canvas API.</p>
+            <p>Cách chạy ngay trong máy như vậy mang lại hai lợi ích thực tế. Thứ nhất, công cụ này riêng tư — tệp không rời thiết bị, nên chẳng có gì để chúng tôi (hay bất kỳ ai khác) ghi nhận, xem hay làm rò rỉ được. Thứ hai, không phát sinh chi phí lưu trữ tính theo từng người dùng, nên có thể cung cấp miễn phí, không giới hạn, không cần đăng ký và không watermark. Chi phí vận hành duy nhất là giữ trang web online, được trang trải bằng quảng cáo nhỏ ở thanh phải.</p>
+            <p>Khi chuyển ảnh, máy của bạn dùng CPU và RAM. Hầu hết laptop kéo thả 30–80 ảnh ở độ phân giải máy ảnh điện thoại thấy gần như tức thì. Lô thật lớn — hàng trăm ảnh độ phân giải cao cùng lúc — sẽ ngốn RAM nhiều hơn và có thể khiến máy chậm chốc lát trong lúc mã hoá. Khuyên xếp khoảng 50 ảnh mỗi lần là điểm thoải mái, nhưng công cụ không bắt buộc; dùng đến mức máy bạn còn chạy mượt là được. Xem thêm <a href="#batches">Mẹo cho lô lớn</a> nếu cần xử lý khối lượng lớn hơn.</p>
         </section>
 
         <section id="formats" class="article">
@@ -323,7 +323,7 @@
         <section id="batches" class="article">
             <h2>Mẹo cho lô lớn</h2>
             <p>Một số điều cần biết khi chuyển nhiều hơn vài tệp:</p>
-            <p><b>Số lượng mỗi lần.</b> Chúng tôi đề nghị tới ~50 ảnh mỗi lần làm điểm khởi đầu thoải mái. Hầu hết laptop xử lý 100–200 ảnh kích thước thông thường vẫn ổn, nhưng quá ngưỡng đó trình duyệt có thể đứng tạm thời khi cấp phát bộ nhớ. Nếu vậy, cứ chờ — không phải bị treo, là đang làm việc.</p>
+            <p><b>Số lượng mỗi lần.</b> Khuyên bắt đầu ở khoảng 50 ảnh là vừa thoải mái. Hầu hết laptop xử lý 100–200 ảnh kích thước thông thường vẫn mượt, nhưng quá ngưỡng đó trình duyệt có thể đứng tạm thời khi cấp phát bộ nhớ. Nếu vậy, cứ chờ — máy không treo, chỉ đang làm việc thôi.</p>
             <p><b>RAM quan trọng hơn CPU.</b> Một ảnh 12 megapixel cần khoảng 50 MB RAM để giải mã. Lô 100 ảnh như vậy có thể đẩy bộ nhớ tăng lên vài GB trong chốc lát. Đóng các tab khác sẽ giúp nếu chạm trần.</p>
             <p><b>Di động.</b> Điện thoại và máy tính bảng có ít RAM hơn và quy tắc nền nghiêm ngặt hơn. Hãy giữ lô nhỏ (10–20 ảnh) trên thiết bị di động.</p>
             <p><b>Tải về dạng ZIP.</b> Khi lô đã chuyển xong, nút "Tải về dạng ZIP" gói mọi tệp vào một archive — nhanh hơn rất nhiều so với bấm save 50 lần.</p>
@@ -333,7 +333,7 @@
             <h2>Câu hỏi thường gặp</h2>
 
             <h3>Có giới hạn nào không?</h3>
-            <p>Không có giới hạn từ phần mềm. Trần duy nhất là khả năng của trình duyệt và máy tính của bạn. Chúng tôi đề nghị khoảng 50 ảnh mỗi lần làm điểm khởi đầu — phần lớn laptop hiện đại xử lý 2–3 lần con số đó vẫn ổn.</p>
+            <p>Không có giới hạn từ phần mềm. Trần duy nhất là khả năng của trình duyệt và máy tính của bạn. Nên bắt đầu ở khoảng 50 ảnh mỗi lần cho thoải mái — đa phần laptop hiện đại xử lý 2–3 lần con số đó vẫn mượt.</p>
 
             <h3>Tệp của tôi có được tải lên máy chủ không?</h3>
             <p>Không. ConvertUnlimited chạy hoàn toàn trong trình duyệt của bạn qua HTML canvas API. Tệp không bao giờ rời khỏi thiết bị — không có gì để chúng tôi nhìn, lưu hay chia sẻ.</p>
