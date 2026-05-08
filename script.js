@@ -81,15 +81,18 @@
       const objUrl = URL.createObjectURL(file);
       img.onload = () => {
         try {
+          // SVG without intrinsic width/height can report 0 in some browsers; fall back so it still renders.
+          const w = img.naturalWidth || img.width || 1024;
+          const h = img.naturalHeight || img.height || 1024;
           const canvas = document.createElement("canvas");
-          canvas.width = img.naturalWidth || img.width;
-          canvas.height = img.naturalHeight || img.height;
+          canvas.width = w;
+          canvas.height = h;
           const ctx = canvas.getContext("2d");
           if (fmt === "jpeg") {
             ctx.fillStyle = "#FFFFFF";
             ctx.fillRect(0, 0, canvas.width, canvas.height);
           }
-          ctx.drawImage(img, 0, 0);
+          ctx.drawImage(img, 0, 0, w, h);
           canvas.toBlob(
             (blob) => {
               URL.revokeObjectURL(objUrl);

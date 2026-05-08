@@ -48,6 +48,7 @@
             <nav class="topnav">
                 <span class="pill"><span class="dot"></span>100% free, no signup</span>
                 <a href="#how">How it works</a>
+                <a href="#formats">Formats</a>
                 <a href="#faq">FAQ</a>
             </nav>
         </header>
@@ -202,7 +203,104 @@
             </aside>
         </div>
 
-        <!-- Footer banner: leaderboard above the small print -->
+        <section id="how" class="article">
+            <h2>How ConvertUnlimited works</h2>
+            <p>ConvertUnlimited is a free image converter that runs entirely inside your browser. Drop in JPGs, PNGs, GIFs, WebPs, BMPs, or SVGs, choose an output format, and a converted copy is ready to download in seconds. Nothing is uploaded to a server: every image is decoded, redrawn, and re-encoded locally using your browser's HTML canvas API.</p>
+            <p>That local-only model has two practical consequences. First, the tool is private — your files never leave your device, so there's nothing for us (or anyone else) to log, look at, or leak. Second, there are no per-user storage costs to subsidise, which is why we can offer it for free with no caps, no signup, and no watermark. The only operating cost is keeping the page online, and a small ad block in the right rail covers it.</p>
+            <p>Conversion uses your computer's CPU and memory. For most laptops, dragging in 30–80 photos at typical phone-camera resolutions feels instant. Very large batches — hundreds of high-megapixel images at once — will use more RAM and may slow your machine briefly while they encode. We suggest queuing roughly 50 images at a time as a comfortable middle ground, but the tool doesn't enforce a limit; use whatever your machine handles cleanly.</p>
+        </section>
+
+        <section id="formats" class="article">
+            <h2>Image format guide</h2>
+            <p>Different image formats trade off file size, quality, transparency, and compatibility. Here's a quick rundown of the formats ConvertUnlimited reads and writes, and when to choose each.</p>
+
+            <h3>WebP</h3>
+            <p>Google's modern image format. At the same visual quality, WebP files are typically 25–35 % smaller than JPEG and 50 % smaller than PNG, and they support transparency. WebP is supported by every current browser, so it's the best default for the web. Choose WebP when you want maximum savings and your audience views images in a browser.</p>
+
+            <h3>JPEG</h3>
+            <p>The universal photo format. JPEG is lossy (it discards information to shrink the file), doesn't support transparency, and is supported absolutely everywhere — email, social media, printers, decade-old phones. Choose JPEG for photos when you need maximum compatibility, or when you're embedding into a system you don't control.</p>
+
+            <h3>PNG</h3>
+            <p>Lossless and supports transparency. PNG is ideal for screenshots, logos, icons, and any image with sharp edges or solid-colour regions, because it compresses those without artefacts. The trade-off is file size: PNGs of photos are several times larger than the equivalent JPEG or WebP. Choose PNG when you need transparency or when image fidelity matters more than size.</p>
+
+            <h3>GIF</h3>
+            <p>A legacy format from the 1990s. It supports basic animation but compresses with a 256-colour palette, so it looks blocky on photos. For new work, prefer WebP for static images and MP4 / WebM for animation. ConvertUnlimited reads GIFs and converts the first frame — for animated GIFs, only that first frame is kept.</p>
+
+            <h3>SVG</h3>
+            <p>A vector format made of XML drawing commands. ConvertUnlimited reads SVGs and rasterises them (turns them into pixel images) at the SVG's natural dimensions. Once a vector has been rasterised you can't scale it back up cleanly, so only convert SVG when you specifically need a raster output — for example, embedding a logo into a JPEG product photo.</p>
+
+            <h3>BMP</h3>
+            <p>An uncompressed bitmap format. BMPs are huge for what they store. There's almost never a reason to keep an image as BMP today — convert to WebP, JPEG, or PNG and save 80–95 % of the disk space.</p>
+        </section>
+
+        <section id="quality" class="article">
+            <h2>Choosing the right quality</h2>
+            <p>The quality dropdown only applies to lossy formats (WebP and JPEG). PNG is lossless, so the dropdown is automatically disabled when PNG is selected. The four presets translate roughly to:</p>
+            <p><b>Original (1.0).</b> Visually identical to the source for most images. Files are still smaller than the input because modern JPEG and WebP encoders are more efficient than older sources, but you give up almost no fidelity.</p>
+            <p><b>High (0.9).</b> Negligible visual difference for most photos. Good default for hero images, photography, anything where quality matters.</p>
+            <p><b>Recommended (0.75).</b> The sweet spot for web use. Files are typically 30–50 % smaller than High with no loss visible at normal viewing sizes. Use this for blog posts, product galleries, social media.</p>
+            <p><b>Compact (0.5).</b> Aggressive compression. Best for thumbnails, image grids, or when you need to email a folder of photos and bandwidth is the bottleneck. You'll notice softness in fine detail, especially on text-heavy or high-contrast images.</p>
+        </section>
+
+        <section id="batches" class="article">
+            <h2>Tips for big batches</h2>
+            <p>A few things to know when you're converting more than a handful of files:</p>
+            <p><b>Batch size.</b> We recommend up to ~50 images at a time as a comfortable starting point. Most laptops handle 100–200 photo-sized images without complaint, but past that, your browser may briefly hang while it allocates memory. If it does, just wait — it's not crashed, it's working.</p>
+            <p><b>RAM matters more than CPU.</b> A 12-megapixel photo takes roughly 50 MB of RAM to decode. A batch of 100 such photos can momentarily peak at several gigabytes of memory. Closing other tabs helps if you hit the wall.</p>
+            <p><b>Mobile.</b> Phones and tablets have less RAM and stricter background limits. Stick to smaller batches (10–20 images) on mobile devices.</p>
+            <p><b>ZIP downloads.</b> Once your batch is converted, the "Download all as ZIP" button bundles every file into one archive — much faster than clicking 50 individual save links.</p>
+        </section>
+
+        <section id="faq" class="article">
+            <h2>Frequently asked questions</h2>
+
+            <h3>Are there any limits?</h3>
+            <p>No software-imposed cap. The only ceiling is what your browser and computer can handle. We suggest about 50 images at a time as a comfortable starting point — most modern laptops handle two or three times that without trouble.</p>
+
+            <h3>Are my files uploaded to a server?</h3>
+            <p>No. ConvertUnlimited runs entirely inside your browser using the HTML canvas API. Your files never leave your device — there is nothing for us to see, store, or share.</p>
+
+            <h3>Will big batches slow my computer?</h3>
+            <p>Briefly, yes. Each image decode and encode uses your CPU and RAM. Big batches (200+ high-resolution photos) can momentarily peak system memory. Use at your own discretion.</p>
+
+            <h3>Why is it free?</h3>
+            <p>A small ad in the right rail and one in the footer cover hosting costs. Because nothing is uploaded, there's no per-user storage bill — so we don't need a subscription model.</p>
+
+            <h3>What's the difference between WebP, JPEG, and PNG?</h3>
+            <p>WebP is smallest at equivalent quality and supports transparency — best default for the web. JPEG is universal and best for photos when compatibility is the priority. PNG is lossless and supports transparency — best for screenshots, logos, and icons.</p>
+
+            <h3>Does converting reduce image quality?</h3>
+            <p>Lossy formats (WebP, JPEG) discard some information by design. At "High" or "Original" quality, the loss is invisible at normal viewing sizes. PNG is lossless — converting from PNG to PNG produces a bit-for-bit equivalent file.</p>
+
+            <h3>Can I convert HEIC, RAW, or PDF files?</h3>
+            <p>Not currently. The browser canvas API only decodes image formats the browser natively supports. iPhone HEIC photos can be exported as JPEG from Photos.app and then converted here; PDFs need a dedicated PDF tool.</p>
+
+            <h3>Why is my converted file sometimes bigger than the original?</h3>
+            <p>This happens occasionally when you convert from a more efficient format (for example, WebP) to a less efficient one (for example, PNG), or when you ask for "Original" quality on an already-compressed source. The tool always shows the before / after sizes so you can decide whether the conversion was worth it.</p>
+
+            <h3>What browsers are supported?</h3>
+            <p>All current browsers — Chrome, Edge, Firefox, Safari, and their mobile variants. There is no extension or plugin to install.</p>
+
+            <h3>Is there a desktop app?</h3>
+            <p>No, and we don't think there needs to be — the browser does everything an app would, with no install or update step. Just bookmark this page.</p>
+        </section>
+
+        <section id="privacy" class="article">
+            <h2>Privacy</h2>
+            <p><b>Your images.</b> ConvertUnlimited converts images entirely inside your browser. No file is ever uploaded to a server, and we never see, store, or transmit your images. There is nothing to log, because nothing is sent.</p>
+            <p><b>Cookies.</b> The site itself sets no cookies. We do not use Google Analytics, third-party trackers, or fingerprinting libraries.</p>
+            <p><b>Ads.</b> We use Google AdSense to keep the tool free. Google and its ad partners may set cookies on the ad iframe to serve relevant ads and measure performance. You can manage personalised-ad settings at <a href="https://www.google.com/settings/ads" rel="noopener" target="_blank">google.com/settings/ads</a>, and European users can opt out of personalised advertising at <a href="https://www.youronlinechoices.eu/" rel="noopener" target="_blank">youronlinechoices.eu</a>.</p>
+            <p><b>Server logs.</b> Your hosting provider's standard server logs (your IP address, browser type, referrer) are kept for normal abuse and security purposes only. They are not used for analytics or advertising.</p>
+            <p><b>Contact.</b> For privacy questions, reach out via the project's GitHub.</p>
+        </section>
+
+        <section id="terms" class="article">
+            <h2>Terms of use</h2>
+            <p>ConvertUnlimited is provided as-is, free of charge, for personal and commercial use. By using the site you agree to the following:</p>
+            <p>You are responsible for the images you convert, including ensuring you have the rights to use and process them. The tool is provided without warranty — we make a good-faith effort to keep it working, but we cannot guarantee uninterrupted availability or that any specific conversion will succeed. We are not liable for any data loss, hardware wear, or other indirect harm resulting from converting files locally on your device. If you find a bug or have a feature request, opening an issue on the project's GitHub is the best channel.</p>
+        </section>
+
+        <!-- Footer banner: positioned after substantial publisher content -->
         <div class="footer-ad">
             <span class="ad-label">Ad</span>
             <!-- AdSense slot: FOOTER (leaderboard / responsive) -->
@@ -213,29 +311,6 @@
                  data-ad-format="auto"
                  data-full-width-responsive="true"></ins>
         </div>
-
-        <section id="how" class="section-block">
-            <h3 class="section-eyebrow">How it works</h3>
-            <p class="section-body">
-                Drop in your images, pick a format, and ConvertUnlimited converts them with the canvas API right in your browser. Nothing is uploaded — your files never leave your device. Save individually, or grab everything as a ZIP.
-            </p>
-        </section>
-
-        <section id="faq" class="section-block">
-            <h3 class="section-eyebrow">FAQ</h3>
-            <p class="section-body"><b>Are there any limits?</b> No software-imposed cap. We suggest ~50 images at a time so your browser stays responsive.</p>
-            <p class="section-body"><b>Are my files uploaded?</b> No. Conversion happens locally with the HTML canvas API — files never leave your device.</p>
-            <p class="section-body"><b>Will big batches slow my computer?</b> Yes — converting many images uses your CPU and memory. Use at your own discretion.</p>
-            <p class="section-body"><b>Why is it free?</b> Ads cover hosting and keep the tool unlimited. That's it.</p>
-        </section>
-
-        <section id="privacy" class="section-block">
-            <h3 class="section-eyebrow">Privacy</h3>
-            <p class="section-body"><b>Your images.</b> ConvertUnlimited converts images entirely inside your browser. No file is ever uploaded to a server, and we never see, store, or transmit your images.</p>
-            <p class="section-body"><b>Ads.</b> We use Google AdSense to keep the tool free. Google and its ad partners may use cookies to serve relevant ads and measure performance. You can manage personalised-ad settings at <a href="https://www.google.com/settings/ads" rel="noopener" target="_blank">google.com/settings/ads</a>.</p>
-            <p class="section-body"><b>Analytics.</b> We do not run third-party analytics or fingerprinting on this site.</p>
-            <p class="section-body"><b>Contact.</b> Questions about privacy? Reach out via the project's GitHub.</p>
-        </section>
 
         <footer class="footer">
             <div>© 2026 ConvertUnlimited.com — runs entirely in your browser.</div>
