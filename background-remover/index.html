@@ -115,6 +115,7 @@
                 <span class="pill"><span class="dot"></span>100% free, no signup</span>
                 <a href="/">Image converter</a>
                 <a href="#how">How it works</a>
+                <a href="#tips">Tips</a>
                 <a href="#faq">FAQ</a>
             </nav>
         </header>
@@ -125,69 +126,153 @@
                 <p class="sub hero-sub">Remove white, off-white, or simple solid backgrounds in your browser. No upload, no signup, no watermark. Export a transparent PNG.</p>
             </section>
 
-            <section class="bg-tool" aria-label="Simple background remover">
-                <div class="bg-tool-head">
-                    <div>
-                        <p class="section-eyebrow">Browser-only background remover</p>
-                        <h2>Best for plain backgrounds.</h2>
-                        <p>This tool is intentionally simple and free. It works best when the background is mostly one color and touches the image edges. It is not an AI portrait or hair remover yet.</p>
-                    </div>
-                    <div class="bg-badges" aria-label="Background remover notes">
-                        <span>No upload</span>
-                        <span>Transparent PNG</span>
-                        <span>Plain backgrounds</span>
-                    </div>
-                </div>
-
-                <div class="bg-workbench">
-                    <div class="bg-drop" id="bg-dropzone" tabindex="0" role="button" aria-label="Drop one image to remove a simple background, or click to browse">
-                        <div class="icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+            <div class="grid" id="layout">
+                <section class="bg-tool" aria-label="Simple background remover">
+                    <div class="bg-tool-head">
+                        <div>
+                            <p class="section-eyebrow">Browser-only background remover</p>
+                            <h2>Best for plain backgrounds.</h2>
+                            <p>This tool is intentionally simple and free. It works best when the background is mostly one color and touches the image edges. It is not an AI portrait or hair remover yet.</p>
                         </div>
-                        <div class="title">Drop one image here</div>
-                        <div class="hint">JPG, PNG, or WebP · processed on your device</div>
-                        <input type="file" id="bg-file-input" accept=".jpg,.jpeg,.png,.webp" hidden>
+                        <div class="bg-badges" aria-label="Background remover notes">
+                            <span>No upload</span>
+                            <span>Transparent PNG</span>
+                            <span>Plain backgrounds</span>
+                        </div>
                     </div>
 
-                    <div class="bg-panel">
-                        <div class="bg-preview-grid">
-                            <div class="bg-preview-card">
-                                <div class="bg-preview-label">Original</div>
-                                <div class="bg-preview" id="bg-original-preview">
-                                    <span>Choose an image</span>
+                    <div class="bg-workbench">
+                        <div class="bg-drop" id="bg-dropzone" tabindex="0" role="button" aria-label="Drop one image to remove a simple background, or click to browse">
+                            <div class="icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+                            </div>
+                            <div class="title">Drop one image here</div>
+                            <div class="hint">JPG, PNG, or WebP · processed on your device</div>
+                            <input type="file" id="bg-file-input" accept=".jpg,.jpeg,.png,.webp" hidden>
+                        </div>
+
+                        <div class="bg-panel">
+                            <div class="bg-preview-grid">
+                                <div class="bg-preview-card">
+                                    <div class="bg-preview-label">Original</div>
+                                    <div class="bg-preview" id="bg-original-preview">
+                                        <span>Choose an image</span>
+                                    </div>
+                                </div>
+                                <div class="bg-preview-card">
+                                    <div class="bg-preview-label">Transparent result</div>
+                                    <div class="bg-preview checker" id="bg-result-preview">
+                                        <span>Result appears here</span>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="bg-preview-card">
-                                <div class="bg-preview-label">Transparent result</div>
-                                <div class="bg-preview checker" id="bg-result-preview">
-                                    <span>Result appears here</span>
-                                </div>
-                            </div>
-                        </div>
 
-                        <div class="bg-controls">
-                            <label class="range-field" for="bg-tolerance">
-                                <span>Tolerance</span>
-                                <input id="bg-tolerance" type="range" min="18" max="90" value="52">
-                                <span class="mono num" id="bg-tolerance-value">52</span>
-                            </label>
-                            <label class="range-field" for="bg-feather">
-                                <span>Edge softness</span>
-                                <input id="bg-feather" type="range" min="45" max="130" value="90">
-                                <span class="mono num" id="bg-feather-value">90</span>
-                            </label>
-                            <button class="btn btn-accent" id="bg-process-btn" disabled>Remove background</button>
-                            <button class="btn btn-ghost" id="bg-download-btn" disabled>Download PNG</button>
+                            <div class="bg-controls">
+                                <label class="range-field" for="bg-tolerance">
+                                    <span>Tolerance</span>
+                                    <input id="bg-tolerance" type="range" min="18" max="90" value="52">
+                                    <span class="mono num" id="bg-tolerance-value">52</span>
+                                </label>
+                                <label class="range-field" for="bg-feather">
+                                    <span>Edge softness</span>
+                                    <input id="bg-feather" type="range" min="45" max="130" value="90">
+                                    <span class="mono num" id="bg-feather-value">90</span>
+                                </label>
+                                <button class="btn btn-accent" id="bg-process-btn" disabled>Remove background</button>
+                                <button class="btn btn-ghost" id="bg-download-btn" disabled>Download PNG</button>
+                            </div>
+                            <p class="bg-status" id="bg-status">Best for product shots, icons, generated images, and graphics with simple edge-connected backgrounds.</p>
                         </div>
-                        <p class="bg-status" id="bg-status">Best for product shots, icons, generated images, and graphics with simple edge-connected backgrounds.</p>
                     </div>
-                </div>
-            </section>
+
+                    <div class="banner-ad">
+                        <span class="ad-label">Ad</span>
+                        <ins class="adsbygoogle ad-below"
+                             style="display:block"
+                             data-ad-client="ca-pub-2823470980745945"
+                             data-ad-slot="REPLACE_BG_BELOW_TOOL_SLOT_ID"
+                             data-ad-format="auto"
+                             data-full-width-responsive="true"></ins>
+                    </div>
+                </section>
+
+                <aside class="rail" aria-label="Sidebar">
+                    <div class="rail-card trust">
+                        <h3>Why this tool is free</h3>
+                        <div class="item">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l8 4v6c0 5-3.5 9-8 10-4.5-1-8-5-8-10V6l8-4z"/><polyline points="9 12 11 14 15 10"/></svg>
+                            <div><b>No upload cost.</b> Processing runs in your browser, not on our servers.</div>
+                        </div>
+                        <div class="item">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+                            <div><b>Your device does the work.</b> Large images can briefly use CPU and memory.</div>
+                        </div>
+                        <div class="item">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M18.6 6.6a4 4 0 0 0-5.66 0L12 7.5l-.94-.95a4 4 0 1 0 0 5.65L12 11.5l.94.95a4 4 0 1 0 0-5.65L12 7.5"/></svg>
+                            <div><b>Ads cover hosting.</b> A few placements keep it free without subscriptions.</div>
+                        </div>
+                    </div>
+
+                    <div class="rail-card">
+                        <h3>Best fit</h3>
+                        <div class="stat"><span class="k">White background</span><span class="v">Good</span></div>
+                        <div class="stat"><span class="k">Solid color</span><span class="v">Good</span></div>
+                        <div class="stat"><span class="k">Product shots</span><span class="v">Good</span></div>
+                        <div class="stat"><span class="k">Hair / fur</span><span class="v">Limited</span></div>
+                    </div>
+
+                    <div class="ad-slot">
+                        <span class="ad-label">Ad</span>
+                        <div class="ad-body">
+                            <ins class="adsbygoogle ad-rail"
+                                 style="display:block"
+                                 data-ad-client="ca-pub-2823470980745945"
+                                 data-ad-slot="REPLACE_BG_RAIL_SLOT_ID"
+                                 data-ad-format="auto"
+                                 data-full-width-responsive="true"></ins>
+                        </div>
+                        <div class="ad-foot">
+                            <span>Keeps the remover free.</span>
+                            <a href="#why-free">Why ads?</a>
+                        </div>
+                    </div>
+                </aside>
+            </div>
 
             <section id="how" class="article">
                 <h2>How this background remover works</h2>
-                <p>The tool samples the image edges to estimate the background color, then removes connected background pixels from the outside inward. It exports the result as a transparent PNG using your browser's canvas API.</p>
-                <p>Because it is not a server-side AI model, it is extremely cheap to run and private by design. The tradeoff is accuracy: it is best for plain backgrounds and not suitable for complex scenes, detailed hair, fur, or foreground objects that are very close to the background color.</p>
+                <p>This background remover runs entirely inside your browser. When you choose an image, the page decodes it locally using the browser's image engine and draws it to an HTML canvas. The tool then samples the pixels along the outside edges of the image to estimate the background color. That edge sample is important: most product photos, AI-generated icons, and catalog images have a background that reaches the border.</p>
+                <p>After estimating the background color, the tool flood-fills from the edges inward. Pixels connected to the outside that are close enough to the background color are treated as removable background. Pixels that are not connected to the outside are preserved, which helps avoid deleting light-colored details inside the subject. Finally, the tool softens the alpha channel around the cut edge and exports a transparent PNG.</p>
+                <p>No image is uploaded. There is no server queue, no cloud storage, and no account system. The work happens on your own computer using your browser's CPU and memory. That is why the tool can be free and unlimited, but it also means very large images may briefly slow your device while the canvas is processed.</p>
+            </section>
+
+            <section id="limits" class="article">
+                <h2>What it can and cannot remove</h2>
+                <p>This tool is designed for simple backgrounds: white product-photo backdrops, off-white generated art backgrounds, flat color fields, screenshots with empty margins, and simple graphics where the subject is clearly separated from the background. It is a practical utility for quick PNG cutouts, product mockups, marketplace images, stickers, icons, and generated artwork.</p>
+                <p>It is not the same as an AI portrait remover. Complex scenes, hair, fur, transparent glass, smoke, shadows, and backgrounds with many colors are harder because the tool is not identifying semantic objects. It only knows color distance and whether a pixel is connected to the edge. If the subject is almost the same color as the background, the tolerance may remove part of the subject. If the background has gradients or compression artifacts, you may need a higher tolerance or a softer edge.</p>
+                <p>For difficult photos, an AI model can do better because it tries to understand the foreground object. We may add a client-side AI mode later, but this first version stays small, fast, private, and cheap to host.</p>
+            </section>
+
+            <section id="tips" class="article">
+                <h2>Tips for cleaner transparent PNGs</h2>
+                <p><b>Start with clean edges.</b> Images where the background touches all four sides usually work best. If the subject is cropped against the edge, the tool may treat some subject pixels as background.</p>
+                <p><b>Use tolerance carefully.</b> Increase tolerance when you still see background around the subject. Decrease it if the subject starts disappearing. The default is a middle ground for white and off-white backgrounds.</p>
+                <p><b>Use edge softness for halos.</b> If the cutout has a harsh outline, increase edge softness. If it looks blurry, lower edge softness and process again.</p>
+                <p><b>Export PNG when you need transparency.</b> PNG preserves the alpha channel. JPEG cannot store transparency, and some apps flatten transparent areas back to white when exporting.</p>
+                <p><b>For batch conversion, use the main converter.</b> This page focuses on one cutout at a time. For format conversion and ZIP downloads, use the <a href="/">bulk image converter</a>.</p>
+            </section>
+
+            <section id="privacy" class="article">
+                <h2>Privacy</h2>
+                <p>Your image never leaves your browser. The file is read by your browser, drawn into a local canvas, processed in memory, and exported as a PNG download. ConvertUnlimited does not receive the image, does not store it, and cannot inspect it.</p>
+                <p>We use Google Analytics 4 to understand aggregate page usage and performance, and Google AdSense to fund hosting. Analytics and ads may load third-party scripts, but the image file itself is not uploaded by this tool. If you use browser privacy tools, analytics or ads may be blocked while the background remover continues to work.</p>
+            </section>
+
+            <section id="why-free" class="article">
+                <h2>Why it is free</h2>
+                <p>Most paid background-removal services charge because every image is uploaded to a server and processed with cloud CPU or GPU resources. That creates a real per-image cost: bandwidth, storage, inference time, queues, and abuse prevention.</p>
+                <p>ConvertUnlimited avoids that cost by using your browser. Your device does the processing work, and the site only serves static HTML, CSS, JavaScript, and ads. That makes the operating cost much closer to a normal static website, so we can keep the tool free without accounts, watermarks, or per-image credits.</p>
+                <p>The tradeoff is that a simple browser algorithm cannot match every paid AI remover. It is best for simple backgrounds. The goal is not to pretend otherwise; it is to provide a useful free tool for the cases where a lightweight local remover is enough.</p>
             </section>
 
             <section id="faq" class="article">
@@ -198,15 +283,32 @@
                 <p>This version removes background by color and edge connectivity. Clean white, off-white, and solid backgrounds give it a clear target. Busy real-world scenes need AI segmentation, which may come later.</p>
                 <h3>What should I adjust if the edge looks wrong?</h3>
                 <p>Increase tolerance if some background remains. Decrease tolerance if parts of the subject disappear. Increase edge softness if the outline looks harsh.</p>
+                <h3>Can I use the exported PNG commercially?</h3>
+                <p>Yes, the tool does not claim rights over your image or output. You are responsible for making sure you have the rights to the original image you process.</p>
+                <h3>Why not just use a server AI API?</h3>
+                <p>Server AI costs money per image and requires uploads. This page is intentionally built around local processing so it can remain free, private, and unlimited for simple background jobs.</p>
             </section>
         </main>
+
+        <div class="footer-ad">
+            <span class="ad-label">Ad</span>
+            <ins class="adsbygoogle ad-footer"
+                 style="display:block"
+                 data-ad-client="ca-pub-2823470980745945"
+                 data-ad-slot="REPLACE_BG_FOOTER_SLOT_ID"
+                 data-ad-format="auto"
+                 data-full-width-responsive="true"></ins>
+        </div>
 
         <footer class="footer">
             <div>© <span id="copyright-year">2026</span> ConvertUnlimited.com — runs entirely in your browser.</div>
             <nav class="links" aria-label="Footer">
                 <a href="/">Image converter</a>
                 <a href="#how">How it works</a>
+                <a href="#limits">Limits</a>
+                <a href="#tips">Tips</a>
                 <a href="#faq">FAQ</a>
+                <a href="#why-free">Why free?</a>
                 <a href="/#privacy">Privacy</a>
                 <a href="/#terms">Terms</a>
             </nav>
