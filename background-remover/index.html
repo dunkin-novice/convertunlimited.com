@@ -11,6 +11,17 @@
     <meta name="theme-color" content="#3aa17e">
     <link rel="canonical" href="https://convertunlimited.com/background-remover/">
 
+    <!-- Hreflang: tells Google these are localised versions of each other -->
+    <link rel="alternate" hreflang="en" href="https://convertunlimited.com/background-remover/">
+    <link rel="alternate" hreflang="th" href="https://convertunlimited.com/th/background-remover/">
+    <link rel="alternate" hreflang="vi" href="https://convertunlimited.com/vi/background-remover/">
+    <link rel="alternate" hreflang="zh-Hans" href="https://convertunlimited.com/zh/background-remover/">
+    <link rel="alternate" hreflang="ja" href="https://convertunlimited.com/ja/background-remover/">
+    <link rel="alternate" hreflang="ko" href="https://convertunlimited.com/ko/background-remover/">
+    <link rel="alternate" hreflang="es" href="https://convertunlimited.com/es/background-remover/">
+    <link rel="alternate" hreflang="fr" href="https://convertunlimited.com/fr/background-remover/">
+    <link rel="alternate" hreflang="x-default" href="https://convertunlimited.com/background-remover/">
+
     <meta property="og:title" content="Free Simple Background Remover — Transparent PNG | ConvertUnlimited">
     <meta property="og:description" content="Remove simple plain backgrounds locally in your browser. No upload, no signup, no watermark.">
     <meta property="og:type" content="website">
@@ -117,6 +128,19 @@
                 <a href="#how">How it works</a>
                 <a href="#tips">Tips</a>
                 <a href="#faq">FAQ</a>
+                <details class="lang-switcher">
+                    <summary aria-label="Language"><span aria-hidden="true">🌐</span> EN</summary>
+                    <div class="lang-menu" role="menu">
+                        <a href="/background-remover/" hreflang="en" lang="en" aria-current="page">English</a>
+                        <a href="/th/background-remover/" hreflang="th" lang="th">ไทย</a>
+                        <a href="/vi/background-remover/" hreflang="vi" lang="vi">Tiếng Việt</a>
+                        <a href="/zh/background-remover/" hreflang="zh-Hans" lang="zh-Hans">中文（简体）</a>
+                        <a href="/ja/background-remover/" hreflang="ja" lang="ja">日本語</a>
+                        <a href="/ko/background-remover/" hreflang="ko" lang="ko">한국어</a>
+                        <a href="/es/background-remover/" hreflang="es" lang="es">Español</a>
+                        <a href="/fr/background-remover/" hreflang="fr" lang="fr">Français</a>
+                    </div>
+                </details>
             </nav>
         </header>
 
@@ -155,13 +179,13 @@
                             <div class="bg-preview-grid">
                                 <div class="bg-preview-card">
                                     <div class="bg-preview-label">Original</div>
-                                    <div class="bg-preview" id="bg-original-preview">
+                                    <div class="bg-preview" id="bg-original-preview" data-empty-text="Choose an image">
                                         <span>Choose an image</span>
                                     </div>
                                 </div>
                                 <div class="bg-preview-card">
                                     <div class="bg-preview-label">Transparent result</div>
-                                    <div class="bg-preview checker" id="bg-result-preview">
+                                    <div class="bg-preview checker" id="bg-result-preview" data-empty-text="Result appears here">
                                         <span>Result appears here</span>
                                     </div>
                                 </div>
@@ -181,7 +205,13 @@
                                 <button class="btn btn-accent" id="bg-process-btn" disabled>Remove background</button>
                                 <button class="btn btn-ghost" id="bg-download-btn" disabled>Download PNG</button>
                             </div>
-                            <p class="bg-status" id="bg-status">Best for product shots, icons, generated images, and graphics with simple edge-connected backgrounds.</p>
+                            <p class="bg-status" id="bg-status"
+                               data-ready-text="Ready. Works best when the background touches the image edges and is mostly one color."
+                               data-processing-text="Removing background locally in your browser..."
+                               data-done-text="Done. Export keeps the source dimensions: {w}x{h}px transparent PNG."
+                               data-error-text="Could not remove this background. Try an image with a simpler white or solid background.">
+                               Best for product shots, icons, generated images, and graphics with simple edge-connected backgrounds.
+                            </p>
                         </div>
                     </div>
 

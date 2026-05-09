@@ -155,7 +155,7 @@
     resultUrl = null;
     resultBlob = null;
     downloadBtn.disabled = true;
-    resultPreview.innerHTML = "<span>Result appears here</span>";
+    resultPreview.innerHTML = `<span>${resultPreview.dataset.emptyText || "Result appears here"}</span>`;
   }
 
   async function setFile(file) {
@@ -166,7 +166,7 @@
     originalPreview.innerHTML = `<img src="${preview}" alt="">`;
     resultName = `${baseOf(file.name)}-no-bg.png`;
     processBtn.disabled = false;
-    setStatus("Ready. Works best when the background touches the image edges and is mostly one color.");
+    setStatus(statusEl.dataset.readyText || "Ready. Works best when the background touches the image edges and is mostly one color.");
     track("bg_file_added", { bytes: file.size || 0 });
   }
 
@@ -174,7 +174,7 @@
     if (!sourceFile) return;
     processBtn.disabled = true;
     downloadBtn.disabled = true;
-    setStatus("Removing background locally in your browser...");
+    setStatus(statusEl.dataset.processingText || "Removing background locally in your browser...");
     try {
       const img = await loadImageFromFile(sourceFile);
       const w = img.naturalWidth || img.width || 1024;
@@ -195,11 +195,15 @@
       resultBlob = await new Promise((resolve) => canvas.toBlob(resolve, "image/png"));
       if (!resultBlob) throw new Error("PNG export failed");
       downloadBtn.disabled = false;
-      setStatus(`Done. Export keeps the source dimensions: ${w}x${h}px transparent PNG.`);
+      
+      let doneText = statusEl.dataset.doneText || "Done. Export keeps the source dimensions: {w}x{h}px transparent PNG.";
+      doneText = doneText.replace("{w}", w).replace("{h}", h);
+      setStatus(doneText);
+      
       track("bg_remove_completed", { bytes: sourceFile.size || 0, width: w, height: h });
     } catch (error) {
       clearResult();
-      setStatus("Could not remove this background. Try an image with a simpler white or solid background.");
+      setStatus(statusEl.dataset.errorText || "Could not remove this background. Try an image with a simpler white or solid background.");
     } finally {
       processBtn.disabled = !sourceFile;
     }
