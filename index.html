@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Free Bulk Image Converter — JPG, PNG, WebP, GIF, BMP, SVG | ConvertUnlimited</title>
-    <meta name="description" content="Convert images in bulk and remove simple plain backgrounds — free, unlimited, no signup. Runs entirely in your browser. No upload, no watermark.">
+    <meta name="description" content="Convert JPG, PNG, GIF, BMP, SVG, and WebP images in bulk — free, unlimited, no signup. Runs entirely in your browser. Download individually or as a ZIP. No upload, no watermark.">
     <meta name="robots" content="index,follow,max-image-preview:large">
     <meta name="google-adsense-account" content="ca-pub-2823470980745945">
     <meta name="msvalidate.01" content="003FD42627CDC93A3D0D542D5D0513D4">
@@ -24,7 +24,7 @@
 
     <!-- Open Graph -->
     <meta property="og:title" content="Free Bulk Image Converter — JPG, PNG, WebP, GIF, BMP, SVG | ConvertUnlimited">
-    <meta property="og:description" content="Convert images in bulk and remove simple plain backgrounds. Free, unlimited, no signup. Runs entirely in your browser.">
+    <meta property="og:description" content="Convert JPG, PNG, GIF, BMP, SVG, and WebP images in bulk. Free, unlimited, no signup. Runs entirely in your browser.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://convertunlimited.com/">
     <meta property="og:site_name" content="ConvertUnlimited">
@@ -37,7 +37,7 @@
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Free Bulk Image Converter — JPG, PNG, WebP, GIF, BMP, SVG | ConvertUnlimited">
-    <meta name="twitter:description" content="Convert images in bulk and remove simple plain backgrounds — free, unlimited, no signup. Runs in your browser.">
+    <meta name="twitter:description" content="Convert JPG, PNG, GIF, BMP, SVG, and WebP in bulk — free, unlimited, no signup. Runs in your browser.">
     <meta name="twitter:image" content="https://convertunlimited.com/og-image.svg">
 
     <!-- Favicons -->
@@ -70,7 +70,7 @@
       "name": "ConvertUnlimited",
       "alternateName": "ConvertUnlimited.com",
       "url": "https://convertunlimited.com/",
-      "description": "Free, unlimited browser image tools. Convert JPG, PNG, GIF, BMP, SVG, and WebP to WebP, PNG, or JPEG, and remove simple plain backgrounds locally — no upload, no signup, no watermark.",
+      "description": "Free, unlimited bulk image converter. Convert JPG, PNG, GIF, BMP, SVG, and WebP to WebP, PNG, or JPEG entirely in your browser — no upload, no signup, no watermark.",
       "applicationCategory": "MultimediaApplication",
       "applicationSubCategory": "Image converter",
       "operatingSystem": "Any (web browser)",
@@ -83,7 +83,6 @@
         "JPG, PNG, GIF, BMP, SVG, WebP input formats",
         "Quality presets (Original, High, Recommended, Compact)",
         "Download all converted files as a single ZIP",
-        "Simple plain-background removal with transparent PNG export",
         "Runs entirely in the browser — no upload, full privacy",
         "No file count or size limits",
         "No signup, no watermark"
@@ -198,7 +197,7 @@
             <nav class="topnav" aria-label="Primary">
                 <span class="pill"><span class="dot"></span>100% free, no signup</span>
                 <a href="#how">How it works</a>
-                <a href="#background-remover">Background remover</a>
+                <a href="/background-remover/">Background remover</a>
                 <a href="#formats">Formats</a>
                 <a href="#faq">FAQ</a>
                 <details class="lang-switcher">
@@ -220,7 +219,7 @@
         <main>
         <section class="hero">
             <h1 class="hero-title">Free bulk image converter, in your browser.</h1>
-            <p class="sub hero-sub">Convert <b>JPG</b>, <b>PNG</b>, <b>WebP</b>, <b>GIF</b>, <b>BMP</b> &amp; <b>SVG</b> · remove simple plain backgrounds · no upload, no signup, no watermark.</p>
+            <p class="sub hero-sub">Convert <b>JPG</b>, <b>PNG</b>, <b>WebP</b>, <b>GIF</b>, <b>BMP</b> &amp; <b>SVG</b> · drag in hundreds at once · download as a ZIP. No upload, no signup, no watermark.</p>
         </section>
 
         <div class="grid" id="layout">
@@ -368,65 +367,6 @@
             </aside>
         </div>
 
-        <section id="background-remover" class="bg-tool article-wide" aria-label="Simple background remover">
-            <div class="bg-tool-head">
-                <div>
-                    <p class="section-eyebrow">Simple background remover</p>
-                    <h2>Remove plain backgrounds locally.</h2>
-                    <p>This browser-only remover is best for images with a white, off-white, or simple solid background. It is not an AI portrait/hair remover yet, but it is free, private, and keeps the original image size when exporting a transparent PNG.</p>
-                </div>
-                <div class="bg-badges" aria-label="Background remover notes">
-                    <span>No upload</span>
-                    <span>Transparent PNG</span>
-                    <span>Plain backgrounds</span>
-                </div>
-            </div>
-
-            <div class="bg-workbench">
-                <div class="bg-drop" id="bg-dropzone" tabindex="0" role="button" aria-label="Drop one image to remove a simple background, or click to browse">
-                    <div class="icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
-                    </div>
-                    <div class="title">Drop one image here</div>
-                    <div class="hint">JPG, PNG, or WebP · processed on your device</div>
-                    <input type="file" id="bg-file-input" accept=".jpg,.jpeg,.png,.webp" hidden>
-                </div>
-
-                <div class="bg-panel">
-                    <div class="bg-preview-grid">
-                        <div class="bg-preview-card">
-                            <div class="bg-preview-label">Original</div>
-                            <div class="bg-preview" id="bg-original-preview">
-                                <span>Choose an image</span>
-                            </div>
-                        </div>
-                        <div class="bg-preview-card">
-                            <div class="bg-preview-label">Transparent result</div>
-                            <div class="bg-preview checker" id="bg-result-preview">
-                                <span>Result appears here</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="bg-controls">
-                        <label class="range-field" for="bg-tolerance">
-                            <span>Tolerance</span>
-                            <input id="bg-tolerance" type="range" min="18" max="90" value="52">
-                            <span class="mono num" id="bg-tolerance-value">52</span>
-                        </label>
-                        <label class="range-field" for="bg-feather">
-                            <span>Edge softness</span>
-                            <input id="bg-feather" type="range" min="45" max="130" value="90">
-                            <span class="mono num" id="bg-feather-value">90</span>
-                        </label>
-                        <button class="btn btn-accent" id="bg-process-btn" disabled>Remove background</button>
-                        <button class="btn btn-ghost" id="bg-download-btn" disabled>Download PNG</button>
-                    </div>
-                    <p class="bg-status" id="bg-status">Best for product shots, icons, AI art, and images with simple edge-connected backgrounds.</p>
-                </div>
-            </div>
-        </section>
-
         <section id="how" class="article">
             <h2>How ConvertUnlimited works</h2>
             <p>ConvertUnlimited is a free image converter that runs entirely inside your browser. Drop in JPGs, PNGs, GIFs, WebPs, BMPs, or SVGs, choose an output format, and a converted copy is ready to download in seconds. Nothing is uploaded to a server: every image is decoded, redrawn, and re-encoded locally using your browser's HTML canvas API.</p>
@@ -545,6 +485,7 @@
                 <a href="#quality">Quality</a>
                 <a href="#batches">Tips</a>
                 <a href="#faq">FAQ</a>
+                <a href="/background-remover/">Background remover</a>
                 <a href="#privacy">Privacy</a>
                 <a href="#terms">Terms</a>
                 <a href="https://github.com/dunkin-novice/convertunlimited.com" rel="noopener" target="_blank">Source</a>
