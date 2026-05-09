@@ -222,6 +222,10 @@ a { color: inherit; }
 .article p b { color: var(--ink); font-weight: 600; }
 .article a { color: var(--accent-2); text-decoration: underline; text-underline-offset: 2px; }
 .article a:hover { color: var(--accent); }
+.article-wide {
+  margin: 34px 0 0;
+  scroll-margin-top: 24px;
+}
 
 /* ===== Layout: converter + rail ===== */
 .grid {
@@ -243,6 +247,183 @@ a { color: inherit; }
   border-radius: 14px;
   overflow: hidden;
   box-shadow: var(--shadow-sm);
+}
+
+/* ===== Simple background remover ===== */
+.bg-tool {
+  background: var(--bg-2);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+}
+.bg-tool-head {
+  display: flex;
+  gap: 20px;
+  justify-content: space-between;
+  padding: 20px;
+  border-bottom: 1px solid var(--line);
+}
+.bg-tool-head h2 {
+  font-size: 24px;
+  line-height: 1.15;
+  letter-spacing: -0.018em;
+  margin: 0 0 8px;
+}
+.bg-tool-head p:not(.section-eyebrow) {
+  max-width: 760px;
+  color: var(--ink-2);
+  margin: 0;
+}
+.bg-badges {
+  display: flex;
+  align-content: flex-start;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  gap: 6px;
+  min-width: 180px;
+}
+.bg-badges span {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--accent-2);
+  background: var(--accent-soft);
+  border: 1px solid color-mix(in oklch, var(--accent) 25%, var(--line));
+  border-radius: 999px;
+  padding: 4px 8px;
+}
+.bg-workbench {
+  display: grid;
+  grid-template-columns: 280px minmax(0, 1fr);
+  gap: 18px;
+  padding: 18px;
+}
+.bg-drop {
+  min-height: 320px;
+  border: 1.5px dashed var(--line-2);
+  border-radius: 12px;
+  background:
+    repeating-linear-gradient(45deg, transparent 0 14px, color-mix(in oklch, var(--ink) 2%, transparent) 14px 15px);
+  display: grid;
+  place-items: center;
+  align-content: center;
+  text-align: center;
+  cursor: pointer;
+  padding: 22px;
+}
+.bg-drop:hover,
+.bg-drop.drag {
+  border-color: var(--accent);
+  background-color: var(--bg);
+}
+.bg-drop .icon {
+  width: 44px; height: 44px;
+  border-radius: 10px;
+  background: var(--bg);
+  border: 1px solid var(--line);
+  display: grid; place-items: center;
+  margin: 0 auto 14px;
+  color: var(--ink-2);
+}
+.bg-drop .title {
+  font-size: 17px;
+  font-weight: 600;
+}
+.bg-drop .hint {
+  margin-top: 4px;
+  color: var(--ink-3);
+  font-size: 13px;
+}
+.bg-panel {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.bg-preview-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+.bg-preview-card {
+  min-width: 0;
+}
+.bg-preview-label {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  margin-bottom: 7px;
+}
+.bg-preview {
+  aspect-ratio: 1 / 1;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--bg);
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  color: var(--ink-4);
+  font-size: 13px;
+}
+.bg-preview.checker {
+  background-color: var(--bg);
+  background-image:
+    linear-gradient(45deg, var(--bg-3) 25%, transparent 25%),
+    linear-gradient(-45deg, var(--bg-3) 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, var(--bg-3) 75%),
+    linear-gradient(-45deg, transparent 75%, var(--bg-3) 75%);
+  background-size: 22px 22px;
+  background-position: 0 0, 0 11px, 11px -11px, -11px 0;
+}
+.bg-preview img,
+.bg-preview canvas {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+.bg-controls {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.range-field {
+  display: inline-grid;
+  grid-template-columns: auto minmax(120px, 1fr) 32px;
+  gap: 8px;
+  align-items: center;
+  color: var(--ink-3);
+  font-size: 13px;
+}
+.range-field input {
+  accent-color: var(--accent);
+}
+.bg-status {
+  margin: 0;
+  color: var(--ink-3);
+  font-size: 13px;
+}
+@media (max-width: 760px) {
+  .bg-tool-head,
+  .bg-workbench,
+  .bg-preview-grid {
+    grid-template-columns: 1fr;
+  }
+  .bg-tool-head {
+    flex-direction: column;
+  }
+  .bg-badges {
+    justify-content: flex-start;
+    min-width: 0;
+  }
+  .bg-drop {
+    min-height: 220px;
+  }
+  .range-field {
+    width: 100%;
+  }
 }
 
 /* Settings strip */

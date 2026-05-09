@@ -29,6 +29,17 @@
   const statSrc = $("stat-src");
   const statOut = $("stat-out");
   const statSaved = $("stat-saved");
+  const bgDropzone = $("bg-dropzone");
+  const bgFileInput = $("bg-file-input");
+  const bgOriginalPreview = $("bg-original-preview");
+  const bgResultPreview = $("bg-result-preview");
+  const bgTolerance = $("bg-tolerance");
+  const bgToleranceValue = $("bg-tolerance-value");
+  const bgFeather = $("bg-feather");
+  const bgFeatherValue = $("bg-feather-value");
+  const bgProcessBtn = $("bg-process-btn");
+  const bgDownloadBtn = $("bg-download-btn");
+  const bgStatus = $("bg-status");
 
   let items = [];
   let format = "webp";
@@ -37,6 +48,10 @@
   let bulkBusy = false;
   let dragCount = 0;
   let _idCounter = 0;
+  let bgFile = null;
+  let bgResultBlob = null;
+  let bgResultUrl = null;
+  let bgResultName = "transparent-background.png";
   const nextId = () => ++_idCounter;
 
   // GA4 event helper — silently no-ops if gtag is unavailable (ad-blocker, offline).
@@ -185,6 +200,183 @@
       };
       img.src = objUrl;
     });
+  }
+
+  function loadImageFromFile(file) {
+    return new Promise((resolve, reject) => {
+      const img = new Image();
+      const objUrl = URL.createObjectURL(file);
+      img.onload = () => {
+        URL.revokeObjectURL(objUrl);
+        resolve(img);
+      };
+      img.onerror = () => {
+        URL.revokeObjectURL(objUrl);
+        reject(new Error("Cannot read image"));
+      };
+      img.src = objUrl;
+    });
+  }
+
+  function estimateBackgroundColor(data, w, h) {
+    const samples = [];
+    const band = Math.max(6, Math.floor(Math.min(w, h) / 48));
+    const push = (x, y) => {
+      const i = (y * w + x) * 4;
+      samples.push([data[i], data[i + 1], data[i + 2]]);
+    };
+    for (let x = 0; x < w; x++) {
+      for (let y = 0; y < band; y++) {
+        push(x, y);
+        push(x, h - 1 - y);
+      }
+    }
+    for (let y = 0; y < h; y++) {
+      for (let x = 0; x < band; x++) {
+        push(x, y);
+        push(w - 1 - x, y);
+      }
+    }
+    const median = (idx) => {
+      const values = samples.map((s) => s[idx]).sort((a, b) => a - b);
+      return values[Math.floor(values.length / 2)] || 255;
+    };
+    return [median(0), median(1), median(2)];
+  }
+
+  function colorDistance(data, i, bg) {
+    const dr = data[i] - bg[0];
+    const dg = data[i + 1] - bg[1];
+    const db = data[i + 2] - bg[2];
+    return Math.sqrt(dr * dr + dg * dg + db * db);
+  }
+
+  function removeSimpleBackground(imageData, tolerance, feather) {
+    const { data, width: w, height: h } = imageData;
+    const bg = estimateBackgroundColor(data, w, h);
+    const mask = new Uint8Array(w * h);
+    const queue = [];
+    let qi = 0;
+    const idx = (x, y) => y * w + x;
+    const add = (x, y) => {
+      const p = idx(x, y);
+      if (mask[p]) return;
+      if (colorDistance(data, p * 4, bg) <= tolerance) {
+        mask[p] = 1;
+        queue.push(p);
+      }
+    };
+
+    for (let x = 0; x < w; x++) {
+      add(x, 0);
+      add(x, h - 1);
+    }
+    for (let y = 0; y < h; y++) {
+      add(0, y);
+      add(w - 1, y);
+    }
+
+    while (qi < queue.length) {
+      const p = queue[qi++];
+      const x = p % w;
+      const y = Math.floor(p / w);
+      if (x > 0) add(x - 1, y);
+      if (x + 1 < w) add(x + 1, y);
+      if (y > 0) add(x, y - 1);
+      if (y + 1 < h) add(x, y + 1);
+    }
+
+    const clear = Math.max(10, tolerance * 0.55);
+    const soft = Math.max(clear + 1, feather);
+    for (let p = 0; p < mask.length; p++) {
+      const i = p * 4;
+      const d = colorDistance(data, i, bg);
+      if (mask[p]) {
+        data[i + 3] = d <= clear ? 0 : Math.min(255, Math.round(255 * (d - clear) / (soft - clear)));
+        continue;
+      }
+      const x = p % w;
+      const y = Math.floor(p / w);
+      const nearBg =
+        (x > 0 && mask[p - 1]) ||
+        (x + 1 < w && mask[p + 1]) ||
+        (y > 0 && mask[p - w]) ||
+        (y + 1 < h && mask[p + w]);
+      if (nearBg && d < soft) {
+        data[i + 3] = Math.max(90, Math.round(255 * d / soft));
+      }
+    }
+    return imageData;
+  }
+
+  function setBgStatus(text) {
+    if (bgStatus) bgStatus.textContent = text;
+  }
+
+  function clearBgResult() {
+    if (bgResultUrl) URL.revokeObjectURL(bgResultUrl);
+    bgResultUrl = null;
+    bgResultBlob = null;
+    if (bgDownloadBtn) bgDownloadBtn.disabled = true;
+    if (bgResultPreview) bgResultPreview.innerHTML = "<span>Result appears here</span>";
+  }
+
+  async function setBackgroundFile(file) {
+    if (!file || !(file.type.startsWith("image/") || /\.(jpe?g|png|webp)$/i.test(file.name))) return;
+    bgFile = file;
+    clearBgResult();
+    const preview = await readPreview(file);
+    bgOriginalPreview.innerHTML = `<img src="${preview}" alt="">`;
+    bgResultName = baseOf(file.name) + "-no-bg.png";
+    bgProcessBtn.disabled = false;
+    setBgStatus("Ready. Works best when the background touches the image edges and is mostly one color.");
+    track("bg_file_added", { bytes: file.size || 0 });
+  }
+
+  async function processBackgroundFile() {
+    if (!bgFile || !bgProcessBtn) return;
+    bgProcessBtn.disabled = true;
+    bgDownloadBtn.disabled = true;
+    setBgStatus("Removing background locally in your browser...");
+    try {
+      const img = await loadImageFromFile(bgFile);
+      const canvas = document.createElement("canvas");
+      const w = img.naturalWidth || img.width || 1024;
+      const h = img.naturalHeight || img.height || 1024;
+      canvas.width = w;
+      canvas.height = h;
+      const ctx = canvas.getContext("2d", { willReadFrequently: true });
+      ctx.drawImage(img, 0, 0, w, h);
+      const imageData = ctx.getImageData(0, 0, w, h);
+      const tolerance = parseFloat(bgTolerance.value);
+      const feather = parseFloat(bgFeather.value);
+      ctx.putImageData(removeSimpleBackground(imageData, tolerance, feather), 0, 0);
+      bgResultPreview.innerHTML = "";
+      bgResultPreview.appendChild(canvas);
+      bgResultBlob = await new Promise((resolve) => canvas.toBlob(resolve, "image/png"));
+      if (!bgResultBlob) throw new Error("PNG export failed");
+      bgDownloadBtn.disabled = false;
+      setBgStatus(`Done. Export keeps the source dimensions: ${w}×${h}px transparent PNG.`);
+      track("bg_remove_completed", { bytes: bgFile.size || 0, width: w, height: h });
+    } catch (e) {
+      clearBgResult();
+      setBgStatus("Could not remove this background. Try an image with a simpler white or solid background.");
+    } finally {
+      bgProcessBtn.disabled = !bgFile;
+    }
+  }
+
+  function downloadBackgroundPng() {
+    if (!bgResultBlob) return;
+    if (bgResultUrl) URL.revokeObjectURL(bgResultUrl);
+    bgResultUrl = URL.createObjectURL(bgResultBlob);
+    const a = document.createElement("a");
+    a.href = bgResultUrl;
+    a.download = bgResultName;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    track("bg_download_png", { bytes: bgResultBlob.size || 0 });
   }
 
   async function addFiles(filelist, source) {
@@ -567,6 +759,56 @@
     addFiles(e.target.files, "picker");
     e.target.value = "";
   });
+
+  if (bgDropzone && bgFileInput) {
+    bgDropzone.addEventListener("click", () => bgFileInput.click());
+    bgDropzone.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" || e.key === " ") { e.preventDefault(); bgFileInput.click(); }
+    });
+    bgDropzone.addEventListener("dragenter", (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      bgDropzone.classList.add("drag");
+    });
+    bgDropzone.addEventListener("dragover", (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+    });
+    bgDropzone.addEventListener("dragleave", (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      bgDropzone.classList.remove("drag");
+    });
+    bgDropzone.addEventListener("drop", (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      bgDropzone.classList.remove("drag");
+      dragCount = 0;
+      dragOverlay.classList.remove("active");
+      if (e.dataTransfer && e.dataTransfer.files && e.dataTransfer.files[0]) {
+        setBackgroundFile(e.dataTransfer.files[0]);
+      }
+    });
+    bgFileInput.addEventListener("change", (e) => {
+      if (e.target.files && e.target.files[0]) setBackgroundFile(e.target.files[0]);
+      e.target.value = "";
+    });
+  }
+
+  if (bgTolerance && bgToleranceValue) {
+    bgTolerance.addEventListener("input", () => {
+      bgToleranceValue.textContent = bgTolerance.value;
+      if (bgFile) clearBgResult();
+    });
+  }
+  if (bgFeather && bgFeatherValue) {
+    bgFeather.addEventListener("input", () => {
+      bgFeatherValue.textContent = bgFeather.value;
+      if (bgFile) clearBgResult();
+    });
+  }
+  if (bgProcessBtn) bgProcessBtn.addEventListener("click", processBackgroundFile);
+  if (bgDownloadBtn) bgDownloadBtn.addEventListener("click", downloadBackgroundPng);
 
   addMoreBtn.addEventListener("click", () => fileInput.click());
 
