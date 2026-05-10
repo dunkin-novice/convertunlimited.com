@@ -132,6 +132,94 @@
                     </div>
                 </aside>
             </div>
+        
+            <section id="how" class="article">
+                <h2>Cách ConvertUnlimited Hoạt Động</h2>
+                <p>ConvertUnlimited được xây dựng dựa trên triết lý "ưu tiên thiết bị cục bộ". Không giống như các công cụ nén ảnh trực tuyến truyền thống yêu cầu bạn tải ảnh lên máy chủ từ xa, công cụ của chúng tôi thực hiện tất cả các tác vụ nén trực tiếp trong trình duyệt web của bạn.</p>
+                <p>Khi bạn kéo ảnh vào trình nén, trình duyệt của bạn sử dụng <b>HTML5 Canvas API</b> để giải mã dữ liệu hình ảnh. Khi bạn điều chỉnh thanh trượt chất lượng và nhấn "Nén", trình duyệt sẽ mã hóa lại dữ liệu đó thành định dạng bạn đã chọn (JPG hoặc WebP) bằng công cụ mã hóa gốc của nó. Bởi vì quá trình xử lý diễn ra trên chính CPU và RAM của bạn, những bức ảnh riêng tư của bạn không bao giờ rời khỏi thiết bị của bạn. Điều này làm cho quá trình diễn ra nhanh hơn, riêng tư hơn và cho phép chúng tôi cung cấp dịch vụ miễn phí mà không phải tốn chi phí xử lý đắt đỏ ở phía máy chủ.</p>
+            </section>
+
+            <section id="why" class="article">
+                <h2>Tại Sao Nên Nén Ảnh?</h2>
+                <p>Hình ảnh chưa được tối ưu hóa thường là nguyên nhân chính khiến trang web hoạt động chậm. Việc nén ảnh là rất cần thiết vì một số lý do:</p>
+                <ul>
+                    <li><b>Tốc Độ Tải Nhanh Hơn:</b> Kích thước tệp nhỏ hơn đồng nghĩa với việc tải xuống nhanh hơn, cải thiện trải nghiệm người dùng cho khách truy cập của bạn.</li>
+                    <li><b>Lợi Ích SEO:</b> Các công cụ tìm kiếm như Google sử dụng tốc độ trang làm yếu tố xếp hạng. Các trang web nhanh hơn có xu hướng xếp hạng cao trong kết quả tìm kiếm.</li>
+                    <li><b>Core Web Vitals Tốt Hơn:</b> Việc giảm kích thước hình ảnh giúp cải thiện "Largest Contentful Paint" (LCP), một chỉ số quan trọng trong đánh giá hiệu suất của Google.</li>
+                    <li><b>Tiết Kiệm Dung Lượng:</b> Nếu bạn xử lý hàng nghìn hình ảnh, việc giảm 50-80% cho mỗi bức ảnh có thể tiết kiệm hàng gigabyte lưu trữ đám mây và chi phí sao lưu.</li>
+                    <li><b>Chia Sẻ Dễ Dàng Hơn:</b> Ảnh đã nén dễ dàng gửi qua email, tải lên mạng xã hội hoặc tích hợp vào ứng dụng di động nơi băng thông có thể bị hạn chế.</li>
+                </ul>
+            </section>
+
+            <section id="formats" class="article">
+                <h2>Hướng Dẫn Về Các Định Dạng Nén</h2>
+                <p>Các định dạng tệp khác nhau sử dụng các phương pháp khác nhau để giảm kích thước. Việc chọn đúng định dạng phụ thuộc vào nhu cầu cụ thể của bạn:</p>
+                
+                <h3>JPEG (Joint Photographic Experts Group)</h3>
+                <p>JPEG là tiêu chuẩn cho nhiếp ảnh kỹ thuật số. Nó sử dụng nén "có mất mát" (lossy), nghĩa là nó loại bỏ một số dữ liệu hình ảnh để đạt được mức giảm kích thước đáng kể. Nó tương thích với mọi nền tảng nhưng không hỗ trợ độ trong suốt.</p>
+                
+                <h3>PNG (Portable Network Graphics)</h3>
+                <p>PNG sử dụng nén "không mất mát" (lossless), giữ nguyên mọi pixel chính xác như ban đầu. Điều này làm cho nó lý tưởng cho logo, biểu tượng và đồ họa nhiều văn bản. Mặc dù hỗ trợ độ trong suốt, nhưng tệp PNG thường lớn hơn nhiều so với JPEG hoặc WebP. Lưu ý: Các công cụ nén trên trình duyệt nói chung không thể thực hiện nén PNG "có mất mát"; hãy sử dụng WebP nếu bạn cần độ trong suốt với kích thước tệp nhỏ.</p>
+
+                <h3>WebP (Định dạng thế hệ mới của Google)</h3>
+                <p>WebP là định dạng hiện đại cung cấp cả nén có mất mát và không mất mát. Nó thường đạt được kích thước tệp nhỏ hơn 25-35% so với JPEG ở cùng chất lượng và hỗ trợ độ trong suốt giống như PNG. Đây là lựa chọn tốt nhất cho hiệu suất web hiện đại.</p>
+            </section>
+
+            <section id="quality" class="article">
+                <h2>Chọn Chất Lượng Nén</h2>
+                <p>Thanh trượt chất lượng quyết định mức độ mạnh của thuật toán nén:</p>
+                <ul>
+                    <li><b>Gốc (100%):</b> Thực hiện mã hóa lại ở mức tối thiểu. Hữu ích cho việc chuyển đổi định dạng hơn là giảm kích thước.</li>
+                    <li><b>Cao (90-95%):</b> Giảm kích thước đáng kể mà hầu như không làm giảm chất lượng hình ảnh có thể nhận thấy bằng mắt thường. Tốt nhất cho các danh mục đầu tư chuyên nghiệp.</li>
+                    <li><b>Khuyên dùng (75-80%):</b> "Điểm cân bằng" cho hầu hết các mục đích sử dụng trên web. Giảm dung lượng tệp rất tốt với các lỗi cực nhỏ chỉ có thể thấy khi phóng to hết mức.</li>
+                    <li><b>Nhỏ Gọn (50-60%):</b> Nén tối đa. Tốt nhất cho hình thu nhỏ hoặc các tình huống cần tốc độ và không yêu cầu độ chi tiết cao.</li>
+                </ul>
+            </section>
+
+            <section id="batches" class="article">
+                <h2>Mẹo Nén Hàng Loạt</h2>
+                <p>Bạn đang làm việc với hàng tá hình ảnh cùng lúc? Hãy ghi nhớ những mẹo hiệu suất sau:</p>
+                <ul>
+                    <li><b>Bộ Nhớ Trình Duyệt:</b> Vì việc nén diễn ra trong RAM của bạn, nên xử lý hơn 100 hình ảnh độ phân giải rất cao (như tệp Raw 40MP) có thể khiến tab trình duyệt của bạn chạy chậm lại. Đối với các tệp rất lớn, hãy xử lý chúng thành các lô nhỏ hơn.</li>
+                    <li><b>Thiết Bị Di Động:</b> Điện thoại và máy tính bảng có ít bộ nhớ khả dụng hơn so với máy tính để bàn. Chúng tôi khuyên bạn nên nén 10-20 ảnh mỗi lần trên thiết bị di động để có trải nghiệm tốt nhất.</li>
+                    <li><b>Tải Xuống ZIP:</b> Sau khi nén một lô, hãy sử dụng nút "Tải xuống Tất cả" để nhận tất cả các tệp của bạn trong một tệp lưu trữ ZIP được tổ chức tốt, được hỗ trợ bởi JSZip.</li>
+                </ul>
+            </section>
+
+            <section id="faq" class="article">
+                <h2>Câu Hỏi Thường Gặp</h2>
+                
+                <h3>Nó có thực sự riêng tư không?</h3>
+                <p>Có. Hãy mở trình kiểm tra mạng trong công cụ dành cho nhà phát triển của trình duyệt và bạn sẽ thấy không có dữ liệu hình ảnh nào được gửi đến máy chủ của chúng tôi. Tất cả các logic được thực thi trong môi trường cục bộ của trình duyệt của bạn.</p>
+
+                <h3>Tệp của tôi có bị tải lên không?</h3>
+                <p>Không bao giờ. Điều duy nhất máy chủ của chúng tôi cung cấp là mã tĩnh cần thiết để chạy công cụ trong trình duyệt của bạn.</p>
+
+                <h3>Tại sao lại miễn phí?</h3>
+                <p>Bởi vì chúng tôi không phải trả tiền cho các máy chủ "tăng tốc GPU" đắt đỏ để xử lý hình ảnh của bạn. Máy tính của bạn đảm nhận công việc đó, giúp giữ chi phí hoạt động của chúng tôi đủ thấp để có thể trang trải bằng các quảng cáo tĩnh đơn giản.</p>
+
+                <h3>Việc nén có làm giảm chất lượng không?</h3>
+                <p>Với các định dạng lossy (JPG/WebP) thì có, nhưng đó là sự đánh đổi toán học. Ở chất lượng 80%, "sự mất mát" thường không thể nhìn thấy bằng mắt thường trên các màn hình tiêu chuẩn.</p>
+
+                <h3>Tại sao đôi khi tệp PNG của tôi lại lớn hơn?</h3>
+                <p>Nếu bạn chuyển đổi một tệp JPG đã được nén mạnh sang PNG, kích thước tệp sẽ tăng lên vì PNG là định dạng không mất mát được thiết kế để bảo toàn dữ liệu chứ không phải loại bỏ nó.</p>
+
+                <h3>Trình Duyệt Hỗ Trợ</h3>
+                <p>Công cụ này hoạt động trên tất cả các trình duyệt hiện đại hỗ trợ HTML5 Canvas API, bao gồm Chrome, Firefox, Safari và Edge.</p>
+            </section>
+
+            <section id="privacy" class="article">
+                <h2>Chính Sách Bảo Mật</h2>
+                <p><b>Hình Ảnh Của Bạn:</b> Chúng tôi không thu thập, lưu trữ hoặc truyền bất kỳ hình ảnh nào mà bạn xử lý. Tất cả quá trình xử lý diễn ra hoàn toàn cục bộ.</p>
+                <p><b>Phân Tích Dữ Liệu:</b> Chúng tôi sử dụng Google Analytics 4 để giám sát lưu lượng truy cập trang web và mô hình sử dụng công cụ (ví dụ: "hôm nay có bao nhiêu người sử dụng công cụ nén"). Dữ liệu này được ẩn danh và không bao gồm các tệp của bạn.</p>
+                <p><b>Quảng Cáo:</b> Chúng tôi sử dụng Google AdSense để hiển thị quảng cáo. Các đối tác này có thể sử dụng cookie để phân phối quảng cáo phù hợp dựa trên lượt truy cập của bạn vào trang web này và các trang web khác.</p>
+            </section>
+
+            <section id="terms" class="article">
+                <h2>Điều Khoản Sử Dụng</h2>
+                <p>ConvertUnlimited được cung cấp "nguyên trạng" mà không có bất kỳ hình thức bảo đảm nào. Bạn chịu trách nhiệm về nội dung mình xử lý và phải đảm bảo mình có quyền hợp pháp để sử dụng và nén các hình ảnh đã cung cấp. Chúng tôi không chịu trách nhiệm đối với bất kỳ mất mát dữ liệu hoặc vấn đề hiệu suất hệ thống nào do việc sử dụng công cụ này.</p>
+            </section>
+
         </main>
 
         <footer class="footer">

@@ -132,6 +132,94 @@
                     </div>
                 </aside>
             </div>
+        
+            <section id="how" class="article">
+                <h2>Comment Fonctionne ConvertUnlimited</h2>
+                <p>ConvertUnlimited repose sur la philosophie de la "priorité locale" contrairement aux compresseurs d'images en ligne traditionnels qui nécessitent que vous téléchargiez vos photos sur un serveur distant, notre outil effectue toutes les tâches de compression directement dans votre navigateur web。</p>
+                <p>Lorsque vous glissez une image dans le compresseur, votre navigateur utilise l'<b>API HTML5 Canvas</b> pour décoder les données de l'image。Lorsque vous ajustez le curseur de qualité et appuyez sur "Compresser", le navigateur recode ces données dans le format choisi (JPG ou WebP) à l'aide de son moteur d'encodage natif。Étant donné que le traitement s'effectue sur votre propre CPU et RAM, vos photos privées ne quittent jamais votre appareil。Cela rend le processus plus rapide, plus privé et nous permet d'offrir le service gratuitement sans coûts de traitement coûteux côté serveur。</p>
+            </section>
+
+            <section id="why" class="article">
+                <h2>Pourquoi Compresser les Images ?</h2>
+                <p>Les images non optimisées sont souvent la principale cause de la lenteur des performances des sites web。La compression de vos images est essentielle pour plusieurs raisons :</p>
+                <ul>
+                    <li><b>Des Vitesses de Chargement Plus Rapides :</b> Des fichiers plus petits signifient des téléchargements plus rapides, améliorant ainsi l'expérience utilisateur de vos visiteurs。</li>
+                    <li><b>Avantages SEO :</b> Les moteurs de recherche comme Google utilisent la vitesse des pages comme facteur de classement。Les sites plus rapides ont tendance à être mieux classés dans les résultats de recherche。</li>
+                    <li><b>De Meilleurs Core Web Vitals :</b> La réduction de la taille de l'image contribue à améliorer le "Largest Contentful Paint" (LCP), une métrique clé des audits de performances de Google。</li>
+                    <li><b>Économies de Stockage :</b> Si vous gérez des milliers d'images, réduire chacune d'elles de 50 à 80 % peut vous faire économiser des gigaoctets de stockage cloud et de coûts de sauvegarde。</li>
+                    <li><b>Partage Plus Facile :</b> Les images compressées sont plus faciles à envoyer par e-mail, à télécharger sur les réseaux sociaux ou à inclure dans des applications mobiles où la bande passante peut être limitée。</li>
+                </ul>
+            </section>
+
+            <section id="formats" class="article">
+                <h2>Guide des Formats de Compression</h2>
+                <p>Différents formats de fichiers utilisent différentes méthodes pour réduire leur taille。Le choix du bon format dépend de vos besoins spécifiques :</p>
+                
+                <h3>JPEG (Joint Photographic Experts Group)</h3>
+                <p>Le JPEG est la norme pour la photographie numérique。Il utilise une compression "avec perte" (lossy), ce qui signifie qu'il supprime certaines données d'image pour obtenir des réductions de taille significatives。Il est universellement compatible mais ne prend pas en charge la transparence。</p>
+                
+                <h3>PNG (Portable Network Graphics)</h3>
+                <p>Le PNG utilise une compression "sans perte" (lossless), qui préserve chaque pixel exactement tel qu'il était。Cela le rend idéal pour les logos, les icônes et les graphiques riches en texte。Bien qu'il prenne en charge la transparence, les fichiers PNG sont généralement beaucoup plus volumineux que les JPEG ou WebP。Remarque : Les compresseurs basés sur un navigateur ne peuvent généralement pas effectuer de compression PNG "avec perte" ; utilisez WebP si vous avez besoin de transparence avec une petite taille de fichier。</p>
+
+                <h3>WebP (Le Format Nouvelle Génération de Google)</h3>
+                <p>Le WebP est un format moderne qui offre à la fois une compression avec perte et sans perte。Il permet généralement d'obtenir des tailles de fichier de 25 à 35 % inférieures à celles du JPEG à qualité équivalente et prend en charge la transparence comme le PNG。C'est le meilleur choix pour les performances web modernes。</p>
+            </section>
+
+            <section id="quality" class="article">
+                <h2>Choisir la Qualité de Compression</h2>
+                <p>Le curseur de qualité détermine le degré d'agressivité de l'algorithme de compression :</p>
+                <ul>
+                    <li><b>Original (100%) :</b> Effectue un ré-encodage minimal。Utile pour la conversion de format plutôt que pour la réduction de taille。</li>
+                    <li><b>Haute (90-95%) :</b> Réduction de taille significative avec une perte de qualité visuelle presque imperceptible。Idéal pour les portfolios professionnels。</li>
+                    <li><b>Recommandée (75-80%) :</b> Le "juste milieu" pour la plupart des utilisations sur le web。Grande réduction de la taille du fichier avec des artefacts très mineurs visibles uniquement sous un zoom extrême。</li>
+                    <li><b>Compacte (50-60%) :</b> Compression maximale。Idéale pour les miniatures ou les situations où la vitesse est critique et où un niveau de détail élevé n'est pas requis。</li>
+                </ul>
+            </section>
+
+            <section id="batches" class="article">
+                <h2>Conseils pour la Compression par Lots</h2>
+                <p>Vous travaillez avec des dizaines d'images en même temps ? Gardez ces conseils de performance à l'esprit :</p>
+                <ul>
+                    <li><b>Mémoire du Navigateur :</b> Étant donné que la compression s'effectue dans votre RAM, le traitement de plus de 100 images à très haute résolution (comme des exportations Raw de 40MP) peut ralentir l'onglet de votre navigateur。Pour les très gros fichiers, traitez-les par lots plus petits。</li>
+                    <li><b>Appareils Mobiles :</b> Les téléphones et les tablettes ont moins de mémoire disponible que les ordinateurs de bureau。Nous recommandons des lots de 10 à 20 images sur mobile pour une expérience optimale。</li>
+                    <li><b>Téléchargements ZIP :</b> Après avoir compressé un lot, utilisez le bouton "Tout Télécharger" pour obtenir tous vos fichiers dans une seule archive ZIP bien organisée, propulsée par JSZip。</li>
+                </ul>
+            </section>
+
+            <section id="faq" class="article">
+                <h2>Foire Aux Questions</h2>
+                
+                <h3>Est-ce vraiment privé ?</h3>
+                <p>Oui。Ouvrez l'inspecteur réseau dans les outils de développement de votre navigateur et vous verrez qu'aucune donnée d'image n'est envoyée à nos serveurs。Toute la logique est exécutée dans l'environnement local de votre navigateur。</p>
+
+                <h3>Mes fichiers sont-ils téléchargés ?</h3>
+                <p>Jamais。La seule chose que fournit notre serveur est le code statique requis pour exécuter l'outil dans votre navigateur。</p>
+
+                <h3>Pourquoi est-ce gratuit ?</h3>
+                <p>Parce que nous n'avons pas à payer pour des serveurs coûteux "accélérés par GPU" pour traiter vos images。Votre ordinateur fait le travail, ce qui maintient nos frais de fonctionnement suffisamment bas pour être couverts par de simples publicités statiques。</p>
+
+                <h3>La compression réduit-elle la qualité ?</h3>
+                <p>Dans les formats avec perte (JPG/WebP), oui, mais c'est un compromis mathématique。À 80 % de qualité, la "perte" est généralement invisible à l'œil nu sur des écrans standard。</p>
+
+                <h3>Pourquoi mon PNG est-il parfois plus gros ?</h3>
+                <p>Si vous convertissez un JPG fortement compressé en PNG, la taille du fichier augmentera car le PNG est un format sans perte conçu pour préserver les données, et non pour les rejeter。</p>
+
+                <h3>Navigateurs Pris en Charge</h3>
+                <p>Cet outil fonctionne dans tous les navigateurs modernes prenant en charge l'API HTML5 Canvas, y compris Chrome, Firefox, Safari et Edge。</p>
+            </section>
+
+            <section id="privacy" class="article">
+                <h2>Politique de Confidentialité</h2>
+                <p><b>Vos Images :</b> Nous ne collectons, ne stockons ni ne transmettons aucune image que vous traitez。Tout le traitement est strictement local。</p>
+                <p><b>Analytique :</b> Nous utilisons Google Analytics 4 pour surveiller le trafic du site et les modèles d'utilisation des outils (par exemple, "combien de personnes ont utilisé le compresseur aujourd'hui")。Ces données sont anonymisées et n'incluent pas vos fichiers。</p>
+                <p><b>Publicité :</b> Nous utilisons Google AdSense pour afficher des publicités。Ces partenaires peuvent utiliser des cookies pour diffuser des annonces pertinentes en fonction de votre visite sur ce site et sur d'autres sites。</p>
+            </section>
+
+            <section id="terms" class="article">
+                <h2>Conditions d'Utilisation</h2>
+                <p>ConvertUnlimited est fourni "tel quel" sans garantie d'aucune sorte。Vous êtes responsable du contenu que vous traitez et devez vous assurer que vous avez le droit légal d'utiliser et de compresser les images que vous fournissez。Nous ne sommes pas responsables des pertes de données ou des problèmes de performances du système résultant de l'utilisation de cet outil。</p>
+            </section>
+
         </main>
 
         <footer class="footer">
