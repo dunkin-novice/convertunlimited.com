@@ -46,9 +46,30 @@
             </a>
             <nav class="topnav" aria-label="Primary">
                 <span class="pill"><span class="dot"></span>100% free, no signup</span>
-                <a href="/">Image converter</a>
-                <a href="/background-remover/">Background remover</a>
-                <a href="/image-compressor/">Image compressor</a>
+                
+                <details class="tools-dropdown">
+                    <summary aria-label="Tools">Tools <svg width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin-left: 2px; opacity: 0.5;"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></summary>
+                    <div class="dropdown-menu" role="menu">
+                        <div class="dropdown-section">Image Tools</div>
+                        <a href="/">Image Converter</a>
+                        <a href="/background-remover/">Background Remover</a>
+                        <a href="/image-compressor/" aria-current="page">Image Compressor</a>
+                    </div>
+                </details>
+
+                <details class="lang-switcher">
+                    <summary aria-label="Language"><span aria-hidden="true">🌐</span> EN</summary>
+                    <div class="lang-menu" role="menu">
+                        <a href="/image-compressor/" hreflang="en" lang="en" aria-current="page">English</a>
+                        <a href="/th/image-compressor/" hreflang="th" lang="th">ไทย</a>
+                        <a href="/vi/image-compressor/" hreflang="vi" lang="vi">Tiếng Việt</a>
+                        <a href="/zh/image-compressor/" hreflang="zh-Hans" lang="zh-Hans">中文（简体）</a>
+                        <a href="/ja/image-compressor/" hreflang="ja" lang="ja">日本語</a>
+                        <a href="/ko/image-compressor/" hreflang="ko" lang="ko">한국어</a>
+                        <a href="/es/image-compressor/" hreflang="es" lang="es">Español</a>
+                        <a href="/fr/image-compressor/" hreflang="fr" lang="fr">Français</a>
+                    </div>
+                </details>
             </nav>
         </header>
 
@@ -111,14 +132,101 @@
                     </div>
                 </aside>
             </div>
+
+            <section id="how" class="article">
+                <h2>How ConvertUnlimited Works</h2>
+                <p>ConvertUnlimited is built on a "local-first" philosophy. Unlike traditional online image compressors that require you to upload your photos to a remote server, our tool performs all compression tasks directly inside your web browser.</p>
+                <p>When you drag an image into the compressor, your browser uses the <b>HTML5 Canvas API</b> to decode the image data. When you adjust the quality slider and hit "Compress," the browser re-encodes that data into your chosen format (JPG or WebP) using its native encoding engine. Because the processing happens on your own CPU and RAM, your private photos never leave your device. This makes the process faster, more private, and allows us to offer the service for free without expensive server-side processing costs.</p>
+            </section>
+
+            <section id="why" class="article">
+                <h2>Why Compress Images?</h2>
+                <p>Unoptimized images are often the primary cause of slow website performance. Compressing your images is essential for several reasons:</p>
+                <ul>
+                    <li><b>Faster Loading Speeds:</b> Smaller file sizes mean quicker downloads, improving the user experience for your visitors.</li>
+                    <li><b>SEO Benefits:</b> Search engines like Google use page speed as a ranking factor. Faster sites tend to rank higher in search results.</li>
+                    <li><b>Better Core Web Vitals:</b> Reducing image size helps improve "Largest Contentful Paint" (LCP), a key metric in Google's performance audit.</li>
+                    <li><b>Storage Savings:</b> If you handle thousands of images, reducing each by 50-80% can save gigabytes of cloud storage and backup costs.</li>
+                    <li><b>Easier Sharing:</b> Compressed images are easier to send via email, upload to social media, or include in mobile apps where bandwidth may be limited.</li>
+                </ul>
+            </section>
+
+            <section id="formats" class="article">
+                <h2>Compression Formats Guide</h2>
+                <p>Different file formats use different methods to reduce size. Choosing the right one depends on your specific needs:</p>
+                
+                <h3>JPEG (Joint Photographic Experts Group)</h3>
+                <p>JPEG is the standard for digital photography. It uses "lossy" compression, meaning it discards some image data to achieve significant size reductions. It is universally compatible but does not support transparency.</p>
+                
+                <h3>PNG (Portable Network Graphics)</h3>
+                <p>PNG uses "lossless" compression, which preserves every pixel exactly as it was. This makes it ideal for logos, icons, and text-heavy graphics. While it supports transparency, PNG files are typically much larger than JPEGs or WebPs. Note: Browser-based compressors generally cannot perform "lossy" PNG compression; use WebP if you need transparency with a small file size.</p>
+
+                <h3>WebP (Google Next-Gen Format)</h3>
+                <p>WebP is a modern format that provides both lossy and lossless compression. It typically achieves 25-35% smaller file sizes than JPEG at equivalent quality and supports transparency like PNG. It is the best choice for modern web performance.</p>
+            </section>
+
+            <section id="quality" class="article">
+                <h2>Choosing Compression Quality</h2>
+                <p>The quality slider determines the aggressive nature of the compression algorithm:</p>
+                <ul>
+                    <li><b>Original (100%):</b> Performs minimal re-encoding. Useful for format conversion rather than size reduction.</li>
+                    <li><b>High (90-95%):</b> Significant size reduction with almost no perceptible loss in visual quality. Best for professional portfolios.</li>
+                    <li><b>Recommended (75-80%):</b> The "sweet spot" for most web use. Great reduction in file size with very minor artifacts visible only under extreme zoom.</li>
+                    <li><b>Compact (50-60%):</b> Maximum compression. Best for thumbnails or situations where speed is critical and high detail is not required.</li>
+                </ul>
+            </section>
+
+            <section id="batches" class="article">
+                <h2>Batch Compression Tips</h2>
+                <p>Working with dozens of images at once? Keep these performance tips in mind:</p>
+                <ul>
+                    <li><b>Browser Memory:</b> Since compression happens in your RAM, processing 100+ very high-resolution images (like 40MP raw exports) may cause your browser tab to slow down. For very large files, process them in smaller batches.</li>
+                    <li><b>Mobile Devices:</b> Phones and tablets have less available memory than desktops. We recommend batches of 10-20 images on mobile for the best experience.</li>
+                    <li><b>ZIP Downloads:</b> After compressing a batch, use the "Download All" button to get all your files in a single organized ZIP archive, powered by JSZip.</li>
+                </ul>
+            </section>
+
+            <section id="faq" class="article">
+                <h2>Frequently Asked Questions</h2>
+                
+                <h3>Is it really private?</h3>
+                <p>Yes. Open your network inspector in your browser tools and you will see that no image data is sent to our servers. All logic is executed in your browser's local environment.</p>
+
+                <h3>Are my files uploaded?</h3>
+                <p>Never. The only thing our server provides is the static code required to run the tool in your browser.</p>
+
+                <h3>Why is it free?</h3>
+                <p>Because we don't have to pay for expensive "GPU-accelerated" servers to process your images. Your computer does the work, which keeps our overhead low enough to be covered by simple static ads.</p>
+
+                <h3>Does compression reduce quality?</h3>
+                <p>In lossy formats (JPG/WebP), yes, but it is a mathematical trade-off. At 80% quality, the "loss" is usually invisible to the human eye on standard displays.</p>
+
+                <h3>Why is my PNG sometimes larger?</h3>
+                <p>If you convert a highly compressed JPG into a PNG, the file size will grow because PNG is a lossless format designed to preserve data, not discard it.</p>
+
+                <h3>Browser Support</h3>
+                <p>This tool works in all modern browsers supporting the HTML5 Canvas API, including Chrome, Firefox, Safari, and Edge.</p>
+            </section>
+
+            <section id="privacy" class="article">
+                <h2>Privacy Policy</h2>
+                <p><b>Your Images:</b> We do not collect, store, or transmit any images you process. All processing is strictly local.</p>
+                <p><b>Analytics:</b> We use Google Analytics 4 to monitor site traffic and tool usage patterns (e.g., "how many people used the compressor today"). This data is anonymized and does not include your files.</p>
+                <p><b>Advertising:</b> We use Google AdSense to display ads. These partners may use cookies to serve relevant ads based on your visit to this and other sites.</p>
+            </section>
+
+            <section id="terms" class="article">
+                <h2>Terms of Use</h2>
+                <p>ConvertUnlimited is provided "as is" without warranty of any kind. You are responsible for the content you process and must ensure you have the legal right to use and compress the images you provide. We are not liable for any data loss or system performance issues resulting from the use of this tool.</p>
+            </section>
         </main>
 
         <footer class="footer">
             <div>© <span id="copyright-year">2026</span> ConvertUnlimited.com — runs entirely in your browser.</div>
             <nav class="links" aria-label="Footer">
-                <a href="/">Image converter</a>
-                <a href="/background-remover/">Background remover</a>
-                <a href="/image-compressor/">Image compressor</a>
+                <a href="/">Image Converter</a>
+                <a href="/background-remover/">Background Remover</a>
+                <a href="/image-compressor/">Image Compressor</a>
                 <a href="/#privacy">Privacy</a>
                 <a href="/#terms">Terms</a>
             </nav>

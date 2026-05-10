@@ -118,11 +118,17 @@
             </a>
             <nav class="topnav" aria-label="Principale">
                 <span class="pill"><span class="dot"></span>100 % gratuit, sans inscription</span>
-                <a href="#how">Comment ça marche</a>
-                <a href="/fr/background-remover/">Effaceur de fond</a>
-                <a href="/fr/image-compressor/">Compresseur d'image</a>
-                <a href="#formats">Formats</a>
-                <a href="#faq">FAQ</a>
+                
+                <details class="tools-dropdown">
+                    <summary aria-label="Outils">Outils <svg width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin-left: 2px; opacity: 0.5;"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></summary>
+                    <div class="dropdown-menu" role="menu">
+                        <div class="dropdown-section">Outils d'image</div>
+                        <a href="/fr/" aria-current="page">Convertisseur d'images</a>
+                        <a href="/fr/background-remover/">Suppresseur de fond</a>
+                        <a href="/fr/image-compressor/">Compresseur d'image</a>
+                    </div>
+                </details>
+
                 <details class="lang-switcher">
                     <summary aria-label="Langue"><span aria-hidden="true">🌐</span> FR</summary>
                     <div class="lang-menu" role="menu">
@@ -397,18 +403,19 @@
 
         <footer class="footer">
             <div>© <span id="copyright-year">2026</span> ConvertUnlimited.com — tourne entièrement dans ton navigateur.</div>
-            <nav class="links" aria-label="Pied">
+            <nav class="links" aria-label="Pied de page">
+                <a href="/fr/">Convertisseur d'images</a>
+                <a href="/fr/background-remover/">Suppresseur de fond</a>
+                <a href="/fr/image-compressor/">Compresseur d'image</a>
                 <a href="#how">Comment ça marche</a>
                 <a href="#formats">Formats</a>
                 <a href="#quality">Qualité</a>
                 <a href="#batches">Astuces</a>
                 <a href="#faq">FAQ</a>
-                <a href="/fr/background-remover/">Effaceur de fond</a>
                 <a href="#privacy">Confidentialité</a>
                 <a href="#terms">Conditions</a>
-                <a href="https://github.com/dunkin-novice/convertunlimited.com" rel="noopener" target="_blank">Code source</a>
             </nav>
-        </footer>
+
     </div>
 
     <div class="drag-overlay" id="drag-overlay">

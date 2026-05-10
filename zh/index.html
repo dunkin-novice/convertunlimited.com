@@ -118,10 +118,17 @@
             </a>
             <nav class="topnav" aria-label="主导航">
                 <span class="pill"><span class="dot"></span>100% 免费，无需注册</span>
-                <a href="#how">如何使用</a>
-                <a href="/zh/background-remover/">背景移除</a>
-                <a href="#formats">格式说明</a>
-                <a href="#faq">常见问题</a>
+                
+                <details class="tools-dropdown">
+                    <summary aria-label="工具">工具 <svg width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin-left: 2px; opacity: 0.5;"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></summary>
+                    <div class="dropdown-menu" role="menu">
+                        <div class="dropdown-section">图片工具</div>
+                        <a href="/zh/" aria-current="page">图片转换器</a>
+                        <a href="/zh/background-remover/">背景移除</a>
+                        <a href="/zh/image-compressor/">图片压缩</a>
+                    </div>
+                </details>
+
                 <details class="lang-switcher">
                     <summary aria-label="语言"><span aria-hidden="true">🌐</span> ZH</summary>
                     <div class="lang-menu" role="menu">
@@ -397,13 +404,14 @@
         <footer class="footer">
             <div>© <span id="copyright-year">2026</span> ConvertUnlimited.com —— 完全在你的浏览器中运行。</div>
             <nav class="links" aria-label="页脚">
+                <a href="/zh/">图片转换器</a>
+                <a href="/zh/background-remover/">背景移除</a>
+                <a href="/zh/image-compressor/">图片压缩</a>
                 <a href="#how">如何使用</a>
                 <a href="#formats">格式说明</a>
                 <a href="#quality">画质</a>
                 <a href="#batches">技巧</a>
                 <a href="#faq">常见问题</a>
-                <a href="/zh/background-remover/">背景移除</a>
-                <a href="/zh/image-compressor/">图片压缩</a>
                 <a href="#privacy">隐私</a>
                 <a href="#terms">条款</a>
                 <a href="https://github.com/dunkin-novice/convertunlimited.com" rel="noopener" target="_blank">源代码</a>

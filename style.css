@@ -40,6 +40,68 @@ body {
 button { font-family: inherit; }
 a { color: inherit; }
 
+/* Tools dropdown (uses native <details>) */
+.tools-dropdown { position: relative; }
+.tools-dropdown > summary {
+  list-style: none;
+  cursor: pointer;
+  display: inline-flex; align-items: center; gap: 4px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--ink);
+  user-select: none;
+}
+.tools-dropdown > summary::-webkit-details-marker { display: none; }
+.tools-dropdown > summary:hover { color: var(--accent); }
+.tools-dropdown[open] > summary { color: var(--accent); }
+
+.tools-dropdown .dropdown-menu {
+  position: absolute; right: 0; top: calc(100% + 12px);
+  min-width: 220px;
+  padding: 8px;
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  box-shadow: var(--shadow-md);
+  display: flex; flex-direction: column;
+  z-index: 70;
+}
+
+.tools-dropdown .dropdown-section {
+  padding: 8px 12px 4px;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--ink-3);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.tools-dropdown .dropdown-menu a {
+  display: block;
+  padding: 8px 12px;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--ink-2);
+  text-decoration: none;
+  border-radius: 8px;
+}
+.tools-dropdown .dropdown-menu a:hover { background: var(--bg-3); color: var(--ink); }
+.tools-dropdown .dropdown-menu a[aria-current="page"] { color: var(--ink); font-weight: 600; background: var(--bg-3); }
+
+/* Desktop hover support for dropdowns */
+@media (min-width: 768px) {
+  .tools-dropdown:hover > summary { color: var(--accent); }
+  .tools-dropdown:hover .dropdown-menu { display: flex; }
+  .tools-dropdown:not([open]) .dropdown-menu { display: none; }
+  .tools-dropdown:hover:not([open]) .dropdown-menu { display: flex; }
+}
+
+@media (max-width: 767px) {
+  .topbar { flex-direction: column; align-items: flex-start; gap: 16px; }
+  .topnav { width: 100%; justify-content: space-between; gap: 12px; }
+  .tools-dropdown .dropdown-menu { position: static; box-shadow: none; border: none; padding: 0 0 0 12px; min-width: 0; width: 100%; margin-top: 8px; }
+}
+
 .mono { font-family: var(--font-mono); font-feature-settings: "tnum"; }
 .num  { font-variant-numeric: tabular-nums; }
 

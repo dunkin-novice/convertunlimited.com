@@ -46,9 +46,17 @@
             </a>
             <nav class="topnav" aria-label="主导航">
                 <span class="pill"><span class="dot"></span>100% 免费，无需注册</span>
-                <a href="/zh/">图片转换工具</a>
-                <a href="/zh/background-remover/">背景移除</a>
-                <a href="/zh/image-compressor/">图片压缩</a>
+                
+                <details class="tools-dropdown">
+                    <summary aria-label="工具">工具 <svg width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin-left: 2px; opacity: 0.5;"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></summary>
+                    <div class="dropdown-menu" role="menu">
+                        <div class="dropdown-section">图片工具</div>
+                        <a href="/zh/">图片转换器</a>
+                        <a href="/zh/background-remover/">背景移除</a>
+                        <a href="/zh/image-compressor/" aria-current="page">图片压缩</a>
+                    </div>
+                </details>
+
                 <details class="lang-switcher">
                     <summary aria-label="语言"><span aria-hidden="true">🌐</span> ZH</summary>
                     <div class="lang-menu" role="menu">
@@ -129,7 +137,7 @@
         <footer class="footer">
             <div>© <span id="copyright-year">2026</span> ConvertUnlimited.com — 完全在您的浏览器中运行。</div>
             <nav class="links" aria-label="页脚">
-                <a href="/zh/">图片转换工具</a>
+                <a href="/zh/">图片转换器</a>
                 <a href="/zh/background-remover/">背景移除</a>
                 <a href="/zh/image-compressor/">图片压缩</a>
                 <a href="/zh/#privacy">隐私</a>
