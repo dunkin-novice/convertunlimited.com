@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Compressor – Compress JPG, PNG & WebP Online | ConvertUnlimited</title>
+    <meta name="description" content="Compress JPG, PNG, and WebP images for free in your browser. No uploads, no signup, no watermark.">
+    <meta name="robots" content="index,follow,max-image-preview:large">
+    <meta name="theme-color" content="#3aa17e">
+    <link rel="canonical" href="https://convertunlimited.com/image-compressor/">
+
+    <link rel="alternate" hreflang="en" href="https://convertunlimited.com/image-compressor/">
+    <link rel="alternate" hreflang="th" href="https://convertunlimited.com/th/image-compressor/">
+    <link rel="alternate" hreflang="vi" href="https://convertunlimited.com/vi/image-compressor/">
+    <link rel="alternate" hreflang="zh-Hans" href="https://convertunlimited.com/zh/image-compressor/">
+    <link rel="alternate" hreflang="ja" href="https://convertunlimited.com/ja/image-compressor/">
+    <link rel="alternate" hreflang="ko" href="https://convertunlimited.com/ko/image-compressor/">
+    <link rel="alternate" hreflang="es" href="https://convertunlimited.com/es/image-compressor/">
+    <link rel="alternate" hreflang="fr" href="https://convertunlimited.com/fr/image-compressor/">
+    <link rel="alternate" hreflang="x-default" href="https://convertunlimited.com/image-compressor/">
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="alternate icon" href="/favicon.svg">
+    <link rel="apple-touch-icon" href="/favicon.svg">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/style.css">
+
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2823470980745945" crossorigin="anonymous"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-98HSCSEKBX"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-98HSCSEKBX');
+    </script>
+</head>
+<body>
+    <div class="app">
+        <header class="topbar">
+            <a href="/" class="brand" aria-label="ConvertUnlimited home">
+                <span class="mark" aria-hidden="true"></span>
+                <span class="word"><b>Convert</b><span>Unlimited</span></span>
+            </a>
+            <nav class="topnav" aria-label="Primary">
+                <span class="pill"><span class="dot"></span>100% free, no signup</span>
+                <a href="/">Image converter</a>
+                <a href="/background-remover/">Background remover</a>
+                <a href="/image-compressor/">Image compressor</a>
+            </nav>
+        </header>
+
+        <main>
+            <section class="hero">
+                <h1 class="hero-title">Image Compressor</h1>
+                <p class="sub hero-sub">Compress JPG, PNG, and WebP images instantly. Your files stay on your device.</p>
+            </section>
+
+            <div class="grid" id="layout">
+                <section class="bg-tool" aria-label="Image compressor">
+                    <div class="bg-tool-head">
+                        <div>
+                            <p class="section-eyebrow">Local-first compression</p>
+                            <h2>Keep quality, save space.</h2>
+                            <p>Adjust the quality slider to find the perfect balance between file size and visual clarity. Everything happens in your browser—no data is uploaded to our servers.</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-workbench">
+                        <div class="bg-drop" id="compress-dropzone" tabindex="0" role="button" aria-label="Drop images here to compress, or click to browse">
+                            <div class="icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+                            </div>
+                            <div class="title">Drop images here</div>
+                            <div class="hint">JPG, PNG, or WebP · processed on your device</div>
+                            <input type="file" id="compress-file-input" accept=".jpg,.jpeg,.png,.webp" multiple hidden>
+                        </div>
+
+                        <div class="bg-panel">
+                            <div class="bg-controls">
+                                <label class="range-field" for="compress-quality">
+                                    <span>Compression Quality</span>
+                                    <input id="compress-quality" type="range" min="10" max="100" value="80">
+                                    <span class="mono num" id="compress-quality-value">80%</span>
+                                </label>
+                                <button class="btn btn-accent" id="compress-all-btn" disabled>Compress All</button>
+                                <button class="btn btn-ghost" id="download-all-btn" disabled>Download All (ZIP)</button>
+                            </div>
+                            <p class="bg-status" id="compress-status">Images are compressed in your browser. Files are not uploaded.</p>
+                        </div>
+                    </div>
+
+                    <div id="file-list" class="file-list" style="margin-top: 24px;">
+                        <!-- List of files will appear here -->
+                    </div>
+                </section>
+
+                <aside class="rail" aria-label="Sidebar">
+                    <div class="rail-card trust">
+                        <h3>Why it's private</h3>
+                        <div class="item">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                            <div><b>Browser-based.</b> No files are sent to any server.</div>
+                        </div>
+                        <div class="item">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+                            <div><b>No registration.</b> Use it as much as you want for free.</div>
+                        </div>
+                    </div>
+                </aside>
+            </div>
+        </main>
+
+        <footer class="footer">
+            <div>© <span id="copyright-year">2026</span> ConvertUnlimited.com — runs entirely in your browser.</div>
+            <nav class="links" aria-label="Footer">
+                <a href="/">Image converter</a>
+                <a href="/background-remover/">Background remover</a>
+                <a href="/image-compressor/">Image compressor</a>
+                <a href="/#privacy">Privacy</a>
+                <a href="/#terms">Terms</a>
+            </nav>
+        </footer>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+    <script src="/image-compressor/image-compressor.js"></script>
+</body>
+</html>Image compressor</a>
+                <a href="/#privacy">Privacy</a>
+                <a href="/#terms">Terms</a>
+            </nav>
+        </footer>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+    <script src="/image-compressor/image-compressor.js"></script>
+</body>
+</html>
