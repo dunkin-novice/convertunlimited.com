@@ -5,14 +5,14 @@ const ROOT = process.cwd();
 const REGISTRY_PATH = path.join(ROOT, 'tools-registry.json');
 
 const LOCALES = [
-  { code: 'en', prefix: '', toolsPath: 'tools/index.html', relatedLabel: 'Related Tools', comingSoon: 'Coming soon' },
-  { code: 'th', prefix: 'th', toolsPath: 'th/tools/index.html', relatedLabel: 'เครื่องมือที่เกี่ยวข้อง', comingSoon: 'เร็วๆ นี้' },
-  { code: 'vi', prefix: 'vi', toolsPath: 'vi/tools/index.html', relatedLabel: 'Công cụ liên quan', comingSoon: 'Sắp ra mắt' },
-  { code: 'zh', prefix: 'zh', toolsPath: 'zh/tools/index.html', relatedLabel: '相关工具', comingSoon: '即将推出' },
-  { code: 'ja', prefix: 'ja', toolsPath: 'ja/tools/index.html', relatedLabel: '関連ツール', comingSoon: '近日公開' },
-  { code: 'ko', prefix: 'ko', toolsPath: 'ko/tools/index.html', relatedLabel: '관련 도구', comingSoon: '출시 예정' },
-  { code: 'es', prefix: 'es', toolsPath: 'es/tools/index.html', relatedLabel: 'Herramientas relacionadas', comingSoon: 'Próximamente' },
-  { code: 'fr', prefix: 'fr', toolsPath: 'fr/tools/index.html', relatedLabel: 'Outils associés', comingSoon: 'Bientôt disponible' },
+  { code: 'en', prefix: '', toolsPath: 'tools/index.html', relatedLabel: 'Recommended Next Steps', comingSoon: 'Coming soon' },
+  { code: 'th', prefix: 'th', toolsPath: 'th/tools/index.html', relatedLabel: 'ขั้นตอนแนะนำถัดไป', comingSoon: 'เร็วๆ นี้' },
+  { code: 'vi', prefix: 'vi', toolsPath: 'vi/tools/index.html', relatedLabel: 'Các bước đề xuất tiếp theo', comingSoon: 'Sắp ra mắt' },
+  { code: 'zh', prefix: 'zh', toolsPath: 'zh/tools/index.html', relatedLabel: '推荐后续步骤', comingSoon: '即将推出' },
+  { code: 'ja', prefix: 'ja', toolsPath: 'ja/tools/index.html', relatedLabel: '推奨される次のステップ', comingSoon: '近日公開' },
+  { code: 'ko', prefix: 'ko', toolsPath: 'ko/tools/index.html', relatedLabel: '권장 다음 단계', comingSoon: '출시 예정' },
+  { code: 'es', prefix: 'es', toolsPath: 'es/tools/index.html', relatedLabel: 'Pasos siguientes recomendados', comingSoon: 'Próximamente' },
+  { code: 'fr', prefix: 'fr', toolsPath: 'fr/tools/index.html', relatedLabel: 'Prochaines étapes recommandées', comingSoon: 'Bientôt disponible' },
 ];
 
 const CATEGORY_LABELS = {
