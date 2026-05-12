@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSV 클리너 - CSV 공백 제거 및 중복 행 삭제 | ConvertUnlimited</title>
+    <meta name="description" content="브라우저에서 CSV를 정리하세요. 공백 제거, 빈 행 삭제, 중복 행 제거, 미리보기, 복사, 다운로드, 업로드 없음.">
+    <meta name="robots" content="index,follow,max-image-preview:large">
+    <meta name="theme-color" content="#3aa17e">
+    <meta name="google-adsense-account" content="ca-pub-2823470980745945">
+    <link rel="canonical" href="https://www.convertunlimited.com/ko/csv-cleaner/">
+
+    <link rel="alternate" hreflang="en" href="https://www.convertunlimited.com/csv-cleaner/">
+    <link rel="alternate" hreflang="th" href="https://www.convertunlimited.com/th/csv-cleaner/">
+    <link rel="alternate" hreflang="vi" href="https://www.convertunlimited.com/vi/csv-cleaner/">
+    <link rel="alternate" hreflang="zh-Hans" href="https://www.convertunlimited.com/zh/csv-cleaner/">
+    <link rel="alternate" hreflang="ja" href="https://www.convertunlimited.com/ja/csv-cleaner/">
+    <link rel="alternate" hreflang="ko" href="https://www.convertunlimited.com/ko/csv-cleaner/">
+    <link rel="alternate" hreflang="es" href="https://www.convertunlimited.com/es/csv-cleaner/">
+    <link rel="alternate" hreflang="fr" href="https://www.convertunlimited.com/fr/csv-cleaner/">
+    <link rel="alternate" hreflang="x-default" href="https://www.convertunlimited.com/csv-cleaner/">
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="alternate icon" href="/favicon.svg">
+    <link rel="apple-touch-icon" href="/favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/style.css">
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","inLanguage":"ko","mainEntity":[{"@type":"Question","name":"이 CSV 클리너는 무료인가요?","acceptedAnswer":{"@type":"Answer","text":"네. 가입 없이 붙여넣기, 정리, 미리보기, 복사, 다운로드할 수 있습니다."}},{"@type":"Question","name":"CSV 파일이 업로드되나요?","acceptedAnswer":{"@type":"Answer","text":"아니요. CSV는 브라우저에서 로컬로 읽고 정리됩니다."}},{"@type":"Question","name":"어떤 규칙이 적용되나요?","acceptedAnswer":{"@type":"Answer","text":"셀 공백 제거, 빈 행 삭제, 줄바꿈 표준화, 완전히 동일한 중복 행 삭제입니다."}},{"@type":"Question","name":"열 순서가 바뀌나요?","acceptedAnswer":{"@type":"Answer","text":"아니요. 열 순서는 유지됩니다."}},{"@type":"Question","name":"잘못된 CSV는 어떻게 되나요?","acceptedAnswer":{"@type":"Answer","text":"친절한 경고를 표시하고 원본 입력은 보존합니다."}}]}</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2823470980745945" crossorigin="anonymous"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-98HSCSEKBX"></script>
+    <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-98HSCSEKBX');</script>
+</head>
+<body>
+    <div class="app">
+        <header class="topbar">
+            <a href="/ko/" class="brand" aria-label="ConvertUnlimited home"><span class="mark" aria-hidden="true"></span><span class="word"><b>Convert</b><span>Unlimited</span></span></a>
+            <nav class="topnav" aria-label="Primary">
+                <span class="pill"><span class="dot"></span>100% free, no signup</span>
+                <details class="tools-dropdown"><summary aria-label="Tools">Tools <svg width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin-left: 2px; opacity: 0.5;"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></summary><div class="dropdown-menu" role="menu"><div class="dropdown-section">Developer Tools</div><a href="/ko/json-formatter/">JSON Formatter</a><a href="/ko/csv-cleaner/" aria-current="page">CSV Cleaner</a><div class="dropdown-section">SEO Tools</div><a href="/ko/meta-preview-checker/">Meta Preview Checker</a><a href="/ko/qr-generator/">QR Generator</a></div></details>
+                <details class="lang-switcher"><summary aria-label="Language"><span aria-hidden="true">🌐</span> KO</summary><div class="lang-menu" role="menu">
+                        <a href="/csv-cleaner/" hreflang="en" lang="en">English</a>
+                        <a href="/th/csv-cleaner/" hreflang="th" lang="th">ไทย</a>
+                        <a href="/vi/csv-cleaner/" hreflang="vi" lang="vi">Tiếng Việt</a>
+                        <a href="/zh/csv-cleaner/" hreflang="zh-Hans" lang="zh-Hans">中文（简体）</a>
+                        <a href="/ja/csv-cleaner/" hreflang="ja" lang="ja">日本語</a>
+                        <a href="/ko/csv-cleaner/" hreflang="ko" lang="ko" aria-current="page">한국어</a>
+                        <a href="/es/csv-cleaner/" hreflang="es" lang="es">Español</a>
+                        <a href="/fr/csv-cleaner/" hreflang="fr" lang="fr">Français</a>
+                    </div></details>
+            </nav>
+        </header>
+        <main>
+            <section class="hero"><h1 class="hero-title">CSV 클리너</h1><p class="sub hero-sub">스프레드시트 내보내기와 데이터셋을 브라우저에서 정리합니다.</p></section>
+            <div class="grid" id="layout">
+                <section class="bg-tool" aria-label="CSV 클리너">
+                    <div class="bg-tool-head"><div><p class="section-eyebrow">로컬 개발 데이터 도구</p><h2>CSV를 붙여넣고 안전하게 정리하세요.</h2><p>셀 공백, 빈 행, 줄바꿈, 완전히 동일한 중복 행을 데이터 업로드 없이 정리합니다.</p></div></div>
+                    <div class="bg-workbench">
+                        <div class="bg-panel">
+                            <div class="bg-controls">
+                                <label class="range-field" for="csv-input"><span>CSV 입력</span><textarea id="csv-input" rows="14" spellcheck="false" class="mono" style="width:100%;resize:vertical;" placeholder="name,city\nAlice,Bangkok"></textarea></label>
+                                <label class="range-field" for="csv-delimiter"><span>구분자</span><select id="csv-delimiter"><option value=",">쉼표</option><option value=";">세미콜론</option><option value="tab">탭</option></select></label>
+                                <label class="range-field" for="csv-file"><span>.csv 파일 열기</span><input id="csv-file" type="file" accept=".csv,text/csv"></label>
+                                <button class="btn btn-accent" id="csv-clean" type="button">CSV 정리</button>
+                                <button class="btn btn-ghost" id="csv-sample" type="button">샘플 CSV</button>
+                                <button class="btn btn-ghost" id="csv-clear" type="button">지우기</button>
+                            </div>
+                            <p class="bg-status"><b>행:</b> <span id="csv-row-count" class="mono num">0</span> · <b>열:</b> <span id="csv-col-count" class="mono num">0</span> · <b>입력 크기:</b> <span id="csv-file-size" class="mono num">0 B</span></p>
+                            <p class="bg-status" id="csv-status"></p>
+                            <p class="bg-status" id="csv-warning" style="color: var(--warn);"></p>
+                        </div>
+                        <div class="bg-panel">
+                            <label class="range-field" for="csv-output"><span>정리된 CSV</span><textarea id="csv-output" rows="10" spellcheck="false" class="mono" readonly style="width:100%;resize:vertical;"></textarea></label>
+                            <div class="bg-controls" style="margin-top:16px;"><button class="btn btn-accent" id="csv-copy" type="button">CSV 복사</button><button class="btn btn-ghost" id="csv-download" type="button">CSV 다운로드</button></div>
+                            <div class="category-title">파싱 미리보기</div>
+                            <div id="csv-preview" style="overflow:auto; max-height: 280px;"></div>
+                        </div>
+                    </div>
+                    <div class="banner-ad"><span class="ad-label">Ad</span><ins class="adsbygoogle ad-below" style="display:block" data-ad-client="ca-pub-2823470980745945" data-ad-slot="REPLACE_CSV_BELOW_TOOL_SLOT_ID" data-ad-format="auto" data-full-width-responsive="true"></ins></div>
+                </section>
+                <aside class="rail" aria-label="Sidebar"><div class="ad-slot"><span class="ad-label">Ad</span><div class="ad-body"><ins class="adsbygoogle ad-rail" style="display:block" data-ad-client="ca-pub-2823470980745945" data-ad-slot="REPLACE_CSV_RAIL_SLOT_ID" data-ad-format="auto" data-full-width-responsive="true"></ins></div><div class="ad-foot"></div></div><div class="rail-card trust"><h3>개인정보 보호 설계</h3><div class="item"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg><div><b>로컬 처리.</b> CSV 파싱과 정리는 브라우저에서 실행됩니다.</div></div><div class="item"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg><div><b>업로드 없음.</b> 파일은 기기에 남아 있습니다.</div></div></div></aside>
+            </div>
+            <section id="how" class="article"><h2>언제 CSV를 정리해야 하나요?</h2><p>CSV 내보내기에는 불필요한 공백, 빈 행, 다른 줄바꿈, 반복 행이 들어갈 수 있습니다. 안전한 정리는 가져오기와 검토를 쉽게 만듭니다.</p><p>이 도구는 파괴적인 변환을 피합니다. 공백 trim, 빈 행 삭제, 완전 중복 행 삭제를 제외하고 열 순서와 값은 유지됩니다.</p></section>
+            <section id="faq" class="article"><h2>자주 묻는 질문</h2>
+                <h3>이 CSV 클리너는 무료인가요?</h3>
+                <p>네. 가입 없이 붙여넣기, 정리, 미리보기, 복사, 다운로드할 수 있습니다.</p>
+                <h3>CSV 파일이 업로드되나요?</h3>
+                <p>아니요. CSV는 브라우저에서 로컬로 읽고 정리됩니다.</p>
+                <h3>어떤 규칙이 적용되나요?</h3>
+                <p>셀 공백 제거, 빈 행 삭제, 줄바꿈 표준화, 완전히 동일한 중복 행 삭제입니다.</p>
+                <h3>열 순서가 바뀌나요?</h3>
+                <p>아니요. 열 순서는 유지됩니다.</p>
+                <h3>잘못된 CSV는 어떻게 되나요?</h3>
+                <p>친절한 경고를 표시하고 원본 입력은 보존합니다.</p>
+            </section>
+            <section id="privacy" class="article"><h2>개인정보 처리방침</h2><p>CSV 데이터를 수집, 저장, 업로드 또는 전송하지 않습니다. 선택한 파일은 브라우저에서만 읽힙니다.</p></section>
+            <section id="terms" class="article"><h2>이용 약관</h2><p>ConvertUnlimited는 있는 그대로 제공됩니다. 프로덕션 시스템에 가져오기 전에 정리된 CSV를 검토하세요.</p></section>
+<!-- RELATED_TOOLS_START -->
+        <section class="related-tools">
+            <div class="category-title">관련 도구</div>
+            <div class="tool-grid">
+                <a href="/ko/diff-checker/" class="tool-item">
+                    <div class="icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M6 5h8"/><path d="M6 9h12"/><path d="M6 15h8"/><path d="M6 19h12"/><path d="M3 5h.01"/><path d="M3 9h.01"/><path d="M3 15h.01"/><path d="M3 19h.01"/><path d="m17 4 4 4-4 4"/></svg>
+                    </div>
+                    <h3>Diff 체커</h3>
+                    <p>브라우저에서 두 텍스트를 비교합니다.</p>
+                </a>
+                <a href="/ko/csv-to-json/" class="tool-item">
+                    <div class="icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h7"/><path d="M4 9h7"/><path d="M4 13h7"/><path d="M15 7l4 5-4 5"/><path d="M19 12H9"/><path d="M16 3h2a2 2 0 0 1 2 2v2"/><path d="M16 21h2a2 2 0 0 0 2-2v-2"/></svg>
+                    </div>
+                    <h3>CSV to JSON 변환기</h3>
+                    <p>브라우저에서 CSV 행을 JSON 객체로 변환합니다.</p>
+                </a>
+                <a href="/ko/json-to-csv/" class="tool-item">
+                    <div class="icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M8 6 4 12l4 6"/><path d="M16 6l4 6-4 6"/><path d="M3 21h18"/><path d="M7 17h10"/><path d="M7 13h10"/><path d="M10 13v8"/><path d="M14 13v8"/></svg>
+                    </div>
+                    <h3>JSON to CSV 변환기</h3>
+                    <p>브라우저에서 JSON 객체를 CSV로 변환합니다.</p>
+                </a>
+            </div>
+        </section>
+<!-- RELATED_TOOLS_END -->
+        </main>
+        <footer class="footer"><div>© <span id="copyright-year">2026</span> ConvertUnlimited.com — runs entirely in your browser.</div><nav class="links" aria-label="Footer"><a href="/ko/tools/">Tools</a><a href="/ko/csv-cleaner/#how">Guide</a><a href="/ko/csv-cleaner/#faq">FAQ</a><a href="/ko/csv-cleaner/#privacy">Privacy</a><a href="/ko/csv-cleaner/#terms">Terms</a></nav></footer>
+    </div>
+    <script src="/csv-cleaner/csv-cleaner.js"></script>
+</body>
+</html>

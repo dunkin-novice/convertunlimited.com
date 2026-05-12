@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JWT Decoder - ถอดรหัส JWT Header และ Payload | ConvertUnlimited</title>
+    <meta name="description" content="ถอดรหัส JWT header และ payload ในเบราว์เซอร์ ตรวจ claims ส่วนของโทเคน และวันที่ โดยไม่อัปโหลดและไม่อ้างว่าตรวจลายเซ็น">
+    <meta name="robots" content="index,follow,max-image-preview:large">
+    <meta name="theme-color" content="#3aa17e">
+    <meta name="google-adsense-account" content="ca-pub-2823470980745945">
+    <link rel="canonical" href="https://www.convertunlimited.com/th/jwt-decoder/">
+
+    <link rel="alternate" hreflang="en" href="https://www.convertunlimited.com/jwt-decoder/">
+    <link rel="alternate" hreflang="th" href="https://www.convertunlimited.com/th/jwt-decoder/">
+    <link rel="alternate" hreflang="vi" href="https://www.convertunlimited.com/vi/jwt-decoder/">
+    <link rel="alternate" hreflang="zh-Hans" href="https://www.convertunlimited.com/zh/jwt-decoder/">
+    <link rel="alternate" hreflang="ja" href="https://www.convertunlimited.com/ja/jwt-decoder/">
+    <link rel="alternate" hreflang="ko" href="https://www.convertunlimited.com/ko/jwt-decoder/">
+    <link rel="alternate" hreflang="es" href="https://www.convertunlimited.com/es/jwt-decoder/">
+    <link rel="alternate" hreflang="fr" href="https://www.convertunlimited.com/fr/jwt-decoder/">
+    <link rel="alternate" hreflang="x-default" href="https://www.convertunlimited.com/jwt-decoder/">
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="alternate icon" href="/favicon.svg">
+    <link rel="apple-touch-icon" href="/favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/style.css">
+    <style>.jwt-output{min-height:170px;max-height:320px;overflow:auto;white-space:pre-wrap;overflow-wrap:anywhere;border:1px solid var(--line);border-radius:8px;padding:12px}.jwt-claim-row{display:flex;justify-content:space-between;gap:12px;border-bottom:1px solid var(--line);padding:8px 0;overflow-wrap:anywhere}.jwt-signature{max-height:100px;overflow:auto;white-space:pre-wrap;overflow-wrap:anywhere}</style>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","inLanguage":"th","mainEntity":[{"@type":"Question","name":"ตรวจสอบลายเซ็น JWT ไหม?","acceptedAnswer":{"@type":"Answer","text":"ไม่ เครื่องมือนี้ถอดรหัส header และ payload เท่านั้น"}},{"@type":"Question","name":"JWT ถูกอัปโหลดไหม?","acceptedAnswer":{"@type":"Answer","text":"ไม่ ถอดรหัสในเบราว์เซอร์"}},{"@type":"Question","name":"ดู exp และ iat ได้ไหม?","acceptedAnswer":{"@type":"Answer","text":"ได้ timestamp จะถูกแสดงเป็นวันที่ ISO เมื่อมีข้อมูล"}},{"@type":"Question","name":"ควรวาง token production ไหม?","acceptedAnswer":{"@type":"Answer","text":"ควรหลีกเลี่ยง token production ที่ละเอียดอ่อนหากไม่เข้าใจความเสี่ยง"}},{"@type":"Question","name":"รองรับ Unicode ไหม?","acceptedAnswer":{"@type":"Answer","text":"รองรับเนื้อหา UTF-8 ใน payload อย่างปลอดภัย"}}]}</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2823470980745945" crossorigin="anonymous"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-98HSCSEKBX"></script>
+    <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-98HSCSEKBX');</script>
+</head>
+<body>
+    <div class="app">
+        <header class="topbar">
+            <a href="/th/" class="brand" aria-label="ConvertUnlimited home"><span class="mark" aria-hidden="true"></span><span class="word"><b>Convert</b><span>Unlimited</span></span></a>
+            <nav class="topnav" aria-label="Primary">
+                <span class="pill"><span class="dot"></span>100% free, no signup</span>
+                <details class="tools-dropdown"><summary aria-label="Tools">Tools <svg width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin-left: 2px; opacity: 0.5;"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></summary><div class="dropdown-menu" role="menu"><div class="dropdown-section">Developer Tools</div><a href="/th/jwt-decoder/" aria-current="page">JWT Decoder</a><a href="/th/json-formatter/">JSON Formatter</a><a href="/th/base64-encoder-decoder/">Base64</a><a href="/th/timestamp-converter/">Timestamp Converter</a></div></details>
+                <details class="lang-switcher"><summary aria-label="Language"><span aria-hidden="true">🌐</span> TH</summary><div class="lang-menu" role="menu">
+                        <a href="/jwt-decoder/" hreflang="en" lang="en">English</a>
+                        <a href="/th/jwt-decoder/" hreflang="th" lang="th" aria-current="page">ไทย</a>
+                        <a href="/vi/jwt-decoder/" hreflang="vi" lang="vi">Tiếng Việt</a>
+                        <a href="/zh/jwt-decoder/" hreflang="zh-Hans" lang="zh-Hans">中文（简体）</a>
+                        <a href="/ja/jwt-decoder/" hreflang="ja" lang="ja">日本語</a>
+                        <a href="/ko/jwt-decoder/" hreflang="ko" lang="ko">한국어</a>
+                        <a href="/es/jwt-decoder/" hreflang="es" lang="es">Español</a>
+                        <a href="/fr/jwt-decoder/" hreflang="fr" lang="fr">Français</a>
+                    </div></details>
+            </nav>
+        </header>
+        <main>
+            <section class="hero"><h1 class="hero-title">JWT Decoder</h1><p class="sub hero-sub">ถอดรหัส JWT header และ payload ในเครื่องสำหรับ debug API และ auth</p></section>
+            <div class="grid" id="layout">
+                <section class="bg-tool" aria-label="JWT Decoder">
+                    <div class="bg-tool-head"><div><p class="section-eyebrow">เครื่องมือ debug API ในเครื่อง</p><h2>ตรวจ JWT โดยไม่อัปโหลด</h2><p>วาง token ถอดรหัส header และ payload ตรวจ claims และจำไว้ว่าเครื่องมือนี้ไม่ตรวจสอบลายเซ็น</p></div></div>
+                    <div class="bg-workbench">
+                        <div class="bg-panel">
+                            <div class="bg-controls">
+                                <label class="range-field" for="jwt-input"><span>JWT token</span><textarea id="jwt-input" rows="8" spellcheck="false" class="mono" style="width:100%;resize:vertical;overflow-wrap:anywhere;"></textarea></label>
+                                <button class="btn btn-accent" id="jwt-decode" type="button">ถอดรหัส JWT</button>
+                                <button class="btn btn-ghost" id="jwt-sample" type="button">JWT ตัวอย่าง</button>
+                                <button class="btn btn-ghost" id="jwt-clear" type="button">ล้าง</button>
+                            </div>
+                            <p class="bg-status" id="jwt-status"></p>
+                            <div class="rail-card trust" style="margin-top:16px;"><h3>ถอดรหัสเท่านั้น ไม่ตรวจสอบ</h3><p>เครื่องมือนี้ใช้ดูข้อมูลใน token เท่านั้น ไม่ตรวจลายเซ็น issuer audience การ revoke หรือความน่าเชื่อถือ</p></div>
+                        </div>
+                        <div class="bg-panel">
+                            <div class="range-field"><span>Header ที่ถอดรหัส</span><pre id="jwt-header" class="mono jwt-output"></pre></div>
+                            <div class="bg-controls" style="margin-top:12px;"><button class="btn btn-accent" id="jwt-copy-header" type="button">คัดลอก header</button></div>
+                        </div>
+                        <div class="bg-panel">
+                            <div class="range-field"><span>Payload ที่ถอดรหัส</span><pre id="jwt-payload" class="mono jwt-output"></pre></div>
+                            <div class="bg-controls" style="margin-top:12px;"><button class="btn btn-accent" id="jwt-copy-payload" type="button">คัดลอก payload</button></div>
+                        </div>
+                        <div class="bg-panel">
+                            <div class="range-field"><span>Claims และวันที่ของ token</span><div id="jwt-claims"></div></div>
+                            <div class="range-field" style="margin-top:16px;"><span>ส่วน signature</span><pre id="jwt-signature" class="mono jwt-output jwt-signature"></pre></div>
+                        </div>
+                    </div>
+                    <div class="banner-ad"><span class="ad-label">Ad</span><ins class="adsbygoogle ad-below" style="display:block" data-ad-client="ca-pub-2823470980745945" data-ad-slot="REPLACE_JWT_BELOW_TOOL_SLOT_ID" data-ad-format="auto" data-full-width-responsive="true"></ins></div>
+                </section>
+                <aside class="rail" aria-label="Sidebar"><div class="ad-slot"><span class="ad-label">Ad</span><div class="ad-body"><ins class="adsbygoogle ad-rail" style="display:block" data-ad-client="ca-pub-2823470980745945" data-ad-slot="REPLACE_JWT_RAIL_SLOT_ID" data-ad-format="auto" data-full-width-responsive="true"></ins></div><div class="ad-foot"></div></div><div class="rail-card trust"><h3>ออกแบบเพื่อความเป็นส่วนตัว</h3><div class="item"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg><div><b>ถอดรหัสในเครื่อง</b> JWT ทำงานในเบราว์เซอร์</div></div><div class="item"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg><div><b>ไม่อัปโหลด</b> token อยู่บนอุปกรณ์ของคุณ</div></div></div></aside>
+            </div>
+            <section id="how" class="article"><h2>JWT Decoder แสดงอะไรได้บ้าง?</h2><p>JWT decoder ช่วยดู header, payload และ claims เช่น exp, iat, nbf ระหว่าง debug API และ auth flow</p><p>การถอดรหัส JWT ไม่ใช่การตรวจสอบ token โทเคนที่อ่านได้ยังอาจถูกปลอมหรือหมดอายุหากระบบที่เชื่อถือไม่ได้ตรวจลายเซ็นและ claims</p></section>
+            <section id="faq" class="article"><h2>คำถามที่พบบ่อย</h2>
+                <h3>ตรวจสอบลายเซ็น JWT ไหม?</h3>
+                <p>ไม่ เครื่องมือนี้ถอดรหัส header และ payload เท่านั้น</p>
+                <h3>JWT ถูกอัปโหลดไหม?</h3>
+                <p>ไม่ ถอดรหัสในเบราว์เซอร์</p>
+                <h3>ดู exp และ iat ได้ไหม?</h3>
+                <p>ได้ timestamp จะถูกแสดงเป็นวันที่ ISO เมื่อมีข้อมูล</p>
+                <h3>ควรวาง token production ไหม?</h3>
+                <p>ควรหลีกเลี่ยง token production ที่ละเอียดอ่อนหากไม่เข้าใจความเสี่ยง</p>
+                <h3>รองรับ Unicode ไหม?</h3>
+                <p>รองรับเนื้อหา UTF-8 ใน payload อย่างปลอดภัย</p>
+            </section>
+            <section id="privacy" class="article"><h2>นโยบายความเป็นส่วนตัว</h2><p>เราไม่เก็บ ไม่จัดเก็บ ไม่อัปโหลด และไม่ส่ง token ที่ใส่ในเครื่องมือนี้</p></section>
+            <section id="terms" class="article"><h2>ข้อกำหนดการใช้งาน</h2><p>ConvertUnlimited ให้บริการตามสภาพจริง อย่าใช้ผลถอดรหัส JWT เป็นหลักฐานว่า token valid</p></section>
+<!-- RELATED_TOOLS_START -->
+        <section class="related-tools">
+            <div class="category-title">เครื่องมือที่เกี่ยวข้อง</div>
+            <div class="tool-grid">
+                <a href="/th/base64-encoder-decoder/" class="tool-item">
+                    <div class="icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M7 8h10"/><path d="M7 16h10"/><path d="M9 4 5 20"/><path d="M19 4l-4 16"/><path d="M4 12h16"/></svg>
+                    </div>
+                    <h3>ตัวเข้ารหัส / ถอดรหัส Base64</h3>
+                    <p>เข้ารหัสและถอดรหัสข้อความ Base64 ในเบราว์เซอร์ของคุณ</p>
+                </a>
+                <a href="/th/json-formatter/" class="tool-item">
+                    <div class="icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M8 6 4 12l4 6"/><path d="m16 6 4 6-4 6"/><path d="M14 4 10 20"/></svg>
+                    </div>
+                    <h3>ตัวจัดรูปแบบ JSON</h3>
+                    <p>จัดรูปแบบ ตรวจสอบ และย่อ JSON ในเบราว์เซอร์ของคุณ</p>
+                </a>
+                <a href="/th/timestamp-converter/" class="tool-item">
+                    <div class="icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/><path d="M3 3l4 4"/><path d="M21 3l-4 4"/></svg>
+                    </div>
+                    <h3>ตัวแปลง Timestamp</h3>
+                    <p>แปลง Unix timestamp และวันที่ในเบราว์เซอร์ของคุณ</p>
+                </a>
+            </div>
+        </section>
+<!-- RELATED_TOOLS_END -->
+        </main>
+        <footer class="footer"><div>© <span id="copyright-year">2026</span> ConvertUnlimited.com — runs entirely in your browser.</div><nav class="links" aria-label="Footer"><a href="/th/tools/">Tools</a><a href="/th/jwt-decoder/#how">Guide</a><a href="/th/jwt-decoder/#faq">FAQ</a><a href="/th/jwt-decoder/#privacy">Privacy</a><a href="/th/jwt-decoder/#terms">Terms</a></nav></footer>
+    </div>
+    <script src="/jwt-decoder/jwt-decoder.js"></script>
+</body>
+</html>

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UUID 생성기 - UUID v4 온라인 생성 | ConvertUnlimited</title>
+    <meta name="description" content="브라우저에서 UUID v4를 생성하세요. 랜덤 UUID 일괄 생성, 복사, 업로드 없음.">
+    <meta name="robots" content="index,follow,max-image-preview:large">
+    <meta name="theme-color" content="#3aa17e">
+    <meta name="google-adsense-account" content="ca-pub-2823470980745945">
+    <link rel="canonical" href="https://www.convertunlimited.com/ko/uuid-generator/">
+
+    <link rel="alternate" hreflang="en" href="https://www.convertunlimited.com/uuid-generator/">
+    <link rel="alternate" hreflang="th" href="https://www.convertunlimited.com/th/uuid-generator/">
+    <link rel="alternate" hreflang="vi" href="https://www.convertunlimited.com/vi/uuid-generator/">
+    <link rel="alternate" hreflang="zh-Hans" href="https://www.convertunlimited.com/zh/uuid-generator/">
+    <link rel="alternate" hreflang="ja" href="https://www.convertunlimited.com/ja/uuid-generator/">
+    <link rel="alternate" hreflang="ko" href="https://www.convertunlimited.com/ko/uuid-generator/">
+    <link rel="alternate" hreflang="es" href="https://www.convertunlimited.com/es/uuid-generator/">
+    <link rel="alternate" hreflang="fr" href="https://www.convertunlimited.com/fr/uuid-generator/">
+    <link rel="alternate" hreflang="x-default" href="https://www.convertunlimited.com/uuid-generator/">
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="alternate icon" href="/favicon.svg">
+    <link rel="apple-touch-icon" href="/favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/style.css">
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","inLanguage":"ko","mainEntity":[{"@type":"Question","name":"이 UUID 도구는 무료인가요?","acceptedAnswer":{"@type":"Answer","text":"네. 가입 없이 UUID를 생성하고 복사할 수 있습니다."}},{"@type":"Question","name":"UUID가 로컬에서 생성되나요?","acceptedAnswer":{"@type":"Answer","text":"네. 브라우저 crypto APIs로 생성됩니다."}},{"@type":"Question","name":"어떤 UUID 버전인가요?","acceptedAnswer":{"@type":"Answer","text":"UUID v4를 생성합니다."}},{"@type":"Question","name":"일괄 생성할 수 있나요?","acceptedAnswer":{"@type":"Answer","text":"네. 한 번에 최대 500개 생성할 수 있습니다."}},{"@type":"Question","name":"생성된 UUID가 저장되나요?","acceptedAnswer":{"@type":"Answer","text":"아니요. 업로드, 저장, 전송되지 않습니다."}}]}</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2823470980745945" crossorigin="anonymous"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-98HSCSEKBX"></script>
+    <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-98HSCSEKBX');</script>
+</head>
+<body>
+    <div class="app">
+        <header class="topbar">
+            <a href="/ko/" class="brand" aria-label="ConvertUnlimited home"><span class="mark" aria-hidden="true"></span><span class="word"><b>Convert</b><span>Unlimited</span></span></a>
+            <nav class="topnav" aria-label="Primary">
+                <span class="pill"><span class="dot"></span>100% free, no signup</span>
+                <details class="tools-dropdown"><summary aria-label="Tools">Tools <svg width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin-left: 2px; opacity: 0.5;"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></summary><div class="dropdown-menu" role="menu"><div class="dropdown-section">Developer Tools</div><a href="/ko/uuid-generator/" aria-current="page">UUID Generator</a><a href="/ko/url-encoder-decoder/">URL Encoder</a><a href="/ko/base64-encoder-decoder/">Base64</a><a href="/ko/json-formatter/">JSON Formatter</a></div></details>
+                <details class="lang-switcher"><summary aria-label="Language"><span aria-hidden="true">🌐</span> KO</summary><div class="lang-menu" role="menu">
+                        <a href="/uuid-generator/" hreflang="en" lang="en">English</a>
+                        <a href="/th/uuid-generator/" hreflang="th" lang="th">ไทย</a>
+                        <a href="/vi/uuid-generator/" hreflang="vi" lang="vi">Tiếng Việt</a>
+                        <a href="/zh/uuid-generator/" hreflang="zh-Hans" lang="zh-Hans">中文（简体）</a>
+                        <a href="/ja/uuid-generator/" hreflang="ja" lang="ja">日本語</a>
+                        <a href="/ko/uuid-generator/" hreflang="ko" lang="ko" aria-current="page">한국어</a>
+                        <a href="/es/uuid-generator/" hreflang="es" lang="es">Español</a>
+                        <a href="/fr/uuid-generator/" hreflang="fr" lang="fr">Français</a>
+                    </div></details>
+            </nav>
+        </header>
+        <main>
+            <section class="hero"><h1 class="hero-title">UUID 생성기</h1><p class="sub hero-sub">API, 테스트, 데이터베이스, 개발 워크플로용 UUID v4를 로컬로 생성합니다.</p></section>
+            <div class="grid" id="layout">
+                <section class="bg-tool" aria-label="UUID 생성기">
+                    <div class="bg-tool-head"><div><p class="section-eyebrow">로컬 개발 ID 도구</p><h2>UUID를 하나 또는 여러 개 생성하세요.</h2><p>서버 요청 없이 브라우저에서 RFC4122 스타일 UUID v4를 만듭니다.</p></div></div>
+                    <div class="bg-workbench">
+                        <div class="bg-panel">
+                            <div class="bg-controls">
+                                <label class="range-field" for="uuid-quantity"><span>수량</span><input id="uuid-quantity" type="number" min="1" max="500" value="5"></label>
+                                <label class="range-field" for="uuid-separator"><span>출력 형식</span><select id="uuid-separator"><option value="lines">줄 구분</option><option value="comma">쉼표 구분</option></select></label>
+                                <label class="range-field" for="uuid-uppercase"><span>대문자</span><input id="uuid-uppercase" type="checkbox"></label>
+                                <button class="btn btn-accent" id="uuid-generate" type="button">UUID 생성</button>
+                                <button class="btn btn-ghost" id="uuid-clear" type="button">지우기</button>
+                            </div>
+                            <p class="bg-status"><b>생성된 UUID:</b> <span id="uuid-count" class="mono num">0</span></p>
+                            <p class="bg-status" id="uuid-status"></p>
+                        </div>
+                        <div class="bg-panel">
+                            <label class="range-field" for="uuid-output"><span>생성된 UUID</span><textarea id="uuid-output" rows="18" spellcheck="false" class="mono" readonly style="width:100%;resize:vertical;overflow-wrap:anywhere;"></textarea></label>
+                            <div class="bg-controls" style="margin-top:16px;"><button class="btn btn-accent" id="uuid-copy" type="button">UUID 복사</button></div>
+                        </div>
+                    </div>
+                    <div class="banner-ad"><span class="ad-label">Ad</span><ins class="adsbygoogle ad-below" style="display:block" data-ad-client="ca-pub-2823470980745945" data-ad-slot="REPLACE_UUID_BELOW_TOOL_SLOT_ID" data-ad-format="auto" data-full-width-responsive="true"></ins></div>
+                </section>
+                <aside class="rail" aria-label="Sidebar"><div class="ad-slot"><span class="ad-label">Ad</span><div class="ad-body"><ins class="adsbygoogle ad-rail" style="display:block" data-ad-client="ca-pub-2823470980745945" data-ad-slot="REPLACE_UUID_RAIL_SLOT_ID" data-ad-format="auto" data-full-width-responsive="true"></ins></div><div class="ad-foot"></div></div><div class="rail-card trust"><h3>개인정보 보호 설계</h3><div class="item"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg><div><b>로컬 생성.</b> UUID는 브라우저에서 생성됩니다.</div></div><div class="item"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg><div><b>업로드 없음.</b> 서버 요청이 필요 없습니다.</div></div></div></aside>
+            </div>
+            <section id="how" class="article"><h2>UUID는 언제 사용하나요?</h2><p>UUID는 테스트 데이터, request ID, 데이터베이스 키, API 예시, 클라이언트 프로토타입에 유용합니다.</p><p>이 도구는 browser crypto APIs로 UUID v4를 생성하며 ID를 전송하지 않습니다.</p></section>
+            <section id="faq" class="article"><h2>자주 묻는 질문</h2>
+                <h3>이 UUID 도구는 무료인가요?</h3>
+                <p>네. 가입 없이 UUID를 생성하고 복사할 수 있습니다.</p>
+                <h3>UUID가 로컬에서 생성되나요?</h3>
+                <p>네. 브라우저 crypto APIs로 생성됩니다.</p>
+                <h3>어떤 UUID 버전인가요?</h3>
+                <p>UUID v4를 생성합니다.</p>
+                <h3>일괄 생성할 수 있나요?</h3>
+                <p>네. 한 번에 최대 500개 생성할 수 있습니다.</p>
+                <h3>생성된 UUID가 저장되나요?</h3>
+                <p>아니요. 업로드, 저장, 전송되지 않습니다.</p>
+            </section>
+            <section id="privacy" class="article"><h2>개인정보 처리방침</h2><p>생성된 UUID를 수집, 저장, 업로드 또는 전송하지 않습니다.</p></section>
+            <section id="terms" class="article"><h2>이용 약관</h2><p>ConvertUnlimited는 있는 그대로 제공됩니다. 프로덕션 사용 전 확인하세요.</p></section>
+<!-- RELATED_TOOLS_START -->
+        <section class="related-tools">
+            <div class="category-title">관련 도구</div>
+            <div class="tool-grid">
+                <a href="/ko/timestamp-converter/" class="tool-item">
+                    <div class="icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/><path d="M3 3l4 4"/><path d="M21 3l-4 4"/></svg>
+                    </div>
+                    <h3>타임스탬프 변환기</h3>
+                    <p>브라우저에서 Unix 타임스탬프와 날짜를 변환합니다.</p>
+                </a>
+                <a href="/ko/hash-generator/" class="tool-item">
+                    <div class="icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9h16"/><path d="M4 15h16"/><path d="M10 3 8 21"/><path d="M16 3l-2 18"/></svg>
+                    </div>
+                    <h3>해시 생성기</h3>
+                    <p>브라우저에서 SHA-256, SHA-384, SHA-512 해시를 생성합니다.</p>
+                </a>
+                <a href="/ko/base64-encoder-decoder/" class="tool-item">
+                    <div class="icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M7 8h10"/><path d="M7 16h10"/><path d="M9 4 5 20"/><path d="M19 4l-4 16"/><path d="M4 12h16"/></svg>
+                    </div>
+                    <h3>Base64 인코더 / 디코더</h3>
+                    <p>브라우저에서 Base64 텍스트를 인코딩하고 디코딩합니다.</p>
+                </a>
+            </div>
+        </section>
+<!-- RELATED_TOOLS_END -->
+        </main>
+        <footer class="footer"><div>© <span id="copyright-year">2026</span> ConvertUnlimited.com — runs entirely in your browser.</div><nav class="links" aria-label="Footer"><a href="/ko/tools/">Tools</a><a href="/ko/uuid-generator/#how">Guide</a><a href="/ko/uuid-generator/#faq">FAQ</a><a href="/ko/uuid-generator/#privacy">Privacy</a><a href="/ko/uuid-generator/#terms">Terms</a></nav></footer>
+    </div>
+    <script src="/uuid-generator/uuid-generator.js"></script>
+</body>
+</html>

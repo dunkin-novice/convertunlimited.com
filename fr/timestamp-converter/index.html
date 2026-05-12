@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Convertisseur Timestamp - Unix Time vers date | ConvertUnlimited</title>
+    <meta name="description" content="Convertissez timestamps Unix en dates et dates en Unix time dans votre navigateur. Secondes, millisecondes, UTC, heure locale, ISO 8601.">
+    <meta name="robots" content="index,follow,max-image-preview:large">
+    <meta name="theme-color" content="#3aa17e">
+    <meta name="google-adsense-account" content="ca-pub-2823470980745945">
+    <link rel="canonical" href="https://www.convertunlimited.com/fr/timestamp-converter/">
+
+    <link rel="alternate" hreflang="en" href="https://www.convertunlimited.com/timestamp-converter/">
+    <link rel="alternate" hreflang="th" href="https://www.convertunlimited.com/th/timestamp-converter/">
+    <link rel="alternate" hreflang="vi" href="https://www.convertunlimited.com/vi/timestamp-converter/">
+    <link rel="alternate" hreflang="zh-Hans" href="https://www.convertunlimited.com/zh/timestamp-converter/">
+    <link rel="alternate" hreflang="ja" href="https://www.convertunlimited.com/ja/timestamp-converter/">
+    <link rel="alternate" hreflang="ko" href="https://www.convertunlimited.com/ko/timestamp-converter/">
+    <link rel="alternate" hreflang="es" href="https://www.convertunlimited.com/es/timestamp-converter/">
+    <link rel="alternate" hreflang="fr" href="https://www.convertunlimited.com/fr/timestamp-converter/">
+    <link rel="alternate" hreflang="x-default" href="https://www.convertunlimited.com/timestamp-converter/">
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="alternate icon" href="/favicon.svg">
+    <link rel="apple-touch-icon" href="/favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/style.css">
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","inLanguage":"fr","mainEntity":[{"@type":"Question","name":"Ce convertisseur est-il gratuit ?","acceptedAnswer":{"@type":"Answer","text":"Oui. Vous pouvez convertir, copier et effacer sans inscription."}},{"@type":"Question","name":"La conversion est-elle locale ?","acceptedAnswer":{"@type":"Answer","text":"Oui. Tout se passe dans le navigateur avec les Date APIs natives."}},{"@type":"Question","name":"Secondes et millisecondes sont-elles prises en charge ?","acceptedAnswer":{"@type":"Answer","text":"Oui. Utilisez le sélecteur d’unité."}},{"@type":"Question","name":"Quel fuseau horaire est affiché ?","acceptedAnswer":{"@type":"Answer","text":"La sortie inclut ISO 8601, UTC et le fuseau local du navigateur."}},{"@type":"Question","name":"Que faire avec une date invalide ?","acceptedAnswer":{"@type":"Answer","text":"L’outil affiche un avertissement clair et conserve l’entrée."}}]}</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2823470980745945" crossorigin="anonymous"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-98HSCSEKBX"></script>
+    <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-98HSCSEKBX');</script>
+</head>
+<body>
+    <div class="app">
+        <header class="topbar">
+            <a href="/fr/" class="brand" aria-label="ConvertUnlimited home"><span class="mark" aria-hidden="true"></span><span class="word"><b>Convert</b><span>Unlimited</span></span></a>
+            <nav class="topnav" aria-label="Primary">
+                <span class="pill"><span class="dot"></span>100% free, no signup</span>
+                <details class="tools-dropdown"><summary aria-label="Tools">Tools <svg width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin-left: 2px; opacity: 0.5;"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></summary><div class="dropdown-menu" role="menu"><div class="dropdown-section">Developer Tools</div><a href="/fr/timestamp-converter/" aria-current="page">Timestamp Converter</a><a href="/fr/uuid-generator/">UUID Generator</a><a href="/fr/hash-generator/">Hash Generator</a><a href="/fr/json-formatter/">JSON Formatter</a></div></details>
+                <details class="lang-switcher"><summary aria-label="Language"><span aria-hidden="true">🌐</span> FR</summary><div class="lang-menu" role="menu">
+                        <a href="/timestamp-converter/" hreflang="en" lang="en">English</a>
+                        <a href="/th/timestamp-converter/" hreflang="th" lang="th">ไทย</a>
+                        <a href="/vi/timestamp-converter/" hreflang="vi" lang="vi">Tiếng Việt</a>
+                        <a href="/zh/timestamp-converter/" hreflang="zh-Hans" lang="zh-Hans">中文（简体）</a>
+                        <a href="/ja/timestamp-converter/" hreflang="ja" lang="ja">日本語</a>
+                        <a href="/ko/timestamp-converter/" hreflang="ko" lang="ko">한국어</a>
+                        <a href="/es/timestamp-converter/" hreflang="es" lang="es">Español</a>
+                        <a href="/fr/timestamp-converter/" hreflang="fr" lang="fr" aria-current="page">Français</a>
+                    </div></details>
+            </nav>
+        </header>
+        <main>
+            <section class="hero"><h1 class="hero-title">Convertisseur Timestamp</h1><p class="sub hero-sub">Convertissez timestamps Unix et dates lisibles localement dans votre navigateur.</p></section>
+            <div class="grid" id="layout">
+                <section class="bg-tool" aria-label="Convertisseur Timestamp">
+                    <div class="bg-tool-head"><div><p class="section-eyebrow">Outil local de temps</p><h2>Convertissez les timestamps dans les deux sens.</h2><p>Passez entre secondes et millisecondes, affichez UTC et heure locale, copiez ISO 8601 sans serveur.</p></div></div>
+                    <div class="bg-workbench">
+                        <div class="bg-panel">
+                            <div class="bg-controls">
+                                <label class="range-field" for="timestamp-input"><span>Timestamp Unix</span><input id="timestamp-input" class="mono" type="text" inputmode="numeric"></label>
+                                <label class="range-field" for="timestamp-date"><span>Date / heure</span><input id="timestamp-date" class="mono" type="datetime-local"></label>
+                                <label class="range-field" for="timestamp-unit"><span>Unité timestamp</span><select id="timestamp-unit"><option value="s">Secondes</option><option value="ms">Millisecondes</option></select></label>
+                                <button class="btn btn-accent" id="timestamp-to-date" type="button">Timestamp vers date</button>
+                                <button class="btn btn-ghost" id="timestamp-to-timestamp" type="button">Date vers timestamp</button>
+                                <button class="btn btn-ghost" id="timestamp-now" type="button">Timestamp actuel</button>
+                                <button class="btn btn-ghost" id="timestamp-clear" type="button">Effacer</button>
+                            </div>
+                            <p class="bg-status" id="timestamp-status"></p>
+                            <p class="bg-status" id="timestamp-warning" style="color: var(--warn);"></p>
+                        </div>
+                        <div class="bg-panel">
+                            <label class="range-field" for="timestamp-output"><span>Sortie convertie</span><textarea id="timestamp-output" rows="18" spellcheck="false" class="mono" readonly style="width:100%;resize:vertical;overflow-wrap:anywhere;"></textarea></label>
+                            <div class="bg-controls" style="margin-top:16px;"><button class="btn btn-accent" id="timestamp-copy" type="button">Copier la sortie</button></div>
+                        </div>
+                    </div>
+                    <div class="banner-ad"><span class="ad-label">Ad</span><ins class="adsbygoogle ad-below" style="display:block" data-ad-client="ca-pub-2823470980745945" data-ad-slot="REPLACE_TIMESTAMP_BELOW_TOOL_SLOT_ID" data-ad-format="auto" data-full-width-responsive="true"></ins></div>
+                </section>
+                <aside class="rail" aria-label="Sidebar"><div class="ad-slot"><span class="ad-label">Ad</span><div class="ad-body"><ins class="adsbygoogle ad-rail" style="display:block" data-ad-client="ca-pub-2823470980745945" data-ad-slot="REPLACE_TIMESTAMP_RAIL_SLOT_ID" data-ad-format="auto" data-full-width-responsive="true"></ins></div><div class="ad-foot"></div></div><div class="rail-card trust"><h3>Privé par conception</h3><div class="item"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg><div><b>Conversion locale.</b> Dates et timestamps sont convertis dans votre navigateur.</div></div><div class="item"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg><div><b>Aucun envoi.</b> Aucune requête serveur requise.</div></div></div></aside>
+            </div>
+            <section id="how" class="article"><h2>Quand convertir des timestamps ?</h2><p>Les timestamps Unix sont fréquents dans logs, API, bases de données, exports analytics et debug.</p><p>Cet outil convertit en ISO 8601, UTC et heure locale pour vérifier les dates sans bibliothèque ni réseau.</p></section>
+            <section id="faq" class="article"><h2>Foire aux questions</h2>
+                <h3>Ce convertisseur est-il gratuit ?</h3>
+                <p>Oui. Vous pouvez convertir, copier et effacer sans inscription.</p>
+                <h3>La conversion est-elle locale ?</h3>
+                <p>Oui. Tout se passe dans le navigateur avec les Date APIs natives.</p>
+                <h3>Secondes et millisecondes sont-elles prises en charge ?</h3>
+                <p>Oui. Utilisez le sélecteur d’unité.</p>
+                <h3>Quel fuseau horaire est affiché ?</h3>
+                <p>La sortie inclut ISO 8601, UTC et le fuseau local du navigateur.</p>
+                <h3>Que faire avec une date invalide ?</h3>
+                <p>L’outil affiche un avertissement clair et conserve l’entrée.</p>
+            </section>
+            <section id="privacy" class="article"><h2>Politique de confidentialité</h2><p>Nous ne collectons, stockons, envoyons ni transmettons les timestamps ou dates saisis.</p></section>
+            <section id="terms" class="article"><h2>Conditions d’utilisation</h2><p>ConvertUnlimited est fourni tel quel. Vérifiez les dates converties avant une utilisation en production.</p></section>
+<!-- RELATED_TOOLS_START -->
+        <section class="related-tools">
+            <div class="category-title">Outils associés</div>
+            <div class="tool-grid">
+                <a href="/fr/jwt-decoder/" class="tool-item">
+                    <div class="icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 4 7v6c0 5 8 8 8 8s8-3 8-8V7l-8-4Z"/><path d="M9 10h6"/><path d="M9 14h6"/><path d="M10 18h4"/></svg>
+                    </div>
+                    <h3>JWT Decoder</h3>
+                    <p>Décodez JWT header et payload localement dans votre navigateur.</p>
+                </a>
+                <a href="/fr/diff-checker/" class="tool-item">
+                    <div class="icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M6 5h8"/><path d="M6 9h12"/><path d="M6 15h8"/><path d="M6 19h12"/><path d="M3 5h.01"/><path d="M3 9h.01"/><path d="M3 15h.01"/><path d="M3 19h.01"/><path d="m17 4 4 4-4 4"/></svg>
+                    </div>
+                    <h3>Diff Checker</h3>
+                    <p>Comparez deux textes localement dans votre navigateur.</p>
+                </a>
+                <a href="/fr/regex-tester/" class="tool-item">
+                    <div class="icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h4"/><path d="M6 5v4"/><path d="M12 7h.01"/><path d="M16 7h.01"/><path d="M20 7h.01"/><path d="M5 16c2-3 5-3 7 0s5 3 7 0"/></svg>
+                    </div>
+                    <h3>Testeur Regex</h3>
+                    <p>Testez des motifs regex JavaScript localement dans votre navigateur.</p>
+                </a>
+            </div>
+        </section>
+<!-- RELATED_TOOLS_END -->
+        </main>
+        <footer class="footer"><div>© <span id="copyright-year">2026</span> ConvertUnlimited.com — runs entirely in your browser.</div><nav class="links" aria-label="Footer"><a href="/fr/tools/">Tools</a><a href="/fr/timestamp-converter/#how">Guide</a><a href="/fr/timestamp-converter/#faq">FAQ</a><a href="/fr/timestamp-converter/#privacy">Privacy</a><a href="/fr/timestamp-converter/#terms">Terms</a></nav></footer>
+    </div>
+    <script src="/timestamp-converter/timestamp-converter.js"></script>
+</body>
+</html>

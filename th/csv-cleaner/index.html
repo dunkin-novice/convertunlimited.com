@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ตัวล้าง CSV - ล้าง ตัดช่องว่าง และลบแถวซ้ำ | ConvertUnlimited</title>
+    <meta name="description" content="ล้าง CSV ในเบราว์เซอร์ ตัดช่องว่าง ลบแถวว่าง ลบแถวซ้ำ ดูตัวอย่าง คัดลอก และดาวน์โหลดโดยไม่อัปโหลด">
+    <meta name="robots" content="index,follow,max-image-preview:large">
+    <meta name="theme-color" content="#3aa17e">
+    <meta name="google-adsense-account" content="ca-pub-2823470980745945">
+    <link rel="canonical" href="https://www.convertunlimited.com/th/csv-cleaner/">
+
+    <link rel="alternate" hreflang="en" href="https://www.convertunlimited.com/csv-cleaner/">
+    <link rel="alternate" hreflang="th" href="https://www.convertunlimited.com/th/csv-cleaner/">
+    <link rel="alternate" hreflang="vi" href="https://www.convertunlimited.com/vi/csv-cleaner/">
+    <link rel="alternate" hreflang="zh-Hans" href="https://www.convertunlimited.com/zh/csv-cleaner/">
+    <link rel="alternate" hreflang="ja" href="https://www.convertunlimited.com/ja/csv-cleaner/">
+    <link rel="alternate" hreflang="ko" href="https://www.convertunlimited.com/ko/csv-cleaner/">
+    <link rel="alternate" hreflang="es" href="https://www.convertunlimited.com/es/csv-cleaner/">
+    <link rel="alternate" hreflang="fr" href="https://www.convertunlimited.com/fr/csv-cleaner/">
+    <link rel="alternate" hreflang="x-default" href="https://www.convertunlimited.com/csv-cleaner/">
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="alternate icon" href="/favicon.svg">
+    <link rel="apple-touch-icon" href="/favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/style.css">
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","inLanguage":"th","mainEntity":[{"@type":"Question","name":"เครื่องมือนี้ฟรีไหม?","acceptedAnswer":{"@type":"Answer","text":"ฟรี วาง ล้าง ดูตัวอย่าง คัดลอก และดาวน์โหลด CSV ได้โดยไม่ต้องสมัคร"}},{"@type":"Question","name":"ไฟล์ CSV ถูกอัปโหลดไหม?","acceptedAnswer":{"@type":"Answer","text":"ไม่ ไฟล์ถูกอ่านและล้างในเบราว์เซอร์"}},{"@type":"Question","name":"ล้างอะไรบ้าง?","acceptedAnswer":{"@type":"Answer","text":"ตัดช่องว่างในเซลล์ ลบแถวว่าง ปรับ line ending และลบแถวซ้ำแบบเหมือนกัน"}},{"@type":"Question","name":"เปลี่ยนลำดับคอลัมน์ไหม?","acceptedAnswer":{"@type":"Answer","text":"ไม่ ลำดับคอลัมน์ถูกเก็บไว้"}},{"@type":"Question","name":"ถ้า CSV ผิดรูปแบบจะเกิดอะไร?","acceptedAnswer":{"@type":"Answer","text":"เครื่องมือจะแสดงคำเตือนและเก็บข้อมูลเดิมไว้"}}]}</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2823470980745945" crossorigin="anonymous"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-98HSCSEKBX"></script>
+    <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-98HSCSEKBX');</script>
+</head>
+<body>
+    <div class="app">
+        <header class="topbar">
+            <a href="/th/" class="brand" aria-label="ConvertUnlimited home"><span class="mark" aria-hidden="true"></span><span class="word"><b>Convert</b><span>Unlimited</span></span></a>
+            <nav class="topnav" aria-label="Primary">
+                <span class="pill"><span class="dot"></span>100% free, no signup</span>
+                <details class="tools-dropdown"><summary aria-label="Tools">Tools <svg width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin-left: 2px; opacity: 0.5;"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></summary><div class="dropdown-menu" role="menu"><div class="dropdown-section">Developer Tools</div><a href="/th/json-formatter/">JSON Formatter</a><a href="/th/csv-cleaner/" aria-current="page">CSV Cleaner</a><div class="dropdown-section">SEO Tools</div><a href="/th/meta-preview-checker/">Meta Preview Checker</a><a href="/th/qr-generator/">QR Generator</a></div></details>
+                <details class="lang-switcher"><summary aria-label="Language"><span aria-hidden="true">🌐</span> TH</summary><div class="lang-menu" role="menu">
+                        <a href="/csv-cleaner/" hreflang="en" lang="en">English</a>
+                        <a href="/th/csv-cleaner/" hreflang="th" lang="th" aria-current="page">ไทย</a>
+                        <a href="/vi/csv-cleaner/" hreflang="vi" lang="vi">Tiếng Việt</a>
+                        <a href="/zh/csv-cleaner/" hreflang="zh-Hans" lang="zh-Hans">中文（简体）</a>
+                        <a href="/ja/csv-cleaner/" hreflang="ja" lang="ja">日本語</a>
+                        <a href="/ko/csv-cleaner/" hreflang="ko" lang="ko">한국어</a>
+                        <a href="/es/csv-cleaner/" hreflang="es" lang="es">Español</a>
+                        <a href="/fr/csv-cleaner/" hreflang="fr" lang="fr">Français</a>
+                    </div></details>
+            </nav>
+        </header>
+        <main>
+            <section class="hero"><h1 class="hero-title">ตัวล้าง CSV</h1><p class="sub hero-sub">ล้างไฟล์ส่งออกจากสเปรดชีตและชุดข้อมูลในเบราว์เซอร์</p></section>
+            <div class="grid" id="layout">
+                <section class="bg-tool" aria-label="ตัวล้าง CSV">
+                    <div class="bg-tool-head"><div><p class="section-eyebrow">เครื่องมือข้อมูลในเครื่อง</p><h2>วาง CSV แล้วล้างปัญหาที่ปลอดภัย</h2><p>ตัดช่องว่าง ลบแถวว่าง ปรับ line ending และลบแถวซ้ำแบบเหมือนกันโดยไม่อัปโหลดข้อมูล</p></div></div>
+                    <div class="bg-workbench">
+                        <div class="bg-panel">
+                            <div class="bg-controls">
+                                <label class="range-field" for="csv-input"><span>CSV ขาเข้า</span><textarea id="csv-input" rows="14" spellcheck="false" class="mono" style="width:100%;resize:vertical;" placeholder="name,city\nAlice,Bangkok"></textarea></label>
+                                <label class="range-field" for="csv-delimiter"><span>ตัวคั่น</span><select id="csv-delimiter"><option value=",">คอมมา</option><option value=";">เซมิโคลอน</option><option value="tab">แท็บ</option></select></label>
+                                <label class="range-field" for="csv-file"><span>เปิดไฟล์ .csv</span><input id="csv-file" type="file" accept=".csv,text/csv"></label>
+                                <button class="btn btn-accent" id="csv-clean" type="button">ล้าง CSV</button>
+                                <button class="btn btn-ghost" id="csv-sample" type="button">CSV ตัวอย่าง</button>
+                                <button class="btn btn-ghost" id="csv-clear" type="button">ล้าง</button>
+                            </div>
+                            <p class="bg-status"><b>แถว:</b> <span id="csv-row-count" class="mono num">0</span> · <b>คอลัมน์:</b> <span id="csv-col-count" class="mono num">0</span> · <b>ขนาดขาเข้า:</b> <span id="csv-file-size" class="mono num">0 B</span></p>
+                            <p class="bg-status" id="csv-status"></p>
+                            <p class="bg-status" id="csv-warning" style="color: var(--warn);"></p>
+                        </div>
+                        <div class="bg-panel">
+                            <label class="range-field" for="csv-output"><span>CSV ที่ล้างแล้ว</span><textarea id="csv-output" rows="10" spellcheck="false" class="mono" readonly style="width:100%;resize:vertical;"></textarea></label>
+                            <div class="bg-controls" style="margin-top:16px;"><button class="btn btn-accent" id="csv-copy" type="button">คัดลอก CSV</button><button class="btn btn-ghost" id="csv-download" type="button">ดาวน์โหลด CSV</button></div>
+                            <div class="category-title">ตัวอย่างที่อ่านได้</div>
+                            <div id="csv-preview" style="overflow:auto; max-height: 280px;"></div>
+                        </div>
+                    </div>
+                    <div class="banner-ad"><span class="ad-label">Ad</span><ins class="adsbygoogle ad-below" style="display:block" data-ad-client="ca-pub-2823470980745945" data-ad-slot="REPLACE_CSV_BELOW_TOOL_SLOT_ID" data-ad-format="auto" data-full-width-responsive="true"></ins></div>
+                </section>
+                <aside class="rail" aria-label="Sidebar"><div class="ad-slot"><span class="ad-label">Ad</span><div class="ad-body"><ins class="adsbygoogle ad-rail" style="display:block" data-ad-client="ca-pub-2823470980745945" data-ad-slot="REPLACE_CSV_RAIL_SLOT_ID" data-ad-format="auto" data-full-width-responsive="true"></ins></div><div class="ad-foot"></div></div><div class="rail-card trust"><h3>ออกแบบเพื่อความเป็นส่วนตัว</h3><div class="item"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg><div><b>ประมวลผลในเครื่อง</b> CSV ถูกอ่านและล้างในเบราว์เซอร์</div></div><div class="item"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg><div><b>ไม่อัปโหลด</b> ไฟล์อยู่บนอุปกรณ์ของคุณ</div></div></div></aside>
+            </div>
+            <section id="how" class="article"><h2>ควรล้าง CSV เมื่อใด?</h2><p>ไฟล์ CSV จากการ export มักมีช่องว่าง แถวว่าง line ending ไม่สม่ำเสมอ หรือแถวซ้ำ การล้างช่วยให้นำเข้าและตรวจสอบง่ายขึ้น</p><p>เครื่องมือนี้หลีกเลี่ยงการเปลี่ยนแปลงที่ทำลายข้อมูล โดยรักษาลำดับคอลัมน์และค่าไว้ ยกเว้นการตัดช่องว่าง ลบแถวว่าง และลบแถวซ้ำตรงกัน</p></section>
+            <section id="faq" class="article"><h2>คำถามที่พบบ่อย</h2>
+                <h3>เครื่องมือนี้ฟรีไหม?</h3>
+                <p>ฟรี วาง ล้าง ดูตัวอย่าง คัดลอก และดาวน์โหลด CSV ได้โดยไม่ต้องสมัคร</p>
+                <h3>ไฟล์ CSV ถูกอัปโหลดไหม?</h3>
+                <p>ไม่ ไฟล์ถูกอ่านและล้างในเบราว์เซอร์</p>
+                <h3>ล้างอะไรบ้าง?</h3>
+                <p>ตัดช่องว่างในเซลล์ ลบแถวว่าง ปรับ line ending และลบแถวซ้ำแบบเหมือนกัน</p>
+                <h3>เปลี่ยนลำดับคอลัมน์ไหม?</h3>
+                <p>ไม่ ลำดับคอลัมน์ถูกเก็บไว้</p>
+                <h3>ถ้า CSV ผิดรูปแบบจะเกิดอะไร?</h3>
+                <p>เครื่องมือจะแสดงคำเตือนและเก็บข้อมูลเดิมไว้</p>
+            </section>
+            <section id="privacy" class="article"><h2>นโยบายความเป็นส่วนตัว</h2><p>เราไม่เก็บ ไม่จัดเก็บ ไม่อัปโหลด และไม่ส่งข้อมูล CSV การเลือกไฟล์อ่านเฉพาะในเบราว์เซอร์</p></section>
+            <section id="terms" class="article"><h2>ข้อกำหนดการใช้งาน</h2><p>ConvertUnlimited ให้บริการตามสภาพจริง ควรตรวจ CSV ที่ล้างแล้วก่อนนำเข้าในระบบจริง</p></section>
+<!-- RELATED_TOOLS_START -->
+        <section class="related-tools">
+            <div class="category-title">เครื่องมือที่เกี่ยวข้อง</div>
+            <div class="tool-grid">
+                <a href="/th/diff-checker/" class="tool-item">
+                    <div class="icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M6 5h8"/><path d="M6 9h12"/><path d="M6 15h8"/><path d="M6 19h12"/><path d="M3 5h.01"/><path d="M3 9h.01"/><path d="M3 15h.01"/><path d="M3 19h.01"/><path d="m17 4 4 4-4 4"/></svg>
+                    </div>
+                    <h3>ตัวตรวจ Diff</h3>
+                    <p>เปรียบเทียบข้อความสองชุดในเบราว์เซอร์ของคุณ</p>
+                </a>
+                <a href="/th/csv-to-json/" class="tool-item">
+                    <div class="icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h7"/><path d="M4 9h7"/><path d="M4 13h7"/><path d="M15 7l4 5-4 5"/><path d="M19 12H9"/><path d="M16 3h2a2 2 0 0 1 2 2v2"/><path d="M16 21h2a2 2 0 0 0 2-2v-2"/></svg>
+                    </div>
+                    <h3>ตัวแปลง CSV เป็น JSON</h3>
+                    <p>แปลงแถว CSV เป็นออบเจกต์ JSON ในเบราว์เซอร์ของคุณ</p>
+                </a>
+                <a href="/th/json-to-csv/" class="tool-item">
+                    <div class="icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M8 6 4 12l4 6"/><path d="M16 6l4 6-4 6"/><path d="M3 21h18"/><path d="M7 17h10"/><path d="M7 13h10"/><path d="M10 13v8"/><path d="M14 13v8"/></svg>
+                    </div>
+                    <h3>ตัวแปลง JSON เป็น CSV</h3>
+                    <p>แปลง JSON object เป็น CSV ในเบราว์เซอร์ของคุณ</p>
+                </a>
+            </div>
+        </section>
+<!-- RELATED_TOOLS_END -->
+        </main>
+        <footer class="footer"><div>© <span id="copyright-year">2026</span> ConvertUnlimited.com — runs entirely in your browser.</div><nav class="links" aria-label="Footer"><a href="/th/tools/">Tools</a><a href="/th/csv-cleaner/#how">Guide</a><a href="/th/csv-cleaner/#faq">FAQ</a><a href="/th/csv-cleaner/#privacy">Privacy</a><a href="/th/csv-cleaner/#terms">Terms</a></nav></footer>
+    </div>
+    <script src="/csv-cleaner/csv-cleaner.js"></script>
+</body>
+</html>

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSON to CSV コンバーター - JSON を CSV に変換 | ConvertUnlimited</title>
+    <meta name="description" content="ブラウザ内で JSON を CSV に変換。JSON を貼り付け/開く、ネスト項目をフラット化、コピーとダウンロード。アップロード不要。">
+    <meta name="robots" content="index,follow,max-image-preview:large">
+    <meta name="theme-color" content="#3aa17e">
+    <meta name="google-adsense-account" content="ca-pub-2823470980745945">
+    <link rel="canonical" href="https://www.convertunlimited.com/ja/json-to-csv/">
+
+    <link rel="alternate" hreflang="en" href="https://www.convertunlimited.com/json-to-csv/">
+    <link rel="alternate" hreflang="th" href="https://www.convertunlimited.com/th/json-to-csv/">
+    <link rel="alternate" hreflang="vi" href="https://www.convertunlimited.com/vi/json-to-csv/">
+    <link rel="alternate" hreflang="zh-Hans" href="https://www.convertunlimited.com/zh/json-to-csv/">
+    <link rel="alternate" hreflang="ja" href="https://www.convertunlimited.com/ja/json-to-csv/">
+    <link rel="alternate" hreflang="ko" href="https://www.convertunlimited.com/ko/json-to-csv/">
+    <link rel="alternate" hreflang="es" href="https://www.convertunlimited.com/es/json-to-csv/">
+    <link rel="alternate" hreflang="fr" href="https://www.convertunlimited.com/fr/json-to-csv/">
+    <link rel="alternate" hreflang="x-default" href="https://www.convertunlimited.com/json-to-csv/">
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="alternate icon" href="/favicon.svg">
+    <link rel="apple-touch-icon" href="/favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/style.css">
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","inLanguage":"ja","mainEntity":[{"@type":"Question","name":"この JSON to CSV コンバーターは無料ですか？","acceptedAnswer":{"@type":"Answer","text":"はい。登録なしで貼り付け、変換、コピー、ダウンロードできます。"}},{"@type":"Question","name":"JSON はアップロードされますか？","acceptedAnswer":{"@type":"Answer","text":"いいえ。JSON はブラウザ内でローカルに読み込まれ変換されます。"}},{"@type":"Question","name":"どんな JSON が最適ですか？","acceptedAnswer":{"@type":"Answer","text":"オブジェクト配列が最適です。単一オブジェクトは 1 行の CSV になります。"}},{"@type":"Question","name":"ネストしたオブジェクトは？","acceptedAnswer":{"@type":"Answer","text":"profile.name のようなドット記法でフラット化します。"}},{"@type":"Question","name":"Unicode に対応していますか？","acceptedAnswer":{"@type":"Answer","text":"はい。UTF-8、アクセント、アジア言語、絵文字を CSV 出力に保持します。"}}]}</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2823470980745945" crossorigin="anonymous"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-98HSCSEKBX"></script>
+    <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-98HSCSEKBX');</script>
+</head>
+<body>
+    <div class="app">
+        <header class="topbar">
+            <a href="/ja/" class="brand" aria-label="ConvertUnlimited home"><span class="mark" aria-hidden="true"></span><span class="word"><b>Convert</b><span>Unlimited</span></span></a>
+            <nav class="topnav" aria-label="Primary">
+                <span class="pill"><span class="dot"></span>100% free, no signup</span>
+                <details class="tools-dropdown"><summary aria-label="Tools">Tools <svg width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin-left: 2px; opacity: 0.5;"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></summary><div class="dropdown-menu" role="menu"><div class="dropdown-section">Developer Tools</div><a href="/ja/csv-cleaner/">CSV Cleaner</a><a href="/ja/csv-to-json/">CSV to JSON</a><a href="/ja/json-to-csv/" aria-current="page">JSON to CSV</a><a href="/ja/json-formatter/">JSON Formatter</a></div></details>
+                <details class="lang-switcher"><summary aria-label="Language"><span aria-hidden="true">🌐</span> JA</summary><div class="lang-menu" role="menu">
+                        <a href="/json-to-csv/" hreflang="en" lang="en">English</a>
+                        <a href="/th/json-to-csv/" hreflang="th" lang="th">ไทย</a>
+                        <a href="/vi/json-to-csv/" hreflang="vi" lang="vi">Tiếng Việt</a>
+                        <a href="/zh/json-to-csv/" hreflang="zh-Hans" lang="zh-Hans">中文（简体）</a>
+                        <a href="/ja/json-to-csv/" hreflang="ja" lang="ja" aria-current="page">日本語</a>
+                        <a href="/ko/json-to-csv/" hreflang="ko" lang="ko">한국어</a>
+                        <a href="/es/json-to-csv/" hreflang="es" lang="es">Español</a>
+                        <a href="/fr/json-to-csv/" hreflang="fr" lang="fr">Français</a>
+                    </div></details>
+            </nav>
+        </header>
+        <main>
+            <section class="hero"><h1 class="hero-title">JSON to CSV コンバーター</h1><p class="sub hero-sub">API や構造化 JSON データを表計算向け CSV に変換します。</p></section>
+            <div class="grid" id="layout">
+                <section class="bg-tool" aria-label="JSON to CSV コンバーター">
+                    <div class="bg-tool-head"><div><p class="section-eyebrow">ローカル開発データツール</p><h2>JSON を貼り付けて CSV に変換。</h2><p>オブジェクト配列を CSV に変換し、ネスト項目をドット記法でフラット化して、サーバーへ送信せずにダウンロードできます。</p></div></div>
+                    <div class="bg-workbench">
+                        <div class="bg-panel">
+                            <div class="bg-controls">
+                                <label class="range-field" for="jsoncsv-input"><span>JSON 入力</span><textarea id="jsoncsv-input" rows="14" spellcheck="false" class="mono" style="width:100%;resize:vertical;" placeholder='[{"name":"Alice","city":"Bangkok"}]'></textarea></label>
+                                <label class="range-field" for="jsoncsv-delimiter"><span>区切り文字</span><select id="jsoncsv-delimiter"><option value=",">カンマ</option><option value=";">セミコロン</option><option value="tab">タブ</option></select></label>
+                                <label class="range-field" for="jsoncsv-headers"><span>ヘッダー行を含める</span><input id="jsoncsv-headers" type="checkbox" checked></label>
+                                <label class="range-field" for="jsoncsv-file"><span>.json ファイルを開く</span><input id="jsoncsv-file" type="file" accept=".json,application/json"></label>
+                                <button class="btn btn-accent" id="jsoncsv-convert" type="button">CSV に変換</button>
+                                <button class="btn btn-ghost" id="jsoncsv-sample" type="button">サンプル JSON</button>
+                                <button class="btn btn-ghost" id="jsoncsv-clear" type="button">クリア</button>
+                            </div>
+                            <p class="bg-status"><b>行:</b> <span id="jsoncsv-row-count" class="mono num">0</span> · <b>フィールド:</b> <span id="jsoncsv-field-count" class="mono num">0</span> · <b>入力サイズ:</b> <span id="jsoncsv-file-size" class="mono num">0 B</span></p>
+                            <p class="bg-status" id="jsoncsv-status"></p>
+                            <p class="bg-status" id="jsoncsv-warning" style="color: var(--warn);"></p>
+                        </div>
+                        <div class="bg-panel">
+                            <label class="range-field" for="jsoncsv-output"><span>CSV 出力</span><textarea id="jsoncsv-output" rows="18" spellcheck="false" class="mono" readonly style="width:100%;resize:vertical;"></textarea></label>
+                            <div class="bg-controls" style="margin-top:16px;"><button class="btn btn-accent" id="jsoncsv-copy" type="button">CSV をコピー</button><button class="btn btn-ghost" id="jsoncsv-download" type="button">CSV をダウンロード</button></div>
+                        </div>
+                    </div>
+                    <div class="banner-ad"><span class="ad-label">Ad</span><ins class="adsbygoogle ad-below" style="display:block" data-ad-client="ca-pub-2823470980745945" data-ad-slot="REPLACE_JSON_CSV_BELOW_TOOL_SLOT_ID" data-ad-format="auto" data-full-width-responsive="true"></ins></div>
+                </section>
+                <aside class="rail" aria-label="Sidebar"><div class="ad-slot"><span class="ad-label">Ad</span><div class="ad-body"><ins class="adsbygoogle ad-rail" style="display:block" data-ad-client="ca-pub-2823470980745945" data-ad-slot="REPLACE_JSON_CSV_RAIL_SLOT_ID" data-ad-format="auto" data-full-width-responsive="true"></ins></div><div class="ad-foot"></div></div><div class="rail-card trust"><h3>プライバシー重視</h3><div class="item"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg><div><b>ローカル変換。</b> JSON 解析と CSV 生成はブラウザ内で行われます。</div></div><div class="item"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg><div><b>アップロードなし。</b> ファイルは端末内に留まります。</div></div></div></aside>
+            </div>
+            <section id="how" class="article"><h2>JSON を CSV に変換する場面</h2><p>JSON は API や開発ツールで一般的ですが、CSV は表計算アプリやデータ整理で確認しやすい形式です。</p><p>JSON オブジェクトとオブジェクト配列に対応します。ネストしたオブジェクトはドット記法でフラット化し、データを失わないようにします。</p></section>
+            <section id="faq" class="article"><h2>よくある質問</h2>
+                <h3>この JSON to CSV コンバーターは無料ですか？</h3>
+                <p>はい。登録なしで貼り付け、変換、コピー、ダウンロードできます。</p>
+                <h3>JSON はアップロードされますか？</h3>
+                <p>いいえ。JSON はブラウザ内でローカルに読み込まれ変換されます。</p>
+                <h3>どんな JSON が最適ですか？</h3>
+                <p>オブジェクト配列が最適です。単一オブジェクトは 1 行の CSV になります。</p>
+                <h3>ネストしたオブジェクトは？</h3>
+                <p>profile.name のようなドット記法でフラット化します。</p>
+                <h3>Unicode に対応していますか？</h3>
+                <p>はい。UTF-8、アクセント、アジア言語、絵文字を CSV 出力に保持します。</p>
+            </section>
+            <section id="privacy" class="article"><h2>プライバシーポリシー</h2><p>JSON や CSV データを収集、保存、アップロード、送信しません。選択したファイルはブラウザ内でのみ読み込まれます。</p></section>
+            <section id="terms" class="article"><h2>利用規約</h2><p>ConvertUnlimited は現状のまま提供されます。本番システムで使う前に生成された CSV を確認してください。</p></section>
+<!-- RELATED_TOOLS_START -->
+        <section class="related-tools">
+            <div class="category-title">関連ツール</div>
+            <div class="tool-grid">
+                <a href="/ja/base64-encoder-decoder/" class="tool-item">
+                    <div class="icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M7 8h10"/><path d="M7 16h10"/><path d="M9 4 5 20"/><path d="M19 4l-4 16"/><path d="M4 12h16"/></svg>
+                    </div>
+                    <h3>Base64 エンコード / デコード</h3>
+                    <p>ブラウザ内で Base64 テキストをエンコード、デコードします。</p>
+                </a>
+                <a href="/ja/csv-to-json/" class="tool-item">
+                    <div class="icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h7"/><path d="M4 9h7"/><path d="M4 13h7"/><path d="M15 7l4 5-4 5"/><path d="M19 12H9"/><path d="M16 3h2a2 2 0 0 1 2 2v2"/><path d="M16 21h2a2 2 0 0 0 2-2v-2"/></svg>
+                    </div>
+                    <h3>CSV to JSON コンバーター</h3>
+                    <p>ブラウザ内で CSV 行を JSON オブジェクトに変換します。</p>
+                </a>
+                <a href="/ja/csv-cleaner/" class="tool-item">
+                    <div class="icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16"/><path d="M4 10h16"/><path d="M4 15h16"/><path d="M8 5v14"/><path d="M16 5v14"/><path d="M4 19h16"/></svg>
+                    </div>
+                    <h3>CSV クリーナー</h3>
+                    <p>ブラウザ内で CSV 行の整理、空白削除、空行削除、重複削除を行います。</p>
+                </a>
+            </div>
+        </section>
+<!-- RELATED_TOOLS_END -->
+        </main>
+        <footer class="footer"><div>© <span id="copyright-year">2026</span> ConvertUnlimited.com — runs entirely in your browser.</div><nav class="links" aria-label="Footer"><a href="/ja/tools/">Tools</a><a href="/ja/json-to-csv/#how">Guide</a><a href="/ja/json-to-csv/#faq">FAQ</a><a href="/ja/json-to-csv/#privacy">Privacy</a><a href="/ja/json-to-csv/#terms">Terms</a></nav></footer>
+    </div>
+    <script src="/json-to-csv/json-to-csv.js"></script>
+</body>
+</html>

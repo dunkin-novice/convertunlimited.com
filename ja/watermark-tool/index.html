@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ウォーターマークツール - 画像に文字ウォーターマークを追加 | ConvertUnlimited</title>
+    <meta name="description" content="ブラウザ内で画像に文字ウォーターマークを追加。位置、透明度、サイズを調整し、ローカルでプレビューして PNG をダウンロードできます。">
+    <meta name="robots" content="index,follow,max-image-preview:large">
+    <meta name="theme-color" content="#3aa17e">
+    <meta name="google-adsense-account" content="ca-pub-2823470980745945">
+    <link rel="canonical" href="https://www.convertunlimited.com/ja/watermark-tool/">
+
+    <link rel="alternate" hreflang="en" href="https://www.convertunlimited.com/watermark-tool/">
+    <link rel="alternate" hreflang="th" href="https://www.convertunlimited.com/th/watermark-tool/">
+    <link rel="alternate" hreflang="vi" href="https://www.convertunlimited.com/vi/watermark-tool/">
+    <link rel="alternate" hreflang="zh-Hans" href="https://www.convertunlimited.com/zh/watermark-tool/">
+    <link rel="alternate" hreflang="ja" href="https://www.convertunlimited.com/ja/watermark-tool/">
+    <link rel="alternate" hreflang="ko" href="https://www.convertunlimited.com/ko/watermark-tool/">
+    <link rel="alternate" hreflang="es" href="https://www.convertunlimited.com/es/watermark-tool/">
+    <link rel="alternate" hreflang="fr" href="https://www.convertunlimited.com/fr/watermark-tool/">
+    <link rel="alternate" hreflang="x-default" href="https://www.convertunlimited.com/watermark-tool/">
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="alternate icon" href="/favicon.svg">
+    <link rel="apple-touch-icon" href="/favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/style.css">
+    <style>.watermark-preview{width:100%;max-height:520px;object-fit:contain;border:1px solid var(--line);border-radius:8px;background:var(--bg-2)}.watermark-empty{display:grid;min-height:280px;place-items:center;border:1px dashed var(--line);border-radius:8px;color:var(--ink-3);text-align:center;padding:24px}.watermark-select{width:100%;min-height:42px;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--ink);padding:0 10px}</style>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","inLanguage":"ja","mainEntity":[{"@type":"Question","name":"無料で使えますか？","acceptedAnswer":{"@type":"Answer","text":"はい。登録なしで文字ウォーターマークを追加してダウンロードできます。"}},{"@type":"Question","name":"画像はアップロードされますか？","acceptedAnswer":{"@type":"Answer","text":"いいえ。画像はブラウザ内でローカル処理されます。"}},{"@type":"Question","name":"位置を変更できますか？","acceptedAnswer":{"@type":"Answer","text":"はい。書き出し前に角、中央、端を選べます。"}},{"@type":"Question","name":"透明度とサイズを調整できますか？","acceptedAnswer":{"@type":"Answer","text":"はい。スライダーでプレビューを調整できます。"}},{"@type":"Question","name":"出力形式は？","acceptedAnswer":{"@type":"Answer","text":"ブラウザ canvas から PNG 画像を書き出します。"}}]}</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2823470980745945" crossorigin="anonymous"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-98HSCSEKBX"></script>
+    <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-98HSCSEKBX');</script>
+</head>
+<body>
+    <div class="app">
+        <header class="topbar">
+            <a href="/ja/" class="brand" aria-label="ConvertUnlimited home"><span class="mark" aria-hidden="true"></span><span class="word"><b>Convert</b><span>Unlimited</span></span></a>
+            <nav class="topnav" aria-label="Primary">
+                <span class="pill"><span class="dot"></span>100% free, no signup</span>
+                <details class="tools-dropdown"><summary aria-label="Tools">Tools <svg width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin-left: 2px; opacity: 0.5;"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></summary><div class="dropdown-menu" role="menu"><div class="dropdown-section">Image Tools</div><a href="/ja/">Image Converter</a><a href="/ja/image-compressor/">Image Compressor</a><a href="/ja/image-resizer/">Image Resizer</a><a href="/ja/metadata-remover/">Metadata Remover</a><a href="/ja/watermark-tool/" aria-current="page">Watermark Tool</a><a href="/ja/avif-converter/">AVIF Converter</a></div></details>
+                <details class="lang-switcher"><summary aria-label="Language"><span aria-hidden="true">🌐</span> JA</summary><div class="lang-menu" role="menu">
+                        <a href="/watermark-tool/" hreflang="en" lang="en">English</a>
+                        <a href="/th/watermark-tool/" hreflang="th" lang="th">ไทย</a>
+                        <a href="/vi/watermark-tool/" hreflang="vi" lang="vi">Tiếng Việt</a>
+                        <a href="/zh/watermark-tool/" hreflang="zh-Hans" lang="zh-Hans">中文（简体）</a>
+                        <a href="/ja/watermark-tool/" hreflang="ja" lang="ja" aria-current="page">日本語</a>
+                        <a href="/ko/watermark-tool/" hreflang="ko" lang="ko">한국어</a>
+                        <a href="/es/watermark-tool/" hreflang="es" lang="es">Español</a>
+                        <a href="/fr/watermark-tool/" hreflang="fr" lang="fr">Français</a>
+                    </div></details>
+            </nav>
+        </header>
+        <main>
+            <section class="hero"><h1 class="hero-title">ウォーターマークツール</h1><p class="sub hero-sub">ブラウザ内で画像に文字ウォーターマークを追加します。</p></section>
+            <div class="grid" id="layout">
+                <section class="bg-tool" aria-label="ウォーターマークツール">
+                    <div class="bg-tool-head"><div><p class="section-eyebrow">ローカル画像ウォーターマーク</p><h2>ウォーターマーク付き画像を作成。</h2><p>画像を選び、文字を編集し、位置、透明度、サイズを調整して PNG を書き出します。画像は端末内に留まります。</p></div></div>
+                    <div class="bg-workbench">
+                        <div class="bg-panel">
+                            <div class="bg-drop" id="watermark-dropzone" tabindex="0" role="button" aria-label="画像を選択">
+                                <div class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 4 7v6c0 5 8 8 8 8s8-3 8-8V7l-8-4Z"/><path d="M9 12h6"/></svg></div>
+                                <div class="title">画像を選択</div>
+                                <div class="hint">JPG、PNG、WebP、またはブラウザ対応画像</div>
+                                <input type="file" id="watermark-file-input" accept="image/*" hidden>
+                            </div>
+                            <div class="bg-controls" style="margin-top:16px;">
+                                <label class="range-field" for="watermark-text"><span>ウォーターマーク文字</span><input id="watermark-text" type="text" value="ConvertUnlimited" style="width:100%;min-height:42px;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--ink);padding:0 10px;"></label>
+                                <label class="range-field" for="watermark-position"><span>位置</span><select id="watermark-position" class="watermark-select"><option value="top-left">Top left</option><option value="top-center">Top center</option><option value="top-right">Top right</option><option value="middle-left">Middle left</option><option value="middle-center">Center</option><option value="middle-right">Middle right</option><option value="bottom-left">Bottom left</option><option value="bottom-center">Bottom center</option><option value="bottom-right" selected>Bottom right</option></select></label>
+                                <label class="range-field" for="watermark-opacity"><span>透明度</span><input id="watermark-opacity" type="range" min="10" max="100" value="70"><span class="mono num" id="watermark-opacity-value">70%</span></label>
+                                <label class="range-field" for="watermark-size"><span>サイズ</span><input id="watermark-size" type="range" min="2" max="18" value="6"><span class="mono num" id="watermark-size-value">6%</span></label>
+                                <button class="btn btn-accent" id="watermark-download" type="button" disabled>PNG をダウンロード</button>
+                                <button class="btn btn-ghost" id="watermark-clear" type="button">クリア</button>
+                            </div>
+                            <p class="bg-status" id="watermark-status"></p>
+                        </div>
+                        <div class="bg-panel">
+                            <div class="range-field"><span>プレビュー</span><div id="watermark-empty" class="watermark-empty">画像プレビューがここに表示されます。</div><canvas id="watermark-canvas" class="watermark-preview" hidden></canvas></div>
+                        </div>
+                    </div>
+                    <div class="banner-ad"><span class="ad-label">Ad</span><ins class="adsbygoogle ad-below" style="display:block" data-ad-client="ca-pub-2823470980745945" data-ad-slot="REPLACE_WATERMARK_BELOW_TOOL_SLOT_ID" data-ad-format="auto" data-full-width-responsive="true"></ins></div>
+                </section>
+                <aside class="rail" aria-label="Sidebar"><div class="ad-slot"><span class="ad-label">Ad</span><div class="ad-body"><ins class="adsbygoogle ad-rail" style="display:block" data-ad-client="ca-pub-2823470980745945" data-ad-slot="REPLACE_WATERMARK_RAIL_SLOT_ID" data-ad-format="auto" data-full-width-responsive="true"></ins></div><div class="ad-foot"></div></div><div class="rail-card trust"><h3>プライバシーについて</h3><div class="item"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg><div><b>ブラウザ内で処理。</b> ウォーターマークは Canvas でローカル描画されます。</div></div><div class="item"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg><div><b>アップロードなし。</b> 画像はサーバーへ送信されません。</div></div></div></aside>
+            </div>
+            <section id="how" class="article"><h2>いつ画像にウォーターマークを入れるべき？</h2><p>ウォーターマークは所有者表示、下書き、プレビューラベル、ブランドや出典を残した共有に役立ちます。</p><p>重要な画像内容を隠さず、読みやすい配置にしてください。プライバシーが気になる写真は公開前に metadata を削除しましょう。</p></section>
+            <section id="faq" class="article"><h2>よくある質問</h2>
+                <h3>無料で使えますか？</h3>
+                <p>はい。登録なしで文字ウォーターマークを追加してダウンロードできます。</p>
+                <h3>画像はアップロードされますか？</h3>
+                <p>いいえ。画像はブラウザ内でローカル処理されます。</p>
+                <h3>位置を変更できますか？</h3>
+                <p>はい。書き出し前に角、中央、端を選べます。</p>
+                <h3>透明度とサイズを調整できますか？</h3>
+                <p>はい。スライダーでプレビューを調整できます。</p>
+                <h3>出力形式は？</h3>
+                <p>ブラウザ canvas から PNG 画像を書き出します。</p>
+            </section>
+            <section id="privacy" class="article"><h2>プライバシーポリシー</h2><p>このツールで使う画像を収集、保存、アップロード、送信しません。</p></section>
+            <section id="terms" class="article"><h2>利用規約</h2><p>ConvertUnlimited は現状のまま提供されます。作成する画像とウォーターマーク文字は利用者の責任です。</p></section>
+<!-- RELATED_TOOLS_START -->
+        <section class="related-tools">
+            <div class="category-title">関連ツール</div>
+            <div class="tool-grid">
+                <a href="/ja/image-resizer/" class="tool-item">
+                    <div class="icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><polyline points="21 8 21 21 8 21"/><line x1="21" y1="21" x2="3" y2="3"/><polyline points="3 16 3 3 16 3"/></svg>
+                    </div>
+                    <h3>画像サイズ変更</h3>
+                    <p>ソーシャルメディアやウェブサイト用に画像の寸法を変更します。</p>
+                </a>
+                <a href="/ja/image-compressor/" class="tool-item">
+                    <div class="icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 14h6c1.1 0 2-0.9 2-2V6c0-1.1-0.9-2-2-2H4C2.9 4 2 4.9 2 6v6C2 13.1 2.9 14 4 14z"/><path d="M20 14h-6c-1.1 0-2-0.9-2-2V6c0-1.1 0.9-2 2-2h6c1.1 0 2 0.9 2 2v6C22 13.1 21.1 14 20 14z"/><path d="M4 22h6c1.1 0 2-0.9 2-2v-6c0-1.1-0.9-2-2-2H4c-1.1 0-2 0.9-2 2v6C2 21.1 2.9 22 4 22z"/><path d="M20 22h-6c-1.1 0-2-0.9-2-2v-6c0-1.1 0.9-2 2-2h6c1.1 0 2 0.9 2 2v6C22 21.1 21.1 22 20 22z"/></svg>
+                    </div>
+                    <h3>画像圧縮</h3>
+                    <p>視覚的な品質を維持しながら画像ファイルサイズを削減します。</p>
+                </a>
+                <a href="/ja/metadata-remover/" class="tool-item">
+                    <div class="icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+                    </div>
+                    <h3>メタデータ削除</h3>
+                    <p>写真から EXIF、GPS、および個人のプライバシーデータを削除します。</p>
+                </a>
+            </div>
+        </section>
+<!-- RELATED_TOOLS_END -->
+        </main>
+        <footer class="footer"><div>© <span id="copyright-year">2026</span> ConvertUnlimited.com — runs entirely in your browser.</div><nav class="links" aria-label="Footer"><a href="/ja/tools/">Tools</a><a href="/ja/watermark-tool/#how">Guide</a><a href="/ja/watermark-tool/#faq">FAQ</a><a href="/ja/watermark-tool/#privacy">Privacy</a><a href="/ja/watermark-tool/#terms">Terms</a></nav></footer>
+    </div>
+    <script src="/watermark-tool/watermark-tool.js"></script>
+</body>
+</html>

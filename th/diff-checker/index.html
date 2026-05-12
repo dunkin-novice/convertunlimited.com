@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ตัวตรวจ Diff - เปรียบเทียบข้อความออนไลน์ | ConvertUnlimited</title>
+    <meta name="description" content="เปรียบเทียบข้อความสองชุดในเบราว์เซอร์ แสดงบรรทัดเพิ่ม ลบ และไม่เปลี่ยน พร้อมสรุปและไม่อัปโหลด">
+    <meta name="robots" content="index,follow,max-image-preview:large">
+    <meta name="theme-color" content="#3aa17e">
+    <meta name="google-adsense-account" content="ca-pub-2823470980745945">
+    <link rel="canonical" href="https://www.convertunlimited.com/th/diff-checker/">
+
+    <link rel="alternate" hreflang="en" href="https://www.convertunlimited.com/diff-checker/">
+    <link rel="alternate" hreflang="th" href="https://www.convertunlimited.com/th/diff-checker/">
+    <link rel="alternate" hreflang="vi" href="https://www.convertunlimited.com/vi/diff-checker/">
+    <link rel="alternate" hreflang="zh-Hans" href="https://www.convertunlimited.com/zh/diff-checker/">
+    <link rel="alternate" hreflang="ja" href="https://www.convertunlimited.com/ja/diff-checker/">
+    <link rel="alternate" hreflang="ko" href="https://www.convertunlimited.com/ko/diff-checker/">
+    <link rel="alternate" hreflang="es" href="https://www.convertunlimited.com/es/diff-checker/">
+    <link rel="alternate" hreflang="fr" href="https://www.convertunlimited.com/fr/diff-checker/">
+    <link rel="alternate" hreflang="x-default" href="https://www.convertunlimited.com/diff-checker/">
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="alternate icon" href="/favicon.svg">
+    <link rel="apple-touch-icon" href="/favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/style.css">
+    <style>.diff-row{display:flex;gap:10px;padding:4px 8px;border-bottom:1px solid var(--line);white-space:pre-wrap;overflow-wrap:anywhere}.diff-added{background:rgba(58,161,126,.12)}.diff-removed{background:rgba(220,80,80,.12)}.diff-same{background:transparent}.diff-sign{font-weight:700;min-width:14px}</style>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","inLanguage":"th","mainEntity":[{"@type":"Question","name":"เครื่องมือนี้ฟรีไหม?","acceptedAnswer":{"@type":"Answer","text":"ฟรี เปรียบเทียบ คัดลอก และล้างได้โดยไม่ต้องสมัคร"}},{"@type":"Question","name":"ข้อความถูกอัปโหลดไหม?","acceptedAnswer":{"@type":"Answer","text":"ไม่ ทุกอย่างทำในเบราว์เซอร์"}},{"@type":"Question","name":"ใช้ diff แบบไหน?","acceptedAnswer":{"@type":"Answer","text":"เปรียบเทียบรายบรรทัดและทำเครื่องหมายเพิ่ม ลบ ไม่เปลี่ยน"}},{"@type":"Question","name":"ไม่สนช่องว่างหรือตัวพิมพ์ได้ไหม?","acceptedAnswer":{"@type":"Answer","text":"ได้ ใช้ตัวเลือกก่อนเปรียบเทียบ"}},{"@type":"Question","name":"รองรับ Unicode ไหม?","acceptedAnswer":{"@type":"Answer","text":"รองรับข้อความ Unicode และอีโมจิ"}}]}</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2823470980745945" crossorigin="anonymous"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-98HSCSEKBX"></script>
+    <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-98HSCSEKBX');</script>
+</head>
+<body>
+    <div class="app">
+        <header class="topbar">
+            <a href="/th/" class="brand" aria-label="ConvertUnlimited home"><span class="mark" aria-hidden="true"></span><span class="word"><b>Convert</b><span>Unlimited</span></span></a>
+            <nav class="topnav" aria-label="Primary">
+                <span class="pill"><span class="dot"></span>100% free, no signup</span>
+                <details class="tools-dropdown"><summary aria-label="Tools">Tools <svg width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin-left: 2px; opacity: 0.5;"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></summary><div class="dropdown-menu" role="menu"><div class="dropdown-section">Developer Tools</div><a href="/th/diff-checker/" aria-current="page">Diff Checker</a><a href="/th/regex-tester/">Regex Tester</a><a href="/th/json-formatter/">JSON Formatter</a><a href="/th/timestamp-converter/">Timestamp Converter</a></div></details>
+                <details class="lang-switcher"><summary aria-label="Language"><span aria-hidden="true">🌐</span> TH</summary><div class="lang-menu" role="menu">
+                        <a href="/diff-checker/" hreflang="en" lang="en">English</a>
+                        <a href="/th/diff-checker/" hreflang="th" lang="th" aria-current="page">ไทย</a>
+                        <a href="/vi/diff-checker/" hreflang="vi" lang="vi">Tiếng Việt</a>
+                        <a href="/zh/diff-checker/" hreflang="zh-Hans" lang="zh-Hans">中文（简体）</a>
+                        <a href="/ja/diff-checker/" hreflang="ja" lang="ja">日本語</a>
+                        <a href="/ko/diff-checker/" hreflang="ko" lang="ko">한국어</a>
+                        <a href="/es/diff-checker/" hreflang="es" lang="es">Español</a>
+                        <a href="/fr/diff-checker/" hreflang="fr" lang="fr">Français</a>
+                    </div></details>
+            </nav>
+        </header>
+        <main>
+            <section class="hero"><h1 class="hero-title">ตัวตรวจ Diff</h1><p class="sub hero-sub">เปรียบเทียบข้อความสองชุดในเครื่องและดูบรรทัดที่เพิ่ม ลบ และไม่เปลี่ยน</p></section>
+            <div class="grid" id="layout">
+                <section class="bg-tool" aria-label="ตัวตรวจ Diff">
+                    <div class="bg-tool-head"><div><p class="section-eyebrow">เครื่องมือเปรียบเทียบในเครื่อง</p><h2>เปรียบเทียบข้อความต้นฉบับและที่แก้ไข</h2><p>วางสองเวอร์ชัน ทำ line-based diff และคัดลอกผลลัพธ์โดยไม่ส่งข้อความไปเซิร์ฟเวอร์</p></div></div>
+                    <div class="bg-workbench">
+                        <div class="bg-panel">
+                            <div class="bg-controls">
+                                <label class="range-field" for="diff-left"><span>ข้อความต้นฉบับ</span><textarea id="diff-left" rows="12" spellcheck="false" class="mono" style="width:100%;resize:vertical;overflow-wrap:anywhere;"></textarea></label>
+                                <label class="range-field" for="diff-right"><span>ข้อความที่แก้ไข</span><textarea id="diff-right" rows="12" spellcheck="false" class="mono" style="width:100%;resize:vertical;overflow-wrap:anywhere;"></textarea></label>
+                                <label><input id="diff-ignore-case" type="checkbox"> ไม่สนตัวพิมพ์</label>
+                                <label><input id="diff-ignore-whitespace" type="checkbox"> ไม่สนช่องว่าง</label>
+                                <button class="btn btn-accent" id="diff-compare" type="button">เปรียบเทียบ</button>
+                                <button class="btn btn-ghost" id="diff-sample" type="button">Diff ตัวอย่าง</button>
+                                <button class="btn btn-ghost" id="diff-clear" type="button">ล้าง</button>
+                            </div>
+                            <p class="bg-status"><b>สรุป:</b> <span id="diff-summary" class="mono num"></span></p>
+                            <p class="bg-status" id="diff-status"></p>
+                        </div>
+                        <div class="bg-panel">
+                            <div class="range-field"><span>ผลลัพธ์ diff</span><div id="diff-output" class="mono" style="max-height:360px;overflow:auto;border:1px solid var(--line);border-radius:8px;"></div></div>
+                            <div class="bg-controls" style="margin-top:16px;"><button class="btn btn-accent" id="diff-copy" type="button">คัดลอก diff</button></div>
+                        </div>
+                    </div>
+                    <div class="banner-ad"><span class="ad-label">Ad</span><ins class="adsbygoogle ad-below" style="display:block" data-ad-client="ca-pub-2823470980745945" data-ad-slot="REPLACE_DIFF_BELOW_TOOL_SLOT_ID" data-ad-format="auto" data-full-width-responsive="true"></ins></div>
+                </section>
+                <aside class="rail" aria-label="Sidebar"><div class="ad-slot"><span class="ad-label">Ad</span><div class="ad-body"><ins class="adsbygoogle ad-rail" style="display:block" data-ad-client="ca-pub-2823470980745945" data-ad-slot="REPLACE_DIFF_RAIL_SLOT_ID" data-ad-format="auto" data-full-width-responsive="true"></ins></div><div class="ad-foot"></div></div><div class="rail-card trust"><h3>ออกแบบเพื่อความเป็นส่วนตัว</h3><div class="item"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg><div><b>เปรียบเทียบในเครื่อง</b> ทำงานในเบราว์เซอร์</div></div><div class="item"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg><div><b>ไม่อัปโหลด</b> ข้อความอยู่บนอุปกรณ์ของคุณ</div></div></div></aside>
+            </div>
+            <section id="how" class="article"><h2>ควรใช้ Diff Checker เมื่อใด?</h2><p>Diff ช่วยตรวจการแก้ไข เปรียบเทียบ snippet ตรวจ config และ debug output</p><p>เครื่องมือนี้เปรียบเทียบแบบรายบรรทัดและแสดงข้อความเป็น text ไม่ใช่ HTML</p></section>
+            <section id="faq" class="article"><h2>คำถามที่พบบ่อย</h2>
+                <h3>เครื่องมือนี้ฟรีไหม?</h3>
+                <p>ฟรี เปรียบเทียบ คัดลอก และล้างได้โดยไม่ต้องสมัคร</p>
+                <h3>ข้อความถูกอัปโหลดไหม?</h3>
+                <p>ไม่ ทุกอย่างทำในเบราว์เซอร์</p>
+                <h3>ใช้ diff แบบไหน?</h3>
+                <p>เปรียบเทียบรายบรรทัดและทำเครื่องหมายเพิ่ม ลบ ไม่เปลี่ยน</p>
+                <h3>ไม่สนช่องว่างหรือตัวพิมพ์ได้ไหม?</h3>
+                <p>ได้ ใช้ตัวเลือกก่อนเปรียบเทียบ</p>
+                <h3>รองรับ Unicode ไหม?</h3>
+                <p>รองรับข้อความ Unicode และอีโมจิ</p>
+            </section>
+            <section id="privacy" class="article"><h2>นโยบายความเป็นส่วนตัว</h2><p>เราไม่เก็บ ไม่จัดเก็บ ไม่อัปโหลด และไม่ส่งข้อความที่ใส่ในเครื่องมือนี้</p></section>
+            <section id="terms" class="article"><h2>ข้อกำหนดการใช้งาน</h2><p>ConvertUnlimited ให้บริการตามสภาพจริง ควรตรวจ diff ก่อนใช้ในงานจริง</p></section>
+<!-- RELATED_TOOLS_START -->
+        <section class="related-tools">
+            <div class="category-title">เครื่องมือที่เกี่ยวข้อง</div>
+            <div class="tool-grid">
+                <a href="/th/regex-tester/" class="tool-item">
+                    <div class="icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h4"/><path d="M6 5v4"/><path d="M12 7h.01"/><path d="M16 7h.01"/><path d="M20 7h.01"/><path d="M5 16c2-3 5-3 7 0s5 3 7 0"/></svg>
+                    </div>
+                    <h3>ตัวทดสอบ Regex</h3>
+                    <p>ทดสอบ JavaScript regex pattern ในเบราว์เซอร์ของคุณ</p>
+                </a>
+                <a href="/th/json-formatter/" class="tool-item">
+                    <div class="icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M8 6 4 12l4 6"/><path d="m16 6 4 6-4 6"/><path d="M14 4 10 20"/></svg>
+                    </div>
+                    <h3>ตัวจัดรูปแบบ JSON</h3>
+                    <p>จัดรูปแบบ ตรวจสอบ และย่อ JSON ในเบราว์เซอร์ของคุณ</p>
+                </a>
+                <a href="/th/csv-cleaner/" class="tool-item">
+                    <div class="icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16"/><path d="M4 10h16"/><path d="M4 15h16"/><path d="M8 5v14"/><path d="M16 5v14"/><path d="M4 19h16"/></svg>
+                    </div>
+                    <h3>ตัวล้าง CSV</h3>
+                    <p>ล้างแถว CSV ตัดช่องว่าง ลบแถวว่าง และลบแถวซ้ำในเบราว์เซอร์</p>
+                </a>
+            </div>
+        </section>
+<!-- RELATED_TOOLS_END -->
+        </main>
+        <footer class="footer"><div>© <span id="copyright-year">2026</span> ConvertUnlimited.com — runs entirely in your browser.</div><nav class="links" aria-label="Footer"><a href="/th/tools/">Tools</a><a href="/th/diff-checker/#how">Guide</a><a href="/th/diff-checker/#faq">FAQ</a><a href="/th/diff-checker/#privacy">Privacy</a><a href="/th/diff-checker/#terms">Terms</a></nav></footer>
+    </div>
+    <script src="/diff-checker/diff-checker.js"></script>
+</body>
+</html>

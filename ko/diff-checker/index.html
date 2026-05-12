@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diff 체커 - 온라인 텍스트 비교 | ConvertUnlimited</title>
+    <meta name="description" content="브라우저에서 두 텍스트를 비교하세요. 추가, 삭제, 변경 없음 라인, 요약, diff 복사 지원, 업로드 없음.">
+    <meta name="robots" content="index,follow,max-image-preview:large">
+    <meta name="theme-color" content="#3aa17e">
+    <meta name="google-adsense-account" content="ca-pub-2823470980745945">
+    <link rel="canonical" href="https://www.convertunlimited.com/ko/diff-checker/">
+
+    <link rel="alternate" hreflang="en" href="https://www.convertunlimited.com/diff-checker/">
+    <link rel="alternate" hreflang="th" href="https://www.convertunlimited.com/th/diff-checker/">
+    <link rel="alternate" hreflang="vi" href="https://www.convertunlimited.com/vi/diff-checker/">
+    <link rel="alternate" hreflang="zh-Hans" href="https://www.convertunlimited.com/zh/diff-checker/">
+    <link rel="alternate" hreflang="ja" href="https://www.convertunlimited.com/ja/diff-checker/">
+    <link rel="alternate" hreflang="ko" href="https://www.convertunlimited.com/ko/diff-checker/">
+    <link rel="alternate" hreflang="es" href="https://www.convertunlimited.com/es/diff-checker/">
+    <link rel="alternate" hreflang="fr" href="https://www.convertunlimited.com/fr/diff-checker/">
+    <link rel="alternate" hreflang="x-default" href="https://www.convertunlimited.com/diff-checker/">
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="alternate icon" href="/favicon.svg">
+    <link rel="apple-touch-icon" href="/favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/style.css">
+    <style>.diff-row{display:flex;gap:10px;padding:4px 8px;border-bottom:1px solid var(--line);white-space:pre-wrap;overflow-wrap:anywhere}.diff-added{background:rgba(58,161,126,.12)}.diff-removed{background:rgba(220,80,80,.12)}.diff-same{background:transparent}.diff-sign{font-weight:700;min-width:14px}</style>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","inLanguage":"ko","mainEntity":[{"@type":"Question","name":"이 Diff 도구는 무료인가요?","acceptedAnswer":{"@type":"Answer","text":"네. 가입 없이 비교, 복사, 지우기를 할 수 있습니다."}},{"@type":"Question","name":"텍스트가 업로드되나요?","acceptedAnswer":{"@type":"Answer","text":"아니요. 비교는 브라우저에서 로컬로 실행됩니다."}},{"@type":"Question","name":"어떤 diff를 사용하나요?","acceptedAnswer":{"@type":"Answer","text":"추가, 삭제, 변경 없음 라인을 표시하는 line-based diff입니다."}},{"@type":"Question","name":"공백이나 대소문자를 무시할 수 있나요?","acceptedAnswer":{"@type":"Answer","text":"네. 비교 전에 토글을 사용하세요."}},{"@type":"Question","name":"Unicode를 지원하나요?","acceptedAnswer":{"@type":"Answer","text":"네. Unicode와 이모지를 브라우저 문자열로 처리합니다."}}]}</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2823470980745945" crossorigin="anonymous"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-98HSCSEKBX"></script>
+    <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-98HSCSEKBX');</script>
+</head>
+<body>
+    <div class="app">
+        <header class="topbar">
+            <a href="/ko/" class="brand" aria-label="ConvertUnlimited home"><span class="mark" aria-hidden="true"></span><span class="word"><b>Convert</b><span>Unlimited</span></span></a>
+            <nav class="topnav" aria-label="Primary">
+                <span class="pill"><span class="dot"></span>100% free, no signup</span>
+                <details class="tools-dropdown"><summary aria-label="Tools">Tools <svg width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin-left: 2px; opacity: 0.5;"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></summary><div class="dropdown-menu" role="menu"><div class="dropdown-section">Developer Tools</div><a href="/ko/diff-checker/" aria-current="page">Diff Checker</a><a href="/ko/regex-tester/">Regex Tester</a><a href="/ko/json-formatter/">JSON Formatter</a><a href="/ko/timestamp-converter/">Timestamp Converter</a></div></details>
+                <details class="lang-switcher"><summary aria-label="Language"><span aria-hidden="true">🌐</span> KO</summary><div class="lang-menu" role="menu">
+                        <a href="/diff-checker/" hreflang="en" lang="en">English</a>
+                        <a href="/th/diff-checker/" hreflang="th" lang="th">ไทย</a>
+                        <a href="/vi/diff-checker/" hreflang="vi" lang="vi">Tiếng Việt</a>
+                        <a href="/zh/diff-checker/" hreflang="zh-Hans" lang="zh-Hans">中文（简体）</a>
+                        <a href="/ja/diff-checker/" hreflang="ja" lang="ja">日本語</a>
+                        <a href="/ko/diff-checker/" hreflang="ko" lang="ko" aria-current="page">한국어</a>
+                        <a href="/es/diff-checker/" hreflang="es" lang="es">Español</a>
+                        <a href="/fr/diff-checker/" hreflang="fr" lang="fr">Français</a>
+                    </div></details>
+            </nav>
+        </header>
+        <main>
+            <section class="hero"><h1 class="hero-title">Diff 체커</h1><p class="sub hero-sub">두 텍스트를 로컬에서 비교하고 추가, 삭제, 변경 없음 라인을 확인합니다.</p></section>
+            <div class="grid" id="layout">
+                <section class="bg-tool" aria-label="Diff 체커">
+                    <div class="bg-tool-head"><div><p class="section-eyebrow">로컬 개발 비교 도구</p><h2>원본과 변경 텍스트를 비교하세요.</h2><p>두 버전을 붙여넣고 line-based diff를 실행하며 서버로 보내지 않고 결과를 복사합니다.</p></div></div>
+                    <div class="bg-workbench">
+                        <div class="bg-panel">
+                            <div class="bg-controls">
+                                <label class="range-field" for="diff-left"><span>원본 텍스트</span><textarea id="diff-left" rows="12" spellcheck="false" class="mono" style="width:100%;resize:vertical;overflow-wrap:anywhere;"></textarea></label>
+                                <label class="range-field" for="diff-right"><span>변경 텍스트</span><textarea id="diff-right" rows="12" spellcheck="false" class="mono" style="width:100%;resize:vertical;overflow-wrap:anywhere;"></textarea></label>
+                                <label><input id="diff-ignore-case" type="checkbox"> 대소문자 무시</label>
+                                <label><input id="diff-ignore-whitespace" type="checkbox"> 공백 무시</label>
+                                <button class="btn btn-accent" id="diff-compare" type="button">텍스트 비교</button>
+                                <button class="btn btn-ghost" id="diff-sample" type="button">샘플 Diff</button>
+                                <button class="btn btn-ghost" id="diff-clear" type="button">지우기</button>
+                            </div>
+                            <p class="bg-status"><b>요약:</b> <span id="diff-summary" class="mono num"></span></p>
+                            <p class="bg-status" id="diff-status"></p>
+                        </div>
+                        <div class="bg-panel">
+                            <div class="range-field"><span>Diff 출력</span><div id="diff-output" class="mono" style="max-height:360px;overflow:auto;border:1px solid var(--line);border-radius:8px;"></div></div>
+                            <div class="bg-controls" style="margin-top:16px;"><button class="btn btn-accent" id="diff-copy" type="button">Diff 복사</button></div>
+                        </div>
+                    </div>
+                    <div class="banner-ad"><span class="ad-label">Ad</span><ins class="adsbygoogle ad-below" style="display:block" data-ad-client="ca-pub-2823470980745945" data-ad-slot="REPLACE_DIFF_BELOW_TOOL_SLOT_ID" data-ad-format="auto" data-full-width-responsive="true"></ins></div>
+                </section>
+                <aside class="rail" aria-label="Sidebar"><div class="ad-slot"><span class="ad-label">Ad</span><div class="ad-body"><ins class="adsbygoogle ad-rail" style="display:block" data-ad-client="ca-pub-2823470980745945" data-ad-slot="REPLACE_DIFF_RAIL_SLOT_ID" data-ad-format="auto" data-full-width-responsive="true"></ins></div><div class="ad-foot"></div></div><div class="rail-card trust"><h3>개인정보 보호 설계</h3><div class="item"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg><div><b>로컬 비교.</b> 텍스트 비교는 브라우저에서 실행됩니다.</div></div><div class="item"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg><div><b>업로드 없음.</b> 텍스트는 기기에 남아 있습니다.</div></div></div></aside>
+            </div>
+            <section id="how" class="article"><h2>Diff Checker는 언제 사용하나요?</h2><p>Diff는 편집 리뷰, snippet 비교, 설정 변경 확인, 텍스트 출력 디버깅에 유용합니다.</p><p>이 도구는 간단한 line-based 비교를 사용하고 텍스트를 HTML이 아닌 텍스트로 안전하게 렌더링합니다.</p></section>
+            <section id="faq" class="article"><h2>자주 묻는 질문</h2>
+                <h3>이 Diff 도구는 무료인가요?</h3>
+                <p>네. 가입 없이 비교, 복사, 지우기를 할 수 있습니다.</p>
+                <h3>텍스트가 업로드되나요?</h3>
+                <p>아니요. 비교는 브라우저에서 로컬로 실행됩니다.</p>
+                <h3>어떤 diff를 사용하나요?</h3>
+                <p>추가, 삭제, 변경 없음 라인을 표시하는 line-based diff입니다.</p>
+                <h3>공백이나 대소문자를 무시할 수 있나요?</h3>
+                <p>네. 비교 전에 토글을 사용하세요.</p>
+                <h3>Unicode를 지원하나요?</h3>
+                <p>네. Unicode와 이모지를 브라우저 문자열로 처리합니다.</p>
+            </section>
+            <section id="privacy" class="article"><h2>개인정보 처리방침</h2><p>이 도구에 입력한 텍스트를 수집, 저장, 업로드 또는 전송하지 않습니다.</p></section>
+            <section id="terms" class="article"><h2>이용 약관</h2><p>ConvertUnlimited는 있는 그대로 제공됩니다. 프로덕션 워크플로에서 사용하기 전에 diff 출력을 검토하세요.</p></section>
+<!-- RELATED_TOOLS_START -->
+        <section class="related-tools">
+            <div class="category-title">관련 도구</div>
+            <div class="tool-grid">
+                <a href="/ko/regex-tester/" class="tool-item">
+                    <div class="icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h4"/><path d="M6 5v4"/><path d="M12 7h.01"/><path d="M16 7h.01"/><path d="M20 7h.01"/><path d="M5 16c2-3 5-3 7 0s5 3 7 0"/></svg>
+                    </div>
+                    <h3>Regex 테스터</h3>
+                    <p>브라우저에서 JavaScript regex pattern을 테스트합니다.</p>
+                </a>
+                <a href="/ko/json-formatter/" class="tool-item">
+                    <div class="icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M8 6 4 12l4 6"/><path d="m16 6 4 6-4 6"/><path d="M14 4 10 20"/></svg>
+                    </div>
+                    <h3>JSON 포매터</h3>
+                    <p>브라우저에서 JSON을 포맷, 검증, 압축합니다.</p>
+                </a>
+                <a href="/ko/csv-cleaner/" class="tool-item">
+                    <div class="icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16"/><path d="M4 10h16"/><path d="M4 15h16"/><path d="M8 5v14"/><path d="M16 5v14"/><path d="M4 19h16"/></svg>
+                    </div>
+                    <h3>CSV 클리너</h3>
+                    <p>브라우저에서 CSV 행 정리, 공백 제거, 빈 행 삭제, 중복 제거를 수행합니다.</p>
+                </a>
+            </div>
+        </section>
+<!-- RELATED_TOOLS_END -->
+        </main>
+        <footer class="footer"><div>© <span id="copyright-year">2026</span> ConvertUnlimited.com — runs entirely in your browser.</div><nav class="links" aria-label="Footer"><a href="/ko/tools/">Tools</a><a href="/ko/diff-checker/#how">Guide</a><a href="/ko/diff-checker/#faq">FAQ</a><a href="/ko/diff-checker/#privacy">Privacy</a><a href="/ko/diff-checker/#terms">Terms</a></nav></footer>
+    </div>
+    <script src="/diff-checker/diff-checker.js"></script>
+</body>
+</html>

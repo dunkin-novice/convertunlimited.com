@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Công cụ Watermark - Thêm watermark văn bản vào ảnh | ConvertUnlimited</title>
+    <meta name="description" content="Thêm watermark văn bản vào ảnh trong trình duyệt. Chỉnh vị trí, độ mờ, kích thước, xem trước cục bộ và tải PNG không upload.">
+    <meta name="robots" content="index,follow,max-image-preview:large">
+    <meta name="theme-color" content="#3aa17e">
+    <meta name="google-adsense-account" content="ca-pub-2823470980745945">
+    <link rel="canonical" href="https://www.convertunlimited.com/vi/watermark-tool/">
+
+    <link rel="alternate" hreflang="en" href="https://www.convertunlimited.com/watermark-tool/">
+    <link rel="alternate" hreflang="th" href="https://www.convertunlimited.com/th/watermark-tool/">
+    <link rel="alternate" hreflang="vi" href="https://www.convertunlimited.com/vi/watermark-tool/">
+    <link rel="alternate" hreflang="zh-Hans" href="https://www.convertunlimited.com/zh/watermark-tool/">
+    <link rel="alternate" hreflang="ja" href="https://www.convertunlimited.com/ja/watermark-tool/">
+    <link rel="alternate" hreflang="ko" href="https://www.convertunlimited.com/ko/watermark-tool/">
+    <link rel="alternate" hreflang="es" href="https://www.convertunlimited.com/es/watermark-tool/">
+    <link rel="alternate" hreflang="fr" href="https://www.convertunlimited.com/fr/watermark-tool/">
+    <link rel="alternate" hreflang="x-default" href="https://www.convertunlimited.com/watermark-tool/">
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="alternate icon" href="/favicon.svg">
+    <link rel="apple-touch-icon" href="/favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/style.css">
+    <style>.watermark-preview{width:100%;max-height:520px;object-fit:contain;border:1px solid var(--line);border-radius:8px;background:var(--bg-2)}.watermark-empty{display:grid;min-height:280px;place-items:center;border:1px dashed var(--line);border-radius:8px;color:var(--ink-3);text-align:center;padding:24px}.watermark-select{width:100%;min-height:42px;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--ink);padding:0 10px}</style>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","inLanguage":"vi","mainEntity":[{"@type":"Question","name":"Công cụ này miễn phí không?","acceptedAnswer":{"@type":"Answer","text":"Có. Bạn có thể thêm và tải watermark văn bản không cần đăng ký."}},{"@type":"Question","name":"Ảnh có được upload không?","acceptedAnswer":{"@type":"Answer","text":"Không. Ảnh được xử lý cục bộ trong trình duyệt."}},{"@type":"Question","name":"Có đổi vị trí watermark không?","acceptedAnswer":{"@type":"Answer","text":"Có. Chọn góc, giữa hoặc cạnh trước khi xuất."}},{"@type":"Question","name":"Có chỉnh độ mờ và kích thước không?","acceptedAnswer":{"@type":"Answer","text":"Có. Dùng slider để chỉnh bản xem trước."}},{"@type":"Question","name":"Xuất định dạng nào?","acceptedAnswer":{"@type":"Answer","text":"Công cụ xuất ảnh PNG từ canvas của trình duyệt."}}]}</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2823470980745945" crossorigin="anonymous"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-98HSCSEKBX"></script>
+    <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-98HSCSEKBX');</script>
+</head>
+<body>
+    <div class="app">
+        <header class="topbar">
+            <a href="/vi/" class="brand" aria-label="ConvertUnlimited home"><span class="mark" aria-hidden="true"></span><span class="word"><b>Convert</b><span>Unlimited</span></span></a>
+            <nav class="topnav" aria-label="Primary">
+                <span class="pill"><span class="dot"></span>100% free, no signup</span>
+                <details class="tools-dropdown"><summary aria-label="Tools">Tools <svg width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin-left: 2px; opacity: 0.5;"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></summary><div class="dropdown-menu" role="menu"><div class="dropdown-section">Image Tools</div><a href="/vi/">Image Converter</a><a href="/vi/image-compressor/">Image Compressor</a><a href="/vi/image-resizer/">Image Resizer</a><a href="/vi/metadata-remover/">Metadata Remover</a><a href="/vi/watermark-tool/" aria-current="page">Watermark Tool</a><a href="/vi/avif-converter/">AVIF Converter</a></div></details>
+                <details class="lang-switcher"><summary aria-label="Language"><span aria-hidden="true">🌐</span> VI</summary><div class="lang-menu" role="menu">
+                        <a href="/watermark-tool/" hreflang="en" lang="en">English</a>
+                        <a href="/th/watermark-tool/" hreflang="th" lang="th">ไทย</a>
+                        <a href="/vi/watermark-tool/" hreflang="vi" lang="vi" aria-current="page">Tiếng Việt</a>
+                        <a href="/zh/watermark-tool/" hreflang="zh-Hans" lang="zh-Hans">中文（简体）</a>
+                        <a href="/ja/watermark-tool/" hreflang="ja" lang="ja">日本語</a>
+                        <a href="/ko/watermark-tool/" hreflang="ko" lang="ko">한국어</a>
+                        <a href="/es/watermark-tool/" hreflang="es" lang="es">Español</a>
+                        <a href="/fr/watermark-tool/" hreflang="fr" lang="fr">Français</a>
+                    </div></details>
+            </nav>
+        </header>
+        <main>
+            <section class="hero"><h1 class="hero-title">Công cụ Watermark</h1><p class="sub hero-sub">Thêm watermark văn bản vào ảnh ngay trong trình duyệt.</p></section>
+            <div class="grid" id="layout">
+                <section class="bg-tool" aria-label="Công cụ Watermark">
+                    <div class="bg-tool-head"><div><p class="section-eyebrow">Watermark ảnh cục bộ</p><h2>Tạo ảnh có watermark.</h2><p>Chọn ảnh, sửa chữ watermark, chỉnh vị trí, độ mờ và kích thước rồi xuất PNG. Ảnh ở lại trên thiết bị.</p></div></div>
+                    <div class="bg-workbench">
+                        <div class="bg-panel">
+                            <div class="bg-drop" id="watermark-dropzone" tabindex="0" role="button" aria-label="Chọn ảnh">
+                                <div class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 4 7v6c0 5 8 8 8 8s8-3 8-8V7l-8-4Z"/><path d="M9 12h6"/></svg></div>
+                                <div class="title">Chọn ảnh</div>
+                                <div class="hint">JPG, PNG, WebP hoặc ảnh trình duyệt hỗ trợ</div>
+                                <input type="file" id="watermark-file-input" accept="image/*" hidden>
+                            </div>
+                            <div class="bg-controls" style="margin-top:16px;">
+                                <label class="range-field" for="watermark-text"><span>Văn bản watermark</span><input id="watermark-text" type="text" value="ConvertUnlimited" style="width:100%;min-height:42px;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--ink);padding:0 10px;"></label>
+                                <label class="range-field" for="watermark-position"><span>Vị trí</span><select id="watermark-position" class="watermark-select"><option value="top-left">Top left</option><option value="top-center">Top center</option><option value="top-right">Top right</option><option value="middle-left">Middle left</option><option value="middle-center">Center</option><option value="middle-right">Middle right</option><option value="bottom-left">Bottom left</option><option value="bottom-center">Bottom center</option><option value="bottom-right" selected>Bottom right</option></select></label>
+                                <label class="range-field" for="watermark-opacity"><span>Độ mờ</span><input id="watermark-opacity" type="range" min="10" max="100" value="70"><span class="mono num" id="watermark-opacity-value">70%</span></label>
+                                <label class="range-field" for="watermark-size"><span>Kích thước</span><input id="watermark-size" type="range" min="2" max="18" value="6"><span class="mono num" id="watermark-size-value">6%</span></label>
+                                <button class="btn btn-accent" id="watermark-download" type="button" disabled>Tải PNG</button>
+                                <button class="btn btn-ghost" id="watermark-clear" type="button">Xóa</button>
+                            </div>
+                            <p class="bg-status" id="watermark-status"></p>
+                        </div>
+                        <div class="bg-panel">
+                            <div class="range-field"><span>Xem trước</span><div id="watermark-empty" class="watermark-empty">Bản xem trước ảnh sẽ xuất hiện ở đây.</div><canvas id="watermark-canvas" class="watermark-preview" hidden></canvas></div>
+                        </div>
+                    </div>
+                    <div class="banner-ad"><span class="ad-label">Ad</span><ins class="adsbygoogle ad-below" style="display:block" data-ad-client="ca-pub-2823470980745945" data-ad-slot="REPLACE_WATERMARK_BELOW_TOOL_SLOT_ID" data-ad-format="auto" data-full-width-responsive="true"></ins></div>
+                </section>
+                <aside class="rail" aria-label="Sidebar"><div class="ad-slot"><span class="ad-label">Ad</span><div class="ad-body"><ins class="adsbygoogle ad-rail" style="display:block" data-ad-client="ca-pub-2823470980745945" data-ad-slot="REPLACE_WATERMARK_RAIL_SLOT_ID" data-ad-format="auto" data-full-width-responsive="true"></ins></div><div class="ad-foot"></div></div><div class="rail-card trust"><h3>Vì sao riêng tư</h3><div class="item"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg><div><b>Chạy trong trình duyệt.</b> Watermark được vẽ cục bộ bằng Canvas.</div></div><div class="item"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg><div><b>Không upload.</b> Ảnh không được gửi lên server.</div></div></div></aside>
+            </div>
+            <section id="how" class="article"><h2>Khi nào nên watermark ảnh?</h2><p>Watermark giúp đánh dấu sở hữu, chuẩn bị bản nháp, gắn nhãn preview và chia sẻ ảnh với ngữ cảnh thương hiệu hoặc nguồn.</p><p>Giữ watermark dễ đọc nhưng không che chi tiết quan trọng. Với ảnh nhạy cảm, hãy xóa metadata trước khi đăng.</p></section>
+            <section id="faq" class="article"><h2>Câu hỏi thường gặp</h2>
+                <h3>Công cụ này miễn phí không?</h3>
+                <p>Có. Bạn có thể thêm và tải watermark văn bản không cần đăng ký.</p>
+                <h3>Ảnh có được upload không?</h3>
+                <p>Không. Ảnh được xử lý cục bộ trong trình duyệt.</p>
+                <h3>Có đổi vị trí watermark không?</h3>
+                <p>Có. Chọn góc, giữa hoặc cạnh trước khi xuất.</p>
+                <h3>Có chỉnh độ mờ và kích thước không?</h3>
+                <p>Có. Dùng slider để chỉnh bản xem trước.</p>
+                <h3>Xuất định dạng nào?</h3>
+                <p>Công cụ xuất ảnh PNG từ canvas của trình duyệt.</p>
+            </section>
+            <section id="privacy" class="article"><h2>Chính sách quyền riêng tư</h2><p>Chúng tôi không thu thập, lưu trữ, upload hoặc truyền ảnh dùng trong công cụ này.</p></section>
+            <section id="terms" class="article"><h2>Điều khoản sử dụng</h2><p>ConvertUnlimited được cung cấp nguyên trạng. Bạn chịu trách nhiệm với ảnh và chữ watermark tạo ra.</p></section>
+<!-- RELATED_TOOLS_START -->
+        <section class="related-tools">
+            <div class="category-title">Công cụ liên quan</div>
+            <div class="tool-grid">
+                <a href="/vi/image-resizer/" class="tool-item">
+                    <div class="icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><polyline points="21 8 21 21 8 21"/><line x1="21" y1="21" x2="3" y2="3"/><polyline points="3 16 3 3 16 3"/></svg>
+                    </div>
+                    <h3>Thay đổi kích thước</h3>
+                    <p>Thay đổi kích thước hình ảnh cho mạng xã hội hoặc trang web.</p>
+                </a>
+                <a href="/vi/image-compressor/" class="tool-item">
+                    <div class="icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 14h6c1.1 0 2-0.9 2-2V6c0-1.1-0.9-2-2-2H4C2.9 4 2 4.9 2 6v6C2 13.1 2.9 14 4 14z"/><path d="M20 14h-6c-1.1 0-2-0.9-2-2V6c0-1.1 0.9-2 2-2h6c1.1 0 2 0.9 2 2v6C22 13.1 21.1 14 20 14z"/><path d="M4 22h6c1.1 0 2-0.9 2-2v-6c0-1.1-0.9-2-2-2H4c-1.1 0-2 0.9-2 2v6C2 21.1 2.9 22 4 22z"/><path d="M20 22h-6c-1.1 0-2-0.9-2-2v-6c0-1.1 0.9-2 2-2h6c1.1 0 2 0.9 2 2v6C22 21.1 21.1 22 20 22z"/></svg>
+                    </div>
+                    <h3>Nén hình ảnh</h3>
+                    <p>Giảm dung lượng file hình ảnh trong khi vẫn duy trì chất lượng hình ảnh.</p>
+                </a>
+                <a href="/vi/metadata-remover/" class="tool-item">
+                    <div class="icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+                    </div>
+                    <h3>Xóa Metadata</h3>
+                    <p>Loại bỏ dữ liệu EXIF, GPS và dữ liệu riêng tư cá nhân khỏi ảnh.</p>
+                </a>
+            </div>
+        </section>
+<!-- RELATED_TOOLS_END -->
+        </main>
+        <footer class="footer"><div>© <span id="copyright-year">2026</span> ConvertUnlimited.com — runs entirely in your browser.</div><nav class="links" aria-label="Footer"><a href="/vi/tools/">Tools</a><a href="/vi/watermark-tool/#how">Guide</a><a href="/vi/watermark-tool/#faq">FAQ</a><a href="/vi/watermark-tool/#privacy">Privacy</a><a href="/vi/watermark-tool/#terms">Terms</a></nav></footer>
+    </div>
+    <script src="/watermark-tool/watermark-tool.js"></script>
+</body>
+</html>

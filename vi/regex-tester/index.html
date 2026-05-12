@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trình kiểm tra Regex - Test regular expression online | ConvertUnlimited</title>
+    <meta name="description" content="Test JavaScript regex trong trình duyệt. Highlight match, flags, capture group, replace preview, Unicode và không upload.">
+    <meta name="robots" content="index,follow,max-image-preview:large">
+    <meta name="theme-color" content="#3aa17e">
+    <meta name="google-adsense-account" content="ca-pub-2823470980745945">
+    <link rel="canonical" href="https://www.convertunlimited.com/vi/regex-tester/">
+
+    <link rel="alternate" hreflang="en" href="https://www.convertunlimited.com/regex-tester/">
+    <link rel="alternate" hreflang="th" href="https://www.convertunlimited.com/th/regex-tester/">
+    <link rel="alternate" hreflang="vi" href="https://www.convertunlimited.com/vi/regex-tester/">
+    <link rel="alternate" hreflang="zh-Hans" href="https://www.convertunlimited.com/zh/regex-tester/">
+    <link rel="alternate" hreflang="ja" href="https://www.convertunlimited.com/ja/regex-tester/">
+    <link rel="alternate" hreflang="ko" href="https://www.convertunlimited.com/ko/regex-tester/">
+    <link rel="alternate" hreflang="es" href="https://www.convertunlimited.com/es/regex-tester/">
+    <link rel="alternate" hreflang="fr" href="https://www.convertunlimited.com/fr/regex-tester/">
+    <link rel="alternate" hreflang="x-default" href="https://www.convertunlimited.com/regex-tester/">
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="alternate icon" href="/favicon.svg">
+    <link rel="apple-touch-icon" href="/favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/style.css">
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","inLanguage":"vi","mainEntity":[{"@type":"Question","name":"Công cụ này miễn phí không?","acceptedAnswer":{"@type":"Answer","text":"Có. Bạn có thể test pattern và preview replace không cần đăng ký."}},{"@type":"Question","name":"Văn bản có được upload không?","acceptedAnswer":{"@type":"Answer","text":"Không. Regex chạy cục bộ trong trình duyệt."}},{"@type":"Question","name":"Dùng engine regex nào?","acceptedAnswer":{"@type":"Answer","text":"Dùng JavaScript RegExp engine của trình duyệt."}},{"@type":"Question","name":"Pattern lỗi thì sao?","acceptedAnswer":{"@type":"Answer","text":"Công cụ cảnh báo thân thiện và giữ nguyên đầu vào."}},{"@type":"Question","name":"Có hỗ trợ Unicode regex không?","acceptedAnswer":{"@type":"Answer","text":"Có. Dùng flag u cho Unicode."}}]}</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2823470980745945" crossorigin="anonymous"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-98HSCSEKBX"></script>
+    <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-98HSCSEKBX');</script>
+</head>
+<body>
+    <div class="app">
+        <header class="topbar">
+            <a href="/vi/" class="brand" aria-label="ConvertUnlimited home"><span class="mark" aria-hidden="true"></span><span class="word"><b>Convert</b><span>Unlimited</span></span></a>
+            <nav class="topnav" aria-label="Primary">
+                <span class="pill"><span class="dot"></span>100% free, no signup</span>
+                <details class="tools-dropdown"><summary aria-label="Tools">Tools <svg width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin-left: 2px; opacity: 0.5;"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></summary><div class="dropdown-menu" role="menu"><div class="dropdown-section">Developer Tools</div><a href="/vi/regex-tester/" aria-current="page">Regex Tester</a><a href="/vi/json-formatter/">JSON Formatter</a><a href="/vi/url-encoder-decoder/">URL Encoder</a><a href="/vi/timestamp-converter/">Timestamp Converter</a></div></details>
+                <details class="lang-switcher"><summary aria-label="Language"><span aria-hidden="true">🌐</span> VI</summary><div class="lang-menu" role="menu">
+                        <a href="/regex-tester/" hreflang="en" lang="en">English</a>
+                        <a href="/th/regex-tester/" hreflang="th" lang="th">ไทย</a>
+                        <a href="/vi/regex-tester/" hreflang="vi" lang="vi" aria-current="page">Tiếng Việt</a>
+                        <a href="/zh/regex-tester/" hreflang="zh-Hans" lang="zh-Hans">中文（简体）</a>
+                        <a href="/ja/regex-tester/" hreflang="ja" lang="ja">日本語</a>
+                        <a href="/ko/regex-tester/" hreflang="ko" lang="ko">한국어</a>
+                        <a href="/es/regex-tester/" hreflang="es" lang="es">Español</a>
+                        <a href="/fr/regex-tester/" hreflang="fr" lang="fr">Français</a>
+                    </div></details>
+            </nav>
+        </header>
+        <main>
+            <section class="hero"><h1 class="hero-title">Trình kiểm tra Regex</h1><p class="sub hero-sub">Test regular expression cục bộ cho validation, parsing và debugging.</p></section>
+            <div class="grid" id="layout">
+                <section class="bg-tool" aria-label="Trình kiểm tra Regex">
+                    <div class="bg-tool-head"><div><p class="section-eyebrow">Công cụ validation cục bộ</p><h2>Test regex pattern an toàn.</h2><p>Nhập pattern và văn bản mẫu để highlight match, xem replace preview và capture group mà không gửi dữ liệu lên server.</p></div></div>
+                    <div class="bg-workbench">
+                        <div class="bg-panel">
+                            <div class="bg-controls">
+                                <label class="range-field" for="regex-pattern"><span>Regex pattern</span><input id="regex-pattern" class="mono" type="text" spellcheck="false"></label>
+                                <div class="range-field"><span>Flags</span><div class="bg-controls" style="gap:8px;"><label><input id="regex-flag-g" type="checkbox" checked> g</label><label><input id="regex-flag-i" type="checkbox"> i</label><label><input id="regex-flag-m" type="checkbox"> m</label><label><input id="regex-flag-s" type="checkbox"> s</label><label><input id="regex-flag-u" type="checkbox"> u</label></div></div>
+                                <label class="range-field" for="regex-text"><span>Văn bản test</span><textarea id="regex-text" rows="10" spellcheck="false" class="mono" style="width:100%;resize:vertical;overflow-wrap:anywhere;"></textarea></label>
+                                <label class="range-field" for="regex-replace"><span>Thay bằng</span><input id="regex-replace" class="mono" type="text" spellcheck="false"></label>
+                                <button class="btn btn-ghost" id="regex-sample" type="button">Regex mẫu</button>
+                                <button class="btn btn-ghost" id="regex-clear" type="button">Xóa</button>
+                            </div>
+                            <p class="bg-status" id="regex-status"></p>
+                            <p class="bg-status" id="regex-warning" style="color: var(--warn);"></p>
+                        </div>
+                        <div class="bg-panel">
+                            <div class="range-field"><span>Match được highlight</span><pre id="regex-output" class="mono" style="white-space:pre-wrap;overflow-wrap:anywhere;max-height:220px;overflow:auto;border:1px solid var(--line);padding:12px;border-radius:8px;"></pre></div>
+                            <label class="range-field" for="regex-results"><span>Kết quả match</span><textarea id="regex-results" rows="6" spellcheck="false" class="mono" readonly style="width:100%;resize:vertical;"></textarea></label>
+                            <label class="range-field" for="regex-replace-preview"><span>Replace preview</span><textarea id="regex-replace-preview" rows="6" spellcheck="false" class="mono" readonly style="width:100%;resize:vertical;"></textarea></label>
+                        </div>
+                    </div>
+                    <div class="banner-ad"><span class="ad-label">Ad</span><ins class="adsbygoogle ad-below" style="display:block" data-ad-client="ca-pub-2823470980745945" data-ad-slot="REPLACE_REGEX_BELOW_TOOL_SLOT_ID" data-ad-format="auto" data-full-width-responsive="true"></ins></div>
+                </section>
+                <aside class="rail" aria-label="Sidebar"><div class="ad-slot"><span class="ad-label">Ad</span><div class="ad-body"><ins class="adsbygoogle ad-rail" style="display:block" data-ad-client="ca-pub-2823470980745945" data-ad-slot="REPLACE_REGEX_RAIL_SLOT_ID" data-ad-format="auto" data-full-width-responsive="true"></ins></div><div class="ad-foot"></div></div><div class="rail-card trust"><h3>Riêng tư từ thiết kế</h3><div class="item"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg><div><b>Test cục bộ.</b> Regex chạy trong trình duyệt.</div></div><div class="item"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg><div><b>Không upload.</b> Pattern và văn bản ở lại trên thiết bị.</div></div></div></aside>
+            </div>
+            <section id="how" class="article"><h2>Khi nào nên test regex?</h2><p>Regex giúp validate form, parse log, kiểm tra text API và debug rule trước khi đưa vào code.</p><p>Công cụ dùng JavaScript RegExp của trình duyệt và render text như văn bản, không phải HTML.</p></section>
+            <section id="faq" class="article"><h2>Câu hỏi thường gặp</h2>
+                <h3>Công cụ này miễn phí không?</h3>
+                <p>Có. Bạn có thể test pattern và preview replace không cần đăng ký.</p>
+                <h3>Văn bản có được upload không?</h3>
+                <p>Không. Regex chạy cục bộ trong trình duyệt.</p>
+                <h3>Dùng engine regex nào?</h3>
+                <p>Dùng JavaScript RegExp engine của trình duyệt.</p>
+                <h3>Pattern lỗi thì sao?</h3>
+                <p>Công cụ cảnh báo thân thiện và giữ nguyên đầu vào.</p>
+                <h3>Có hỗ trợ Unicode regex không?</h3>
+                <p>Có. Dùng flag u cho Unicode.</p>
+            </section>
+            <section id="privacy" class="article"><h2>Chính sách quyền riêng tư</h2><p>Chúng tôi không thu thập, lưu trữ, upload hoặc truyền regex pattern hay văn bản test.</p></section>
+            <section id="terms" class="article"><h2>Điều khoản sử dụng</h2><p>ConvertUnlimited được cung cấp nguyên trạng. Hãy test expression kỹ trước khi dùng production.</p></section>
+<!-- RELATED_TOOLS_START -->
+        <section class="related-tools">
+            <div class="category-title">Công cụ liên quan</div>
+            <div class="tool-grid">
+                <a href="/vi/diff-checker/" class="tool-item">
+                    <div class="icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M6 5h8"/><path d="M6 9h12"/><path d="M6 15h8"/><path d="M6 19h12"/><path d="M3 5h.01"/><path d="M3 9h.01"/><path d="M3 15h.01"/><path d="M3 19h.01"/><path d="m17 4 4 4-4 4"/></svg>
+                    </div>
+                    <h3>Trình kiểm tra Diff</h3>
+                    <p>So sánh hai văn bản cục bộ trong trình duyệt.</p>
+                </a>
+                <a href="/vi/json-formatter/" class="tool-item">
+                    <div class="icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M8 6 4 12l4 6"/><path d="m16 6 4 6-4 6"/><path d="M14 4 10 20"/></svg>
+                    </div>
+                    <h3>Trình định dạng JSON</h3>
+                    <p>Định dạng, kiểm tra và rút gọn JSON cục bộ trong trình duyệt.</p>
+                </a>
+                <a href="/vi/url-encoder-decoder/" class="tool-item">
+                    <div class="icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.1 0l2-2a5 5 0 0 0-7.1-7.1l-1.1 1.1"/><path d="M14 11a5 5 0 0 0-7.1 0l-2 2a5 5 0 0 0 7.1 7.1l1.1-1.1"/></svg>
+                    </div>
+                    <h3>Trình mã hóa / giải mã URL</h3>
+                    <p>Mã hóa và giải mã URL cùng query string cục bộ trong trình duyệt.</p>
+                </a>
+            </div>
+        </section>
+<!-- RELATED_TOOLS_END -->
+        </main>
+        <footer class="footer"><div>© <span id="copyright-year">2026</span> ConvertUnlimited.com — runs entirely in your browser.</div><nav class="links" aria-label="Footer"><a href="/vi/tools/">Tools</a><a href="/vi/regex-tester/#how">Guide</a><a href="/vi/regex-tester/#faq">FAQ</a><a href="/vi/regex-tester/#privacy">Privacy</a><a href="/vi/regex-tester/#terms">Terms</a></nav></footer>
+    </div>
+    <script src="/regex-tester/regex-tester.js"></script>
+</body>
+</html>

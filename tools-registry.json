@@ -1,0 +1,898 @@
+{
+  "locales": [
+    "en",
+    "th",
+    "vi",
+    "zh",
+    "ja",
+    "ko",
+    "es",
+    "fr"
+  ],
+  "categories": [
+    {
+      "id": "image",
+      "label": "Image Tools",
+      "tools": [
+        {
+          "slug": "",
+          "title": "Image Converter",
+          "description": "Convert bulk images to WebP, JPG, or PNG in seconds.",
+          "status": "live",
+          "related": [
+            "qr-generator",
+            "avif-converter",
+            "image-compressor"
+          ]
+        },
+        {
+          "slug": "background-remover",
+          "title": "Background Remover",
+          "description": "Remove white or solid backgrounds from images instantly.",
+          "status": "live",
+          "related": [
+            "image-compressor",
+            "image-resizer",
+            ""
+          ]
+        },
+        {
+          "slug": "image-compressor",
+          "title": "Image Compressor",
+          "description": "Reduce image file size while maintaining visual quality.",
+          "status": "live",
+          "related": [
+            "watermark-tool",
+            "avif-converter",
+            "metadata-remover",
+            "image-resizer"
+          ]
+        },
+        {
+          "slug": "image-resizer",
+          "title": "Image Resizer",
+          "description": "Change image dimensions for social media or websites.",
+          "status": "live",
+          "related": [
+            "watermark-tool",
+            "image-compressor",
+            "",
+            "background-remover"
+          ]
+        },
+        {
+          "slug": "metadata-remover",
+          "title": "Metadata Remover",
+          "description": "Strip EXIF, GPS, and personal privacy data from photos.",
+          "status": "live",
+          "related": [
+            "watermark-tool",
+            "avif-converter",
+            "heic-to-jpg",
+            "image-compressor"
+          ]
+        },
+        {
+          "slug": "heic-to-jpg",
+          "title": "HEIC to JPG",
+          "description": "Convert iPhone HEIC photos to compatible JPG or WebP.",
+          "status": "live",
+          "related": [
+            "metadata-remover",
+            "image-compressor",
+            ""
+          ]
+        },
+        {
+          "slug": "watermark-tool",
+          "title": "Watermark Tool",
+          "description": "Add text watermarks to images locally in your browser.",
+          "status": "live",
+          "related": [
+            "image-resizer",
+            "image-compressor",
+            "metadata-remover",
+            "avif-converter"
+          ],
+          "labels": {
+            "en": {
+              "title": "Watermark Tool",
+              "description": "Add text watermarks to images locally in your browser."
+            },
+            "th": {
+              "title": "เครื่องมือใส่ลายน้ำ",
+              "description": "เพิ่มข้อความลายน้ำบนรูปภาพในเบราว์เซอร์ของคุณ"
+            },
+            "vi": {
+              "title": "Công cụ Watermark",
+              "description": "Thêm watermark văn bản vào ảnh cục bộ trong trình duyệt."
+            },
+            "zh": {
+              "title": "水印工具",
+              "description": "在浏览器中本地给图片添加文字水印。"
+            },
+            "ja": {
+              "title": "ウォーターマークツール",
+              "description": "ブラウザ内で画像に文字ウォーターマークを追加します。"
+            },
+            "ko": {
+              "title": "워터마크 도구",
+              "description": "브라우저에서 이미지에 텍스트 워터마크를 추가합니다."
+            },
+            "es": {
+              "title": "Herramienta de marca de agua",
+              "description": "Añade marcas de agua de texto a imágenes localmente en tu navegador."
+            },
+            "fr": {
+              "title": "Outil filigrane",
+              "description": "Ajoutez des filigranes texte aux images localement dans votre navigateur."
+            }
+          }
+        },
+        {
+          "slug": "avif-converter",
+          "title": "AVIF Converter",
+          "description": "Convert JPG, PNG, and WebP images to AVIF in your browser.",
+          "status": "live",
+          "related": [
+            "watermark-tool",
+            "image-compressor",
+            "image-resizer",
+            "metadata-remover"
+          ],
+          "labels": {
+            "en": {
+              "title": "AVIF Converter",
+              "description": "Convert JPG, PNG, and WebP images to AVIF in your browser."
+            },
+            "th": {
+              "title": "ตัวแปลง AVIF",
+              "description": "แปลงภาพ JPG, PNG และ WebP เป็น AVIF ในเบราว์เซอร์ของคุณ"
+            },
+            "vi": {
+              "title": "Trình chuyển đổi AVIF",
+              "description": "Chuyển ảnh JPG, PNG và WebP sang AVIF ngay trong trình duyệt."
+            },
+            "zh": {
+              "title": "AVIF 转换器",
+              "description": "在浏览器中将 JPG、PNG 和 WebP 图片转换为 AVIF。"
+            },
+            "ja": {
+              "title": "AVIF 変換ツール",
+              "description": "ブラウザ内で JPG、PNG、WebP 画像を AVIF に変換します。"
+            },
+            "ko": {
+              "title": "AVIF 변환기",
+              "description": "브라우저에서 JPG, PNG, WebP 이미지를 AVIF로 변환합니다."
+            },
+            "es": {
+              "title": "Convertidor AVIF",
+              "description": "Convierte imágenes JPG, PNG y WebP a AVIF en tu navegador."
+            },
+            "fr": {
+              "title": "Convertisseur AVIF",
+              "description": "Convertissez des images JPG, PNG et WebP en AVIF dans votre navigateur."
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "pdf",
+      "label": "PDF Tools",
+      "tools": [
+        {
+          "slug": "images-to-pdf",
+          "title": "Images to PDF",
+          "description": "Combine multiple photos into a single PDF document.",
+          "status": "live",
+          "related": [
+            "pdf-to-images",
+            "merge-pdf",
+            "compress-pdf"
+          ]
+        },
+        {
+          "slug": "pdf-to-images",
+          "title": "PDF to Images",
+          "description": "Extract every page of a PDF as high-quality images.",
+          "status": "live",
+          "related": [
+            "images-to-pdf",
+            "split-pdf",
+            "compress-pdf"
+          ]
+        },
+        {
+          "slug": "merge-pdf",
+          "title": "Merge PDF",
+          "description": "Join multiple PDF files into one secure document.",
+          "status": "live",
+          "related": [
+            "split-pdf",
+            "compress-pdf",
+            "images-to-pdf"
+          ]
+        },
+        {
+          "slug": "split-pdf",
+          "title": "Split PDF",
+          "description": "Extract specific page ranges into new PDF files.",
+          "status": "live",
+          "related": [
+            "merge-pdf",
+            "pdf-to-images",
+            "compress-pdf"
+          ]
+        },
+        {
+          "slug": "compress-pdf",
+          "title": "Compress PDF",
+          "description": "Reduce PDF file size locally without losing text quality.",
+          "status": "live",
+          "related": [
+            "merge-pdf",
+            "split-pdf",
+            "images-to-pdf"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "seo",
+      "label": "SEO Tools",
+      "tools": [
+        {
+          "slug": "qr-generator",
+          "title": "QR Generator",
+          "description": "Create static QR codes for URLs and text in your browser.",
+          "status": "live",
+          "related": [
+            "meta-preview-checker",
+            "json-formatter",
+            "avif-converter"
+          ],
+          "labels": {
+            "en": {
+              "title": "QR Generator",
+              "description": "Create static QR codes for URLs and text in your browser."
+            },
+            "th": {
+              "title": "ตัวสร้าง QR",
+              "description": "สร้าง QR Code แบบคงที่สำหรับ URL และข้อความในเบราว์เซอร์"
+            },
+            "vi": {
+              "title": "Trình tạo QR",
+              "description": "Tạo mã QR tĩnh cho URL và văn bản trong trình duyệt."
+            },
+            "zh": {
+              "title": "二维码生成器",
+              "description": "在浏览器中为网址和文本创建静态二维码。"
+            },
+            "ja": {
+              "title": "QR コード生成",
+              "description": "ブラウザ内で URL やテキスト用の静的 QR コードを作成します。"
+            },
+            "ko": {
+              "title": "QR 생성기",
+              "description": "브라우저에서 URL과 텍스트용 정적 QR 코드를 만듭니다."
+            },
+            "es": {
+              "title": "Generador QR",
+              "description": "Crea códigos QR estáticos para URLs y texto en tu navegador."
+            },
+            "fr": {
+              "title": "Générateur QR",
+              "description": "Créez des QR codes statiques pour URL et texte dans votre navigateur."
+            }
+          }
+        },
+        {
+          "slug": "meta-preview-checker",
+          "title": "Meta Preview Checker",
+          "description": "Preview Google, Open Graph, and X cards from manual title and description inputs.",
+          "status": "live",
+          "related": [
+            "url-encoder-decoder",
+            "csv-to-json",
+            "json-formatter",
+            "csv-cleaner"
+          ],
+          "labels": {
+            "en": {
+              "title": "Meta Preview Checker",
+              "description": "Preview Google, Open Graph, and X cards from manual title and description inputs."
+            },
+            "th": {
+              "title": "ตัวตรวจพรีวิวเมตา",
+              "description": "ดูตัวอย่าง Google, Open Graph และการ์ด X จากชื่อและคำอธิบายที่กรอกเอง"
+            },
+            "vi": {
+              "title": "Trình xem trước meta",
+              "description": "Xem trước Google, Open Graph và thẻ X từ tiêu đề và mô tả nhập thủ công."
+            },
+            "zh": {
+              "title": "Meta 预览检查器",
+              "description": "用手动输入的标题和描述预览 Google、Open Graph 和 X 卡片。"
+            },
+            "ja": {
+              "title": "メタプレビュー確認",
+              "description": "入力したタイトルと説明から Google、Open Graph、X カードをプレビューします。"
+            },
+            "ko": {
+              "title": "메타 미리보기 검사기",
+              "description": "직접 입력한 제목과 설명으로 Google, Open Graph, X 카드를 미리 봅니다."
+            },
+            "es": {
+              "title": "Comprobador de meta preview",
+              "description": "Previsualiza Google, Open Graph y tarjetas de X con título y descripción manuales."
+            },
+            "fr": {
+              "title": "Vérificateur de méta aperçu",
+              "description": "Prévisualisez Google, Open Graph et les cartes X avec un titre et une description saisis manuellement."
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "developer",
+      "label": "Developer Tools",
+      "tools": [
+        {
+          "slug": "json-formatter",
+          "title": "JSON Formatter",
+          "description": "Format, validate, and minify JSON locally in your browser.",
+          "status": "live",
+          "related": [
+            "jwt-decoder",
+            "diff-checker",
+            "regex-tester",
+            "timestamp-converter"
+          ],
+          "labels": {
+            "en": {
+              "title": "JSON Formatter",
+              "description": "Format, validate, and minify JSON locally in your browser."
+            },
+            "th": {
+              "title": "ตัวจัดรูปแบบ JSON",
+              "description": "จัดรูปแบบ ตรวจสอบ และย่อ JSON ในเบราว์เซอร์ของคุณ"
+            },
+            "vi": {
+              "title": "Trình định dạng JSON",
+              "description": "Định dạng, kiểm tra và rút gọn JSON cục bộ trong trình duyệt."
+            },
+            "zh": {
+              "title": "JSON 格式化工具",
+              "description": "在浏览器中本地格式化、验证和压缩 JSON。"
+            },
+            "ja": {
+              "title": "JSON フォーマッター",
+              "description": "ブラウザ内で JSON を整形、検証、圧縮します。"
+            },
+            "ko": {
+              "title": "JSON 포매터",
+              "description": "브라우저에서 JSON을 포맷, 검증, 압축합니다."
+            },
+            "es": {
+              "title": "Formateador JSON",
+              "description": "Formatea, valida y minifica JSON localmente en tu navegador."
+            },
+            "fr": {
+              "title": "Formateur JSON",
+              "description": "Formatez, validez et minifiez du JSON localement dans votre navigateur."
+            }
+          }
+        },
+        {
+          "slug": "csv-cleaner",
+          "title": "CSV Cleaner",
+          "description": "Clean CSV rows, trim whitespace, remove blanks, and deduplicate locally.",
+          "status": "live",
+          "related": [
+            "diff-checker",
+            "csv-to-json",
+            "json-to-csv",
+            "json-formatter"
+          ],
+          "labels": {
+            "en": {
+              "title": "CSV Cleaner",
+              "description": "Clean CSV rows, trim whitespace, remove blanks, and deduplicate locally."
+            },
+            "th": {
+              "title": "ตัวล้าง CSV",
+              "description": "ล้างแถว CSV ตัดช่องว่าง ลบแถวว่าง และลบแถวซ้ำในเบราว์เซอร์"
+            },
+            "vi": {
+              "title": "Trình làm sạch CSV",
+              "description": "Làm sạch dòng CSV, cắt khoảng trắng, xóa dòng trống và bỏ trùng cục bộ."
+            },
+            "zh": {
+              "title": "CSV 清理工具",
+              "description": "在本地清理 CSV 行、去除空白、删除空行并移除重复行。"
+            },
+            "ja": {
+              "title": "CSV クリーナー",
+              "description": "ブラウザ内で CSV 行の整理、空白削除、空行削除、重複削除を行います。"
+            },
+            "ko": {
+              "title": "CSV 클리너",
+              "description": "브라우저에서 CSV 행 정리, 공백 제거, 빈 행 삭제, 중복 제거를 수행합니다."
+            },
+            "es": {
+              "title": "Limpiador CSV",
+              "description": "Limpia filas CSV, recorta espacios, elimina filas vacías y quita duplicados localmente."
+            },
+            "fr": {
+              "title": "Nettoyeur CSV",
+              "description": "Nettoyez les lignes CSV, supprimez les espaces, lignes vides et doublons localement."
+            }
+          }
+        },
+        {
+          "slug": "csv-to-json",
+          "title": "CSV to JSON Converter",
+          "description": "Convert CSV rows into JSON objects locally in your browser.",
+          "status": "live",
+          "related": [
+            "base64-encoder-decoder",
+            "csv-cleaner",
+            "json-to-csv",
+            "json-formatter"
+          ],
+          "labels": {
+            "en": {
+              "title": "CSV to JSON Converter",
+              "description": "Convert CSV rows into JSON objects locally in your browser."
+            },
+            "th": {
+              "title": "ตัวแปลง CSV เป็น JSON",
+              "description": "แปลงแถว CSV เป็นออบเจกต์ JSON ในเบราว์เซอร์ของคุณ"
+            },
+            "vi": {
+              "title": "Trình chuyển CSV sang JSON",
+              "description": "Chuyển dòng CSV thành object JSON cục bộ trong trình duyệt."
+            },
+            "zh": {
+              "title": "CSV 转 JSON 工具",
+              "description": "在浏览器中本地将 CSV 行转换为 JSON 对象。"
+            },
+            "ja": {
+              "title": "CSV to JSON コンバーター",
+              "description": "ブラウザ内で CSV 行を JSON オブジェクトに変換します。"
+            },
+            "ko": {
+              "title": "CSV to JSON 변환기",
+              "description": "브라우저에서 CSV 행을 JSON 객체로 변환합니다."
+            },
+            "es": {
+              "title": "Convertidor CSV a JSON",
+              "description": "Convierte filas CSV en objetos JSON localmente en tu navegador."
+            },
+            "fr": {
+              "title": "Convertisseur CSV vers JSON",
+              "description": "Convertissez des lignes CSV en objets JSON localement dans votre navigateur."
+            }
+          }
+        },
+        {
+          "slug": "json-to-csv",
+          "title": "JSON to CSV Converter",
+          "description": "Convert JSON objects into CSV locally in your browser.",
+          "status": "live",
+          "related": [
+            "base64-encoder-decoder",
+            "csv-to-json",
+            "csv-cleaner",
+            "json-formatter"
+          ],
+          "labels": {
+            "en": {
+              "title": "JSON to CSV Converter",
+              "description": "Convert JSON objects into CSV locally in your browser."
+            },
+            "th": {
+              "title": "ตัวแปลง JSON เป็น CSV",
+              "description": "แปลง JSON object เป็น CSV ในเบราว์เซอร์ของคุณ"
+            },
+            "vi": {
+              "title": "Trình chuyển JSON sang CSV",
+              "description": "Chuyển object JSON thành CSV cục bộ trong trình duyệt."
+            },
+            "zh": {
+              "title": "JSON 转 CSV 工具",
+              "description": "在浏览器中本地将 JSON 对象转换为 CSV。"
+            },
+            "ja": {
+              "title": "JSON to CSV コンバーター",
+              "description": "ブラウザ内で JSON オブジェクトを CSV に変換します。"
+            },
+            "ko": {
+              "title": "JSON to CSV 변환기",
+              "description": "브라우저에서 JSON 객체를 CSV로 변환합니다."
+            },
+            "es": {
+              "title": "Convertidor JSON a CSV",
+              "description": "Convierte objetos JSON en CSV localmente en tu navegador."
+            },
+            "fr": {
+              "title": "Convertisseur JSON vers CSV",
+              "description": "Convertissez des objets JSON en CSV localement dans votre navigateur."
+            }
+          }
+        },
+        {
+          "slug": "base64-encoder-decoder",
+          "title": "Base64 Encoder / Decoder",
+          "description": "Encode and decode Base64 text locally in your browser.",
+          "status": "live",
+          "related": [
+            "jwt-decoder",
+            "url-encoder-decoder",
+            "hash-generator",
+            "json-formatter"
+          ],
+          "labels": {
+            "en": {
+              "title": "Base64 Encoder / Decoder",
+              "description": "Encode and decode Base64 text locally in your browser."
+            },
+            "th": {
+              "title": "ตัวเข้ารหัส / ถอดรหัส Base64",
+              "description": "เข้ารหัสและถอดรหัสข้อความ Base64 ในเบราว์เซอร์ของคุณ"
+            },
+            "vi": {
+              "title": "Trình mã hóa / giải mã Base64",
+              "description": "Mã hóa và giải mã văn bản Base64 cục bộ trong trình duyệt."
+            },
+            "zh": {
+              "title": "Base64 编码 / 解码工具",
+              "description": "在浏览器中本地编码和解码 Base64 文本。"
+            },
+            "ja": {
+              "title": "Base64 エンコード / デコード",
+              "description": "ブラウザ内で Base64 テキストをエンコード、デコードします。"
+            },
+            "ko": {
+              "title": "Base64 인코더 / 디코더",
+              "description": "브라우저에서 Base64 텍스트를 인코딩하고 디코딩합니다."
+            },
+            "es": {
+              "title": "Codificador / decodificador Base64",
+              "description": "Codifica y decodifica texto Base64 localmente en tu navegador."
+            },
+            "fr": {
+              "title": "Encodeur / décodeur Base64",
+              "description": "Encodez et décodez du texte Base64 localement dans votre navigateur."
+            }
+          }
+        },
+        {
+          "slug": "url-encoder-decoder",
+          "title": "URL Encoder / Decoder",
+          "description": "Encode and decode URLs and query strings locally in your browser.",
+          "status": "live",
+          "related": [
+            "jwt-decoder",
+            "base64-encoder-decoder",
+            "regex-tester",
+            "timestamp-converter"
+          ],
+          "labels": {
+            "en": {
+              "title": "URL Encoder / Decoder",
+              "description": "Encode and decode URLs and query strings locally in your browser."
+            },
+            "th": {
+              "title": "ตัวเข้ารหัส / ถอดรหัส URL",
+              "description": "เข้ารหัสและถอดรหัส URL และ query string ในเบราว์เซอร์ของคุณ"
+            },
+            "vi": {
+              "title": "Trình mã hóa / giải mã URL",
+              "description": "Mã hóa và giải mã URL cùng query string cục bộ trong trình duyệt."
+            },
+            "zh": {
+              "title": "URL 编码 / 解码工具",
+              "description": "在浏览器中本地编码和解码 URL 与查询字符串。"
+            },
+            "ja": {
+              "title": "URL エンコード / デコード",
+              "description": "ブラウザ内で URL とクエリ文字列をエンコード、デコードします。"
+            },
+            "ko": {
+              "title": "URL 인코더 / 디코더",
+              "description": "브라우저에서 URL과 쿼리 문자열을 인코딩하고 디코딩합니다."
+            },
+            "es": {
+              "title": "Codificador / decodificador URL",
+              "description": "Codifica y decodifica URLs y query strings localmente en tu navegador."
+            },
+            "fr": {
+              "title": "Encodeur / décodeur URL",
+              "description": "Encodez et décodez URLs et query strings localement dans votre navigateur."
+            }
+          }
+        },
+        {
+          "slug": "uuid-generator",
+          "title": "UUID Generator",
+          "description": "Generate UUID v4 values locally in your browser.",
+          "status": "live",
+          "related": [
+            "timestamp-converter",
+            "hash-generator",
+            "base64-encoder-decoder",
+            "url-encoder-decoder"
+          ],
+          "labels": {
+            "en": {
+              "title": "UUID Generator",
+              "description": "Generate UUID v4 values locally in your browser."
+            },
+            "th": {
+              "title": "ตัวสร้าง UUID",
+              "description": "สร้าง UUID v4 ในเบราว์เซอร์ของคุณ"
+            },
+            "vi": {
+              "title": "Trình tạo UUID",
+              "description": "Tạo UUID v4 cục bộ trong trình duyệt."
+            },
+            "zh": {
+              "title": "UUID 生成器",
+              "description": "在浏览器中本地生成 UUID v4。"
+            },
+            "ja": {
+              "title": "UUID 生成ツール",
+              "description": "ブラウザ内で UUID v4 を生成します。"
+            },
+            "ko": {
+              "title": "UUID 생성기",
+              "description": "브라우저에서 UUID v4를 생성합니다."
+            },
+            "es": {
+              "title": "Generador UUID",
+              "description": "Genera UUID v4 localmente en tu navegador."
+            },
+            "fr": {
+              "title": "Générateur UUID",
+              "description": "Générez des UUID v4 localement dans votre navigateur."
+            }
+          }
+        },
+        {
+          "slug": "hash-generator",
+          "title": "Hash Generator",
+          "description": "Generate SHA-256, SHA-384, and SHA-512 hashes locally in your browser.",
+          "status": "live",
+          "related": [
+            "jwt-decoder",
+            "timestamp-converter",
+            "uuid-generator",
+            "base64-encoder-decoder"
+          ],
+          "labels": {
+            "en": {
+              "title": "Hash Generator",
+              "description": "Generate SHA-256, SHA-384, and SHA-512 hashes locally in your browser."
+            },
+            "th": {
+              "title": "ตัวสร้าง Hash",
+              "description": "สร้าง SHA-256, SHA-384 และ SHA-512 ในเบราว์เซอร์ของคุณ"
+            },
+            "vi": {
+              "title": "Trình tạo Hash",
+              "description": "Tạo hash SHA-256, SHA-384 và SHA-512 cục bộ trong trình duyệt."
+            },
+            "zh": {
+              "title": "哈希生成器",
+              "description": "在浏览器中本地生成 SHA-256、SHA-384 和 SHA-512 哈希。"
+            },
+            "ja": {
+              "title": "ハッシュ生成ツール",
+              "description": "ブラウザ内で SHA-256、SHA-384、SHA-512 ハッシュを生成します。"
+            },
+            "ko": {
+              "title": "해시 생성기",
+              "description": "브라우저에서 SHA-256, SHA-384, SHA-512 해시를 생성합니다."
+            },
+            "es": {
+              "title": "Generador Hash",
+              "description": "Genera hashes SHA-256, SHA-384 y SHA-512 localmente en tu navegador."
+            },
+            "fr": {
+              "title": "Générateur Hash",
+              "description": "Générez des hashes SHA-256, SHA-384 et SHA-512 localement dans votre navigateur."
+            }
+          }
+        },
+        {
+          "slug": "timestamp-converter",
+          "title": "Timestamp Converter",
+          "description": "Convert Unix timestamps and dates locally in your browser.",
+          "status": "live",
+          "related": [
+            "jwt-decoder",
+            "diff-checker",
+            "regex-tester",
+            "uuid-generator"
+          ],
+          "labels": {
+            "en": {
+              "title": "Timestamp Converter",
+              "description": "Convert Unix timestamps and dates locally in your browser."
+            },
+            "th": {
+              "title": "ตัวแปลง Timestamp",
+              "description": "แปลง Unix timestamp และวันที่ในเบราว์เซอร์ของคุณ"
+            },
+            "vi": {
+              "title": "Trình chuyển Timestamp",
+              "description": "Chuyển Unix timestamp và ngày cục bộ trong trình duyệt."
+            },
+            "zh": {
+              "title": "时间戳转换器",
+              "description": "在浏览器中本地转换 Unix 时间戳和日期。"
+            },
+            "ja": {
+              "title": "タイムスタンプ変換ツール",
+              "description": "ブラウザ内で Unix タイムスタンプと日付を変換します。"
+            },
+            "ko": {
+              "title": "타임스탬프 변환기",
+              "description": "브라우저에서 Unix 타임스탬프와 날짜를 변환합니다."
+            },
+            "es": {
+              "title": "Convertidor Timestamp",
+              "description": "Convierte Unix timestamps y fechas localmente en tu navegador."
+            },
+            "fr": {
+              "title": "Convertisseur Timestamp",
+              "description": "Convertissez timestamps Unix et dates localement dans votre navigateur."
+            }
+          }
+        },
+        {
+          "slug": "regex-tester",
+          "title": "Regex Tester",
+          "description": "Test JavaScript regex patterns locally in your browser.",
+          "status": "live",
+          "related": [
+            "diff-checker",
+            "json-formatter",
+            "url-encoder-decoder",
+            "base64-encoder-decoder"
+          ],
+          "labels": {
+            "en": {
+              "title": "Regex Tester",
+              "description": "Test JavaScript regex patterns locally in your browser."
+            },
+            "th": {
+              "title": "ตัวทดสอบ Regex",
+              "description": "ทดสอบ JavaScript regex pattern ในเบราว์เซอร์ของคุณ"
+            },
+            "vi": {
+              "title": "Trình kiểm tra Regex",
+              "description": "Test JavaScript regex pattern cục bộ trong trình duyệt."
+            },
+            "zh": {
+              "title": "Regex 测试工具",
+              "description": "在浏览器中本地测试 JavaScript regex pattern。"
+            },
+            "ja": {
+              "title": "Regex テスター",
+              "description": "ブラウザ内で JavaScript regex pattern をテストします。"
+            },
+            "ko": {
+              "title": "Regex 테스터",
+              "description": "브라우저에서 JavaScript regex pattern을 테스트합니다."
+            },
+            "es": {
+              "title": "Probador Regex",
+              "description": "Prueba patrones regex JavaScript localmente en tu navegador."
+            },
+            "fr": {
+              "title": "Testeur Regex",
+              "description": "Testez des motifs regex JavaScript localement dans votre navigateur."
+            }
+          }
+        },
+        {
+          "slug": "diff-checker",
+          "title": "Diff Checker",
+          "description": "Compare two texts locally in your browser.",
+          "status": "live",
+          "related": [
+            "regex-tester",
+            "json-formatter",
+            "csv-cleaner",
+            "timestamp-converter"
+          ],
+          "labels": {
+            "en": {
+              "title": "Diff Checker",
+              "description": "Compare two texts locally in your browser."
+            },
+            "th": {
+              "title": "ตัวตรวจ Diff",
+              "description": "เปรียบเทียบข้อความสองชุดในเบราว์เซอร์ของคุณ"
+            },
+            "vi": {
+              "title": "Trình kiểm tra Diff",
+              "description": "So sánh hai văn bản cục bộ trong trình duyệt."
+            },
+            "zh": {
+              "title": "Diff 检查器",
+              "description": "在浏览器中本地比较两段文本。"
+            },
+            "ja": {
+              "title": "Diff チェッカー",
+              "description": "ブラウザ内で 2 つのテキストを比較します。"
+            },
+            "ko": {
+              "title": "Diff 체커",
+              "description": "브라우저에서 두 텍스트를 비교합니다."
+            },
+            "es": {
+              "title": "Diff Checker",
+              "description": "Compara dos textos localmente en tu navegador."
+            },
+            "fr": {
+              "title": "Diff Checker",
+              "description": "Comparez deux textes localement dans votre navigateur."
+            }
+          }
+        },
+        {
+          "slug": "jwt-decoder",
+          "title": "JWT Decoder",
+          "description": "Decode JWT header and payload locally in your browser.",
+          "status": "live",
+          "related": [
+            "base64-encoder-decoder",
+            "json-formatter",
+            "timestamp-converter",
+            "hash-generator",
+            "url-encoder-decoder"
+          ],
+          "labels": {
+            "en": {
+              "title": "JWT Decoder",
+              "description": "Decode JWT header and payload locally in your browser."
+            },
+            "th": {
+              "title": "JWT Decoder",
+              "description": "ถอดรหัส JWT header และ payload ในเบราว์เซอร์ของคุณ"
+            },
+            "vi": {
+              "title": "JWT Decoder",
+              "description": "Giải mã JWT header và payload cục bộ trong trình duyệt."
+            },
+            "zh": {
+              "title": "JWT Decoder",
+              "description": "在浏览器中本地解码 JWT header 和 payload。"
+            },
+            "ja": {
+              "title": "JWT Decoder",
+              "description": "ブラウザ内で JWT header と payload をデコードします。"
+            },
+            "ko": {
+              "title": "JWT Decoder",
+              "description": "브라우저에서 JWT header와 payload를 디코드합니다."
+            },
+            "es": {
+              "title": "JWT Decoder",
+              "description": "Decodifica JWT header y payload localmente en tu navegador."
+            },
+            "fr": {
+              "title": "JWT Decoder",
+              "description": "Décodez JWT header et payload localement dans votre navigateur."
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

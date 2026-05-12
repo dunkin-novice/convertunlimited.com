@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ตัวทดสอบ Regex - ทดสอบ Regular Expression ออนไลน์ | ConvertUnlimited</title>
+    <meta name="description" content="ทดสอบ JavaScript regex ในเบราว์เซอร์ highlight match, flags, capture groups, replace preview, Unicode และไม่อัปโหลด">
+    <meta name="robots" content="index,follow,max-image-preview:large">
+    <meta name="theme-color" content="#3aa17e">
+    <meta name="google-adsense-account" content="ca-pub-2823470980745945">
+    <link rel="canonical" href="https://www.convertunlimited.com/th/regex-tester/">
+
+    <link rel="alternate" hreflang="en" href="https://www.convertunlimited.com/regex-tester/">
+    <link rel="alternate" hreflang="th" href="https://www.convertunlimited.com/th/regex-tester/">
+    <link rel="alternate" hreflang="vi" href="https://www.convertunlimited.com/vi/regex-tester/">
+    <link rel="alternate" hreflang="zh-Hans" href="https://www.convertunlimited.com/zh/regex-tester/">
+    <link rel="alternate" hreflang="ja" href="https://www.convertunlimited.com/ja/regex-tester/">
+    <link rel="alternate" hreflang="ko" href="https://www.convertunlimited.com/ko/regex-tester/">
+    <link rel="alternate" hreflang="es" href="https://www.convertunlimited.com/es/regex-tester/">
+    <link rel="alternate" hreflang="fr" href="https://www.convertunlimited.com/fr/regex-tester/">
+    <link rel="alternate" hreflang="x-default" href="https://www.convertunlimited.com/regex-tester/">
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="alternate icon" href="/favicon.svg">
+    <link rel="apple-touch-icon" href="/favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/style.css">
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","inLanguage":"th","mainEntity":[{"@type":"Question","name":"เครื่องมือนี้ฟรีไหม?","acceptedAnswer":{"@type":"Answer","text":"ฟรี ทดสอบ pattern และ preview replace ได้โดยไม่ต้องสมัคร"}},{"@type":"Question","name":"ข้อความถูกอัปโหลดไหม?","acceptedAnswer":{"@type":"Answer","text":"ไม่ ทุกอย่างทำในเบราว์เซอร์"}},{"@type":"Question","name":"ใช้ regex engine อะไร?","acceptedAnswer":{"@type":"Answer","text":"ใช้ JavaScript RegExp engine ในเบราว์เซอร์"}},{"@type":"Question","name":"Pattern ผิดจัดการไหม?","acceptedAnswer":{"@type":"Answer","text":"จะแสดงคำเตือนและเก็บข้อมูลเดิมไว้"}},{"@type":"Question","name":"รองรับ Unicode regex ไหม?","acceptedAnswer":{"@type":"Answer","text":"รองรับ ใช้ flag u สำหรับ Unicode"}}]}</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2823470980745945" crossorigin="anonymous"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-98HSCSEKBX"></script>
+    <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-98HSCSEKBX');</script>
+</head>
+<body>
+    <div class="app">
+        <header class="topbar">
+            <a href="/th/" class="brand" aria-label="ConvertUnlimited home"><span class="mark" aria-hidden="true"></span><span class="word"><b>Convert</b><span>Unlimited</span></span></a>
+            <nav class="topnav" aria-label="Primary">
+                <span class="pill"><span class="dot"></span>100% free, no signup</span>
+                <details class="tools-dropdown"><summary aria-label="Tools">Tools <svg width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin-left: 2px; opacity: 0.5;"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></summary><div class="dropdown-menu" role="menu"><div class="dropdown-section">Developer Tools</div><a href="/th/regex-tester/" aria-current="page">Regex Tester</a><a href="/th/json-formatter/">JSON Formatter</a><a href="/th/url-encoder-decoder/">URL Encoder</a><a href="/th/timestamp-converter/">Timestamp Converter</a></div></details>
+                <details class="lang-switcher"><summary aria-label="Language"><span aria-hidden="true">🌐</span> TH</summary><div class="lang-menu" role="menu">
+                        <a href="/regex-tester/" hreflang="en" lang="en">English</a>
+                        <a href="/th/regex-tester/" hreflang="th" lang="th" aria-current="page">ไทย</a>
+                        <a href="/vi/regex-tester/" hreflang="vi" lang="vi">Tiếng Việt</a>
+                        <a href="/zh/regex-tester/" hreflang="zh-Hans" lang="zh-Hans">中文（简体）</a>
+                        <a href="/ja/regex-tester/" hreflang="ja" lang="ja">日本語</a>
+                        <a href="/ko/regex-tester/" hreflang="ko" lang="ko">한국어</a>
+                        <a href="/es/regex-tester/" hreflang="es" lang="es">Español</a>
+                        <a href="/fr/regex-tester/" hreflang="fr" lang="fr">Français</a>
+                    </div></details>
+            </nav>
+        </header>
+        <main>
+            <section class="hero"><h1 class="hero-title">ตัวทดสอบ Regex</h1><p class="sub hero-sub">ทดสอบ regular expression ในเครื่องสำหรับ validation, parsing และ debugging</p></section>
+            <div class="grid" id="layout">
+                <section class="bg-tool" aria-label="ตัวทดสอบ Regex">
+                    <div class="bg-tool-head"><div><p class="section-eyebrow">เครื่องมือ validation ในเครื่อง</p><h2>ทดสอบ regex pattern อย่างปลอดภัย</h2><p>ใส่ pattern และข้อความตัวอย่างเพื่อ highlight match ดู replace preview และ capture group โดยไม่ส่งข้อมูลไปเซิร์ฟเวอร์</p></div></div>
+                    <div class="bg-workbench">
+                        <div class="bg-panel">
+                            <div class="bg-controls">
+                                <label class="range-field" for="regex-pattern"><span>Regex pattern</span><input id="regex-pattern" class="mono" type="text" spellcheck="false"></label>
+                                <div class="range-field"><span>Flags</span><div class="bg-controls" style="gap:8px;"><label><input id="regex-flag-g" type="checkbox" checked> g</label><label><input id="regex-flag-i" type="checkbox"> i</label><label><input id="regex-flag-m" type="checkbox"> m</label><label><input id="regex-flag-s" type="checkbox"> s</label><label><input id="regex-flag-u" type="checkbox"> u</label></div></div>
+                                <label class="range-field" for="regex-text"><span>ข้อความทดสอบ</span><textarea id="regex-text" rows="10" spellcheck="false" class="mono" style="width:100%;resize:vertical;overflow-wrap:anywhere;"></textarea></label>
+                                <label class="range-field" for="regex-replace"><span>แทนที่ด้วย</span><input id="regex-replace" class="mono" type="text" spellcheck="false"></label>
+                                <button class="btn btn-ghost" id="regex-sample" type="button">Regex ตัวอย่าง</button>
+                                <button class="btn btn-ghost" id="regex-clear" type="button">ล้าง</button>
+                            </div>
+                            <p class="bg-status" id="regex-status"></p>
+                            <p class="bg-status" id="regex-warning" style="color: var(--warn);"></p>
+                        </div>
+                        <div class="bg-panel">
+                            <div class="range-field"><span>Match ที่ highlight</span><pre id="regex-output" class="mono" style="white-space:pre-wrap;overflow-wrap:anywhere;max-height:220px;overflow:auto;border:1px solid var(--line);padding:12px;border-radius:8px;"></pre></div>
+                            <label class="range-field" for="regex-results"><span>ผลลัพธ์ match</span><textarea id="regex-results" rows="6" spellcheck="false" class="mono" readonly style="width:100%;resize:vertical;"></textarea></label>
+                            <label class="range-field" for="regex-replace-preview"><span>Replace preview</span><textarea id="regex-replace-preview" rows="6" spellcheck="false" class="mono" readonly style="width:100%;resize:vertical;"></textarea></label>
+                        </div>
+                    </div>
+                    <div class="banner-ad"><span class="ad-label">Ad</span><ins class="adsbygoogle ad-below" style="display:block" data-ad-client="ca-pub-2823470980745945" data-ad-slot="REPLACE_REGEX_BELOW_TOOL_SLOT_ID" data-ad-format="auto" data-full-width-responsive="true"></ins></div>
+                </section>
+                <aside class="rail" aria-label="Sidebar"><div class="ad-slot"><span class="ad-label">Ad</span><div class="ad-body"><ins class="adsbygoogle ad-rail" style="display:block" data-ad-client="ca-pub-2823470980745945" data-ad-slot="REPLACE_REGEX_RAIL_SLOT_ID" data-ad-format="auto" data-full-width-responsive="true"></ins></div><div class="ad-foot"></div></div><div class="rail-card trust"><h3>ออกแบบเพื่อความเป็นส่วนตัว</h3><div class="item"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg><div><b>ทดสอบในเครื่อง</b> Regex ทำงานในเบราว์เซอร์</div></div><div class="item"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg><div><b>ไม่อัปโหลด</b> Pattern และข้อความอยู่บนอุปกรณ์ของคุณ</div></div></div></aside>
+            </div>
+            <section id="how" class="article"><h2>ควรทดสอบ regex เมื่อใด?</h2><p>Regex ช่วยตรวจ form input, parse log, ตรวจข้อความ API และ debug rule ก่อนใช้ในโค้ด</p><p>เครื่องมือนี้ใช้ JavaScript RegExp ของเบราว์เซอร์และแสดงข้อความเป็น text ไม่ใช่ HTML</p></section>
+            <section id="faq" class="article"><h2>คำถามที่พบบ่อย</h2>
+                <h3>เครื่องมือนี้ฟรีไหม?</h3>
+                <p>ฟรี ทดสอบ pattern และ preview replace ได้โดยไม่ต้องสมัคร</p>
+                <h3>ข้อความถูกอัปโหลดไหม?</h3>
+                <p>ไม่ ทุกอย่างทำในเบราว์เซอร์</p>
+                <h3>ใช้ regex engine อะไร?</h3>
+                <p>ใช้ JavaScript RegExp engine ในเบราว์เซอร์</p>
+                <h3>Pattern ผิดจัดการไหม?</h3>
+                <p>จะแสดงคำเตือนและเก็บข้อมูลเดิมไว้</p>
+                <h3>รองรับ Unicode regex ไหม?</h3>
+                <p>รองรับ ใช้ flag u สำหรับ Unicode</p>
+            </section>
+            <section id="privacy" class="article"><h2>นโยบายความเป็นส่วนตัว</h2><p>เราไม่เก็บ ไม่จัดเก็บ ไม่อัปโหลด และไม่ส่ง regex หรือข้อความทดสอบ</p></section>
+            <section id="terms" class="article"><h2>ข้อกำหนดการใช้งาน</h2><p>ConvertUnlimited ให้บริการตามสภาพจริง ควรทดสอบ expression ก่อนใช้จริง</p></section>
+<!-- RELATED_TOOLS_START -->
+        <section class="related-tools">
+            <div class="category-title">เครื่องมือที่เกี่ยวข้อง</div>
+            <div class="tool-grid">
+                <a href="/th/diff-checker/" class="tool-item">
+                    <div class="icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M6 5h8"/><path d="M6 9h12"/><path d="M6 15h8"/><path d="M6 19h12"/><path d="M3 5h.01"/><path d="M3 9h.01"/><path d="M3 15h.01"/><path d="M3 19h.01"/><path d="m17 4 4 4-4 4"/></svg>
+                    </div>
+                    <h3>ตัวตรวจ Diff</h3>
+                    <p>เปรียบเทียบข้อความสองชุดในเบราว์เซอร์ของคุณ</p>
+                </a>
+                <a href="/th/json-formatter/" class="tool-item">
+                    <div class="icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M8 6 4 12l4 6"/><path d="m16 6 4 6-4 6"/><path d="M14 4 10 20"/></svg>
+                    </div>
+                    <h3>ตัวจัดรูปแบบ JSON</h3>
+                    <p>จัดรูปแบบ ตรวจสอบ และย่อ JSON ในเบราว์เซอร์ของคุณ</p>
+                </a>
+                <a href="/th/url-encoder-decoder/" class="tool-item">
+                    <div class="icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.1 0l2-2a5 5 0 0 0-7.1-7.1l-1.1 1.1"/><path d="M14 11a5 5 0 0 0-7.1 0l-2 2a5 5 0 0 0 7.1 7.1l1.1-1.1"/></svg>
+                    </div>
+                    <h3>ตัวเข้ารหัส / ถอดรหัส URL</h3>
+                    <p>เข้ารหัสและถอดรหัส URL และ query string ในเบราว์เซอร์ของคุณ</p>
+                </a>
+            </div>
+        </section>
+<!-- RELATED_TOOLS_END -->
+        </main>
+        <footer class="footer"><div>© <span id="copyright-year">2026</span> ConvertUnlimited.com — runs entirely in your browser.</div><nav class="links" aria-label="Footer"><a href="/th/tools/">Tools</a><a href="/th/regex-tester/#how">Guide</a><a href="/th/regex-tester/#faq">FAQ</a><a href="/th/regex-tester/#privacy">Privacy</a><a href="/th/regex-tester/#terms">Terms</a></nav></footer>
+    </div>
+    <script src="/regex-tester/regex-tester.js"></script>
+</body>
+</html>

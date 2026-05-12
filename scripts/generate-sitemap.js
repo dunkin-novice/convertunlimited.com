@@ -2,7 +2,7 @@ const fs = require('fs');
 const path = require('path');
 const { execFileSync } = require('child_process');
 
-const DEFAULT_BASE_URL = 'https://convertunlimited.com';
+const DEFAULT_BASE_URL = 'https://www.convertunlimited.com';
 const RAW_BASE_URL = process.env.BASE_URL || DEFAULT_BASE_URL;
 const BASE_URL = RAW_BASE_URL.replace(/\/+$/, '');
 const ROOT_DIR = process.cwd();
@@ -106,36 +106,40 @@ const xmlEscape = (value) => value.replace(/[&<>"']/g, (char) => {
   }
 });
 
-// Localised homepage variants. Each <url> below that matches one of these
-// paths gets a full set of xhtml:link hreflang alternates so search engines
-// can dedupe and serve the right language by region.
-const HREFLANG_ALTERNATES = [
-  { hreflang: 'en', path: '/' },
-  { hreflang: 'th', path: '/th/' },
-  { hreflang: 'vi', path: '/vi/' },
-  { hreflang: 'zh-Hans', path: '/zh/' },
-  { hreflang: 'ja', path: '/ja/' },
-  { hreflang: 'ko', path: '/ko/' },
-  { hreflang: 'es', path: '/es/' },
-  { hreflang: 'fr', path: '/fr/' },
-  { hreflang: 'x-default', path: '/' },
+const LOCALES = [
+  { code: 'en', prefix: '', hreflang: 'en' },
+  { code: 'th', prefix: 'th', hreflang: 'th' },
+  { code: 'vi', prefix: 'vi', hreflang: 'vi' },
+  { code: 'zh', prefix: 'zh', hreflang: 'zh-Hans' },
+  { code: 'ja', prefix: 'ja', hreflang: 'ja' },
+  { code: 'ko', prefix: 'ko', hreflang: 'ko' },
+  { code: 'es', prefix: 'es', hreflang: 'es' },
+  { code: 'fr', prefix: 'fr', hreflang: 'fr' },
 ];
-const HREFLANG_PATHS = new Set(HREFLANG_ALTERNATES.map((a) => a.path));
+const LOCALE_BY_PREFIX = new Map(LOCALES.filter((locale) => locale.prefix).map((locale) => [locale.prefix, locale]));
 const LOCALIZED_HOME_PATHS = new Set(['/', '/th/', '/vi/', '/zh/', '/ja/', '/ko/', '/es/', '/fr/']);
 
 const generateSitemap = (paths) => {
   const urls = [];
   const seen = new Set();
+  const clusters = new Map();
 
   for (const relPath of paths) {
     const urlPath = formatUrlPath(relPath);
     if (seen.has(urlPath)) continue;
     seen.add(urlPath);
+    const segments = urlPath.split('/').filter(Boolean);
+    const locale = LOCALE_BY_PREFIX.get(segments[0]) || LOCALES[0];
+    const clusterPath = locale.code === 'en' ? urlPath : `/${segments.slice(1).join('/')}${segments.length > 1 ? '/' : ''}`;
+    const clusterKey = clusterPath || '/';
+    if (!clusters.has(clusterKey)) clusters.set(clusterKey, new Map());
+    clusters.get(clusterKey).set(locale.code, urlPath);
     const encodedPath = encodeURI(urlPath);
     urls.push({
       loc: `${BASE_URL}${encodedPath}`,
       lastmod: getLastMod(relPath),
       urlPath,
+      clusterKey,
       isLocalizedHome: LOCALIZED_HOME_PATHS.has(urlPath),
     });
   }
@@ -153,9 +157,14 @@ const generateSitemap = (paths) => {
     lines.push(`    <lastmod>${xmlEscape(entry.lastmod)}</lastmod>`);
     lines.push('    <changefreq>weekly</changefreq>');
     lines.push(`    <priority>${entry.isLocalizedHome ? '1.0' : '0.5'}</priority>`);
-    if (entry.isLocalizedHome) {
-      for (const alt of HREFLANG_ALTERNATES) {
-        lines.push(`    <xhtml:link rel="alternate" hreflang="${alt.hreflang}" href="${BASE_URL}${alt.path}"/>`);
+    const cluster = clusters.get(entry.clusterKey);
+    if (cluster && cluster.size > 1) {
+      const defaultPath = cluster.get('en') || entry.urlPath;
+      lines.push(`    <xhtml:link rel="alternate" hreflang="x-default" href="${xmlEscape(`${BASE_URL}${defaultPath}`)}"/>`);
+      for (const locale of LOCALES) {
+        const alternatePath = cluster.get(locale.code);
+        if (!alternatePath) continue;
+        lines.push(`    <xhtml:link rel="alternate" hreflang="${locale.hreflang}" href="${xmlEscape(`${BASE_URL}${alternatePath}`)}"/>`);
       }
     }
     lines.push('  </url>');

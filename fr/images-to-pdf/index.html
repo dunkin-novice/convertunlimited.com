@@ -8,17 +8,17 @@
     <meta name="robots" content="index,follow,max-image-preview:large">
     <meta name="theme-color" content="#3aa17e">
     <meta name="google-adsense-account" content="ca-pub-2823470980745945">
-    <link rel="canonical" href="https://convertunlimited.com/fr/images-to-pdf/">
+    <link rel="canonical" href="https://www.convertunlimited.com/fr/images-to-pdf/">
 
-    <link rel="alternate" hreflang="en" href="https://convertunlimited.com/fr/images-to-pdf/">
-    <link rel="alternate" hreflang="th" href="https://convertunlimited.com/th/images-to-pdf/">
-    <link rel="alternate" hreflang="vi" href="https://convertunlimited.com/vi/images-to-pdf/">
-    <link rel="alternate" hreflang="zh-Hans" href="https://convertunlimited.com/zh/images-to-pdf/">
-    <link rel="alternate" hreflang="ja" href="https://convertunlimited.com/ja/images-to-pdf/">
-    <link rel="alternate" hreflang="ko" href="https://convertunlimited.com/ko/images-to-pdf/">
-    <link rel="alternate" hreflang="es" href="https://convertunlimited.com/es/images-to-pdf/">
-    <link rel="alternate" hreflang="fr" href="https://convertunlimited.com/fr/images-to-pdf/">
-    <link rel="alternate" hreflang="x-default" href="https://convertunlimited.com/fr/images-to-pdf/">
+    <link rel="alternate" hreflang="en" href="https://www.convertunlimited.com/images-to-pdf/">
+    <link rel="alternate" hreflang="th" href="https://www.convertunlimited.com/th/images-to-pdf/">
+    <link rel="alternate" hreflang="vi" href="https://www.convertunlimited.com/vi/images-to-pdf/">
+    <link rel="alternate" hreflang="zh-Hans" href="https://www.convertunlimited.com/zh/images-to-pdf/">
+    <link rel="alternate" hreflang="ja" href="https://www.convertunlimited.com/ja/images-to-pdf/">
+    <link rel="alternate" hreflang="ko" href="https://www.convertunlimited.com/ko/images-to-pdf/">
+    <link rel="alternate" hreflang="es" href="https://www.convertunlimited.com/es/images-to-pdf/">
+    <link rel="alternate" hreflang="fr" href="https://www.convertunlimited.com/fr/images-to-pdf/">
+    <link rel="alternate" hreflang="x-default" href="https://www.convertunlimited.com/images-to-pdf/">
 
     <link rel="icon" type="image/svg+xml" href="/favicon.svg">
     <link rel="alternate icon" href="/favicon.svg">
@@ -136,7 +136,7 @@
                                 </label>
                                 <button class="btn btn-accent" id="generate-pdf-btn" disabled style="height: 38px;">Générer le PDF</button>
                             </div>
-                            <p class="bg-status" id="images-to-pdf-status" style="margin-top: 16px; color: var(--ink-3); font-size: 13px;">Les images sont traitées dans votre navigateur. Les fichiers ne sont pas envoyés.</p>
+                            <p class="bg-status" id="pdf-status" style="margin-top: 16px; color: var(--ink-3); font-size: 13px;">Files are processed in your browser and never uploaded.</p>
                         </div>
                     </div>
 
@@ -173,7 +173,7 @@
                         <h3>Why it's private</h3>
                         <div class="item">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-                            <div><b>Browser-based.</b> No files are sent to any server.</div>
+                            <div><b>Browser-based.</b> Files are processed in your browser and never uploaded.</div>
                         </div>
                         <div class="item">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
@@ -202,7 +202,7 @@
                 <h2>Local Browser-based PDF Generation</h2>
                 <p>Most "Online PDF" tools upload your files to their disks. ConvertUnlimited provides the logic as a static script that runs in your local environment. Your data stays under your control at all times, making it safe for corporate assets, financial documents, and private photos.</p>
 
-                <h2>Frequently Asked Questions</h2>
+                <h2 id="faq">Frequently Asked Questions</h2>
                 <h3>Is there a page limit?</h3>
                 <p>We don't impose a limit, but very large batches (50+ high-resolution photos) may exceed your browser's allocated memory. If the tab becomes unresponsive, try creating smaller PDFs.</p>
                 
@@ -218,7 +218,7 @@
 
             <section id="privacy" class="article">
                 <h2>Privacy Policy</h2>
-                <p><b>Your Images:</b> We do not collect, store, or transmit any images you process. All document generation is strictly local.</p>
+                <p><b>Your Images:</b> Files are processed in your browser and never uploaded.</p>
                 <p><b>Analytics:</b> We use Google Analytics 4 to monitor site traffic and tool usage patterns. This data is anonymized and does not include your files.</p>
                 <p><b>Advertising:</b> We use Google AdSense to display ads. These partners may use cookies to serve relevant ads based on your browsing history.</p>
             </section>
@@ -228,32 +228,34 @@
                 <p>ConvertUnlimited is provided "as is" without warranty of any kind. You are responsible for the content you process and must ensure you have the legal right to use and convert the images you provide. We are not liable for any data loss or system performance issues resulting from the use of this tool.</p>
             </section>
         
+<!-- RELATED_TOOLS_START -->
         <section class="related-tools">
-            <div class="category-title">Outils connexes</div>
+            <div class="category-title">Outils associés</div>
             <div class="tool-grid">
                 <a href="/fr/pdf-to-images/" class="tool-item">
                     <div class="icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><path d="M8 13h8"/><path d="M8 17h8"/><circle cx="10" cy="9" r="1"/></svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
                     </div>
                     <h3>PDF en images</h3>
-                    <p>Extrayez chaque page d'un PDF sous forme d'images de haute qualité.</p>
+                    <p>Extrayez chaque page d&#39;un PDF sous forme d&#39;images de haute qualité.</p>
                 </a>
                 <a href="/fr/merge-pdf/" class="tool-item">
                     <div class="icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="12" y1="18" x2="12" y2="12"/><line x1="9" y1="15" x2="15" y2="15"/></svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
                     </div>
                     <h3>Fusionner PDF</h3>
                     <p>Joignez plusieurs fichiers PDF en un seul document sécurisé.</p>
                 </a>
-                <a href="/fr/split-pdf/" class="tool-item">
+                <a href="/fr/compress-pdf/" class="tool-item">
                     <div class="icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="8" y1="13" x2="16" y2="13"/><line x1="12" y1="10" x2="12" y2="16"/></svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
                     </div>
-                    <h3>Diviser PDF</h3>
-                    <p>Extrayez des plages de pages spécifiques dans de nouveaux fichiers PDF.</p>
+                    <h3>Compresser PDF</h3>
+                    <p>Réduisez la taille des fichiers PDF localement sans perdre la qualité du texte.</p>
                 </a>
             </div>
         </section>
+<!-- RELATED_TOOLS_END -->
         </main>
 
         <div class="footer-ad">

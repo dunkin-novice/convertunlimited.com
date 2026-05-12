@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hash Generator - SHA-256, SHA-384 &amp; SHA-512 Online | ConvertUnlimited</title>
+    <meta name="description" content="Generate SHA-256, SHA-384, and SHA-512 hashes locally in your browser. Hash Unicode text, copy output, and no uploads.">
+    <meta name="robots" content="index,follow,max-image-preview:large">
+    <meta name="theme-color" content="#3aa17e">
+    <meta name="google-adsense-account" content="ca-pub-2823470980745945">
+    <link rel="canonical" href="https://www.convertunlimited.com/hash-generator/">
+
+    <link rel="alternate" hreflang="en" href="https://www.convertunlimited.com/hash-generator/">
+    <link rel="alternate" hreflang="th" href="https://www.convertunlimited.com/th/hash-generator/">
+    <link rel="alternate" hreflang="vi" href="https://www.convertunlimited.com/vi/hash-generator/">
+    <link rel="alternate" hreflang="zh-Hans" href="https://www.convertunlimited.com/zh/hash-generator/">
+    <link rel="alternate" hreflang="ja" href="https://www.convertunlimited.com/ja/hash-generator/">
+    <link rel="alternate" hreflang="ko" href="https://www.convertunlimited.com/ko/hash-generator/">
+    <link rel="alternate" hreflang="es" href="https://www.convertunlimited.com/es/hash-generator/">
+    <link rel="alternate" hreflang="fr" href="https://www.convertunlimited.com/fr/hash-generator/">
+    <link rel="alternate" hreflang="x-default" href="https://www.convertunlimited.com/hash-generator/">
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="alternate icon" href="/favicon.svg">
+    <link rel="apple-touch-icon" href="/favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/style.css">
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","inLanguage":"en","mainEntity":[{"@type":"Question","name":"Is this Hash Generator free?","acceptedAnswer":{"@type":"Answer","text":"Yes. You can generate and copy SHA hashes without signup."}},{"@type":"Question","name":"Is my text uploaded?","acceptedAnswer":{"@type":"Answer","text":"No. Hashing happens locally in your browser."}},{"@type":"Question","name":"Which algorithms are supported?","acceptedAnswer":{"@type":"Answer","text":"SHA-256, SHA-384, and SHA-512 are supported through the Web Crypto API."}},{"@type":"Question","name":"Can hashes be reversed?","acceptedAnswer":{"@type":"Answer","text":"No. Hashes are one-way digests, not reversible encryption."}},{"@type":"Question","name":"Does it support Unicode?","acceptedAnswer":{"@type":"Answer","text":"Yes. UTF-8 text, emojis, accents, and non-Latin scripts are supported."}}]}</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2823470980745945" crossorigin="anonymous"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-98HSCSEKBX"></script>
+    <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-98HSCSEKBX');</script>
+</head>
+<body>
+    <div class="app">
+        <header class="topbar">
+            <a href="/" class="brand" aria-label="ConvertUnlimited home"><span class="mark" aria-hidden="true"></span><span class="word"><b>Convert</b><span>Unlimited</span></span></a>
+            <nav class="topnav" aria-label="Primary">
+                <span class="pill"><span class="dot"></span>100% free, no signup</span>
+                <details class="tools-dropdown"><summary aria-label="Tools">Tools <svg width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin-left: 2px; opacity: 0.5;"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></summary><div class="dropdown-menu" role="menu"><div class="dropdown-section">Developer Tools</div><a href="/hash-generator/" aria-current="page">Hash Generator</a><a href="/uuid-generator/">UUID Generator</a><a href="/base64-encoder-decoder/">Base64</a><a href="/url-encoder-decoder/">URL Encoder</a></div></details>
+                <details class="lang-switcher"><summary aria-label="Language"><span aria-hidden="true">🌐</span> EN</summary><div class="lang-menu" role="menu">
+                        <a href="/hash-generator/" hreflang="en" lang="en" aria-current="page">English</a>
+                        <a href="/th/hash-generator/" hreflang="th" lang="th">ไทย</a>
+                        <a href="/vi/hash-generator/" hreflang="vi" lang="vi">Tiếng Việt</a>
+                        <a href="/zh/hash-generator/" hreflang="zh-Hans" lang="zh-Hans">中文（简体）</a>
+                        <a href="/ja/hash-generator/" hreflang="ja" lang="ja">日本語</a>
+                        <a href="/ko/hash-generator/" hreflang="ko" lang="ko">한국어</a>
+                        <a href="/es/hash-generator/" hreflang="es" lang="es">Español</a>
+                        <a href="/fr/hash-generator/" hreflang="fr" lang="fr">Français</a>
+                    </div></details>
+            </nav>
+        </header>
+        <main>
+            <section class="hero"><h1 class="hero-title">Hash Generator</h1><p class="sub hero-sub">Generate SHA hashes locally for checksums, API testing, and development workflows.</p></section>
+            <div class="grid" id="layout">
+                <section class="bg-tool" aria-label="Hash Generator">
+                    <div class="bg-tool-head"><div><p class="section-eyebrow">Local developer checksum tool</p><h2>Hash text with browser crypto APIs.</h2><p>Create SHA-256, SHA-384, or SHA-512 hashes without sending text to a server.</p></div></div>
+                    <div class="bg-workbench">
+                        <div class="bg-panel">
+                            <div class="bg-controls">
+                                <label class="range-field" for="hash-input"><span>Text input</span><textarea id="hash-input" rows="14" spellcheck="false" class="mono" style="width:100%;resize:vertical;overflow-wrap:anywhere;" placeholder="Text to hash"></textarea></label>
+                                <label class="range-field" for="hash-algorithm"><span>Algorithm</span><select id="hash-algorithm"><option value="SHA-256">SHA-256</option><option value="SHA-384">SHA-384</option><option value="SHA-512">SHA-512</option></select></label>
+                                <label class="range-field" for="hash-uppercase"><span>Uppercase output</span><input id="hash-uppercase" type="checkbox"></label>
+                                <button class="btn btn-accent" id="hash-generate" type="button">Generate hash</button>
+                                <button class="btn btn-ghost" id="hash-sample" type="button">Sample text</button>
+                                <button class="btn btn-ghost" id="hash-clear" type="button">Clear</button>
+                            </div>
+                            <p class="bg-status"><b>Characters:</b> <span id="hash-char-count" class="mono num">0</span> · <b>Bytes:</b> <span id="hash-byte-count" class="mono num">0</span></p>
+                            <p class="bg-status" id="hash-status"></p>
+                            <p class="bg-status" id="hash-warning" style="color: var(--warn);"></p>
+                        </div>
+                        <div class="bg-panel">
+                            <label class="range-field" for="hash-output"><span>Hash output</span><textarea id="hash-output" rows="18" spellcheck="false" class="mono" readonly style="width:100%;resize:vertical;overflow-wrap:anywhere;"></textarea></label>
+                            <div class="bg-controls" style="margin-top:16px;"><button class="btn btn-accent" id="hash-copy" type="button">Copy hash</button></div>
+                        </div>
+                    </div>
+                    <div class="banner-ad"><span class="ad-label">Ad</span><ins class="adsbygoogle ad-below" style="display:block" data-ad-client="ca-pub-2823470980745945" data-ad-slot="REPLACE_HASH_BELOW_TOOL_SLOT_ID" data-ad-format="auto" data-full-width-responsive="true"></ins></div>
+                </section>
+                <aside class="rail" aria-label="Sidebar"><div class="ad-slot"><span class="ad-label">Ad</span><div class="ad-body"><ins class="adsbygoogle ad-rail" style="display:block" data-ad-client="ca-pub-2823470980745945" data-ad-slot="REPLACE_HASH_RAIL_SLOT_ID" data-ad-format="auto" data-full-width-responsive="true"></ins></div><div class="ad-foot"></div></div><div class="rail-card trust"><h3>Private by design</h3><div class="item"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg><div><b>Local hashing.</b> Hashes are generated in your browser.</div></div><div class="item"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg><div><b>No uploads.</b> Text is not sent to a server.</div></div></div></aside>
+            </div>
+            <section id="how" class="article"><h2>When should you generate hashes?</h2><p>Hashes are useful for checksums, API signing examples, cache keys, debugging, and comparing whether text content changed.</p><p>Hashes are one-way digests, not encryption. This tool does not store input and does not send generated hashes anywhere.</p></section>
+            <section id="faq" class="article"><h2>Frequently Asked Questions</h2>
+                <h3>Is this Hash Generator free?</h3>
+                <p>Yes. You can generate and copy SHA hashes without signup.</p>
+                <h3>Is my text uploaded?</h3>
+                <p>No. Hashing happens locally in your browser.</p>
+                <h3>Which algorithms are supported?</h3>
+                <p>SHA-256, SHA-384, and SHA-512 are supported through the Web Crypto API.</p>
+                <h3>Can hashes be reversed?</h3>
+                <p>No. Hashes are one-way digests, not reversible encryption.</p>
+                <h3>Does it support Unicode?</h3>
+                <p>Yes. UTF-8 text, emojis, accents, and non-Latin scripts are supported.</p>
+            </section>
+            <section id="privacy" class="article"><h2>Privacy Policy</h2><p>We do not collect, store, upload, or transmit text entered into this tool or generated hashes.</p></section>
+            <section id="terms" class="article"><h2>Terms of Use</h2><p>ConvertUnlimited is provided as is. Do not treat hashes as password storage guidance or encryption.</p></section>
+<!-- RELATED_TOOLS_START -->
+        <section class="related-tools">
+            <div class="category-title">Related Tools</div>
+            <div class="tool-grid">
+                <a href="/jwt-decoder/" class="tool-item">
+                    <div class="icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 4 7v6c0 5 8 8 8 8s8-3 8-8V7l-8-4Z"/><path d="M9 10h6"/><path d="M9 14h6"/><path d="M10 18h4"/></svg>
+                    </div>
+                    <h3>JWT Decoder</h3>
+                    <p>Decode JWT header and payload locally in your browser.</p>
+                </a>
+                <a href="/timestamp-converter/" class="tool-item">
+                    <div class="icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/><path d="M3 3l4 4"/><path d="M21 3l-4 4"/></svg>
+                    </div>
+                    <h3>Timestamp Converter</h3>
+                    <p>Convert Unix timestamps and dates locally in your browser.</p>
+                </a>
+                <a href="/uuid-generator/" class="tool-item">
+                    <div class="icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16"/><path d="M4 12h16"/><path d="M4 17h16"/><path d="M8 4 6 20"/><path d="M18 4l-2 16"/></svg>
+                    </div>
+                    <h3>UUID Generator</h3>
+                    <p>Generate UUID v4 values locally in your browser.</p>
+                </a>
+            </div>
+        </section>
+<!-- RELATED_TOOLS_END -->
+        </main>
+        <footer class="footer"><div>© <span id="copyright-year">2026</span> ConvertUnlimited.com — runs entirely in your browser.</div><nav class="links" aria-label="Footer"><a href="/tools/">Tools</a><a href="/hash-generator/#how">Guide</a><a href="/hash-generator/#faq">FAQ</a><a href="/hash-generator/#privacy">Privacy</a><a href="/hash-generator/#terms">Terms</a></nav></footer>
+    </div>
+    <script src="/hash-generator/hash-generator.js"></script>
+</body>
+</html>

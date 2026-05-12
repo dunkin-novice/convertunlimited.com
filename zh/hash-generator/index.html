@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>哈希生成器 - SHA-256、SHA-384 和 SHA-512 | ConvertUnlimited</title>
+    <meta name="description" content="在浏览器中本地生成 SHA-256、SHA-384 和 SHA-512 哈希。支持 Unicode、复制输出，无需上传。">
+    <meta name="robots" content="index,follow,max-image-preview:large">
+    <meta name="theme-color" content="#3aa17e">
+    <meta name="google-adsense-account" content="ca-pub-2823470980745945">
+    <link rel="canonical" href="https://www.convertunlimited.com/zh/hash-generator/">
+
+    <link rel="alternate" hreflang="en" href="https://www.convertunlimited.com/hash-generator/">
+    <link rel="alternate" hreflang="th" href="https://www.convertunlimited.com/th/hash-generator/">
+    <link rel="alternate" hreflang="vi" href="https://www.convertunlimited.com/vi/hash-generator/">
+    <link rel="alternate" hreflang="zh-Hans" href="https://www.convertunlimited.com/zh/hash-generator/">
+    <link rel="alternate" hreflang="ja" href="https://www.convertunlimited.com/ja/hash-generator/">
+    <link rel="alternate" hreflang="ko" href="https://www.convertunlimited.com/ko/hash-generator/">
+    <link rel="alternate" hreflang="es" href="https://www.convertunlimited.com/es/hash-generator/">
+    <link rel="alternate" hreflang="fr" href="https://www.convertunlimited.com/fr/hash-generator/">
+    <link rel="alternate" hreflang="x-default" href="https://www.convertunlimited.com/hash-generator/">
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="alternate icon" href="/favicon.svg">
+    <link rel="apple-touch-icon" href="/favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/style.css">
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","inLanguage":"zh-Hans","mainEntity":[{"@type":"Question","name":"这个哈希工具免费吗？","acceptedAnswer":{"@type":"Answer","text":"免费。无需注册即可生成和复制 SHA 哈希。"}},{"@type":"Question","name":"文本会上传吗？","acceptedAnswer":{"@type":"Answer","text":"不会。哈希在浏览器本地完成。"}},{"@type":"Question","name":"支持哪些算法？","acceptedAnswer":{"@type":"Answer","text":"通过 Web Crypto API 支持 SHA-256、SHA-384 和 SHA-512。"}},{"@type":"Question","name":"哈希可以还原吗？","acceptedAnswer":{"@type":"Answer","text":"不可以。哈希是单向摘要，不是可逆加密。"}},{"@type":"Question","name":"支持 Unicode 吗？","acceptedAnswer":{"@type":"Answer","text":"支持。UTF-8、emoji、重音和非拉丁文字都支持。"}}]}</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2823470980745945" crossorigin="anonymous"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-98HSCSEKBX"></script>
+    <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-98HSCSEKBX');</script>
+</head>
+<body>
+    <div class="app">
+        <header class="topbar">
+            <a href="/zh/" class="brand" aria-label="ConvertUnlimited home"><span class="mark" aria-hidden="true"></span><span class="word"><b>Convert</b><span>Unlimited</span></span></a>
+            <nav class="topnav" aria-label="Primary">
+                <span class="pill"><span class="dot"></span>100% free, no signup</span>
+                <details class="tools-dropdown"><summary aria-label="Tools">Tools <svg width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin-left: 2px; opacity: 0.5;"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></summary><div class="dropdown-menu" role="menu"><div class="dropdown-section">Developer Tools</div><a href="/zh/hash-generator/" aria-current="page">Hash Generator</a><a href="/zh/uuid-generator/">UUID Generator</a><a href="/zh/base64-encoder-decoder/">Base64</a><a href="/zh/url-encoder-decoder/">URL Encoder</a></div></details>
+                <details class="lang-switcher"><summary aria-label="Language"><span aria-hidden="true">🌐</span> ZH</summary><div class="lang-menu" role="menu">
+                        <a href="/hash-generator/" hreflang="en" lang="en">English</a>
+                        <a href="/th/hash-generator/" hreflang="th" lang="th">ไทย</a>
+                        <a href="/vi/hash-generator/" hreflang="vi" lang="vi">Tiếng Việt</a>
+                        <a href="/zh/hash-generator/" hreflang="zh-Hans" lang="zh-Hans" aria-current="page">中文（简体）</a>
+                        <a href="/ja/hash-generator/" hreflang="ja" lang="ja">日本語</a>
+                        <a href="/ko/hash-generator/" hreflang="ko" lang="ko">한국어</a>
+                        <a href="/es/hash-generator/" hreflang="es" lang="es">Español</a>
+                        <a href="/fr/hash-generator/" hreflang="fr" lang="fr">Français</a>
+                    </div></details>
+            </nav>
+        </header>
+        <main>
+            <section class="hero"><h1 class="hero-title">哈希生成器</h1><p class="sub hero-sub">为校验和、API 测试和开发流程本地生成 SHA 哈希。</p></section>
+            <div class="grid" id="layout">
+                <section class="bg-tool" aria-label="哈希生成器">
+                    <div class="bg-tool-head"><div><p class="section-eyebrow">本地开发校验工具</p><h2>使用浏览器 crypto API 生成文本哈希。</h2><p>无需发送到服务器即可创建 SHA-256、SHA-384 或 SHA-512 哈希。</p></div></div>
+                    <div class="bg-workbench">
+                        <div class="bg-panel">
+                            <div class="bg-controls">
+                                <label class="range-field" for="hash-input"><span>文本输入</span><textarea id="hash-input" rows="14" spellcheck="false" class="mono" style="width:100%;resize:vertical;overflow-wrap:anywhere;" placeholder="Text to hash"></textarea></label>
+                                <label class="range-field" for="hash-algorithm"><span>算法</span><select id="hash-algorithm"><option value="SHA-256">SHA-256</option><option value="SHA-384">SHA-384</option><option value="SHA-512">SHA-512</option></select></label>
+                                <label class="range-field" for="hash-uppercase"><span>大写输出</span><input id="hash-uppercase" type="checkbox"></label>
+                                <button class="btn btn-accent" id="hash-generate" type="button">生成哈希</button>
+                                <button class="btn btn-ghost" id="hash-sample" type="button">示例文本</button>
+                                <button class="btn btn-ghost" id="hash-clear" type="button">清空</button>
+                            </div>
+                            <p class="bg-status"><b>字符:</b> <span id="hash-char-count" class="mono num">0</span> · <b>字节:</b> <span id="hash-byte-count" class="mono num">0</span></p>
+                            <p class="bg-status" id="hash-status"></p>
+                            <p class="bg-status" id="hash-warning" style="color: var(--warn);"></p>
+                        </div>
+                        <div class="bg-panel">
+                            <label class="range-field" for="hash-output"><span>哈希输出</span><textarea id="hash-output" rows="18" spellcheck="false" class="mono" readonly style="width:100%;resize:vertical;overflow-wrap:anywhere;"></textarea></label>
+                            <div class="bg-controls" style="margin-top:16px;"><button class="btn btn-accent" id="hash-copy" type="button">复制哈希</button></div>
+                        </div>
+                    </div>
+                    <div class="banner-ad"><span class="ad-label">Ad</span><ins class="adsbygoogle ad-below" style="display:block" data-ad-client="ca-pub-2823470980745945" data-ad-slot="REPLACE_HASH_BELOW_TOOL_SLOT_ID" data-ad-format="auto" data-full-width-responsive="true"></ins></div>
+                </section>
+                <aside class="rail" aria-label="Sidebar"><div class="ad-slot"><span class="ad-label">Ad</span><div class="ad-body"><ins class="adsbygoogle ad-rail" style="display:block" data-ad-client="ca-pub-2823470980745945" data-ad-slot="REPLACE_HASH_RAIL_SLOT_ID" data-ad-format="auto" data-full-width-responsive="true"></ins></div><div class="ad-foot"></div></div><div class="rail-card trust"><h3>隐私优先设计</h3><div class="item"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg><div><b>本地哈希。</b> 哈希在浏览器中生成。</div></div><div class="item"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg><div><b>无需上传。</b> 文本不会发送到服务器。</div></div></div></aside>
+            </div>
+            <section id="how" class="article"><h2>什么时候需要生成哈希？</h2><p>哈希适用于校验和、API 签名示例、缓存键、调试以及比较文本是否变化。</p><p>哈希是单向摘要，不是加密。本工具不会存储输入，也不会发送生成的哈希。</p></section>
+            <section id="faq" class="article"><h2>常见问题</h2>
+                <h3>这个哈希工具免费吗？</h3>
+                <p>免费。无需注册即可生成和复制 SHA 哈希。</p>
+                <h3>文本会上传吗？</h3>
+                <p>不会。哈希在浏览器本地完成。</p>
+                <h3>支持哪些算法？</h3>
+                <p>通过 Web Crypto API 支持 SHA-256、SHA-384 和 SHA-512。</p>
+                <h3>哈希可以还原吗？</h3>
+                <p>不可以。哈希是单向摘要，不是可逆加密。</p>
+                <h3>支持 Unicode 吗？</h3>
+                <p>支持。UTF-8、emoji、重音和非拉丁文字都支持。</p>
+            </section>
+            <section id="privacy" class="article"><h2>隐私政策</h2><p>我们不会收集、存储、上传或传输输入文本或生成的哈希。</p></section>
+            <section id="terms" class="article"><h2>使用条款</h2><p>ConvertUnlimited 按原样提供。不要把哈希视为密码存储建议或加密。</p></section>
+<!-- RELATED_TOOLS_START -->
+        <section class="related-tools">
+            <div class="category-title">相关工具</div>
+            <div class="tool-grid">
+                <a href="/zh/jwt-decoder/" class="tool-item">
+                    <div class="icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 4 7v6c0 5 8 8 8 8s8-3 8-8V7l-8-4Z"/><path d="M9 10h6"/><path d="M9 14h6"/><path d="M10 18h4"/></svg>
+                    </div>
+                    <h3>JWT Decoder</h3>
+                    <p>在浏览器中本地解码 JWT header 和 payload。</p>
+                </a>
+                <a href="/zh/timestamp-converter/" class="tool-item">
+                    <div class="icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/><path d="M3 3l4 4"/><path d="M21 3l-4 4"/></svg>
+                    </div>
+                    <h3>时间戳转换器</h3>
+                    <p>在浏览器中本地转换 Unix 时间戳和日期。</p>
+                </a>
+                <a href="/zh/uuid-generator/" class="tool-item">
+                    <div class="icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16"/><path d="M4 12h16"/><path d="M4 17h16"/><path d="M8 4 6 20"/><path d="M18 4l-2 16"/></svg>
+                    </div>
+                    <h3>UUID 生成器</h3>
+                    <p>在浏览器中本地生成 UUID v4。</p>
+                </a>
+            </div>
+        </section>
+<!-- RELATED_TOOLS_END -->
+        </main>
+        <footer class="footer"><div>© <span id="copyright-year">2026</span> ConvertUnlimited.com — runs entirely in your browser.</div><nav class="links" aria-label="Footer"><a href="/zh/tools/">Tools</a><a href="/zh/hash-generator/#how">Guide</a><a href="/zh/hash-generator/#faq">FAQ</a><a href="/zh/hash-generator/#privacy">Privacy</a><a href="/zh/hash-generator/#terms">Terms</a></nav></footer>
+    </div>
+    <script src="/hash-generator/hash-generator.js"></script>
+</body>
+</html>
