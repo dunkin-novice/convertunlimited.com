@@ -24,7 +24,7 @@ jobs:
 
       - name: Generate sitemap.xml and robots.txt
         env:
-          BASE_URL: https://convertunlimited.com
+          BASE_URL: https://www.convertunlimited.com
           DEPLOY_DIR: .
         run: node scripts/generate-sitemap.js
 
