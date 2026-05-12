@@ -1,3 +1,3 @@
 User-agent: *
 Allow: /
-Sitemap: https://www.convertunlimited.com/sitemap.xml
+Sitemap: https://convertunlimited.com/sitemap.xml
