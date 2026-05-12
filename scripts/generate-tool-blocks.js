@@ -16,14 +16,14 @@ const LOCALES = [
 ];
 
 const CATEGORY_LABELS = {
-  en: { image: 'Image Tools', pdf: 'PDF Tools', seo: 'SEO Tools', developer: 'Developer Tools' },
-  th: { image: 'เครื่องมือรูปภาพ', pdf: 'เครื่องมือ PDF', seo: 'เครื่องมือ SEO', developer: 'เครื่องมือนักพัฒนา' },
-  vi: { image: 'Công cụ hình ảnh', pdf: 'Công cụ PDF', seo: 'Công cụ SEO', developer: 'Công cụ lập trình' },
-  zh: { image: '图片工具', pdf: 'PDF 工具', seo: 'SEO 工具', developer: '开发者工具' },
-  ja: { image: '画像ツール', pdf: 'PDF ツール', seo: 'SEO ツール', developer: '開発者ツール' },
-  ko: { image: '이미지 도구', pdf: 'PDF 도구', seo: 'SEO 도구', developer: '개발자 도구' },
-  es: { image: 'Herramientas de imagen', pdf: 'Herramientas PDF', seo: 'Herramientas SEO', developer: 'Herramientas para desarrolladores' },
-  fr: { image: 'Outils image', pdf: 'Outils PDF', seo: 'Outils SEO', developer: 'Outils développeur' },
+  en: { image: 'Image Tools', pdf: 'PDF Tools', seo: 'SEO Tools', developer: 'Developer Tools', 'image-conversions': 'Popular Image Conversions' },
+  th: { image: 'เครื่องมือรูปภาพ', pdf: 'เครื่องมือ PDF', seo: 'เครื่องมือ SEO', developer: 'เครื่องมือนักพัฒนา', 'image-conversions': 'การแปลงรูปภาพยอดนิยม' },
+  vi: { image: 'Công cụ hình ảnh', pdf: 'Công cụ PDF', seo: 'Công cụ SEO', developer: 'Công cụ lập trình', 'image-conversions': 'Chuyển đổi ảnh phổ biến' },
+  zh: { image: '图片工具', pdf: 'PDF 工具', seo: 'SEO 工具', developer: '开发者工具', 'image-conversions': '热门图片转换' },
+  ja: { image: '画像ツール', pdf: 'PDF ツール', seo: 'SEO ツール', developer: '開発者ツール', 'image-conversions': '人気の画像変換' },
+  ko: { image: '이미지 도구', pdf: 'PDF 도구', seo: 'SEO 도구', developer: '개발자 도구', 'image-conversions': '인기 이미지 변환' },
+  es: { image: 'Herramientas de imagen', pdf: 'Herramientas PDF', seo: 'Herramientas SEO', developer: 'Herramientas para desarrolladores', 'image-conversions': 'Conversiones de imagen populares' },
+  fr: { image: 'Outils image', pdf: 'Outils PDF', seo: 'Outils SEO', developer: 'Outils développeur', 'image-conversions': 'Conversions d\'image populaires' },
 };
 
 const ICONS = {
@@ -48,6 +48,11 @@ const ICONS = {
   'regex-tester': '<path d="M4 7h4"/><path d="M6 5v4"/><path d="M12 7h.01"/><path d="M16 7h.01"/><path d="M20 7h.01"/><path d="M5 16c2-3 5-3 7 0s5 3 7 0"/>',
   'diff-checker': '<path d="M6 5h8"/><path d="M6 9h12"/><path d="M6 15h8"/><path d="M6 19h12"/><path d="M3 5h.01"/><path d="M3 9h.01"/><path d="M3 15h.01"/><path d="M3 19h.01"/><path d="m17 4 4 4-4 4"/>',
   'jwt-decoder': '<path d="M12 3 4 7v6c0 5 8 8 8 8s8-3 8-8V7l-8-4Z"/><path d="M9 10h6"/><path d="M9 14h6"/><path d="M10 18h4"/>',
+  'png-to-webp': '<path d="M17 3 21 7l-4 4"/><path d="M3 7h18"/><path d="M7 21l-4-4 4-4"/><path d="M21 17H3"/>',
+  'jpg-to-webp': '<path d="M17 3 21 7l-4 4"/><path d="M3 7h18"/><path d="M7 21l-4-4 4-4"/><path d="M21 17H3"/>',
+  'webp-to-jpg': '<path d="M17 3 21 7l-4 4"/><path d="M3 7h18"/><path d="M7 21l-4-4 4-4"/><path d="M21 17H3"/>',
+  'webp-to-png': '<path d="M17 3 21 7l-4 4"/><path d="M3 7h18"/><path d="M7 21l-4-4 4-4"/><path d="M21 17H3"/>',
+  'png-to-jpg': '<path d="M17 3 21 7l-4 4"/><path d="M3 7h18"/><path d="M7 21l-4-4 4-4"/><path d="M21 17H3"/>',
   defaultImage: '<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>',
   defaultPdf: '<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/>',
   defaultDev: '<polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/>',

@@ -893,6 +893,242 @@
           }
         }
       ]
+    },
+    {
+      "id": "image-conversions",
+      "label": "Popular Image Conversions",
+      "tools": [
+        {
+          "slug": "png-to-webp",
+          "title": "PNG to WebP Converter",
+          "description": "Convert PNG images to WebP locally in your browser. Free, bulk, and secure.",
+          "status": "live",
+          "related": [
+            "",
+            "image-compressor",
+            "image-resizer",
+            "metadata-remover"
+          ],
+          "labels": {
+            "en": {
+              "title": "PNG to WebP Converter",
+              "description": "Convert PNG images to WebP locally in your browser. Free, bulk, and secure."
+            },
+            "th": {
+              "title": "ตัวแปลง PNG เป็น WebP",
+              "description": "แปลงรูปภาพ PNG เป็น WebP ในเครื่องผ่านเบราว์เซอร์ของคุณ ฟรี และปลอดภัย"
+            },
+            "vi": {
+              "title": "Trình chuyển đổi PNG sang WebP",
+              "description": "Chuyển đổi ảnh PNG sang WebP cục bộ trong trình duyệt. Miễn phí và bảo mật."
+            },
+            "zh": {
+              "title": "PNG 转 WebP 转换器",
+              "description": "在浏览器中本地将 PNG 图片转换为 WebP。免费、批量且安全。"
+            },
+            "ja": {
+              "title": "PNG から WebP への変換",
+              "description": "ブラウザ内で PNG 画像を WebP に変換します。無料、一括、安全。"
+            },
+            "ko": {
+              "title": "PNG를 WebP로 변환",
+              "description": "브라우저에서 PNG 이미지를 WebP로 변환합니다. 무료, 대량, 안전."
+            },
+            "es": {
+              "title": "Convertidor de PNG a WebP",
+              "description": "Convierte imágenes PNG a WebP localmente en tu navegador. Gratis, por lotes y seguro."
+            },
+            "fr": {
+              "title": "Convertisseur PNG en WebP",
+              "description": "Convertissez des images PNG en WebP localement dans votre navigateur. Gratuit, en lot et sécurisé."
+            }
+          }
+        },
+        {
+          "slug": "jpg-to-webp",
+          "title": "JPG to WebP Converter",
+          "description": "Convert JPG images to WebP locally in your browser. Free, bulk, and secure.",
+          "status": "live",
+          "related": [
+            "",
+            "image-compressor",
+            "image-resizer",
+            "metadata-remover"
+          ],
+          "labels": {
+            "en": {
+              "title": "JPG to WebP Converter",
+              "description": "Convert JPG images to WebP locally in your browser. Free, bulk, and secure."
+            },
+            "th": {
+              "title": "ตัวแปลง JPG เป็น WebP",
+              "description": "แปลงรูปภาพ JPG เป็น WebP ในเครื่องผ่านเบราว์เซอร์ของคุณ ฟรี และปลอดภัย"
+            },
+            "vi": {
+              "title": "Trình chuyển đổi JPG sang WebP",
+              "description": "Chuyển đổi ảnh JPG sang WebP cục bộ trong trình duyệt. Miễn phí và bảo mật."
+            },
+            "zh": {
+              "title": "JPG 转 WebP 转换器",
+              "description": "在浏览器中本地将 JPG 图片转换为 WebP。免费、批量且安全。"
+            },
+            "ja": {
+              "title": "JPG から WebP への変換",
+              "description": "ブラウザ内で JPG 画像を WebP に変換します。無料、一括、安全。"
+            },
+            "ko": {
+              "title": "JPG를 WebP로 변환",
+              "description": "브라우저에서 JPG 이미지를 WebP로 변환합니다. 무료, 대량, 안전."
+            },
+            "es": {
+              "title": "Convertidor de JPG a WebP",
+              "description": "Convierte imágenes JPG a WebP localmente en tu navegador. Gratis, por lotes y seguro."
+            },
+            "fr": {
+              "title": "Convertisseur JPG en WebP",
+              "description": "Convertissez des images JPG en WebP localement dans votre navigateur. Gratuit, en lot et sécurisé."
+            }
+          }
+        },
+        {
+          "slug": "webp-to-jpg",
+          "title": "WebP to JPG Converter",
+          "description": "Convert WebP images to JPG locally in your browser. Free, bulk, and secure.",
+          "status": "live",
+          "related": [
+            "",
+            "image-compressor",
+            "image-resizer",
+            "metadata-remover"
+          ],
+          "labels": {
+            "en": {
+              "title": "WebP to JPG Converter",
+              "description": "Convert WebP images to JPG locally in your browser. Free, bulk, and secure."
+            },
+            "th": {
+              "title": "ตัวแปลง WebP เป็น JPG",
+              "description": "แปลงรูปภาพ WebP เป็น JPG ในเครื่องผ่านเบราว์เซอร์ของคุณ ฟรี และปลอดภัย"
+            },
+            "vi": {
+              "title": "Trình chuyển đổi WebP sang JPG",
+              "description": "Chuyển đổi ảnh WebP sang JPG cục bộ trong trình duyệt. Miễn phí và bảo mật."
+            },
+            "zh": {
+              "title": "WebP 转 JPG 转换器",
+              "description": "在浏览器中本地将 WebP 图片转换为 JPG。免费、批量且安全。"
+            },
+            "ja": {
+              "title": "WebP から JPG への変換",
+              "description": "ブラウザ内で WebP 画像を JPG に変換します。無料、一括、安全。"
+            },
+            "ko": {
+              "title": "WebP를 JPG로 변환",
+              "description": "브라우저에서 WebP 이미지를 JPG로 변환합니다. 무료, 대량, 안전."
+            },
+            "es": {
+              "title": "Convertidor de WebP a JPG",
+              "description": "Convierte imágenes WebP a JPG localmente en tu navegador. Gratis, por lotes y seguro."
+            },
+            "fr": {
+              "title": "Convertisseur WebP en JPG",
+              "description": "Convertissez des images WebP en JPG localement dans votre navigateur. Gratuit, en lot et sécurisé."
+            }
+          }
+        },
+        {
+          "slug": "webp-to-png",
+          "title": "WebP to PNG Converter",
+          "description": "Convert WebP images to PNG locally in your browser. Free, bulk, and secure.",
+          "status": "live",
+          "related": [
+            "",
+            "image-compressor",
+            "image-resizer",
+            "metadata-remover"
+          ],
+          "labels": {
+            "en": {
+              "title": "WebP to PNG Converter",
+              "description": "Convert WebP images to PNG locally in your browser. Free, bulk, and secure."
+            },
+            "th": {
+              "title": "ตัวแปลง WebP เป็น PNG",
+              "description": "แปลงรูปภาพ WebP เป็น PNG ในเครื่องผ่านเบราว์เซอร์ของคุณ ฟรี และปลอดภัย"
+            },
+            "vi": {
+              "title": "Trình chuyển đổi WebP sang PNG",
+              "description": "Chuyển đổi ảnh WebP sang PNG cục bộ trong trình duyệt. Miễn phí và bảo mật."
+            },
+            "zh": {
+              "title": "WebP 转 PNG 转换器",
+              "description": "在浏览器中本地将 WebP 图片转换为 PNG。免费、批量且安全。"
+            },
+            "ja": {
+              "title": "WebP から PNG への変換",
+              "description": "ブラウザ内で WebP 画像を PNG に変換します。無料、一括、安全。"
+            },
+            "ko": {
+              "title": "WebP를 PNG로 변환",
+              "description": "브라우저에서 WebP 이미지를 PNG로 변환합니다. 무료, 대량, 안전."
+            },
+            "es": {
+              "title": "Convertidor de WebP a PNG",
+              "description": "Convierte imágenes WebP a PNG localmente en tu navegador. Gratis, por lotes y seguro."
+            },
+            "fr": {
+              "title": "Convertisseur WebP en PNG",
+              "description": "Convertissez des images WebP en PNG localement dans votre navigateur. Gratuit, en lot et sécurisé."
+            }
+          }
+        },
+        {
+          "slug": "png-to-jpg",
+          "title": "PNG to JPG Converter",
+          "description": "Convert PNG images to JPG locally in your browser. Free, bulk, and secure.",
+          "status": "live",
+          "related": [
+            "",
+            "image-compressor",
+            "image-resizer",
+            "metadata-remover"
+          ],
+          "labels": {
+            "en": {
+              "title": "PNG to JPG Converter",
+              "description": "Convert PNG images to JPG locally in your browser. Free, bulk, and secure."
+            },
+            "th": {
+              "title": "ตัวแปลง PNG เป็น JPG",
+              "description": "แปลงรูปภาพ PNG เป็น JPG ในเครื่องผ่านเบราว์เซอร์ของคุณ ฟรี และปลอดภัย"
+            },
+            "vi": {
+              "title": "Trình chuyển đổi PNG sang JPG",
+              "description": "Chuyển đổi ảnh PNG sang JPG cục bộ trong trình duyệt. Miễn phí và bảo mật."
+            },
+            "zh": {
+              "title": "PNG 转 JPG 转换器",
+              "description": "在浏览器中本地将 PNG 图片转换为 JPG。免费、批量且安全。"
+            },
+            "ja": {
+              "title": "PNG から JPG への変換",
+              "description": "ブラウザ内で PNG 画像を JPG に変換します。無料、一括、安全。"
+            },
+            "ko": {
+              "title": "PNG를 JPG로 변환",
+              "description": "브라우저에서 PNG 이미지를 JPG로 변환합니다. 무료, 대량, 안전."
+            },
+            "es": {
+              "title": "Convertidor de PNG a JPG",
+              "description": "Convierte imágenes PNG a JPG localmente en tu navegador. Gratis, por lotes y seguro."
+            },
+            "fr": {
+              "title": "Convertisseur PNG en JPG",
+              "description": "Convertissez des images PNG en JPG localement dans votre navigateur. Gratuit, en lot et sécurisé."
+            }
+          }
+        }
+      ]
     }
   ]
 }
