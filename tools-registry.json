@@ -1147,6 +1147,11 @@
       "slug": "what-is-webp",
       "title": "What is WebP?",
       "status": "live"
+    },
+    {
+      "slug": "how-it-works",
+      "title": "How Local Processing Works",
+      "status": "live"
     }
   ]
 }

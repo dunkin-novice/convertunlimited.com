@@ -36,6 +36,10 @@ jobs:
             git add sitemap.xml robots.txt
             git commit -m "chore: update sitemap and robots"
             git push
+            # IndexNow Ping (Bing/Yandex)
+            curl -G "https://www.bing.com/indexnow" \
+              --data-urlencode "url=${BASE_URL}/sitemap-index.xml" \
+              --data-urlencode "key=6a0342033d1a5fb8za9" # Example key placeholder
           else
             echo "No changes to commit."
           fi

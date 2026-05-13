@@ -149,6 +149,59 @@ const GUIDES = [
       ],
       cta: "Start using WebP today. [Try our free converter](/)."
     }
+  },
+  {
+    slug: 'how-it-works',
+    en: {
+      title: "How it Works: Private, Browser-Based File Processing | ConvertUnlimited",
+      description: "Learn how ConvertUnlimited processes your files locally in your browser. No uploads, no servers, 100% private and secure.",
+      h1: "How Local Processing Works",
+      intro: "Unlike traditional online converters that upload your files to a server, ConvertUnlimited works entirely inside your web browser. Your files never leave your device.",
+      sections: [
+        {
+          title: "The Magic of Browser-Native Processing",
+          content: "We use modern web technologies like the HTML5 Canvas API and WebAssembly (WASM) to decode and encode your images and documents locally. When you drop a file, your browser's own engine does the heavy lifting."
+        },
+        {
+          title: "Why This is Better for You",
+          prosCons: {
+            "Local-First": {
+              pros: ["100% Private (No one else sees your files)", "No upload/download waiting time", "Work offline once the page is loaded"],
+              cons: ["Limited by your device's RAM/CPU", "Extremely large files (2GB+) may struggle"]
+            },
+            "Server-Based": {
+              pros: ["Can handle massive enterprise-scale files"],
+              cons: ["Files are uploaded to someone else's server", "Slower (upload/download required)", "Privacy risks"]
+            }
+          }
+        },
+        {
+          title: "Our Privacy Promise",
+          content: "ConvertUnlimited is designed to be zero-knowledge. We don't have a backend that stores your data. We don't have accounts. We don't track your content. The code you see on the screen is the code that runs on your machine."
+        }
+      ],
+      faq: [
+        ["Are my files safe?", "Yes. Since your files are never uploaded, they are as safe as they are on your own computer."],
+        ["Does this use my internet data?", "Only to load the initial website (a few KB). The actual file processing uses zero data because it happens offline on your device."]
+      ],
+      cta: "Experience the privacy. [Try our bulk converter now](/)."
+    },
+    th: {
+      title: "มันทำงานอย่างไร: การประมวลผลไฟล์ส่วนตัวในเบราว์เซอร์ | ConvertUnlimited",
+      description: "เรียนรู้วิธีที่ ConvertUnlimited ประมวลผลไฟล์ของคุณในเครื่องผ่านเบราว์เซอร์ ไม่มีการอัปโหลด ไม่มีเซิร์ฟเวอร์ เป็นส่วนตัวและปลอดภัย 100%",
+      h1: "การประมวลผลในเครื่องทำงานอย่างไร",
+      intro: "ต่างจากตัวแปลงออนไลน์ทั่วไปที่ต้องอัปโหลดไฟล์ของคุณไปยังเซิร์ฟเวอร์ ConvertUnlimited ทำงานในเว็บเบราว์เซอร์ของคุณทั้งหมด ไฟล์ของคุณจะไม่ถูกส่งออกจากอุปกรณ์",
+      sections: [
+        {
+          title: "พลังของการประมวลผลในเบราว์เซอร์",
+          content: "เราใช้เทคโนโลยีเว็บสมัยใหม่ เช่น HTML5 Canvas API และ WebAssembly (WASM) เพื่อประมวลผลไฟล์ของคุณโดยตรงในเครื่อง"
+        }
+      ],
+      faq: [
+          ["ไฟล์ของฉันปลอดภัยหรือไม่?", "ปลอดภัยแน่นอน เนื่องจากไฟล์ของคุณไม่เคยถูกอัปโหลด จึงปลอดภัยเท่ากับไฟล์ที่อยู่ในคอมพิวเตอร์ของคุณเอง"]
+      ],
+      cta: "สัมผัสความเป็นส่วนตัว [ลองใช้ตัวแปลงของเราตอนนี้](/) ."
+    }
   }
 ];
 

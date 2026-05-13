@@ -106,8 +106,23 @@
     <xhtml:link rel="alternate" hreflang="fr" href="https://www.convertunlimited.com/fr/diff-checker/"/>
   </url>
   <url>
+    <loc>https://www.convertunlimited.com/vi/guides/how-it-works/</loc>
+    <lastmod>2026-05-13T05:30:32.339Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.convertunlimited.com/guides/how-it-works/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.convertunlimited.com/guides/how-it-works/"/>
+    <xhtml:link rel="alternate" hreflang="th" href="https://www.convertunlimited.com/th/guides/how-it-works/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://www.convertunlimited.com/vi/guides/how-it-works/"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://www.convertunlimited.com/zh/guides/how-it-works/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://www.convertunlimited.com/ja/guides/how-it-works/"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://www.convertunlimited.com/ko/guides/how-it-works/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.convertunlimited.com/es/guides/how-it-works/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.convertunlimited.com/fr/guides/how-it-works/"/>
+  </url>
+  <url>
     <loc>https://www.convertunlimited.com/vi/guides/webp-vs-jpg/</loc>
-    <lastmod>2026-05-13T04:30:04.482Z</lastmod>
+    <lastmod>2026-05-13T11:30:49+07:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.convertunlimited.com/guides/webp-vs-jpg/"/>
@@ -122,7 +137,7 @@
   </url>
   <url>
     <loc>https://www.convertunlimited.com/vi/guides/webp-vs-png/</loc>
-    <lastmod>2026-05-13T04:30:04.479Z</lastmod>
+    <lastmod>2026-05-13T11:30:49+07:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.convertunlimited.com/guides/webp-vs-png/"/>
@@ -137,7 +152,7 @@
   </url>
   <url>
     <loc>https://www.convertunlimited.com/vi/guides/what-is-webp/</loc>
-    <lastmod>2026-05-13T04:30:04.484Z</lastmod>
+    <lastmod>2026-05-13T11:30:49+07:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.convertunlimited.com/guides/what-is-webp/"/>
@@ -242,7 +257,7 @@
   </url>
   <url>
     <loc>https://www.convertunlimited.com/vi/jpg-to-webp/</loc>
-    <lastmod>2026-05-13T10:57:09+07:00</lastmod>
+    <lastmod>2026-05-13T11:30:49+07:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.convertunlimited.com/jpg-to-webp/"/>
@@ -362,7 +377,7 @@
   </url>
   <url>
     <loc>https://www.convertunlimited.com/vi/png-to-jpg/</loc>
-    <lastmod>2026-05-13T10:57:09+07:00</lastmod>
+    <lastmod>2026-05-13T11:30:49+07:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.convertunlimited.com/png-to-jpg/"/>
@@ -377,7 +392,7 @@
   </url>
   <url>
     <loc>https://www.convertunlimited.com/vi/png-to-webp/</loc>
-    <lastmod>2026-05-13T10:57:09+07:00</lastmod>
+    <lastmod>2026-05-13T11:30:49+07:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.convertunlimited.com/png-to-webp/"/>
@@ -512,7 +527,7 @@
   </url>
   <url>
     <loc>https://www.convertunlimited.com/vi/webp-to-jpg/</loc>
-    <lastmod>2026-05-13T10:57:09+07:00</lastmod>
+    <lastmod>2026-05-13T11:30:49+07:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.convertunlimited.com/webp-to-jpg/"/>
@@ -527,7 +542,7 @@
   </url>
   <url>
     <loc>https://www.convertunlimited.com/vi/webp-to-png/</loc>
-    <lastmod>2026-05-13T10:57:09+07:00</lastmod>
+    <lastmod>2026-05-13T11:30:49+07:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.convertunlimited.com/webp-to-png/"/>

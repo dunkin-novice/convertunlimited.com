@@ -109,12 +109,23 @@ function generate() {
 
       const articleSchema = {
         "@context": "https://schema.org",
-        "@type": "TechArticle",
+        "@type": guideData.slug === 'how-it-works' ? "AboutPage" : "TechArticle",
         "headline": langData.h1,
         "description": langData.description,
         "author": { "@type": "Organization", "name": "ConvertUnlimited" },
         "publisher": { "@type": "Organization", "name": "ConvertUnlimited", "logo": { "@type": "ImageObject", "url": `${BASE_URL}/og-image.svg` } },
-        "mainEntityOfPage": { "@type": "WebPage", "@id": `${BASE_URL}${locale.prefix ? '/' + locale.prefix : ''}/guides/${guideData.slug}/` }
+        "mainEntityOfPage": { "@type": guideData.slug === 'how-it-works' ? "AboutPage" : "WebPage", "@id": `${BASE_URL}${locale.prefix ? '/' + locale.prefix : ''}/guides/${guideData.slug}/` }
+      };
+
+      const organizationSchema = {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "ConvertUnlimited",
+        "url": BASE_URL,
+        "logo": `${BASE_URL}/og-image.svg`,
+        "sameAs": [
+            "https://github.com/dunkin-novice/convertunlimited.com"
+        ]
       };
 
       const faqSchema = {
@@ -131,6 +142,7 @@ function generate() {
     <script type="application/ld+json">${JSON.stringify(breadcrumbSchema)}</script>
     <script type="application/ld+json">${JSON.stringify(articleSchema)}</script>
     <script type="application/ld+json">${JSON.stringify(faqSchema)}</script>
+    <script type="application/ld+json">${JSON.stringify(organizationSchema)}</script>
 `;
       html = html.replace(/<script type="application\/ld\+json">[\s\S]*?<\/script>/g, '');
       html = html.replace('</head>', schemaHtml + '</head>');
