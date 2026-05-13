@@ -287,12 +287,15 @@ function generate() {
       // Breadcrumb UI
       const breadcrumbUi = `
         <nav class="breadcrumbs" aria-label="Breadcrumb" style="margin-bottom: 24px; font-size: 14px; opacity: 0.8;">
-            <a href="${locale.prefix ? '/' + locale.prefix : ''}/">${htmlEscape(locale.homeLabel)}</a> &gt; 
-            <a href="${locale.prefix ? '/' + locale.prefix : ''}/tools/">${htmlEscape(locale.toolsLabel)}</a> &gt; 
+            <a href="${locale.prefix ? '/' + locale.prefix : ''}/" data-track="breadcrumb-click" data-level="home">${htmlEscape(locale.homeLabel)}</a> &gt; 
+            <a href="${locale.prefix ? '/' + locale.prefix : ''}/tools/" data-track="breadcrumb-click" data-level="tools">${htmlEscape(locale.toolsLabel)}</a> &gt; 
             <span>${htmlEscape(h1)}</span>
         </nav>
 `;
       html = html.replace('<section class="hero">', breadcrumbUi + '<section class="hero">');
+
+      // Add tracking to primary button
+      html = html.replace('id="primary-btn"', 'id="primary-btn" data-track="conversion-action" data-pair="' + pair.slug + '"');
 
       // What is block
       const sourceDef = FORMAT_INFO[locale.code][pair.sourceKey];

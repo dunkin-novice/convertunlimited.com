@@ -111,8 +111,8 @@
         <main>
         
         <nav class="breadcrumbs" aria-label="Breadcrumb" style="margin-bottom: 24px; font-size: 14px; opacity: 0.8;">
-            <a href="/ko/">홈</a> &gt; 
-            <a href="/ko/tools/">도구</a> &gt; 
+            <a href="/ko/" data-track="breadcrumb-click" data-level="home">홈</a> &gt; 
+            <a href="/ko/tools/" data-track="breadcrumb-click" data-level="tools">도구</a> &gt; 
             <span>무료 PNG를 WebP로 변환</span>
         </nav>
 <section class="hero">
@@ -181,7 +181,7 @@
                             <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
                             추가
                         </button>
-                        <button class="btn btn-accent" id="primary-btn">
+                        <button class="btn btn-accent" id="primary-btn" data-track="conversion-action" data-pair="png-to-webp">
                             <span id="primary-btn-icon"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></span>
                             <span id="primary-btn-label">전체 WEBP로 변환</span>
                         </button>
@@ -343,21 +343,21 @@
         <section class="related-tools">
             <div class="category-title">권장 다음 단계</div>
             <div class="tool-grid">
-                <a href="/ko/image-compressor/" class="tool-item">
+                <a href="/ko/image-compressor/" class="tool-item" data-track="workflow-click" data-tool="image-compressor" data-category="image">
                     <div class="icon">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 14h6c1.1 0 2-0.9 2-2V6c0-1.1-0.9-2-2-2H4C2.9 4 2 4.9 2 6v6C2 13.1 2.9 14 4 14z"/><path d="M20 14h-6c-1.1 0-2-0.9-2-2V6c0-1.1 0.9-2 2-2h6c1.1 0 2 0.9 2 2v6C22 13.1 21.1 14 20 14z"/><path d="M4 22h6c1.1 0 2-0.9 2-2v-6c0-1.1-0.9-2-2-2H4c-1.1 0-2 0.9-2 2v6C2 21.1 2.9 22 4 22z"/><path d="M20 22h-6c-1.1 0-2-0.9-2-2v-6c0-1.1 0.9-2 2-2h6c1.1 0 2 0.9 2 2v6C22 21.1 21.1 22 20 22z"/></svg>
                     </div>
                     <h3>이미지 압축</h3>
                     <p>시각적 품질을 유지하면서 이미지 파일 크기를 줄입니다.</p>
                 </a>
-                <a href="/ko/metadata-remover/" class="tool-item">
+                <a href="/ko/metadata-remover/" class="tool-item" data-track="workflow-click" data-tool="metadata-remover" data-category="image">
                     <div class="icon">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
                     </div>
                     <h3>메타데이터 제거</h3>
                     <p>사진에서 EXIF, GPS 및 개인 정보를 제거합니다.</p>
                 </a>
-                <a href="/ko/image-resizer/" class="tool-item">
+                <a href="/ko/image-resizer/" class="tool-item" data-track="workflow-click" data-tool="image-resizer" data-category="image">
                     <div class="icon">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><polyline points="21 8 21 21 8 21"/><line x1="21" y1="21" x2="3" y2="3"/><polyline points="3 16 3 3 16 3"/></svg>
                     </div>

@@ -8,7 +8,7 @@ const BASE_URL = RAW_BASE_URL.replace(/\/+$/, '');
 const ROOT_DIR = process.cwd();
 const DEPLOY_DIR = process.env.DEPLOY_DIR || '.';
 const SOURCE_DIR = path.resolve(ROOT_DIR, DEPLOY_DIR);
-const OUTPUT_SITEMAP = path.join(SOURCE_DIR, 'sitemap.xml');
+const OUTPUT_SITEMAP_INDEX = path.join(SOURCE_DIR, 'sitemap-index.xml');
 const OUTPUT_ROBOTS = path.join(SOURCE_DIR, 'robots.txt');
 
 if (/[<>]/.test(BASE_URL)) {
@@ -119,33 +119,7 @@ const LOCALES = [
 const LOCALE_BY_PREFIX = new Map(LOCALES.filter((locale) => locale.prefix).map((locale) => [locale.prefix, locale]));
 const LOCALIZED_HOME_PATHS = new Set(['/', '/th/', '/vi/', '/zh/', '/ja/', '/ko/', '/es/', '/fr/']);
 
-const generateSitemap = (paths) => {
-  const urls = [];
-  const seen = new Set();
-  const clusters = new Map();
-
-  for (const relPath of paths) {
-    const urlPath = formatUrlPath(relPath);
-    if (seen.has(urlPath)) continue;
-    seen.add(urlPath);
-    const segments = urlPath.split('/').filter(Boolean);
-    const locale = LOCALE_BY_PREFIX.get(segments[0]) || LOCALES[0];
-    const clusterPath = locale.code === 'en' ? urlPath : `/${segments.slice(1).join('/')}${segments.length > 1 ? '/' : ''}`;
-    const clusterKey = clusterPath || '/';
-    if (!clusters.has(clusterKey)) clusters.set(clusterKey, new Map());
-    clusters.get(clusterKey).set(locale.code, urlPath);
-    const encodedPath = encodeURI(urlPath);
-    urls.push({
-      loc: `${BASE_URL}${encodedPath}`,
-      lastmod: getLastMod(relPath),
-      urlPath,
-      clusterKey,
-      isLocalizedHome: LOCALIZED_HOME_PATHS.has(urlPath),
-    });
-  }
-
-  urls.sort((a, b) => a.loc.localeCompare(b.loc));
-
+const generateSitemapFile = (localeCode, urls, clusters) => {
   const lines = [
     '<?xml version="1.0" encoding="UTF-8"?>',
     '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">',
@@ -174,18 +148,79 @@ const generateSitemap = (paths) => {
   return `${lines.join('\n')}\n`;
 };
 
+const generateSitemapIndex = (sitemapFiles) => {
+  const lines = [
+    '<?xml version="1.0" encoding="UTF-8"?>',
+    '<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">',
+  ];
+
+  for (const file of sitemapFiles) {
+    lines.push('  <sitemap>');
+    lines.push(`    <loc>${BASE_URL}/${file}</loc>`);
+    lines.push(`    <lastmod>${new Date().toISOString()}</lastmod>`);
+    lines.push('  </sitemap>');
+  }
+
+  lines.push('</sitemapindex>');
+  return `${lines.join('\n')}\n`;
+};
+
+const htmlFiles = walk(SOURCE_DIR);
+const allEntries = [];
+const clusters = new Map();
+
+for (const relPath of htmlFiles) {
+  const urlPath = formatUrlPath(relPath);
+  const segments = urlPath.split('/').filter(Boolean);
+  const locale = LOCALE_BY_PREFIX.get(segments[0]) || LOCALES[0];
+  const clusterPath = locale.code === 'en' ? urlPath : `/${segments.slice(1).join('/')}${segments.length > 1 ? '/' : ''}`;
+  const clusterKey = clusterPath || '/';
+  
+  if (!clusters.has(clusterKey)) clusters.set(clusterKey, new Map());
+  clusters.get(clusterKey).set(locale.code, urlPath);
+
+  allEntries.push({
+    loc: `${BASE_URL}${encodeURI(urlPath)}`,
+    lastmod: getLastMod(relPath),
+    urlPath,
+    clusterKey,
+    isLocalizedHome: LOCALIZED_HOME_PATHS.has(urlPath),
+    localeCode: locale.code
+  });
+}
+
+const sitemapFiles = [];
+for (const locale of LOCALES) {
+  const localeUrls = allEntries.filter(e => e.localeCode === locale.code);
+  if (localeUrls.length > 0) {
+    const fileName = `sitemap-${locale.code}.xml`;
+    const content = generateSitemapFile(locale.code, localeUrls, clusters);
+    fs.writeFileSync(path.join(SOURCE_DIR, fileName), content, 'utf8');
+    sitemapFiles.push(fileName);
+  }
+}
+
+// Special case: pair pages sitemap if needed?
+// For now, locale-specific is better for GSC directory properties.
+
+const indexContent = generateSitemapIndex(sitemapFiles);
+fs.writeFileSync(OUTPUT_SITEMAP_INDEX, indexContent, 'utf8');
+
+// Legacy sitemap.xml fallback (redirect or full? let's keep full for now but robots points to index)
+// Actually, it's better to remove sitemap.xml if we use index to avoid confusion, 
+// but some tools might expect sitemap.xml.
+// Let's create a combined one too just in case.
+const fullSitemapContent = generateSitemapFile('all', allEntries, clusters);
+fs.writeFileSync(path.join(SOURCE_DIR, 'sitemap.xml'), fullSitemapContent, 'utf8');
+
 const generateRobots = () => [
   'User-agent: *',
   'Allow: /',
-  `Sitemap: ${BASE_URL}/sitemap.xml`,
+  `Sitemap: ${BASE_URL}/sitemap-index.xml`,
   '',
 ].join('\n');
 
-const htmlFiles = walk(SOURCE_DIR);
-const sitemap = generateSitemap(htmlFiles);
 const robots = generateRobots();
-
-fs.writeFileSync(OUTPUT_SITEMAP, sitemap, 'utf8');
 fs.writeFileSync(OUTPUT_ROBOTS, robots, 'utf8');
 
-console.log(`Generated ${OUTPUT_SITEMAP} and ${OUTPUT_ROBOTS}`);
+console.log(`Generated sitemap index, locale sitemaps, and updated robots.txt`);

@@ -593,7 +593,7 @@
 
     let actionMain = "";
     if (it.status === "done") {
-      actionMain = `<button class="dlbtn ${it.downloaded ? "done" : ""}" data-act="download" data-id="${it.id}" ${it.downloaded ? "disabled" : ""}>${ICON_DOWNLOAD} ${it.downloaded ? t.saved : t.save}</button>`;
+      actionMain = `<button class="dlbtn ${it.downloaded ? "done" : ""}" data-act="download" data-id="${it.id}" data-track="download-action" data-tool="bulk-image" ${it.downloaded ? "disabled" : ""}>${ICON_DOWNLOAD} ${it.downloaded ? t.saved : t.save}</button>`;
     } else if (it.status !== "busy") {
       actionMain = `<button class="iconbtn" data-act="convert" data-id="${it.id}" title="${t.convert}">${ICON_REFRESH}</button>`;
     }
@@ -630,7 +630,7 @@
       (it.outSize ? " → " + formatBytes(it.outSize) : "");
     let actionBtn;
     if (it.status === "done") {
-      actionBtn = `<button class="dlbtn ${it.downloaded ? "done" : ""}" data-act="download" data-id="${it.id}" ${it.downloaded ? "disabled" : ""}>${it.downloaded ? t.saved : fmtStr(t.download_format, { fmt: format.toUpperCase() })}</button>`;
+      actionBtn = `<button class="dlbtn ${it.downloaded ? "done" : ""}" data-act="download" data-id="${it.id}" data-track="download-action" data-tool="bulk-image" ${it.downloaded ? "disabled" : ""}>${it.downloaded ? t.saved : fmtStr(t.download_format, { fmt: format.toUpperCase() })}</button>`;
     } else if (it.status === "busy") {
       actionBtn = `<button class="dlbtn" disabled>${t.converting}</button>`;
     } else {

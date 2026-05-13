@@ -147,7 +147,7 @@ for (const tool of liveTools) {
   }
 }
 addCheck('sitemap includes all live localized tool pages', missingSitemap.length === 0, missingSitemap.slice(0, 20).join('; '));
-addCheck('robots points to www sitemap', read('robots.txt').includes(`Sitemap: ${BASE_URL}/sitemap.xml`));
+addCheck('robots points to www sitemap', read('robots.txt').includes(`Sitemap: ${BASE_URL}/sitemap-index.xml`));
 addCheck('no bare production domain remains', !/https:\/\/convertunlimited\.com/.test(`${allHtml}\n${sitemap}\n${read('robots.txt')}\n${read('scripts/generate-sitemap.js')}`));
 
 const missingLocalizedRegistryText = [];

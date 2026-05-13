@@ -180,7 +180,7 @@ const renderToolCard = (tool, locale, labels, { allowPlanned = false } = {}) => 
   ].join('\n');
   if (tool.status === 'live') {
     return [
-      `                <a href="${slugToPath(tool.slug, locale)}" class="tool-item">`,
+      `                <a href="${slugToPath(tool.slug, locale)}" class="tool-item" data-track="workflow-click" data-tool="${tool.slug || 'home'}" data-category="${tool.categoryId}">`,
       inner,
       '                </a>',
     ].join('\n');
