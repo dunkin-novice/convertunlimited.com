@@ -1131,5 +1131,22 @@
         }
       ]
     }
+  ],
+  "guides": [
+    {
+      "slug": "webp-vs-png",
+      "title": "WebP vs PNG",
+      "status": "live"
+    },
+    {
+      "slug": "webp-vs-jpg",
+      "title": "WebP vs JPG",
+      "status": "live"
+    },
+    {
+      "slug": "what-is-webp",
+      "title": "What is WebP?",
+      "status": "live"
+    }
   ]
 }

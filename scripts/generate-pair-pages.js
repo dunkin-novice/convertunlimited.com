@@ -59,10 +59,10 @@ const FORMAT_INFO = {
 };
 
 const PAIRS = [
-  { slug: 'png-to-webp', source: 'PNG', target: 'webp', targetLabel: 'WebP', sourceKey: 'png', targetKey: 'webp' },
-  { slug: 'jpg-to-webp', source: 'JPG', target: 'webp', targetLabel: 'WebP', sourceKey: 'jpg', targetKey: 'webp' },
-  { slug: 'webp-to-jpg', source: 'WebP', target: 'jpeg', targetLabel: 'JPEG', sourceKey: 'webp', targetKey: 'jpg' },
-  { slug: 'webp-to-png', source: 'WebP', target: 'png', targetLabel: 'PNG', sourceKey: 'webp', targetKey: 'png' },
+  { slug: 'png-to-webp', source: 'PNG', target: 'webp', targetLabel: 'WebP', sourceKey: 'png', targetKey: 'webp', guideSlug: 'webp-vs-png' },
+  { slug: 'jpg-to-webp', source: 'JPG', target: 'webp', targetLabel: 'WebP', sourceKey: 'jpg', targetKey: 'webp', guideSlug: 'webp-vs-jpg' },
+  { slug: 'webp-to-jpg', source: 'WebP', target: 'jpeg', targetLabel: 'JPEG', sourceKey: 'webp', targetKey: 'jpg', guideSlug: 'webp-vs-jpg' },
+  { slug: 'webp-to-png', source: 'WebP', target: 'png', targetLabel: 'PNG', sourceKey: 'webp', targetKey: 'png', guideSlug: 'webp-vs-png' },
   { slug: 'png-to-jpg', source: 'PNG', target: 'jpeg', targetLabel: 'JPEG', sourceKey: 'png', targetKey: 'jpg' },
 ];
 
@@ -300,12 +300,18 @@ function generate() {
       // What is block
       const sourceDef = FORMAT_INFO[locale.code][pair.sourceKey];
       const targetDef = FORMAT_INFO[locale.code][pair.targetKey];
+      let deepDive = "";
+      if (pair.guideSlug) {
+          const guideUrl = `${locale.prefix ? '/' + locale.prefix : ''}/guides/${pair.guideSlug}/`;
+          deepDive = `<p style="margin-top: 20px; font-weight: 600;">Deep Dive: <a href="${guideUrl}">Read our full ${pair.source} vs ${pair.targetLabel} comparison guide.</a></p>`;
+      }
       const definitionsHtml = `
             <section class="article" style="margin-top: 40px; border-top: 1px solid var(--border); pt: 40px;">
                 <h2>What is ${pair.source}?</h2>
                 <p>${htmlEscape(sourceDef)}</p>
                 <h2>What is ${pair.targetLabel}?</h2>
                 <p>${htmlEscape(targetDef)}</p>
+                ${deepDive}
             </section>
 `;
       // Inject before FAQ

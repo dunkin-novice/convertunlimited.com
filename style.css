@@ -1105,3 +1105,16 @@ a { color: inherit; }
 }
 
 .hidden { display: none !important; }
+
+/* ===== Guide Content Styles ===== */
+.guide-content { max-width: 800px; margin: 0 auto; line-height: 1.6; }
+.comparison-table { width: 100%; border-collapse: collapse; margin: 24px 0; font-size: 14px; }
+.comparison-table th, .comparison-table td { padding: 12px; border: 1px solid var(--line); text-align: left; }
+.comparison-table th { background: var(--paper); font-weight: 600; }
+.pros-cons-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; margin: 24px 0; }
+.pc-block { background: var(--paper); padding: 20px; border-radius: 12px; border: 1px solid var(--line); }
+.pc-block h3 { margin-top: 0; font-size: 16px; margin-bottom: 12px; }
+.pc-block ul { list-style: none; padding: 0; margin: 0; }
+.pc-block li { margin-bottom: 8px; font-size: 14px; }
+.CTA { background: color-mix(in oklch, var(--accent) 5%, var(--paper)); padding: 24px; border-radius: 12px; border: 1px solid var(--accent); margin-top: 40px; }
+.CTA p { margin-bottom: 0; font-weight: 500; }
