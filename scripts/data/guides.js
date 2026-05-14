@@ -151,56 +151,59 @@ const GUIDES = [
     }
   },
   {
-    slug: 'how-it-works',
+    slug: 'local-processing',
     en: {
-      title: "How it Works: Private, Browser-Based File Processing | ConvertUnlimited",
-      description: "Learn how ConvertUnlimited processes your files locally in your browser. No uploads, no servers, 100% private and secure.",
+      title: "Local Processing: Why Your Files Never Leave Your Device | ConvertUnlimited",
+      description: "Discover the technology behind local-first file processing. Learn how we use Canvas, WASM, and File APIs to process images and PDFs without server uploads.",
       h1: "How Local Processing Works",
-      intro: "Unlike traditional online converters that upload your files to a server, ConvertUnlimited works entirely inside your web browser. Your files never leave your device.",
+      intro: "ConvertUnlimited is built on the principle of 'Local-First' software. This means that every image you convert and every PDF you merge is processed entirely within your web browser, using your own device's hardware.",
       sections: [
         {
-          title: "The Magic of Browser-Native Processing",
-          content: "We use modern web technologies like the HTML5 Canvas API and WebAssembly (WASM) to decode and encode your images and documents locally. When you drop a file, your browser's own engine does the heavy lifting."
+          title: "What is Local Processing?",
+          content: "Most 'Online Converters' are actually upload services. When you use them, your files are sent over the internet to a remote server, processed there, and then sent back to you. Local processing eliminates this round-trip. Your files stay in the browser's memory and are handled by client-side scripts."
         },
         {
-          title: "Why This is Better for You",
-          prosCons: {
-            "Local-First": {
-              pros: ["100% Private (No one else sees your files)", "No upload/download waiting time", "Work offline once the page is loaded"],
-              cons: ["Limited by your device's RAM/CPU", "Extremely large files (2GB+) may struggle"]
-            },
-            "Server-Based": {
-              pros: ["Can handle massive enterprise-scale files"],
-              cons: ["Files are uploaded to someone else's server", "Slower (upload/download required)", "Privacy risks"]
-            }
-          }
+          title: "The Browser APIs Behind the Scenes",
+          content: "We leverage modern web standards to provide desktop-class utility performance in a website:\n- **HTML5 Canvas API:** We redraw and re-encode images locally to change their formats.\n- **File & Blob APIs:** We handle your files as local data streams without triggering a network request.\n- **WebAssembly (WASM):** For heavy tasks like AVIF encoding or PDF manipulation, we run high-performance compiled code directly in your browser tab."
         },
         {
-          title: "Our Privacy Promise",
-          content: "ConvertUnlimited is designed to be zero-knowledge. We don't have a backend that stores your data. We don't have accounts. We don't track your content. The code you see on the screen is the code that runs on your machine."
+          title: "Comparison: Local vs. Upload",
+          isTable: true,
+          headers: ["Feature", "Upload-Based Sites", "ConvertUnlimited"],
+          rows: [
+            ["Privacy", "High Risk (Files stored on server)", "100% Private (No upload)"],
+            ["Security", "Server breach risk", "Zero-Knowledge model"],
+            ["Wait Time", "Upload + Download time", "Instant local processing"],
+            ["Data Usage", "Double (Upload + Download)", "Near Zero (Page load only)"],
+            ["Internet", "Required for processing", "Not required after load"]
+          ]
+        },
+        {
+          title: "Technical Advantages",
+          content: "Because there is no upload step, the speed of ConvertUnlimited is only limited by your computer's CPU and RAM. This is why we can support bulk processing of hundreds of files without a subscription fee—we don't have to pay for massive server bandwidth, and neither do you."
         }
       ],
       faq: [
-        ["Are my files safe?", "Yes. Since your files are never uploaded, they are as safe as they are on your own computer."],
-        ["Does this use my internet data?", "Only to load the initial website (a few KB). The actual file processing uses zero data because it happens offline on your device."]
+        ["Can you see my files?", "No. Our server never receives your file data. The connection is only used to send you the static HTML/JS code."],
+        ["Is it safe for work documents?", "Yes. Since the processing is local, it is often safer than using cloud-based office suites for sensitive document merging or metadata stripping."]
       ],
-      cta: "Experience the privacy. [Try our bulk converter now](/)."
+      cta: "Try the local-first experience. [Go to the Metadata Remover](/metadata-remover/)."
     },
     th: {
-      title: "มันทำงานอย่างไร: การประมวลผลไฟล์ส่วนตัวในเบราว์เซอร์ | ConvertUnlimited",
-      description: "เรียนรู้วิธีที่ ConvertUnlimited ประมวลผลไฟล์ของคุณในเครื่องผ่านเบราว์เซอร์ ไม่มีการอัปโหลด ไม่มีเซิร์ฟเวอร์ เป็นส่วนตัวและปลอดภัย 100%",
+      title: "การประมวลผลในเครื่อง: ทำไมไฟล์ของคุณจึงไม่ถูกส่งออกจากอุปกรณ์ | ConvertUnlimited",
+      description: "ค้นพบเทคโนโลยีเบื้องหลังการประมวลผลไฟล์ในเครื่อง เรียนรู้วิธีที่เราใช้ Canvas, WASM และ File APIs เพื่อประมวลผลรูปภาพและ PDF โดยไม่ต้องอัปโหลด",
       h1: "การประมวลผลในเครื่องทำงานอย่างไร",
-      intro: "ต่างจากตัวแปลงออนไลน์ทั่วไปที่ต้องอัปโหลดไฟล์ของคุณไปยังเซิร์ฟเวอร์ ConvertUnlimited ทำงานในเว็บเบราว์เซอร์ของคุณทั้งหมด ไฟล์ของคุณจะไม่ถูกส่งออกจากอุปกรณ์",
+      intro: "ConvertUnlimited สร้างขึ้นบนหลักการของซอฟต์แวร์ 'Local-First' ซึ่งหมายความว่าทุกรูปภาพที่คุณแปลงและทุก PDF ที่คุณรวมจะถูกประมวลผลในเว็บเบราว์เซอร์ของคุณทั้งหมดโดยใช้ฮาร์ดแวร์ของอุปกรณ์คุณเอง",
       sections: [
         {
-          title: "พลังของการประมวลผลในเบราว์เซอร์",
-          content: "เราใช้เทคโนโลยีเว็บสมัยใหม่ เช่น HTML5 Canvas API และ WebAssembly (WASM) เพื่อประมวลผลไฟล์ของคุณโดยตรงในเครื่อง"
+          title: "การประมวลผลในเครื่องคืออะไร?",
+          content: "ตัวแปลงออนไลน์ส่วนใหญ่เป็นบริการอัปโหลด เมื่อคุณใช้งาน ไฟล์ของคุณจะถูกส่งผ่านอินเทอร์เน็ตไปยังเซิร์ฟเวอร์ที่อยู่ห่างไาก ประมวลผลที่นั่น แล้วส่งกลับมาให้คุณ การประมวลผลในเครื่องช่วยขจัดขั้นตอนนี้ ไฟล์ของคุณจะอยู่ในหน่วยความจำของเบราว์เซอร์และจัดการโดยสคริปต์ฝั่งไคลเอนต์"
         }
       ],
       faq: [
-          ["ไฟล์ของฉันปลอดภัยหรือไม่?", "ปลอดภัยแน่นอน เนื่องจากไฟล์ของคุณไม่เคยถูกอัปโหลด จึงปลอดภัยเท่ากับไฟล์ที่อยู่ในคอมพิวเตอร์ของคุณเอง"]
+        ["คุณเห็นไฟล์ของฉันไหม?", "ไม่ เซิร์ฟเวอร์ของเราไม่เคยได้รับข้อมูลไฟล์ของคุณ การเชื่อมต่อใช้เพื่อส่งรหัส HTML/JS แบบคงที่ให้คุณเท่านั้น"]
       ],
-      cta: "สัมผัสความเป็นส่วนตัว [ลองใช้ตัวแปลงของเราตอนนี้](/) ."
+      cta: "สัมผัสประสบการณ์การประมวลผลในเครื่อง [ไปที่ตัวลบข้อมูลเมตา](/th/metadata-remover/)."
     }
   }
 ];

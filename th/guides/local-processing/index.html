@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>การประมวลผลในเครื่อง: ทำไมไฟล์ของคุณจึงไม่ถูกส่งออกจากอุปกรณ์ | ConvertUnlimited</title>
+    <meta name="description" content="ค้นพบเทคโนโลยีเบื้องหลังการประมวลผลไฟล์ในเครื่อง เรียนรู้วิธีที่เราใช้ Canvas, WASM และ File APIs เพื่อประมวลผลรูปภาพและ PDF โดยไม่ต้องอัปโหลด">
+    <meta name="robots" content="index,follow,max-image-preview:large">
+    <meta name="google-adsense-account" content="ca-pub-2823470980745945">
+    <meta name="msvalidate.01" content="003FD42627CDC93A3D0D542D5D0513D4">
+    <meta name="theme-color" content="#3aa17e">
+    <link rel="canonical" href="https://www.convertunlimited.com/th/guides/local-processing/">
+
+    <link rel="alternate" hreflang="en" href="https://www.convertunlimited.com/guides/local-processing/">
+    <link rel="alternate" hreflang="th" href="https://www.convertunlimited.com/th/guides/local-processing/">
+    <link rel="alternate" hreflang="vi" href="https://www.convertunlimited.com/vi/guides/local-processing/">
+    <link rel="alternate" hreflang="zh-Hans" href="https://www.convertunlimited.com/zh/guides/local-processing/">
+    <link rel="alternate" hreflang="ja" href="https://www.convertunlimited.com/ja/guides/local-processing/">
+    <link rel="alternate" hreflang="ko" href="https://www.convertunlimited.com/ko/guides/local-processing/">
+    <link rel="alternate" hreflang="es" href="https://www.convertunlimited.com/es/guides/local-processing/">
+    <link rel="alternate" hreflang="fr" href="https://www.convertunlimited.com/fr/guides/local-processing/">
+    <link rel="alternate" hreflang="x-default" href="https://www.convertunlimited.com/guides/local-processing/">
+
+    <meta property="og:title" content="การประมวลผลในเครื่อง: ทำไมไฟล์ของคุณจึงไม่ถูกส่งออกจากอุปกรณ์ | ConvertUnlimited">
+    <meta property="og:description" content="ค้นพบเทคโนโลยีเบื้องหลังการประมวลผลไฟล์ในเครื่อง เรียนรู้วิธีที่เราใช้ Canvas, WASM และ File APIs เพื่อประมวลผลรูปภาพและ PDF โดยไม่ต้องอัปโหลด">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.convertunlimited.com/th/guides/local-processing/">
+    <meta property="og:site_name" content="ConvertUnlimited">
+    <meta property="og:locale" content="th_TH">
+    <meta property="og:image" content="https://www.convertunlimited.com/og-image.svg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="ConvertUnlimited — เครื่องมือแปลงรูปภาพจำนวนมากฟรี ทำงานในเบราว์เซอร์">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="แปลงรูปภาพจำนวนมากฟรี — JPG, PNG, WebP, GIF, BMP, SVG | ConvertUnlimited">
+    <meta name="twitter:description" content="แปลงไฟล์ JPG, PNG, GIF, BMP, SVG และ WebP จำนวนมาก ฟรี ไม่จำกัด ไม่ต้องสมัครสมาชิก ทำงานในเบราว์เซอร์">
+    <meta name="twitter:image" content="https://www.convertunlimited.com/og-image.svg">
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="alternate icon" href="/favicon.svg">
+    <link rel="apple-touch-icon" href="/favicon.svg">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Noto+Sans+Thai:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/style.css">
+
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2823470980745945" crossorigin="anonymous"></script>
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-98HSCSEKBX"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-98HSCSEKBX');
+    </script>
+
+    
+
+    
+
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"หน้าแรก","item":"https://www.convertunlimited.com/th/"},{"@type":"ListItem","position":2,"name":"คู่มือ","item":"https://www.convertunlimited.com/th/guides/"},{"@type":"ListItem","position":3,"name":"การประมวลผลในเครื่องทำงานอย่างไร","item":"https://www.convertunlimited.com/th/guides/local-processing/"}]}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"TechArticle","headline":"การประมวลผลในเครื่องทำงานอย่างไร","description":"ค้นพบเทคโนโลยีเบื้องหลังการประมวลผลไฟล์ในเครื่อง เรียนรู้วิธีที่เราใช้ Canvas, WASM และ File APIs เพื่อประมวลผลรูปภาพและ PDF โดยไม่ต้องอัปโหลด","author":{"@type":"Organization","name":"ConvertUnlimited"},"publisher":{"@type":"Organization","name":"ConvertUnlimited","logo":{"@type":"ImageObject","url":"https://www.convertunlimited.com/og-image.svg"}},"mainEntityOfPage":{"@type":"WebPage","@id":"https://www.convertunlimited.com/th/guides/local-processing/"}}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"คุณเห็นไฟล์ของฉันไหม?","acceptedAnswer":{"@type":"Answer","text":"ไม่ เซิร์ฟเวอร์ของเราไม่เคยได้รับข้อมูลไฟล์ของคุณ การเชื่อมต่อใช้เพื่อส่งรหัส HTML/JS แบบคงที่ให้คุณเท่านั้น"}}]}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"ConvertUnlimited","url":"https://www.convertunlimited.com","logo":"https://www.convertunlimited.com/og-image.svg","sameAs":["https://github.com/dunkin-novice/convertunlimited.com"]}</script>
+</head>
+<body>
+    <div class="app">
+        <header class="topbar">
+            <a href="/th/" class="brand" aria-label="หน้าแรก ConvertUnlimited">
+                <span class="mark" aria-hidden="true"></span>
+                <span class="word"><b>Convert</b><span>Unlimited</span></span>
+            </a>
+            <nav class="topnav" aria-label="หลัก">
+                <span class="pill"><span class="dot"></span>ฟรี 100% ไม่ต้องสมัคร</span>
+                
+                                                                <details class="tools-dropdown">
+                    <summary aria-label="Tools">เครื่องมือ <svg width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin-left: 2px; opacity: 0.5;"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></summary>
+                    <div class="dropdown-menu" role="menu">
+                        <div class="dropdown-section">เครื่องมือจัดการรูปภาพ</div>
+                        <a href="/th/" aria-current="page">เครื่องมือแปลงรูปภาพ</a>
+                        <a href="/th/background-remover/">ตัวลบพื้นหลัง</a>
+                        <a href="/th/image-compressor/">บีบอัดรูปภาพ</a>
+                        <a href="/th/image-resizer/">ปรับขนาดรูปภาพ</a>
+                        <a href="/th/metadata-remover/">ตัวลบข้อมูลเมตา</a>
+                        <a href="/th/heic-to-jpg/">แปลง HEIC เป็น JPG</a>
+                        <div class="dropdown-section">เครื่องมือจัดการ PDF</div>
+                        <a href="/th/images-to-pdf/">แปลงรูปภาพเป็น PDF</a>
+                        <a href="/th/pdf-to-images/">แปลง PDF เป็นรูปภาพ</a>
+                        <a href="/th/merge-pdf/">รวม PDF</a>
+                        <a href="/th/split-pdf/">แยก PDF</a>
+                        <a href="/th/compress-pdf/">บีบอัด PDF</a>
+                    </div>
+                </details>
+
+<details class="lang-switcher">
+                    <summary aria-label="ภาษา"><span aria-hidden="true">🌐</span> TH</summary>
+                    <div class="lang-menu" role="menu">
+                        <a href="/" hreflang="en" lang="en">English</a>
+                        <a href="/th/" hreflang="th" lang="th" aria-current="page">ไทย</a>
+                        <a href="/vi/" hreflang="vi" lang="vi">Tiếng Việt</a>
+                        <a href="/zh/" hreflang="zh-Hans" lang="zh-Hans">中文（简体）</a>
+                        <a href="/ja/" hreflang="ja" lang="ja">日本語</a>
+                        <a href="/ko/" hreflang="ko" lang="ko">한국어</a>
+                        <a href="/es/" hreflang="es" lang="es">Español</a>
+                        <a href="/fr/" hreflang="fr" lang="fr">Français</a>
+                    </div>
+                </details>
+            </nav>
+        </header>
+
+        <main>
+        
+        <nav class="breadcrumbs" aria-label="Breadcrumb" style="margin-bottom: 24px; font-size: 14px; opacity: 0.8;">
+            <a href="/th/">หน้าแรก</a> &gt; 
+            <span>คู่มือ</span> &gt; 
+            <span>การประมวลผลในเครื่องทำงานอย่างไร</span>
+        </nav>
+<section class="hero"><h1 class="hero-title">การประมวลผลในเครื่องทำงานอย่างไร</h1><p class="sub hero-sub">ConvertUnlimited สร้างขึ้นบนหลักการของซอฟต์แวร์ &#39;Local-First&#39; ซึ่งหมายความว่าทุกรูปภาพที่คุณแปลงและทุก PDF ที่คุณรวมจะถูกประมวลผลในเว็บเบราว์เซอร์ของคุณทั้งหมดโดยใช้ฮาร์ดแวร์ของอุปกรณ์คุณเอง</p></section>
+
+        <div class="guide-content"><section class="article"><h2>การประมวลผลในเครื่องคืออะไร?</h2><p>ตัวแปลงออนไลน์ส่วนใหญ่เป็นบริการอัปโหลด เมื่อคุณใช้งาน ไฟล์ของคุณจะถูกส่งผ่านอินเทอร์เน็ตไปยังเซิร์ฟเวอร์ที่อยู่ห่างไาก ประมวลผลที่นั่น แล้วส่งกลับมาให้คุณ การประมวลผลในเครื่องช่วยขจัดขั้นตอนนี้ ไฟล์ของคุณจะอยู่ในหน่วยความจำของเบราว์เซอร์และจัดการโดยสคริปต์ฝั่งไคลเอนต์</p></section><section id="faq" class="article"><h2>FAQ</h2><h3>คุณเห็นไฟล์ของฉันไหม?</h3><p>ไม่ เซิร์ฟเวอร์ของเราไม่เคยได้รับข้อมูลไฟล์ของคุณ การเชื่อมต่อใช้เพื่อส่งรหัส HTML/JS แบบคงที่ให้คุณเท่านั้น</p></section><section class="article CTA"><h3>Action</h3><p>สัมผัสประสบการณ์การประมวลผลในเครื่อง <a href="/th/metadata-remover/">ไปที่ตัวลบข้อมูลเมตา</a>.</p></section></div></main>
+
+        <div class="footer-ad">
+            <span class="ad-label">โฆษณา</span>
+            <ins class="adsbygoogle ad-footer"
+                 style="display:block"
+                 data-ad-client="ca-pub-2823470980745945"
+                 data-ad-slot="REPLACE_FOOTER_SLOT_ID"
+                 data-ad-format="auto"
+                 data-full-width-responsive="true"></ins>
+        </div>
+
+        <footer class="footer">
+            <div>© <span id="copyright-year">2026</span> ConvertUnlimited.com — ทำงานในเบราว์เซอร์ของคุณทั้งหมด</div>
+                                    <nav class="links" aria-label="Footer">
+                <a href="/th/">เครื่องมือแปลงรูปภาพ</a>
+                <a href="/th/background-remover/">ตัวลบพื้นหลัง</a>
+                <a href="/th/image-compressor/">บีบอัดรูปภาพ</a>
+                <a href="/th/image-resizer/">ปรับขนาดรูปภาพ</a>
+                <a href="/th/metadata-remover/">ตัวลบข้อมูลเมตา</a>
+                <a href="/th/heic-to-jpg/">แปลง HEIC เป็น JPG</a>
+                <a href="/th/images-to-pdf/">แปลงรูปภาพเป็น PDF</a>
+                <a href="/th/pdf-to-images/">แปลง PDF เป็นรูปภาพ</a>
+                <a href="/th/merge-pdf/">รวม PDF</a>
+                <a href="/th/split-pdf/">แยก PDF</a>
+                <a href="/th/compress-pdf/">บีบอัด PDF</a>
+                <a href="/th/#how">วิธีใช้งาน</a>
+                <a href="/th/#formats">รูปแบบไฟล์</a>
+                <a href="/th/#quality">คุณภาพ</a>
+                <a href="/th/#batches">เคล็ดลับ</a>
+                <a href="/th/#faq">คำถามที่พบบ่อย</a>
+                <a href="/th/#privacy">ความเป็นส่วนตัว</a>
+                <a href="/th/#terms">ข้อกำหนด</a>
+            </nav>
+        </footer>
+    </div>
+
+    <div class="drag-overlay" id="drag-overlay">
+        <div class="box">
+            ปล่อยที่นี่เพื่อเพิ่มรูปภาพ
+            <span class="sub">ไฟล์อยู่ในเครื่องของคุณ — ไม่ได้อัปโหลด</span>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+    
+</body>
+</html>

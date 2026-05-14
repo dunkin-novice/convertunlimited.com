@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Local Processing: Why Your Files Never Leave Your Device | ConvertUnlimited</title>
+    <meta name="description" content="Discover the technology behind local-first file processing. Learn how we use Canvas, WASM, and File APIs to process images and PDFs without server uploads.">
+    <meta name="robots" content="index,follow,max-image-preview:large">
+    <meta name="google-adsense-account" content="ca-pub-2823470980745945">
+    <meta name="msvalidate.01" content="003FD42627CDC93A3D0D542D5D0513D4">
+    <meta name="theme-color" content="#3aa17e">
+    <link rel="canonical" href="https://www.convertunlimited.com/fr/guides/local-processing/">
+
+    <link rel="alternate" hreflang="en" href="https://www.convertunlimited.com/guides/local-processing/">
+    <link rel="alternate" hreflang="th" href="https://www.convertunlimited.com/th/guides/local-processing/">
+    <link rel="alternate" hreflang="vi" href="https://www.convertunlimited.com/vi/guides/local-processing/">
+    <link rel="alternate" hreflang="zh-Hans" href="https://www.convertunlimited.com/zh/guides/local-processing/">
+    <link rel="alternate" hreflang="ja" href="https://www.convertunlimited.com/ja/guides/local-processing/">
+    <link rel="alternate" hreflang="ko" href="https://www.convertunlimited.com/ko/guides/local-processing/">
+    <link rel="alternate" hreflang="es" href="https://www.convertunlimited.com/es/guides/local-processing/">
+    <link rel="alternate" hreflang="fr" href="https://www.convertunlimited.com/fr/guides/local-processing/">
+    <link rel="alternate" hreflang="x-default" href="https://www.convertunlimited.com/guides/local-processing/">
+
+    <meta property="og:title" content="Local Processing: Why Your Files Never Leave Your Device | ConvertUnlimited">
+    <meta property="og:description" content="Discover the technology behind local-first file processing. Learn how we use Canvas, WASM, and File APIs to process images and PDFs without server uploads.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.convertunlimited.com/fr/guides/local-processing/">
+    <meta property="og:site_name" content="ConvertUnlimited">
+    <meta property="og:locale" content="fr_FR">
+    <meta property="og:image" content="https://www.convertunlimited.com/og-image.svg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="ConvertUnlimited — convertisseur d'images en lot gratuit qui tourne dans le navigateur">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Convertisseur d'images en lot gratuit — JPG, PNG, WebP, GIF, BMP, SVG | ConvertUnlimited">
+    <meta name="twitter:description" content="Convertis tes JPG, PNG, GIF, BMP, SVG et WebP en lot — gratuit, sans limite, sans inscription.">
+    <meta name="twitter:image" content="https://www.convertunlimited.com/og-image.svg">
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="alternate icon" href="/favicon.svg">
+    <link rel="apple-touch-icon" href="/favicon.svg">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/style.css">
+
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2823470980745945" crossorigin="anonymous"></script>
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-98HSCSEKBX"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-98HSCSEKBX');
+    </script>
+
+    
+
+    
+
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Accueil","item":"https://www.convertunlimited.com/fr/"},{"@type":"ListItem","position":2,"name":"Guides","item":"https://www.convertunlimited.com/fr/guides/"},{"@type":"ListItem","position":3,"name":"How Local Processing Works","item":"https://www.convertunlimited.com/fr/guides/local-processing/"}]}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"TechArticle","headline":"How Local Processing Works","description":"Discover the technology behind local-first file processing. Learn how we use Canvas, WASM, and File APIs to process images and PDFs without server uploads.","author":{"@type":"Organization","name":"ConvertUnlimited"},"publisher":{"@type":"Organization","name":"ConvertUnlimited","logo":{"@type":"ImageObject","url":"https://www.convertunlimited.com/og-image.svg"}},"mainEntityOfPage":{"@type":"WebPage","@id":"https://www.convertunlimited.com/fr/guides/local-processing/"}}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Can you see my files?","acceptedAnswer":{"@type":"Answer","text":"No. Our server never receives your file data. The connection is only used to send you the static HTML/JS code."}},{"@type":"Question","name":"Is it safe for work documents?","acceptedAnswer":{"@type":"Answer","text":"Yes. Since the processing is local, it is often safer than using cloud-based office suites for sensitive document merging or metadata stripping."}}]}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"ConvertUnlimited","url":"https://www.convertunlimited.com","logo":"https://www.convertunlimited.com/og-image.svg","sameAs":["https://github.com/dunkin-novice/convertunlimited.com"]}</script>
+</head>
+<body>
+    <div class="app">
+        <header class="topbar">
+            <a href="/fr/" class="brand" aria-label="Accueil ConvertUnlimited">
+                <span class="mark" aria-hidden="true"></span>
+                <span class="word"><b>Convert</b><span>Unlimited</span></span>
+            </a>
+            <nav class="topnav" aria-label="Principale">
+                <span class="pill"><span class="dot"></span>100 % gratuit, sans inscription</span>
+                
+                                                                <details class="tools-dropdown">
+                    <summary aria-label="Outils">Outils <svg width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin-left: 2px; opacity: 0.5;"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></summary>
+                    <div class="dropdown-menu" role="menu">
+                        <div class="dropdown-section">Outils d'image</div>
+                        <a href="/fr/" aria-current="page">Convertisseur d'images</a>
+                        <a href="/fr/background-remover/">Suppresseur de fond</a>
+                        <a href="/fr/image-compressor/">Compresseur d'image</a>
+                        <a href="/fr/image-resizer/">Redimensionner l'image</a>
+                        <a href="/fr/metadata-remover/">Supprimer les métadonnées</a>
+                        <a href="/fr/heic-to-jpg/">HEIC en JPG</a>
+                        <div class="dropdown-section">Outils PDF</div>
+                        <a href="/fr/images-to-pdf/">Images en PDF</a>
+                        <a href="/fr/pdf-to-images/">PDF en images</a>
+                        <a href="/fr/merge-pdf/">Fusionner PDF</a>
+                        <a href="/fr/split-pdf/">Diviser PDF</a>
+                        <a href="/fr/compress-pdf/">Compresser PDF</a>
+                    </div>
+                </details>
+
+<details class="lang-switcher">
+                    <summary aria-label="Langue"><span aria-hidden="true">🌐</span> FR</summary>
+                    <div class="lang-menu" role="menu">
+                        <a href="/" hreflang="en" lang="en">English</a>
+                        <a href="/th/" hreflang="th" lang="th">ไทย</a>
+                        <a href="/vi/" hreflang="vi" lang="vi">Tiếng Việt</a>
+                        <a href="/zh/" hreflang="zh-Hans" lang="zh-Hans">中文(简体)</a>
+                        <a href="/ja/" hreflang="ja" lang="ja">日本語</a>
+                        <a href="/ko/" hreflang="ko" lang="ko">한국어</a>
+                        <a href="/es/" hreflang="es" lang="es">Español</a>
+                        <a href="/fr/" hreflang="fr" lang="fr" aria-current="page">Français</a>
+                    </div>
+                </details>
+            </nav>
+        </header>
+
+        <main>
+        
+        <nav class="breadcrumbs" aria-label="Breadcrumb" style="margin-bottom: 24px; font-size: 14px; opacity: 0.8;">
+            <a href="/fr/">Accueil</a> &gt; 
+            <span>Guides</span> &gt; 
+            <span>How Local Processing Works</span>
+        </nav>
+<section class="hero"><h1 class="hero-title">How Local Processing Works</h1><p class="sub hero-sub">ConvertUnlimited is built on the principle of &#39;Local-First&#39; software. This means that every image you convert and every PDF you merge is processed entirely within your web browser, using your own device&#39;s hardware.</p></section>
+
+        <div class="guide-content"><section class="article"><h2>What is Local Processing?</h2><p>Most &#39;Online Converters&#39; are actually upload services. When you use them, your files are sent over the internet to a remote server, processed there, and then sent back to you. Local processing eliminates this round-trip. Your files stay in the browser&#39;s memory and are handled by client-side scripts.</p></section><section class="article"><h2>The Browser APIs Behind the Scenes</h2><p>We leverage modern web standards to provide desktop-class utility performance in a website:
+- **HTML5 Canvas API:** We redraw and re-encode images locally to change their formats.
+- **File &amp; Blob APIs:** We handle your files as local data streams without triggering a network request.
+- **WebAssembly (WASM):** For heavy tasks like AVIF encoding or PDF manipulation, we run high-performance compiled code directly in your browser tab.</p></section><section class="article"><h2>Comparison: Local vs. Upload</h2><div class="table-container"><table class="comparison-table"><thead><tr><th>Feature</th><th>Upload-Based Sites</th><th>ConvertUnlimited</th></tr></thead><tbody><tr><td>Privacy</td><td>High Risk (Files stored on server)</td><td>100% Private (No upload)</td></tr><tr><td>Security</td><td>Server breach risk</td><td>Zero-Knowledge model</td></tr><tr><td>Wait Time</td><td>Upload + Download time</td><td>Instant local processing</td></tr><tr><td>Data Usage</td><td>Double (Upload + Download)</td><td>Near Zero (Page load only)</td></tr><tr><td>Internet</td><td>Required for processing</td><td>Not required after load</td></tr></tbody></table></div></section><section class="article"><h2>Technical Advantages</h2><p>Because there is no upload step, the speed of ConvertUnlimited is only limited by your computer&#39;s CPU and RAM. This is why we can support bulk processing of hundreds of files without a subscription fee—we don&#39;t have to pay for massive server bandwidth, and neither do you.</p></section><section id="faq" class="article"><h2>FAQ</h2><h3>Can you see my files?</h3><p>No. Our server never receives your file data. The connection is only used to send you the static HTML/JS code.</p><h3>Is it safe for work documents?</h3><p>Yes. Since the processing is local, it is often safer than using cloud-based office suites for sensitive document merging or metadata stripping.</p></section><section class="article CTA"><h3>Action</h3><p>Try the local-first experience. <a href="/metadata-remover/">Go to the Metadata Remover</a>.</p></section></div></main>
+
+        <div class="footer-ad">
+            <span class="ad-label">Pub</span>
+            <ins class="adsbygoogle ad-footer"
+                 style="display:block"
+                 data-ad-client="ca-pub-2823470980745945"
+                 data-ad-slot="REPLACE_FOOTER_SLOT_ID"
+                 data-ad-format="auto"
+                 data-full-width-responsive="true"></ins>
+        </div>
+
+        <footer class="footer">
+            <div>© <span id="copyright-year">2026</span> ConvertUnlimited.com — tourne entièrement dans ton navigateur.</div>
+                                    <nav class="links" aria-label="Footer">
+                <a href="/fr/">Convertisseur d'images</a>
+                <a href="/fr/background-remover/">Suppresseur de fond</a>
+                <a href="/fr/image-compressor/">Compresseur d'image</a>
+                <a href="/fr/image-resizer/">Redimensionner l'image</a>
+                <a href="/fr/metadata-remover/">Supprimer les métadonnées</a>
+                <a href="/fr/heic-to-jpg/">HEIC en JPG</a>
+                <a href="/fr/images-to-pdf/">Images en PDF</a>
+                <a href="/fr/pdf-to-images/">PDF en images</a>
+                <a href="/fr/merge-pdf/">Fusionner PDF</a>
+                <a href="/fr/split-pdf/">Diviser PDF</a>
+                <a href="/fr/compress-pdf/">Compresser PDF</a>
+                <a href="/fr/#how">Comment ça marche</a>
+                <a href="/fr/#formats">Formats</a>
+                <a href="/fr/#quality">Qualité</a>
+                <a href="/fr/#batches">Astuces</a>
+                <a href="/fr/#faq">FAQ</a>
+                <a href="/fr/#privacy">Confidentialité</a>
+                <a href="/fr/#terms">Conditions</a>
+            </nav>
+        </footer>
+    </div>
+
+    <div class="drag-overlay" id="drag-overlay">
+        <div class="box">
+            Lâche ici pour ajouter des images
+            <span class="sub">Les fichiers restent sur ton appareil — rien n'est uploadé.</span>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+    
+</body>
+</html>
