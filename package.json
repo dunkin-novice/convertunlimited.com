@@ -1,0 +1,15 @@
+{
+  "name": "convertunlimited.com",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Static browser-native file tools with a separate privacy build.",
+  "scripts": {
+    "build:privacy": "node scripts/build-privacy.js",
+    "audit:privacy": "node scripts/audit-privacy-build.js",
+    "test:privacy-network": "node tests/no-network-processing.js",
+    "verify:privacy": "npm run build:privacy && npm run audit:privacy && npm run test:privacy-network"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
