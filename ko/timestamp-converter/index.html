@@ -28,6 +28,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/style.css">
     <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","inLanguage":"ko","mainEntity":[{"@type":"Question","name":"이 도구는 무료인가요?","acceptedAnswer":{"@type":"Answer","text":"네. 가입 없이 변환, 복사, 지우기를 할 수 있습니다."}},{"@type":"Question","name":"변환은 로컬인가요?","acceptedAnswer":{"@type":"Answer","text":"네. 브라우저 Date API로 처리합니다."}},{"@type":"Question","name":"초와 밀리초를 지원하나요?","acceptedAnswer":{"@type":"Answer","text":"네. 단위 선택기로 전환합니다."}},{"@type":"Question","name":"어떤 시간대를 표시하나요?","acceptedAnswer":{"@type":"Answer","text":"ISO 8601, UTC, 브라우저 로컬 시간대를 표시합니다."}},{"@type":"Question","name":"잘못된 날짜는 어떻게 되나요?","acceptedAnswer":{"@type":"Answer","text":"친절한 경고를 표시하고 입력을 유지합니다."}}]}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"타임스탬프 변환기","description":"브라우저에서 Unix 타임스탬프와 날짜를 변환하세요. 초, 밀리초, UTC, 로컬 시간, ISO 8601 지원.","url":"https://www.convertunlimited.com/ko/timestamp-converter/","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","isAccessibleForFree":true,"inLanguage":"ko","featureList":["타임스탬프를 양방향 변환하세요.","Processed locally in your browser for supported operations","No account required"],"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2823470980745945" crossorigin="anonymous"></script>
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-98HSCSEKBX"></script>
     <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-98HSCSEKBX');</script>
@@ -39,7 +40,7 @@
             <nav class="topnav" aria-label="Primary">
                 <span class="pill"><span class="dot"></span>100% free, no signup</span>
                 <details class="tools-dropdown"><summary aria-label="Tools">Tools <svg width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin-left: 2px; opacity: 0.5;"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></summary><div class="dropdown-menu" role="menu"><div class="dropdown-section">Developer Tools</div><a href="/ko/timestamp-converter/" aria-current="page">Timestamp Converter</a><a href="/ko/uuid-generator/">UUID Generator</a><a href="/ko/hash-generator/">Hash Generator</a><a href="/ko/json-formatter/">JSON Formatter</a></div></details>
-                <details class="lang-switcher"><summary aria-label="Language"><span aria-hidden="true">🌐</span> KO</summary><div class="lang-menu" role="menu">
+                <details class="lang-switcher"><summary aria-label="Language"><span aria-hidden="true">🌐</span> 한국어</summary><div class="lang-menu" role="menu">
                         <a href="/timestamp-converter/" hreflang="en" lang="en">English</a>
                         <a href="/th/timestamp-converter/" hreflang="th" lang="th">ไทย</a>
                         <a href="/vi/timestamp-converter/" hreflang="vi" lang="vi">Tiếng Việt</a>
@@ -79,6 +80,15 @@
                 </section>
                 <aside class="rail" aria-label="Sidebar"><div class="ad-slot"><span class="ad-label">Ad</span><div class="ad-body"><ins class="adsbygoogle ad-rail" style="display:block" data-ad-client="ca-pub-2823470980745945" data-ad-slot="REPLACE_TIMESTAMP_RAIL_SLOT_ID" data-ad-format="auto" data-full-width-responsive="true"></ins></div><div class="ad-foot"></div></div><div class="rail-card trust"><h3>개인정보 보호 설계</h3><div class="item"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg><div><b>로컬 변환.</b> 날짜와 타임스탬프는 브라우저에서 변환됩니다.</div></div><div class="item"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg><div><b>업로드 없음.</b> 서버 요청이 필요 없습니다.</div></div></div></aside>
             </div>
+
+            <section class="article aeo-summary" id="tool-summary">
+                <h2>What this tool does</h2>
+                <p>초/밀리초를 전환하고 UTC와 로컬 시간을 확인하며 서버 요청 없이 ISO 8601 출력을 복사합니다.</p>
+                <h2>Privacy behavior</h2>
+                <p>Selected inputs are processed locally in your browser for this workflow. The public site may load ads and analytics; use the privacy build for privacy-sensitive workflows.</p>
+                <h2>Supported workflow</h2>
+                <p>Unix 타임스탬프는 로그, API, 데이터베이스, 분석 내보내기, 디버깅에서 자주 사용됩니다.</p>
+            </section>
             <section id="how" class="article"><h2>타임스탬프는 언제 변환하나요?</h2><p>Unix 타임스탬프는 로그, API, 데이터베이스, 분석 내보내기, 디버깅에서 자주 사용됩니다.</p><p>이 도구는 ISO 8601, UTC, 로컬 시간으로 변환해 날짜 라이브러리나 네트워크 없이 빠르게 확인할 수 있습니다.</p></section>
             <section id="faq" class="article"><h2>자주 묻는 질문</h2>
                 <h3>이 도구는 무료인가요?</h3>
@@ -96,7 +106,7 @@
             <section id="terms" class="article"><h2>이용 약관</h2><p>ConvertUnlimited는 있는 그대로 제공됩니다. 프로덕션 사용 전 변환 결과를 확인하세요.</p></section>
 <!-- RELATED_TOOLS_START -->
         <section class="related-tools">
-            <div class="category-title">권장 다음 단계</div>
+            <div class="category-title">추천 다음 단계</div>
             <div class="tool-grid">
                 <a href="/ko/jwt-decoder/" class="tool-item" data-track="workflow-click" data-tool="jwt-decoder" data-category="developer">
                     <div class="icon">

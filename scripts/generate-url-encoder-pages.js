@@ -4,29 +4,21 @@ const path = require('path');
 const ROOT = process.cwd();
 const BASE_URL = 'https://www.convertunlimited.com';
 const ADSENSE = 'ca-pub-2823470980745945';
-const LOCALES = [
-  { code: 'en', prefix: '', hreflang: 'en', label: 'EN', name: 'English' },
-  { code: 'th', prefix: 'th', hreflang: 'th', label: 'TH', name: 'ไทย' },
-  { code: 'vi', prefix: 'vi', hreflang: 'vi', label: 'VI', name: 'Tiếng Việt' },
-  { code: 'zh', prefix: 'zh', hreflang: 'zh-Hans', label: 'ZH', name: '中文（简体）' },
-  { code: 'ja', prefix: 'ja', hreflang: 'ja', label: 'JA', name: '日本語' },
-  { code: 'ko', prefix: 'ko', hreflang: 'ko', label: 'KO', name: '한국어' },
-  { code: 'es', prefix: 'es', hreflang: 'es', label: 'ES', name: 'Español' },
-  { code: 'fr', prefix: 'fr', hreflang: 'fr', label: 'FR', name: 'Français' },
-];
+const LOCALES = require('./data/locales');
+const { aeoSummary, schemaScripts } = require('./data/page-helpers');
 
 const TEXT = {
   en: {
     title: 'URL Encoder Decoder - Encode & Decode URLs Online | ConvertUnlimited',
-    description: 'Encode and decode URLs locally in your browser. Supports Unicode, query strings, encodeURI, encodeURIComponent, copy output, and no uploads.',
+    description: 'Encode and decode URLs locally in your browser. Supports Unicode, query strings, encodeURI, encodeURIComponent, and copy output.',
     hero: 'URL Encoder / Decoder', sub: 'Encode and decode URLs, query strings, and text locally in your browser.',
-    eyebrow: 'Local developer URL tool', panelTitle: 'Convert URLs and encoded strings safely.', panelText: 'Encode reserved characters for URLs or decode percent-encoded strings without uploading data.',
+    eyebrow: 'Local developer URL tool', panelTitle: 'Convert URLs and encoded strings safely.', panelText: 'Encode reserved characters for URLs or decode percent-encoded strings with selected inputs processed locally in your browser.',
     input: 'Input', output: 'Output', mode: 'Encoding mode', full: 'Full URL', component: 'URL component', encode: 'Encode URL', decode: 'Decode URL', copy: 'Copy output', clear: 'Clear', sample: 'Sample URL',
-    chars: 'Characters', bytes: 'Bytes', trustTitle: 'Private by design', trustOne: '<b>Local processing.</b> URL encoding and decoding run in your browser.', trustTwo: '<b>No uploads.</b> Text stays on your device.',
+    chars: 'Characters', bytes: 'Bytes', trustTitle: 'Private by design', trustOne: '<b>Local processing.</b> URL encoding and decoding run in your browser.', trustTwo: '<b>Local processing.</b> Text is processed locally in your browser.',
     articleTitle: 'When should you encode URLs?', articleP1: 'URL encoding is useful for query strings, API calls, redirects, search parameters, and debugging links that contain spaces, Unicode, or reserved characters.', articleP2: 'Use full URL mode when the URL structure should stay readable. Use component mode when encoding a single query value or path segment.',
     faqTitle: 'Frequently Asked Questions',
     faq: [['Is this URL Encoder free?', 'Yes. You can encode, decode, copy, and clear text without signup.'], ['Is my URL uploaded?', 'No. All URL encoding and decoding happens locally in your browser.'], ['What is the difference between full URL and component mode?', 'Full URL mode keeps URL separators such as : / ? and & readable. Component mode encodes those reserved characters too.'], ['Does it support Unicode and emojis?', 'Yes. UTF-8 text, emojis, accents, and non-Latin scripts are supported.'], ['What happens with malformed percent-encoding?', 'The tool shows a friendly warning and keeps your original input.']],
-    privacyTitle: 'Privacy Policy', privacy: 'We do not collect, store, upload, or transmit text entered into this tool.', termsTitle: 'Terms of Use', terms: 'ConvertUnlimited is provided as is. Review encoded or decoded output before using it in production systems.',
+    privacyTitle: 'Privacy Policy', privacy: 'ConvertUnlimited does not provide a server-side upload endpoint for this URL encoding and decoding flow. Text input is processed locally in your browser.', termsTitle: 'Terms of Use', terms: 'ConvertUnlimited is provided as is. Review encoded or decoded output before using it in production systems.',
   },
   th: {
     title: 'ตัวเข้ารหัสและถอดรหัส URL ออนไลน์ | ConvertUnlimited', description: 'เข้ารหัสและถอดรหัส URL ในเบราว์เซอร์ รองรับ Unicode, query string, encodeURI, encodeURIComponent และไม่อัปโหลด',
@@ -106,7 +98,6 @@ const home = (l) => l.prefix ? `/${l.prefix}/` : '/';
 const abs = (l) => `${BASE_URL}${route(l)}`;
 const link = (l, slug) => `${l.prefix ? `/${l.prefix}` : ''}${slug ? `/${slug}/` : '/'}`;
 const alternates = () => `${LOCALES.map((l) => `    <link rel="alternate" hreflang="${l.hreflang}" href="${abs(l)}">`).join('\n')}\n    <link rel="alternate" hreflang="x-default" href="${abs(LOCALES[0])}">`;
-const faqSchema = (t, l) => JSON.stringify({ '@context': 'https://schema.org', '@type': 'FAQPage', inLanguage: l.hreflang, mainEntity: t.faq.map(([q, a]) => ({ '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: a } })) });
 
 function page(locale) {
   const t = TEXT[locale.code];
@@ -131,7 +122,7 @@ ${alternates()}
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/style.css">
-    <script type="application/ld+json">${faqSchema(t, locale)}</script>
+    ${schemaScripts(t, locale, { url: abs(locale) })}
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${ADSENSE}" crossorigin="anonymous"></script>
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-98HSCSEKBX"></script>
     <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-98HSCSEKBX');</script>
@@ -176,6 +167,7 @@ ${LOCALES.map((l) => `                        <a href="${route(l)}" hreflang="${
                 </section>
                 <aside class="rail" aria-label="Sidebar"><div class="ad-slot"><span class="ad-label">Ad</span><div class="ad-body"><ins class="adsbygoogle ad-rail" style="display:block" data-ad-client="${ADSENSE}" data-ad-slot="REPLACE_URL_ENCODER_RAIL_SLOT_ID" data-ad-format="auto" data-full-width-responsive="true"></ins></div><div class="ad-foot"></div></div><div class="rail-card trust"><h3>${esc(t.trustTitle)}</h3><div class="item"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg><div>${t.trustOne}</div></div><div class="item"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg><div>${t.trustTwo}</div></div></div></aside>
             </div>
+${aeoSummary(t, esc)}
             <section id="how" class="article"><h2>${esc(t.articleTitle)}</h2><p>${esc(t.articleP1)}</p><p>${esc(t.articleP2)}</p></section>
             <section id="faq" class="article"><h2>${esc(t.faqTitle)}</h2>
 ${t.faq.map(([q, a]) => `                <h3>${esc(q)}</h3>\n                <p>${esc(a)}</p>`).join('\n')}

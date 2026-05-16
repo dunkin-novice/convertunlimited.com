@@ -6,6 +6,7 @@ const path = require("path");
 
 const ROOT = process.cwd();
 const BASE_URL = "https://www.convertunlimited.com";
+const LOCALE_LINKS = require("./data/locales");
 
 const SKIP_DIRS = new Set([".git", "dist", "node_modules", "vendor"]);
 
@@ -37,17 +38,6 @@ function routeFor(file) {
   if (rel === "index.html") return "/";
   return `/${rel.replace(/index\.html$/, "")}`;
 }
-
-const LOCALE_LINKS = [
-  { code: "en", prefix: "", hreflang: "en", label: "English" },
-  { code: "th", prefix: "th", hreflang: "th", label: "ไทย" },
-  { code: "vi", prefix: "vi", hreflang: "vi", label: "Tiếng Việt" },
-  { code: "zh", prefix: "zh", hreflang: "zh-Hans", label: "中文（简体）" },
-  { code: "ja", prefix: "ja", hreflang: "ja", label: "日本語" },
-  { code: "ko", prefix: "ko", hreflang: "ko", label: "한국어" },
-  { code: "es", prefix: "es", hreflang: "es", label: "Español" },
-  { code: "fr", prefix: "fr", hreflang: "fr", label: "Français" },
-];
 
 function equivalentSlug(file) {
   const route = routeFor(file);
@@ -161,6 +151,7 @@ function fixLocaleSwitcherRoutes(html, file) {
 }
 
 let changed = 0;
+const changedFiles = [];
 for (const file of walk(ROOT)) {
   const original = fs.readFileSync(file, "utf8");
   let html = original;
@@ -171,7 +162,11 @@ for (const file of walk(ROOT)) {
   if (html !== original) {
     fs.writeFileSync(file, html, "utf8");
     changed += 1;
+    changedFiles.push(path.relative(ROOT, file).split(path.sep).join("/"));
   }
 }
 
 console.log(`Strategy v5 normalization updated ${changed} HTML files.`);
+if (process.env.STRATEGY_V5_VERBOSE === "1") {
+  for (const file of changedFiles) console.log(`- ${file}`);
+}

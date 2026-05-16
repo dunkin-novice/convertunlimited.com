@@ -6,16 +6,10 @@ const BASE_URL = 'https://www.convertunlimited.com';
 const REGISTRY_PATH = path.join(ROOT, 'tools-registry.json');
 const SITEMAP_PATH = path.join(ROOT, 'sitemap.xml');
 
-const LOCALES = [
-  { code: 'en', prefix: '', hreflang: 'en', toolsPath: 'tools/index.html' },
-  { code: 'th', prefix: 'th', hreflang: 'th', toolsPath: 'th/tools/index.html' },
-  { code: 'vi', prefix: 'vi', hreflang: 'vi', toolsPath: 'vi/tools/index.html' },
-  { code: 'zh', prefix: 'zh', hreflang: 'zh-Hans', toolsPath: 'zh/tools/index.html' },
-  { code: 'ja', prefix: 'ja', hreflang: 'ja', toolsPath: 'ja/tools/index.html' },
-  { code: 'ko', prefix: 'ko', hreflang: 'ko', toolsPath: 'ko/tools/index.html' },
-  { code: 'es', prefix: 'es', hreflang: 'es', toolsPath: 'es/tools/index.html' },
-  { code: 'fr', prefix: 'fr', hreflang: 'fr', toolsPath: 'fr/tools/index.html' },
-];
+const LOCALES = require('./data/locales').map((locale) => ({
+  ...locale,
+  toolsPath: locale.prefix ? `${locale.prefix}/tools/index.html` : 'tools/index.html',
+}));
 
 const checks = [];
 

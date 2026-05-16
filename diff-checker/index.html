@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Diff Checker - Compare Text Online | ConvertUnlimited</title>
-    <meta name="description" content="Compare two texts locally in your browser. Show added, removed, and unchanged lines with summary counts, copy diff output, and no uploads.">
+    <meta name="description" content="Compare two texts locally in your browser. Show added, removed, and unchanged lines with summary counts and copy diff output.">
     <meta name="robots" content="index,follow,max-image-preview:large">
     <meta name="theme-color" content="#3aa17e">
     <meta name="google-adsense-account" content="ca-pub-2823470980745945">
@@ -28,7 +28,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/style.css">
     <style>.diff-row{display:flex;gap:10px;padding:4px 8px;border-bottom:1px solid var(--line);white-space:pre-wrap;overflow-wrap:anywhere}.diff-added{background:rgba(58,161,126,.12)}.diff-removed{background:rgba(220,80,80,.12)}.diff-same{background:transparent}.diff-sign{font-weight:700;min-width:14px}</style>
-    <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","inLanguage":"en","mainEntity":[{"@type":"Question","name":"Is this Diff Checker free?","acceptedAnswer":{"@type":"Answer","text":"Yes. You can compare, copy, and clear text without signup."}},{"@type":"Question","name":"Is my text uploaded?","acceptedAnswer":{"@type":"Answer","text":"No. Comparison happens locally in your browser."}},{"@type":"Question","name":"What kind of diff is used?","acceptedAnswer":{"@type":"Answer","text":"The tool uses a line-based diff that marks added, removed, and unchanged lines."}},{"@type":"Question","name":"Can it ignore whitespace or case?","acceptedAnswer":{"@type":"Answer","text":"Yes. Use the toggles before comparing."}},{"@type":"Question","name":"Does it support Unicode?","acceptedAnswer":{"@type":"Answer","text":"Yes. Unicode text and emojis are handled as browser strings."}}]}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","inLanguage":"en","mainEntity":[{"@type":"Question","name":"Is this Diff Checker free?","acceptedAnswer":{"@type":"Answer","text":"Yes. You can compare, copy, and clear text without signup."}},{"@type":"Question","name":"Is my text sent to ConvertUnlimited servers?","acceptedAnswer":{"@type":"Answer","text":"No server-side upload endpoint is used for comparison; text is processed locally in your browser."}},{"@type":"Question","name":"What kind of diff is used?","acceptedAnswer":{"@type":"Answer","text":"The tool uses a line-based diff that marks added, removed, and unchanged lines."}},{"@type":"Question","name":"Can it ignore whitespace or case?","acceptedAnswer":{"@type":"Answer","text":"Yes. Use the toggles before comparing."}},{"@type":"Question","name":"Does it support Unicode?","acceptedAnswer":{"@type":"Answer","text":"Yes. Unicode text and emojis are handled as browser strings."}}]}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Diff Checker","description":"Compare two texts locally in your browser. Show added, removed, and unchanged lines with summary counts and copy diff output.","url":"https://www.convertunlimited.com/diff-checker/","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","isAccessibleForFree":true,"inLanguage":"en","featureList":["Compare original and changed text.","Processed locally in your browser for supported operations","No account required"],"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2823470980745945" crossorigin="anonymous"></script>
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-98HSCSEKBX"></script>
     <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-98HSCSEKBX');</script>
@@ -40,7 +41,7 @@
             <nav class="topnav" aria-label="Primary">
                 <span class="pill"><span class="dot"></span>100% free, no signup</span>
                 <details class="tools-dropdown"><summary aria-label="Tools">Tools <svg width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin-left: 2px; opacity: 0.5;"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></summary><div class="dropdown-menu" role="menu"><div class="dropdown-section">Developer Tools</div><a href="/diff-checker/" aria-current="page">Diff Checker</a><a href="/regex-tester/">Regex Tester</a><a href="/json-formatter/">JSON Formatter</a><a href="/timestamp-converter/">Timestamp Converter</a></div></details>
-                <details class="lang-switcher"><summary aria-label="Language"><span aria-hidden="true">🌐</span> EN</summary><div class="lang-menu" role="menu">
+                <details class="lang-switcher"><summary aria-label="Language"><span aria-hidden="true">🌐</span> English</summary><div class="lang-menu" role="menu">
                         <a href="/diff-checker/" hreflang="en" lang="en" aria-current="page">English</a>
                         <a href="/th/diff-checker/" hreflang="th" lang="th">ไทย</a>
                         <a href="/vi/diff-checker/" hreflang="vi" lang="vi">Tiếng Việt</a>
@@ -56,7 +57,7 @@
             <section class="hero"><h1 class="hero-title">Diff Checker</h1><p class="sub hero-sub">Compare two texts locally and see added, removed, and unchanged lines.</p></section>
             <div class="grid" id="layout">
                 <section class="bg-tool" aria-label="Diff Checker">
-                    <div class="bg-tool-head"><div><p class="section-eyebrow">Local developer comparison tool</p><h2>Compare original and changed text.</h2><p>Paste two versions, run a line-based diff, and copy the result without sending text to a server.</p></div></div>
+                    <div class="bg-tool-head"><div><p class="section-eyebrow">Local developer comparison tool</p><h2>Compare original and changed text.</h2><p>Paste two versions, run a line-based diff, and copy the result with selected text processed locally in your browser.</p></div></div>
                     <div class="bg-workbench">
                         <div class="bg-panel">
                             <div class="bg-controls">
@@ -78,14 +79,23 @@
                     </div>
                     <div class="banner-ad"><span class="ad-label">Ad</span><ins class="adsbygoogle ad-below" style="display:block" data-ad-client="ca-pub-2823470980745945" data-ad-slot="REPLACE_DIFF_BELOW_TOOL_SLOT_ID" data-ad-format="auto" data-full-width-responsive="true"></ins></div>
                 </section>
-                <aside class="rail" aria-label="Sidebar"><div class="ad-slot"><span class="ad-label">Ad</span><div class="ad-body"><ins class="adsbygoogle ad-rail" style="display:block" data-ad-client="ca-pub-2823470980745945" data-ad-slot="REPLACE_DIFF_RAIL_SLOT_ID" data-ad-format="auto" data-full-width-responsive="true"></ins></div><div class="ad-foot"></div></div><div class="rail-card trust"><h3>Private by design</h3><div class="item"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg><div><b>Local comparison.</b> Text comparison runs in your browser.</div></div><div class="item"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg><div><b>No uploads.</b> Text stays on your device.</div></div></div></aside>
+                <aside class="rail" aria-label="Sidebar"><div class="ad-slot"><span class="ad-label">Ad</span><div class="ad-body"><ins class="adsbygoogle ad-rail" style="display:block" data-ad-client="ca-pub-2823470980745945" data-ad-slot="REPLACE_DIFF_RAIL_SLOT_ID" data-ad-format="auto" data-full-width-responsive="true"></ins></div><div class="ad-foot"></div></div><div class="rail-card trust"><h3>Private by design</h3><div class="item"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg><div><b>Local comparison.</b> Text comparison runs in your browser.</div></div><div class="item"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg><div><b>Local processing.</b> Text is processed locally in your browser.</div></div></div></aside>
             </div>
+
+            <section class="article aeo-summary" id="tool-summary">
+                <h2>What this tool does</h2>
+                <p>Paste two versions, run a line-based diff, and copy the result with selected text processed locally in your browser.</p>
+                <h2>Privacy behavior</h2>
+                <p>Selected inputs are processed locally in your browser for this workflow. The public site may load ads and analytics; use the privacy build for privacy-sensitive workflows.</p>
+                <h2>Supported workflow</h2>
+                <p>Diff checking helps review edits, compare snippets, inspect configuration changes, and debug text output before sharing or deploying.</p>
+            </section>
             <section id="how" class="article"><h2>When should you use a diff checker?</h2><p>Diff checking helps review edits, compare snippets, inspect configuration changes, and debug text output before sharing or deploying.</p><p>This tool uses a simple line-based comparison and renders text safely as text, not raw HTML.</p></section>
             <section id="faq" class="article"><h2>Frequently Asked Questions</h2>
                 <h3>Is this Diff Checker free?</h3>
                 <p>Yes. You can compare, copy, and clear text without signup.</p>
-                <h3>Is my text uploaded?</h3>
-                <p>No. Comparison happens locally in your browser.</p>
+                <h3>Is my text sent to ConvertUnlimited servers?</h3>
+                <p>No server-side upload endpoint is used for comparison; text is processed locally in your browser.</p>
                 <h3>What kind of diff is used?</h3>
                 <p>The tool uses a line-based diff that marks added, removed, and unchanged lines.</p>
                 <h3>Can it ignore whitespace or case?</h3>
@@ -93,11 +103,11 @@
                 <h3>Does it support Unicode?</h3>
                 <p>Yes. Unicode text and emojis are handled as browser strings.</p>
             </section>
-            <section id="privacy" class="article"><h2>Privacy Policy</h2><p>We do not collect, store, upload, or transmit text entered into this tool.</p></section>
+            <section id="privacy" class="article"><h2>Privacy Policy</h2><p>ConvertUnlimited does not provide a server-side upload endpoint for this text comparison flow. Text is processed locally in your browser.</p></section>
             <section id="terms" class="article"><h2>Terms of Use</h2><p>ConvertUnlimited is provided as is. Review diff output before using it in production workflows.</p></section>
 <!-- RELATED_TOOLS_START -->
         <section class="related-tools">
-            <div class="category-title">Recommended Next Steps</div>
+            <div class="category-title">Recommended next steps</div>
             <div class="tool-grid">
                 <a href="/regex-tester/" class="tool-item" data-track="workflow-click" data-tool="regex-tester" data-category="developer">
                     <div class="icon">

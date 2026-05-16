@@ -28,7 +28,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/style.css">
     <style>.watermark-preview{width:100%;max-height:520px;object-fit:contain;border:1px solid var(--line);border-radius:8px;background:var(--bg-2)}.watermark-empty{display:grid;min-height:280px;place-items:center;border:1px dashed var(--line);border-radius:8px;color:var(--ink-3);text-align:center;padding:24px}.watermark-select{width:100%;min-height:42px;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--ink);padding:0 10px}</style>
-    <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","inLanguage":"en","mainEntity":[{"@type":"Question","name":"Is this Watermark Tool free?","acceptedAnswer":{"@type":"Answer","text":"Yes. You can add and download a text watermark without signup."}},{"@type":"Question","name":"Are my images uploaded?","acceptedAnswer":{"@type":"Answer","text":"No. The image is processed locally in your browser."}},{"@type":"Question","name":"Can I change watermark position?","acceptedAnswer":{"@type":"Answer","text":"Yes. Choose corner, center, or edge positions before exporting."}},{"@type":"Question","name":"Can I adjust opacity and size?","acceptedAnswer":{"@type":"Answer","text":"Yes. Use the sliders to tune the watermark preview."}},{"@type":"Question","name":"What format is exported?","acceptedAnswer":{"@type":"Answer","text":"The tool exports a PNG image from the browser canvas."}}]}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","inLanguage":"en","mainEntity":[{"@type":"Question","name":"Is this Watermark Tool free?","acceptedAnswer":{"@type":"Answer","text":"Yes. You can add and download a text watermark without signup."}},{"@type":"Question","name":"Are my images sent to ConvertUnlimited servers?","acceptedAnswer":{"@type":"Answer","text":"No server-side upload endpoint is used for this watermarking flow. The image is processed locally in your browser."}},{"@type":"Question","name":"Can I change watermark position?","acceptedAnswer":{"@type":"Answer","text":"Yes. Choose corner, center, or edge positions before exporting."}},{"@type":"Question","name":"Can I adjust opacity and size?","acceptedAnswer":{"@type":"Answer","text":"Yes. Use the sliders to tune the watermark preview."}},{"@type":"Question","name":"What format is exported?","acceptedAnswer":{"@type":"Answer","text":"The tool exports a PNG image from the browser canvas."}}]}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Watermark Tool","description":"Add a text watermark to images in your browser. Adjust position, opacity, and size, preview locally, and download a watermarked PNG without uploads.","url":"https://www.convertunlimited.com/watermark-tool/","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","isAccessibleForFree":true,"inLanguage":"en","featureList":["Create a watermarked image.","Processed locally in your browser for supported operations","No account required"],"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2823470980745945" crossorigin="anonymous"></script>
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-98HSCSEKBX"></script>
     <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-98HSCSEKBX');</script>
@@ -40,7 +41,7 @@
             <nav class="topnav" aria-label="Primary">
                 <span class="pill"><span class="dot"></span>100% free, no signup</span>
                 <details class="tools-dropdown"><summary aria-label="Tools">Tools <svg width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin-left: 2px; opacity: 0.5;"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></summary><div class="dropdown-menu" role="menu"><div class="dropdown-section">Image Tools</div><a href="/">Image Converter</a><a href="/image-compressor/">Image Compressor</a><a href="/image-resizer/">Image Resizer</a><a href="/metadata-remover/">Metadata Remover</a><a href="/watermark-tool/" aria-current="page">Watermark Tool</a><a href="/avif-converter/">AVIF Converter</a></div></details>
-                <details class="lang-switcher"><summary aria-label="Language"><span aria-hidden="true">🌐</span> EN</summary><div class="lang-menu" role="menu">
+                <details class="lang-switcher"><summary aria-label="Language"><span aria-hidden="true">🌐</span> English</summary><div class="lang-menu" role="menu">
                         <a href="/watermark-tool/" hreflang="en" lang="en" aria-current="page">English</a>
                         <a href="/th/watermark-tool/" hreflang="th" lang="th">ไทย</a>
                         <a href="/vi/watermark-tool/" hreflang="vi" lang="vi">Tiếng Việt</a>
@@ -56,7 +57,7 @@
             <section class="hero"><h1 class="hero-title">Watermark Tool</h1><p class="sub hero-sub">Add a text watermark to an image directly in your browser.</p></section>
             <div class="grid" id="layout">
                 <section class="bg-tool" aria-label="Watermark Tool">
-                    <div class="bg-tool-head"><div><p class="section-eyebrow">Local image watermarking</p><h2>Create a watermarked image.</h2><p>Choose an image, edit the watermark text, adjust placement, opacity, and size, then export a PNG. Your image stays on your device.</p></div></div>
+                    <div class="bg-tool-head"><div><p class="section-eyebrow">Local image watermarking</p><h2>Create a watermarked image.</h2><p>Choose an image, edit the watermark text, adjust placement, opacity, and size, then export a PNG. Selected image contents are processed locally in your browser.</p></div></div>
                     <div class="bg-workbench">
                         <div class="bg-panel">
                             <div class="bg-drop" id="watermark-dropzone" tabindex="0" role="button" aria-label="Choose image">
@@ -81,14 +82,23 @@
                     </div>
                     <div class="banner-ad"><span class="ad-label">Ad</span><ins class="adsbygoogle ad-below" style="display:block" data-ad-client="ca-pub-2823470980745945" data-ad-slot="REPLACE_WATERMARK_BELOW_TOOL_SLOT_ID" data-ad-format="auto" data-full-width-responsive="true"></ins></div>
                 </section>
-                <aside class="rail" aria-label="Sidebar"><div class="ad-slot"><span class="ad-label">Ad</span><div class="ad-body"><ins class="adsbygoogle ad-rail" style="display:block" data-ad-client="ca-pub-2823470980745945" data-ad-slot="REPLACE_WATERMARK_RAIL_SLOT_ID" data-ad-format="auto" data-full-width-responsive="true"></ins></div><div class="ad-foot"></div></div><div class="rail-card trust"><h3>Why it is private</h3><div class="item"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg><div><b>Browser-based.</b> The watermark is drawn locally with Canvas.</div></div><div class="item"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg><div><b>No uploads.</b> Images are not sent to a server.</div></div></div></aside>
+                <aside class="rail" aria-label="Sidebar"><div class="ad-slot"><span class="ad-label">Ad</span><div class="ad-body"><ins class="adsbygoogle ad-rail" style="display:block" data-ad-client="ca-pub-2823470980745945" data-ad-slot="REPLACE_WATERMARK_RAIL_SLOT_ID" data-ad-format="auto" data-full-width-responsive="true"></ins></div><div class="ad-foot"></div></div><div class="rail-card trust"><h3>Why it is private</h3><div class="item"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg><div><b>Browser-based.</b> The watermark is drawn locally with Canvas.</div></div><div class="item"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg><div><b>Local processing.</b> Image contents are processed locally in your browser.</div></div></div></aside>
             </div>
+
+            <section class="article aeo-summary" id="tool-summary">
+                <h2>What this tool does</h2>
+                <p>Choose an image, edit the watermark text, adjust placement, opacity, and size, then export a PNG. Selected image contents are processed locally in your browser.</p>
+                <h2>Privacy behavior</h2>
+                <p>Selected inputs are processed locally in your browser for this workflow. The public site may load ads and analytics; use the privacy build for privacy-sensitive workflows.</p>
+                <h2>Supported workflow</h2>
+                <p>Watermarks help mark ownership, prepare drafts, label previews, and share images while keeping brand or source context visible.</p>
+            </section>
             <section id="how" class="article"><h2>When should you watermark an image?</h2><p>Watermarks help mark ownership, prepare drafts, label previews, and share images while keeping brand or source context visible.</p><p>Keep watermarks readable without covering important image details. For privacy-sensitive photos, remove metadata before publishing.</p></section>
             <section id="faq" class="article"><h2>Frequently Asked Questions</h2>
                 <h3>Is this Watermark Tool free?</h3>
                 <p>Yes. You can add and download a text watermark without signup.</p>
-                <h3>Are my images uploaded?</h3>
-                <p>No. The image is processed locally in your browser.</p>
+                <h3>Are my images sent to ConvertUnlimited servers?</h3>
+                <p>No server-side upload endpoint is used for this watermarking flow. The image is processed locally in your browser.</p>
                 <h3>Can I change watermark position?</h3>
                 <p>Yes. Choose corner, center, or edge positions before exporting.</p>
                 <h3>Can I adjust opacity and size?</h3>
@@ -96,11 +106,11 @@
                 <h3>What format is exported?</h3>
                 <p>The tool exports a PNG image from the browser canvas.</p>
             </section>
-            <section id="privacy" class="article"><h2>Privacy Policy</h2><p>We do not collect, store, upload, or transmit images used in this tool.</p></section>
+            <section id="privacy" class="article"><h2>Privacy Policy</h2><p>ConvertUnlimited does not provide a server-side upload endpoint for this watermarking flow. Selected image contents are processed locally in your browser.</p></section>
             <section id="terms" class="article"><h2>Terms of Use</h2><p>ConvertUnlimited is provided as is. You are responsible for the images and watermark text you create.</p></section>
 <!-- RELATED_TOOLS_START -->
         <section class="related-tools">
-            <div class="category-title">Recommended Next Steps</div>
+            <div class="category-title">Recommended next steps</div>
             <div class="tool-grid">
                 <a href="/image-resizer/" class="tool-item" data-track="workflow-click" data-tool="image-resizer" data-category="image">
                     <div class="icon">

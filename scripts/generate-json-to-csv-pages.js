@@ -4,16 +4,8 @@ const path = require('path');
 const ROOT = process.cwd();
 const BASE_URL = 'https://www.convertunlimited.com';
 const ADSENSE = 'ca-pub-2823470980745945';
-const LOCALES = [
-  { code: 'en', prefix: '', hreflang: 'en', label: 'EN', name: 'English' },
-  { code: 'th', prefix: 'th', hreflang: 'th', label: 'TH', name: 'ไทย' },
-  { code: 'vi', prefix: 'vi', hreflang: 'vi', label: 'VI', name: 'Tiếng Việt' },
-  { code: 'zh', prefix: 'zh', hreflang: 'zh-Hans', label: 'ZH', name: '中文（简体）' },
-  { code: 'ja', prefix: 'ja', hreflang: 'ja', label: 'JA', name: '日本語' },
-  { code: 'ko', prefix: 'ko', hreflang: 'ko', label: 'KO', name: '한국어' },
-  { code: 'es', prefix: 'es', hreflang: 'es', label: 'ES', name: 'Español' },
-  { code: 'fr', prefix: 'fr', hreflang: 'fr', label: 'FR', name: 'Français' },
-];
+const LOCALES = require('./data/locales');
+const { aeoSummary, schemaScripts } = require('./data/page-helpers');
 
 const TEXT = {
   en: {
@@ -21,10 +13,10 @@ const TEXT = {
     description: 'Convert JSON to CSV locally in your browser. Paste or open JSON, flatten nested fields, preview CSV, copy, and download without uploads.',
     hero: 'JSON to CSV Converter', sub: 'Convert API and structured JSON data into spreadsheet-friendly CSV.',
     eyebrow: 'Local developer data tool', panelTitle: 'Paste JSON and convert it to CSV.',
-    panelText: 'Turn arrays of objects into CSV, flatten nested fields with dot notation, and download without sending data to a server.',
+    panelText: 'Turn arrays of objects into CSV, flatten nested fields with dot notation, and download with selected inputs processed locally in your browser.',
     input: 'JSON input', output: 'CSV output', delimiter: 'Delimiter', upload: 'Open .json file', headers: 'Include header row', convert: 'Convert to CSV', copy: 'Copy CSV', clear: 'Clear', sample: 'Sample JSON', download: 'Download CSV',
     comma: 'Comma', semicolon: 'Semicolon', tab: 'Tab', rows: 'Rows', fields: 'Fields', size: 'Input size',
-    trustTitle: 'Private by design', trustOne: '<b>Local conversion.</b> JSON parsing and CSV generation run in your browser.', trustTwo: '<b>No uploads.</b> Files opened here stay on your device.',
+    trustTitle: 'Private by design', trustOne: '<b>Local conversion.</b> JSON parsing and CSV generation run in your browser.', trustTwo: '<b>Local processing.</b> Files opened here are processed locally in your browser.',
     articleTitle: 'When should you convert JSON to CSV?', articleP1: 'JSON is common in APIs and developer tools, while CSV is easier to inspect in spreadsheet apps and data-cleaning workflows.',
     articleP2: 'This converter supports JSON objects and arrays of objects. Nested objects are flattened with dot notation so nested data is visible instead of silently discarded.',
     faqTitle: 'Frequently Asked Questions',
@@ -35,7 +27,7 @@ const TEXT = {
       ['How are nested objects handled?', 'Nested keys are flattened with dot notation, such as profile.name.'],
       ['Does it support Unicode?', 'Yes. UTF-8 text, accents, Asian scripts, and emojis are preserved in CSV output.'],
     ],
-    privacyTitle: 'Privacy Policy', privacy: 'We do not collect, store, upload, or transmit JSON or CSV data. Local file selection reads the file only in your browser.',
+    privacyTitle: 'Privacy Policy', privacy: 'ConvertUnlimited does not provide a server-side upload endpoint for this JSON to CSV conversion flow. Selected JSON files are processed locally in your browser.',
     termsTitle: 'Terms of Use', terms: 'ConvertUnlimited is provided as is. Review generated CSV before using it in production systems.',
   },
   th: {
@@ -158,7 +150,6 @@ const home = (l) => l.prefix ? `/${l.prefix}/` : '/';
 const abs = (l) => `${BASE_URL}${route(l)}`;
 const link = (l, slug) => `${l.prefix ? `/${l.prefix}` : ''}${slug ? `/${slug}/` : '/'}`;
 const alternates = () => `${LOCALES.map((l) => `    <link rel="alternate" hreflang="${l.hreflang}" href="${abs(l)}">`).join('\n')}\n    <link rel="alternate" hreflang="x-default" href="${abs(LOCALES[0])}">`;
-const faqSchema = (t, l) => JSON.stringify({ '@context': 'https://schema.org', '@type': 'FAQPage', inLanguage: l.hreflang, mainEntity: t.faq.map(([q, a]) => ({ '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: a } })) });
 
 function page(locale) {
   const t = TEXT[locale.code];
@@ -183,7 +174,7 @@ ${alternates()}
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/style.css">
-    <script type="application/ld+json">${faqSchema(t, locale)}</script>
+    ${schemaScripts(t, locale, { url: abs(locale) })}
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${ADSENSE}" crossorigin="anonymous"></script>
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-98HSCSEKBX"></script>
     <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-98HSCSEKBX');</script>
@@ -229,6 +220,7 @@ ${LOCALES.map((l) => `                        <a href="${route(l)}" hreflang="${
                 </section>
                 <aside class="rail" aria-label="Sidebar"><div class="ad-slot"><span class="ad-label">Ad</span><div class="ad-body"><ins class="adsbygoogle ad-rail" style="display:block" data-ad-client="${ADSENSE}" data-ad-slot="REPLACE_JSON_CSV_RAIL_SLOT_ID" data-ad-format="auto" data-full-width-responsive="true"></ins></div><div class="ad-foot"></div></div><div class="rail-card trust"><h3>${esc(t.trustTitle)}</h3><div class="item"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg><div>${t.trustOne}</div></div><div class="item"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg><div>${t.trustTwo}</div></div></div></aside>
             </div>
+${aeoSummary(t, esc)}
             <section id="how" class="article"><h2>${esc(t.articleTitle)}</h2><p>${esc(t.articleP1)}</p><p>${esc(t.articleP2)}</p></section>
             <section id="faq" class="article"><h2>${esc(t.faqTitle)}</h2>
 ${t.faq.map(([q, a]) => `                <h3>${esc(q)}</h3>\n                <p>${esc(a)}</p>`).join('\n')}

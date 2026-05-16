@@ -4,16 +4,8 @@ const path = require('path');
 const ROOT = process.cwd();
 const BASE_URL = 'https://www.convertunlimited.com';
 const ADSENSE = 'ca-pub-2823470980745945';
-const LOCALES = [
-  { code: 'en', prefix: '', hreflang: 'en', label: 'EN', name: 'English' },
-  { code: 'th', prefix: 'th', hreflang: 'th', label: 'TH', name: 'ไทย' },
-  { code: 'vi', prefix: 'vi', hreflang: 'vi', label: 'VI', name: 'Tiếng Việt' },
-  { code: 'zh', prefix: 'zh', hreflang: 'zh-Hans', label: 'ZH', name: '中文（简体）' },
-  { code: 'ja', prefix: 'ja', hreflang: 'ja', label: 'JA', name: '日本語' },
-  { code: 'ko', prefix: 'ko', hreflang: 'ko', label: 'KO', name: '한국어' },
-  { code: 'es', prefix: 'es', hreflang: 'es', label: 'ES', name: 'Español' },
-  { code: 'fr', prefix: 'fr', hreflang: 'fr', label: 'FR', name: 'Français' },
-];
+const LOCALES = require('./data/locales');
+const { aeoSummary, schemaScripts } = require('./data/page-helpers');
 
 const TEXT = {
   en: {
@@ -22,11 +14,11 @@ const TEXT = {
     hero: 'UUID Generator', sub: 'Generate UUID v4 values locally for APIs, tests, databases, and development workflows.',
     eyebrow: 'Local developer ID tool', panelTitle: 'Generate one or many UUIDs.', panelText: 'Create random RFC4122-style UUID v4 values in your browser with no server request.',
     output: 'Generated UUIDs', quantity: 'Quantity', uppercase: 'Uppercase', separator: 'Output format', lines: 'Line separated', comma: 'Comma separated', generate: 'Generate UUIDs', copy: 'Copy UUIDs', clear: 'Clear',
-    trustTitle: 'Private by design', trustOne: '<b>Local generation.</b> UUIDs are generated in your browser.', trustTwo: '<b>No uploads.</b> No server request is needed.',
+    trustTitle: 'Private by design', trustOne: '<b>Local generation.</b> UUIDs are generated in your browser.', trustTwo: '<b>Local processing.</b> This workflow runs in your browser after the page loads.',
     articleTitle: 'When should you use UUIDs?', articleP1: 'UUIDs are useful for test data, request IDs, database keys, API examples, and client-side prototypes where globally unique-looking identifiers are needed.', articleP2: 'This tool generates UUID v4 values with browser crypto APIs. It does not send generated IDs anywhere.',
     faqTitle: 'Frequently Asked Questions',
     faq: [['Is this UUID Generator free?', 'Yes. You can generate and copy UUIDs without signup.'], ['Are UUIDs generated locally?', 'Yes. Generation happens in your browser with native crypto APIs.'], ['Which UUID version is generated?', 'This tool generates UUID v4 values.'], ['Can I generate UUIDs in bulk?', 'Yes. Use the quantity field to generate up to 500 UUIDs at once.'], ['Are generated UUIDs stored?', 'No. They are not uploaded, stored, or transmitted.']],
-    privacyTitle: 'Privacy Policy', privacy: 'We do not collect, store, upload, or transmit generated UUIDs.', termsTitle: 'Terms of Use', terms: 'ConvertUnlimited is provided as is. Review generated identifiers before using them in production systems.',
+    privacyTitle: 'Privacy Policy', privacy: 'ConvertUnlimited does not provide a server-side upload endpoint for this UUID generation flow. UUIDs are generated locally in your browser.', termsTitle: 'Terms of Use', terms: 'ConvertUnlimited is provided as is. Review generated identifiers before using them in production systems.',
   },
   th: { title: 'ตัวสร้าง UUID - สร้าง UUID v4 ออนไลน์ | ConvertUnlimited', description: 'สร้าง UUID v4 ในเบราว์เซอร์ สร้างหลายรายการ คัดลอกผลลัพธ์ และใช้ browser randomness โดยไม่อัปโหลด', hero: 'ตัวสร้าง UUID', sub: 'สร้าง UUID v4 ในเครื่องสำหรับ API การทดสอบ ฐานข้อมูล และงานพัฒนา', eyebrow: 'เครื่องมือ ID ในเครื่อง', panelTitle: 'สร้าง UUID หนึ่งรายการหรือหลายรายการ', panelText: 'สร้าง UUID v4 แบบ RFC4122 ในเบราว์เซอร์โดยไม่ต้องเรียกเซิร์ฟเวอร์', output: 'UUID ที่สร้าง', quantity: 'จำนวน', uppercase: 'ตัวพิมพ์ใหญ่', separator: 'รูปแบบผลลัพธ์', lines: 'แยกบรรทัด', comma: 'คั่นด้วยคอมมา', generate: 'สร้าง UUID', copy: 'คัดลอก UUID', clear: 'ล้าง', trustTitle: 'ออกแบบเพื่อความเป็นส่วนตัว', trustOne: '<b>สร้างในเครื่อง</b> UUID ถูกสร้างในเบราว์เซอร์', trustTwo: '<b>ไม่อัปโหลด</b> ไม่ต้องเรียกเซิร์ฟเวอร์', articleTitle: 'ควรใช้ UUID เมื่อใด?', articleP1: 'UUID เหมาะกับข้อมูลทดสอบ request ID key ฐานข้อมูล ตัวอย่าง API และ prototype ฝั่ง client', articleP2: 'เครื่องมือนี้สร้าง UUID v4 ด้วย browser crypto APIs และไม่ส่ง ID ไปที่ใด', faqTitle: 'คำถามที่พบบ่อย', faq: [['เครื่องมือนี้ฟรีไหม?', 'ฟรี สร้างและคัดลอก UUID ได้โดยไม่ต้องสมัคร'], ['UUID สร้างในเครื่องไหม?', 'ใช่ สร้างในเบราว์เซอร์ด้วย crypto APIs'], ['สร้าง UUID เวอร์ชันใด?', 'เครื่องมือนี้สร้าง UUID v4'], ['สร้างหลายรายการได้ไหม?', 'ได้ ใช้ช่องจำนวนเพื่อสร้างได้สูงสุด 500 รายการ'], ['UUID ถูกจัดเก็บไหม?', 'ไม่ ไม่อัปโหลด ไม่จัดเก็บ และไม่ส่งต่อ']], privacyTitle: 'นโยบายความเป็นส่วนตัว', privacy: 'เราไม่เก็บ ไม่จัดเก็บ ไม่อัปโหลด และไม่ส่ง UUID ที่สร้าง', termsTitle: 'ข้อกำหนดการใช้งาน', terms: 'ConvertUnlimited ให้บริการตามสภาพจริง ควรตรวจ ID ก่อนใช้ในระบบจริง' },
   vi: { title: 'Trình tạo UUID - Tạo UUID v4 online | ConvertUnlimited', description: 'Tạo UUID v4 cục bộ trong trình duyệt. Tạo hàng loạt UUID ngẫu nhiên, sao chép đầu ra và không upload.', hero: 'Trình tạo UUID', sub: 'Tạo UUID v4 cục bộ cho API, kiểm thử, cơ sở dữ liệu và workflow lập trình.', eyebrow: 'Công cụ ID cục bộ', panelTitle: 'Tạo một hoặc nhiều UUID.', panelText: 'Tạo UUID v4 kiểu RFC4122 trong trình duyệt mà không cần gọi máy chủ.', output: 'UUID đã tạo', quantity: 'Số lượng', uppercase: 'Chữ hoa', separator: 'Định dạng đầu ra', lines: 'Mỗi dòng một UUID', comma: 'Phân tách bằng dấu phẩy', generate: 'Tạo UUID', copy: 'Sao chép UUID', clear: 'Xóa', trustTitle: 'Riêng tư từ thiết kế', trustOne: '<b>Tạo cục bộ.</b> UUID được tạo trong trình duyệt.', trustTwo: '<b>Không upload.</b> Không cần yêu cầu máy chủ.', articleTitle: 'Khi nào nên dùng UUID?', articleP1: 'UUID hữu ích cho dữ liệu kiểm thử, request ID, khóa database, ví dụ API và prototype phía client.', articleP2: 'Công cụ tạo UUID v4 bằng browser crypto APIs và không gửi ID đi đâu.', faqTitle: 'Câu hỏi thường gặp', faq: [['Công cụ này miễn phí không?', 'Có. Bạn có thể tạo và sao chép UUID không cần đăng ký.'], ['UUID có được tạo cục bộ không?', 'Có. Việc tạo chạy trong trình duyệt bằng crypto APIs.'], ['Tạo phiên bản UUID nào?', 'Công cụ này tạo UUID v4.'], ['Có tạo hàng loạt được không?', 'Có. Tạo tối đa 500 UUID một lần.'], ['UUID có được lưu không?', 'Không. Chúng không được upload, lưu trữ hoặc truyền đi.']], privacyTitle: 'Chính sách quyền riêng tư', privacy: 'Chúng tôi không thu thập, lưu trữ, upload hoặc truyền UUID đã tạo.', termsTitle: 'Điều khoản sử dụng', terms: 'ConvertUnlimited được cung cấp nguyên trạng. Hãy kiểm tra ID trước khi dùng trong production.' },
@@ -43,7 +35,6 @@ const home = (l) => l.prefix ? `/${l.prefix}/` : '/';
 const abs = (l) => `${BASE_URL}${route(l)}`;
 const link = (l, slug) => `${l.prefix ? `/${l.prefix}` : ''}${slug ? `/${slug}/` : '/'}`;
 const alternates = () => `${LOCALES.map((l) => `    <link rel="alternate" hreflang="${l.hreflang}" href="${abs(l)}">`).join('\n')}\n    <link rel="alternate" hreflang="x-default" href="${abs(LOCALES[0])}">`;
-const faqSchema = (t, l) => JSON.stringify({ '@context': 'https://schema.org', '@type': 'FAQPage', inLanguage: l.hreflang, mainEntity: t.faq.map(([q, a]) => ({ '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: a } })) });
 
 function page(locale) {
   const t = TEXT[locale.code];
@@ -68,7 +59,7 @@ ${alternates()}
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/style.css">
-    <script type="application/ld+json">${faqSchema(t, locale)}</script>
+    ${schemaScripts(t, locale, { url: abs(locale) })}
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${ADSENSE}" crossorigin="anonymous"></script>
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-98HSCSEKBX"></script>
     <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-98HSCSEKBX');</script>
@@ -111,6 +102,7 @@ ${LOCALES.map((l) => `                        <a href="${route(l)}" hreflang="${
                 </section>
                 <aside class="rail" aria-label="Sidebar"><div class="ad-slot"><span class="ad-label">Ad</span><div class="ad-body"><ins class="adsbygoogle ad-rail" style="display:block" data-ad-client="${ADSENSE}" data-ad-slot="REPLACE_UUID_RAIL_SLOT_ID" data-ad-format="auto" data-full-width-responsive="true"></ins></div><div class="ad-foot"></div></div><div class="rail-card trust"><h3>${esc(t.trustTitle)}</h3><div class="item"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg><div>${t.trustOne}</div></div><div class="item"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg><div>${t.trustTwo}</div></div></div></aside>
             </div>
+${aeoSummary(t, esc)}
             <section id="how" class="article"><h2>${esc(t.articleTitle)}</h2><p>${esc(t.articleP1)}</p><p>${esc(t.articleP2)}</p></section>
             <section id="faq" class="article"><h2>${esc(t.faqTitle)}</h2>
 ${t.faq.map(([q, a]) => `                <h3>${esc(q)}</h3>\n                <p>${esc(a)}</p>`).join('\n')}

@@ -106,16 +106,7 @@ const xmlEscape = (value) => value.replace(/[&<>"']/g, (char) => {
   }
 });
 
-const LOCALES = [
-  { code: 'en', prefix: '', hreflang: 'en' },
-  { code: 'th', prefix: 'th', hreflang: 'th' },
-  { code: 'vi', prefix: 'vi', hreflang: 'vi' },
-  { code: 'zh', prefix: 'zh', hreflang: 'zh-Hans' },
-  { code: 'ja', prefix: 'ja', hreflang: 'ja' },
-  { code: 'ko', prefix: 'ko', hreflang: 'ko' },
-  { code: 'es', prefix: 'es', hreflang: 'es' },
-  { code: 'fr', prefix: 'fr', hreflang: 'fr' },
-];
+const LOCALES = require('./data/locales');
 const LOCALE_BY_PREFIX = new Map(LOCALES.filter((locale) => locale.prefix).map((locale) => [locale.prefix, locale]));
 const LOCALIZED_HOME_PATHS = new Set(['/', '/th/', '/vi/', '/zh/', '/ja/', '/ko/', '/es/', '/fr/']);
 

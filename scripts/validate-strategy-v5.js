@@ -31,6 +31,30 @@ const MIXED_LANGUAGE = [
   /และ các/,
 ];
 
+const GENERATOR_BANNED = [
+  /100%\s+private/i,
+  /100%\s+privacy/i,
+  /maximum privacy/i,
+  /total privacy/i,
+  /complete privacy/i,
+  /completely private/i,
+  /nothing is sent/i,
+  /nothing is uploaded/i,
+  /we do not collect/i,
+  /no uploads/i,
+  /No uploads\./,
+  /files never leave your device/i,
+  /files never leave your browser/i,
+  /your files never leave/i,
+  /stays on your device/i,
+  /stay on your device/i,
+  /remain on your device/i,
+  /remains on your device/i,
+  /not sent to a server/i,
+  /without uploading data/i,
+  /without sending data to a server/i,
+];
+
 function walk(dir, files = []) {
   for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
     if (entry.isDirectory() && SKIP_DIRS.has(entry.name)) continue;
@@ -120,10 +144,68 @@ function checkLlms() {
   }
 }
 
+function generatorFiles() {
+  const scriptsDir = path.join(ROOT, "scripts");
+  return fs
+    .readdirSync(scriptsDir)
+    .filter((name) => /^generate-.*\.js$/.test(name))
+    .map((name) => path.join(scriptsDir, name));
+}
+
+function checkGeneratorLocaleCentralization() {
+  for (const file of generatorFiles()) {
+    const text = fs.readFileSync(file, "utf8");
+    if (/const\s+LOCALES\s*=\s*\[/.test(text)) {
+      FINDINGS.push(`${rel(file)}: stale inline LOCALES list; use scripts/data/locales.js`);
+    }
+    if (!/require\(['"]\.\/data\/locales['"]\)/.test(text)) {
+      FINDINGS.push(`${rel(file)}: missing centralized locale metadata import`);
+    }
+  }
+}
+
+function checkGeneratorPrivacyWording() {
+  for (const file of generatorFiles()) {
+    const text = fs.readFileSync(file, "utf8");
+    for (const pattern of GENERATOR_BANNED) {
+      if (pattern.test(text)) FINDINGS.push(`${rel(file)}: generator privacy wording is not Strategy v5-safe ${pattern}`);
+    }
+  }
+}
+
+function checkTrustBuildSeparation() {
+  const publicLlms = path.join(ROOT, "llms.txt");
+  if (fs.existsSync(publicLlms)) {
+    const text = fs.readFileSync(publicLlms, "utf8").toLowerCase();
+    if (!text.includes("public site may load ads")) {
+      FINDINGS.push("llms.txt: missing public-build ads/analytics separation guidance");
+    }
+  }
+
+  const privacyLlms = path.join(ROOT, "dist", "privacy-build", "llms.txt");
+  if (fs.existsSync(privacyLlms)) {
+    const text = fs.readFileSync(privacyLlms, "utf8").toLowerCase();
+    const trustMarkers = [
+      ["ads removed", /\b(?:no|without)\s+ads\b/],
+      ["analytics removed", /\b(?:no|without)\s+(?:ads,\s*)?analytics\b/],
+      ["third-party runtime scripts removed", /(?:no|without)\s+(?:ads,\s*analytics,\s*remote fonts,\s*or\s*)?third-party runtime scripts\b/],
+    ];
+    for (const [label, pattern] of trustMarkers) {
+      if (!pattern.test(text)) FINDINGS.push(`dist/privacy-build/llms.txt: missing privacy-build trust marker "${label}"`);
+    }
+    if (text.includes("public site may load ads")) {
+      FINDINGS.push("dist/privacy-build/llms.txt: privacy build repeats public-build wording");
+    }
+  }
+}
+
 checkTextFiles();
 checkHtmlBasics();
 checkLocaleSwitcherRoutes();
 checkLlms();
+checkGeneratorLocaleCentralization();
+checkGeneratorPrivacyWording();
+checkTrustBuildSeparation();
 
 if (FINDINGS.length) {
   console.error("Strategy v5 validation failed:");

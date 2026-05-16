@@ -4,16 +4,8 @@ const path = require('path');
 const ROOT = process.cwd();
 const BASE_URL = 'https://www.convertunlimited.com';
 const ADSENSE = 'ca-pub-2823470980745945';
-const LOCALES = [
-  { code: 'en', prefix: '', hreflang: 'en', label: 'EN', name: 'English' },
-  { code: 'th', prefix: 'th', hreflang: 'th', label: 'TH', name: 'ไทย' },
-  { code: 'vi', prefix: 'vi', hreflang: 'vi', label: 'VI', name: 'Tiếng Việt' },
-  { code: 'zh', prefix: 'zh', hreflang: 'zh-Hans', label: 'ZH', name: '中文（简体）' },
-  { code: 'ja', prefix: 'ja', hreflang: 'ja', label: 'JA', name: '日本語' },
-  { code: 'ko', prefix: 'ko', hreflang: 'ko', label: 'KO', name: '한국어' },
-  { code: 'es', prefix: 'es', hreflang: 'es', label: 'ES', name: 'Español' },
-  { code: 'fr', prefix: 'fr', hreflang: 'fr', label: 'FR', name: 'Français' },
-];
+const LOCALES = require('./data/locales');
+const { aeoSummary, schemaScripts } = require('./data/page-helpers');
 
 const TEXT = {
   en: {
@@ -21,11 +13,11 @@ const TEXT = {
     description: 'Create static QR codes for websites and text in your browser. Free local QR generator with live preview, PNG download, and SVG export.',
     hero: 'QR Generator', sub: 'Create QR codes instantly for websites, text, and sharing.',
     eyebrow: 'Local QR code generator', panelTitle: 'Generate a QR code locally.',
-    panelText: 'Enter a website URL or plain text, preview the QR code instantly, then download it as PNG or SVG. No uploads or accounts required.',
+    panelText: 'Enter a website URL or plain text, preview the QR code instantly, then download it as PNG or SVG. Input is processed locally in your browser, and no account is required.',
     mode: 'Content type', url: 'Website URL', text: 'Plain text', value: 'QR content', placeholder: 'https://example.com',
     size: 'Size', margin: 'Margin', dark: 'Dark color', light: 'Light color', transparent: 'Transparent background',
     png: 'Download PNG', svg: 'Download SVG', status: 'Enter a URL or text to generate a QR code.',
-    trustTitle: 'Private by design', trustOne: '<b>Local generation.</b> QR codes are created in your browser.', trustTwo: '<b>No uploads.</b> Your text or URL is not sent to a server.',
+    trustTitle: 'Private by design', trustOne: '<b>Local generation.</b> QR codes are created in your browser.', trustTwo: '<b>Local generation.</b> Text or URL input is processed locally in your browser.',
     articleTitle: 'What can you use QR codes for?', articleP1: 'Static QR codes are useful for menus, flyers, product packaging, event signs, and quick website sharing. They encode the destination directly, so there is no account or redirect service required.',
     articleP2: 'For print, download a larger PNG or SVG and test the code before publishing. A simple high-contrast QR code is usually easier to scan than a heavily styled one.',
     faqTitle: 'Frequently Asked Questions',
@@ -37,7 +29,7 @@ const TEXT = {
       ['Do QR codes expire?', 'Static QR codes do not expire. They keep working as long as the encoded URL or text remains useful.'],
       ['Can I generate QR codes for URLs and text?', 'Yes. Choose Website URL or Plain text and the preview updates automatically.'],
     ],
-    privacyTitle: 'Privacy Policy', privacy: 'We do not collect, store, or transmit the QR content you enter. Generation happens locally in your browser.',
+    privacyTitle: 'Privacy Policy', privacy: 'ConvertUnlimited does not provide a server-side upload endpoint for this QR generation flow. Text or URL input is processed locally in your browser.',
     termsTitle: 'Terms of Use', terms: 'ConvertUnlimited is provided as is. You are responsible for testing QR codes before printing or publishing them.',
   },
   th: {
@@ -166,7 +158,6 @@ const route = (l) => `${l.prefix ? `/${l.prefix}` : ''}/qr-generator/`;
 const home = (l) => l.prefix ? `/${l.prefix}/` : '/';
 const abs = (l) => `https://www.convertunlimited.com${route(l)}`;
 const alternates = () => `${LOCALES.map((l) => `    <link rel="alternate" hreflang="${l.hreflang}" href="${abs(l)}">`).join('\n')}\n    <link rel="alternate" hreflang="x-default" href="${abs(LOCALES[0])}">`;
-const faqSchema = (t, l) => JSON.stringify({ '@context': 'https://schema.org', '@type': 'FAQPage', inLanguage: l.hreflang, mainEntity: t.faq.map(([q, a]) => ({ '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: a } })) });
 const link = (l, slug) => `${l.prefix ? `/${l.prefix}` : ''}${slug ? `/${slug}/` : '/'}`;
 
 function page(locale) {
@@ -192,7 +183,7 @@ ${alternates()}
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/style.css">
-    <script type="application/ld+json">${faqSchema(t, locale)}</script>
+    ${schemaScripts(t, locale, { url: abs(locale) })}
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${ADSENSE}" crossorigin="anonymous"></script>
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-98HSCSEKBX"></script>
     <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-98HSCSEKBX');</script>
@@ -253,6 +244,7 @@ ${LOCALES.map((l) => `                        <a href="${route(l)}" hreflang="${
                     <div class="rail-card trust"><h3>${esc(t.trustTitle)}</h3><div class="item"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg><div>${t.trustOne}</div></div><div class="item"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg><div>${t.trustTwo}</div></div></div>
                 </aside>
             </div>
+${aeoSummary(t, esc)}
             <section id="how" class="article"><h2>${esc(t.articleTitle)}</h2><p>${esc(t.articleP1)}</p><p>${esc(t.articleP2)}</p></section>
             <section id="faq" class="article"><h2>${esc(t.faqTitle)}</h2>
 ${t.faq.map(([q, a]) => `                <h3>${esc(q)}</h3>\n                <p>${esc(a)}</p>`).join('\n')}

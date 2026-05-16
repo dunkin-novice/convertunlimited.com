@@ -4,16 +4,8 @@ const path = require('path');
 const ROOT = process.cwd();
 const BASE_URL = 'https://www.convertunlimited.com';
 const ADSENSE = 'ca-pub-2823470980745945';
-const LOCALES = [
-  { code: 'en', prefix: '', hreflang: 'en', label: 'EN', name: 'English' },
-  { code: 'th', prefix: 'th', hreflang: 'th', label: 'TH', name: 'ไทย' },
-  { code: 'vi', prefix: 'vi', hreflang: 'vi', label: 'VI', name: 'Tiếng Việt' },
-  { code: 'zh', prefix: 'zh', hreflang: 'zh-Hans', label: 'ZH', name: '中文（简体）' },
-  { code: 'ja', prefix: 'ja', hreflang: 'ja', label: 'JA', name: '日本語' },
-  { code: 'ko', prefix: 'ko', hreflang: 'ko', label: 'KO', name: '한국어' },
-  { code: 'es', prefix: 'es', hreflang: 'es', label: 'ES', name: 'Español' },
-  { code: 'fr', prefix: 'fr', hreflang: 'fr', label: 'FR', name: 'Français' },
-];
+const LOCALES = require('./data/locales');
+const { aeoSummary, schemaScripts } = require('./data/page-helpers');
 
 const TEXT = {
   en: {
@@ -22,11 +14,11 @@ const TEXT = {
     hero: 'Timestamp Converter', sub: 'Convert Unix timestamps and human-readable dates locally in your browser.',
     eyebrow: 'Local developer time tool', panelTitle: 'Convert timestamps both ways.', panelText: 'Switch between seconds and milliseconds, view UTC and local time, and copy ISO 8601 output without server requests.',
     timestamp: 'Unix timestamp', date: 'Date / time input', unit: 'Timestamp unit', seconds: 'Seconds', milliseconds: 'Milliseconds', toDate: 'Timestamp to date', toTimestamp: 'Date to timestamp', now: 'Current timestamp', output: 'Converted output', copy: 'Copy output', clear: 'Clear',
-    trustTitle: 'Private by design', trustOne: '<b>Local conversion.</b> Dates and timestamps are converted in your browser.', trustTwo: '<b>No uploads.</b> No server request is needed.',
+    trustTitle: 'Private by design', trustOne: '<b>Local conversion.</b> Dates and timestamps are converted in your browser.', trustTwo: '<b>Local processing.</b> This workflow runs in your browser after the page loads.',
     articleTitle: 'When should you convert timestamps?', articleP1: 'Unix timestamps are common in logs, APIs, databases, analytics exports, and debugging workflows.', articleP2: 'This tool converts timestamps to ISO 8601, UTC, and local time so dates can be checked quickly without a date library or network request.',
     faqTitle: 'Frequently Asked Questions',
     faq: [['Is this Timestamp Converter free?', 'Yes. You can convert, copy, and clear timestamps without signup.'], ['Are conversions done locally?', 'Yes. All conversion happens in your browser using native Date APIs.'], ['Does it support seconds and milliseconds?', 'Yes. Use the unit selector to switch between Unix seconds and Unix milliseconds.'], ['What timezone is shown?', 'The output includes ISO 8601, UTC, and your browser local timezone.'], ['What happens with invalid dates?', 'The tool shows a friendly warning and preserves your input.']],
-    privacyTitle: 'Privacy Policy', privacy: 'We do not collect, store, upload, or transmit timestamps or dates entered into this tool.', termsTitle: 'Terms of Use', terms: 'ConvertUnlimited is provided as is. Review converted dates before using them in production systems.',
+    privacyTitle: 'Privacy Policy', privacy: 'ConvertUnlimited does not provide a server-side upload endpoint for this timestamp conversion flow. Dates and timestamps are processed locally in your browser.', termsTitle: 'Terms of Use', terms: 'ConvertUnlimited is provided as is. Review converted dates before using them in production systems.',
   },
   th: { title: 'ตัวแปลง Timestamp - Unix Time เป็นวันที่ | ConvertUnlimited', description: 'แปลง Unix timestamp เป็นวันที่และวันที่เป็น Unix time ในเบราว์เซอร์ รองรับวินาที มิลลิวินาที UTC local time และ ISO 8601', hero: 'ตัวแปลง Timestamp', sub: 'แปลง Unix timestamp และวันที่อ่านได้ในเบราว์เซอร์', eyebrow: 'เครื่องมือเวลาในเครื่อง', panelTitle: 'แปลง timestamp ได้สองทาง', panelText: 'สลับวินาที/มิลลิวินาที ดู UTC และ local time และคัดลอก ISO 8601 โดยไม่เรียกเซิร์ฟเวอร์', timestamp: 'Unix timestamp', date: 'วันที่ / เวลา', unit: 'หน่วย timestamp', seconds: 'วินาที', milliseconds: 'มิลลิวินาที', toDate: 'Timestamp เป็นวันที่', toTimestamp: 'วันที่เป็น timestamp', now: 'Timestamp ปัจจุบัน', output: 'ผลลัพธ์', copy: 'คัดลอกผลลัพธ์', clear: 'ล้าง', trustTitle: 'ออกแบบเพื่อความเป็นส่วนตัว', trustOne: '<b>แปลงในเครื่อง</b> วันที่และ timestamp ถูกแปลงในเบราว์เซอร์', trustTwo: '<b>ไม่อัปโหลด</b> ไม่ต้องเรียกเซิร์ฟเวอร์', articleTitle: 'ควรแปลง timestamp เมื่อใด?', articleP1: 'Unix timestamp พบได้ใน log, API, database, analytics export และงาน debug', articleP2: 'เครื่องมือนี้แปลงเป็น ISO 8601, UTC และ local time โดยไม่ใช้ไลบรารีวันที่หรือ network', faqTitle: 'คำถามที่พบบ่อย', faq: [['เครื่องมือนี้ฟรีไหม?', 'ฟรี แปลง คัดลอก และล้างได้โดยไม่ต้องสมัคร'], ['แปลงในเครื่องไหม?', 'ใช่ ทุกอย่างทำในเบราว์เซอร์ด้วย Date APIs'], ['รองรับวินาทีและมิลลิวินาทีไหม?', 'รองรับ ใช้ตัวเลือกหน่วยเพื่อสลับ'], ['แสดง timezone อะไร?', 'แสดง ISO 8601, UTC และ local timezone ของเบราว์เซอร์'], ['ถ้าวันที่ไม่ถูกต้องจะเกิดอะไร?', 'จะแสดงคำเตือนและเก็บข้อมูลเดิมไว้']], privacyTitle: 'นโยบายความเป็นส่วนตัว', privacy: 'เราไม่เก็บ ไม่จัดเก็บ ไม่อัปโหลด และไม่ส่ง timestamp หรือวันที่ที่ใส่', termsTitle: 'ข้อกำหนดการใช้งาน', terms: 'ConvertUnlimited ให้บริการตามสภาพจริง ควรตรวจวันที่ก่อนใช้ในระบบจริง' },
   vi: { title: 'Trình chuyển Timestamp - Unix Time sang ngày | ConvertUnlimited', description: 'Chuyển Unix timestamp sang ngày và ngày sang Unix time trong trình duyệt. Hỗ trợ giây, mili giây, UTC, giờ cục bộ và ISO 8601.', hero: 'Trình chuyển Timestamp', sub: 'Chuyển Unix timestamp và ngày đọc được ngay trong trình duyệt.', eyebrow: 'Công cụ thời gian cục bộ', panelTitle: 'Chuyển timestamp hai chiều.', panelText: 'Đổi giữa giây và mili giây, xem UTC và giờ cục bộ, sao chép ISO 8601 mà không cần máy chủ.', timestamp: 'Unix timestamp', date: 'Ngày / giờ nhập', unit: 'Đơn vị timestamp', seconds: 'Giây', milliseconds: 'Mili giây', toDate: 'Timestamp sang ngày', toTimestamp: 'Ngày sang timestamp', now: 'Timestamp hiện tại', output: 'Kết quả chuyển đổi', copy: 'Sao chép đầu ra', clear: 'Xóa', trustTitle: 'Riêng tư từ thiết kế', trustOne: '<b>Chuyển đổi cục bộ.</b> Ngày và timestamp được chuyển trong trình duyệt.', trustTwo: '<b>Không upload.</b> Không cần yêu cầu máy chủ.', articleTitle: 'Khi nào nên chuyển timestamp?', articleP1: 'Unix timestamp thường xuất hiện trong log, API, database, analytics export và debug.', articleP2: 'Công cụ chuyển sang ISO 8601, UTC và giờ cục bộ để kiểm tra nhanh không cần thư viện ngày hoặc mạng.', faqTitle: 'Câu hỏi thường gặp', faq: [['Công cụ này miễn phí không?', 'Có. Bạn có thể chuyển, sao chép và xóa không cần đăng ký.'], ['Chuyển đổi có cục bộ không?', 'Có. Tất cả chạy trong trình duyệt với Date APIs.'], ['Có hỗ trợ giây và mili giây không?', 'Có. Dùng bộ chọn đơn vị để chuyển đổi.'], ['Hiển thị timezone nào?', 'Kết quả gồm ISO 8601, UTC và timezone cục bộ của trình duyệt.'], ['Ngày không hợp lệ thì sao?', 'Công cụ cảnh báo thân thiện và giữ nguyên đầu vào.']], privacyTitle: 'Chính sách quyền riêng tư', privacy: 'Chúng tôi không thu thập, lưu trữ, upload hoặc truyền timestamp hay ngày nhập vào công cụ.', termsTitle: 'Điều khoản sử dụng', terms: 'ConvertUnlimited được cung cấp nguyên trạng. Hãy kiểm tra ngày trước khi dùng trong production.' },
@@ -43,7 +35,6 @@ const home = (l) => l.prefix ? `/${l.prefix}/` : '/';
 const abs = (l) => `${BASE_URL}${route(l)}`;
 const link = (l, slug) => `${l.prefix ? `/${l.prefix}` : ''}${slug ? `/${slug}/` : '/'}`;
 const alternates = () => `${LOCALES.map((l) => `    <link rel="alternate" hreflang="${l.hreflang}" href="${abs(l)}">`).join('\n')}\n    <link rel="alternate" hreflang="x-default" href="${abs(LOCALES[0])}">`;
-const faqSchema = (t, l) => JSON.stringify({ '@context': 'https://schema.org', '@type': 'FAQPage', inLanguage: l.hreflang, mainEntity: t.faq.map(([q, a]) => ({ '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: a } })) });
 
 function page(locale) {
   const t = TEXT[locale.code];
@@ -68,7 +59,7 @@ ${alternates()}
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/style.css">
-    <script type="application/ld+json">${faqSchema(t, locale)}</script>
+    ${schemaScripts(t, locale, { url: abs(locale) })}
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${ADSENSE}" crossorigin="anonymous"></script>
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-98HSCSEKBX"></script>
     <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-98HSCSEKBX');</script>
@@ -113,6 +104,7 @@ ${LOCALES.map((l) => `                        <a href="${route(l)}" hreflang="${
                 </section>
                 <aside class="rail" aria-label="Sidebar"><div class="ad-slot"><span class="ad-label">Ad</span><div class="ad-body"><ins class="adsbygoogle ad-rail" style="display:block" data-ad-client="${ADSENSE}" data-ad-slot="REPLACE_TIMESTAMP_RAIL_SLOT_ID" data-ad-format="auto" data-full-width-responsive="true"></ins></div><div class="ad-foot"></div></div><div class="rail-card trust"><h3>${esc(t.trustTitle)}</h3><div class="item"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg><div>${t.trustOne}</div></div><div class="item"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg><div>${t.trustTwo}</div></div></div></aside>
             </div>
+${aeoSummary(t, esc)}
             <section id="how" class="article"><h2>${esc(t.articleTitle)}</h2><p>${esc(t.articleP1)}</p><p>${esc(t.articleP2)}</p></section>
             <section id="faq" class="article"><h2>${esc(t.faqTitle)}</h2>
 ${t.faq.map(([q, a]) => `                <h3>${esc(q)}</h3>\n                <p>${esc(a)}</p>`).join('\n')}

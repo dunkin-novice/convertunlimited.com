@@ -29,6 +29,7 @@
     <link rel="stylesheet" href="/style.css">
     <style>.watermark-preview{width:100%;max-height:520px;object-fit:contain;border:1px solid var(--line);border-radius:8px;background:var(--bg-2)}.watermark-empty{display:grid;min-height:280px;place-items:center;border:1px dashed var(--line);border-radius:8px;color:var(--ink-3);text-align:center;padding:24px}.watermark-select{width:100%;min-height:42px;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--ink);padding:0 10px}</style>
     <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","inLanguage":"ko","mainEntity":[{"@type":"Question","name":"무료인가요?","acceptedAnswer":{"@type":"Answer","text":"네. 가입 없이 텍스트 워터마크를 추가하고 다운로드할 수 있습니다."}},{"@type":"Question","name":"이미지가 업로드되나요?","acceptedAnswer":{"@type":"Answer","text":"아니요. 이미지는 브라우저에서 로컬로 처리됩니다."}},{"@type":"Question","name":"워터마크 위치를 바꿀 수 있나요?","acceptedAnswer":{"@type":"Answer","text":"네. 내보내기 전에 모서리, 중앙 또는 가장자리 위치를 선택할 수 있습니다."}},{"@type":"Question","name":"투명도와 크기를 조정할 수 있나요?","acceptedAnswer":{"@type":"Answer","text":"네. 슬라이더로 미리보기를 조정하세요."}},{"@type":"Question","name":"어떤 형식으로 내보내나요?","acceptedAnswer":{"@type":"Answer","text":"브라우저 canvas에서 PNG 이미지로 내보냅니다."}}]}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"워터마크 도구","description":"브라우저에서 이미지에 텍스트 워터마크를 추가하세요. 위치, 투명도, 크기를 조정하고 로컬 미리보기 후 PNG로 다운로드합니다.","url":"https://www.convertunlimited.com/ko/watermark-tool/","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","isAccessibleForFree":true,"inLanguage":"ko","featureList":["워터마크 이미지를 만드세요.","Processed locally in your browser for supported operations","No account required"],"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2823470980745945" crossorigin="anonymous"></script>
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-98HSCSEKBX"></script>
     <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-98HSCSEKBX');</script>
@@ -40,7 +41,7 @@
             <nav class="topnav" aria-label="Primary">
                 <span class="pill"><span class="dot"></span>100% free, no signup</span>
                 <details class="tools-dropdown"><summary aria-label="Tools">Tools <svg width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin-left: 2px; opacity: 0.5;"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></summary><div class="dropdown-menu" role="menu"><div class="dropdown-section">Image Tools</div><a href="/ko/">Image Converter</a><a href="/ko/image-compressor/">Image Compressor</a><a href="/ko/image-resizer/">Image Resizer</a><a href="/ko/metadata-remover/">Metadata Remover</a><a href="/ko/watermark-tool/" aria-current="page">Watermark Tool</a><a href="/ko/avif-converter/">AVIF Converter</a></div></details>
-                <details class="lang-switcher"><summary aria-label="Language"><span aria-hidden="true">🌐</span> KO</summary><div class="lang-menu" role="menu">
+                <details class="lang-switcher"><summary aria-label="Language"><span aria-hidden="true">🌐</span> 한국어</summary><div class="lang-menu" role="menu">
                         <a href="/watermark-tool/" hreflang="en" lang="en">English</a>
                         <a href="/th/watermark-tool/" hreflang="th" lang="th">ไทย</a>
                         <a href="/vi/watermark-tool/" hreflang="vi" lang="vi">Tiếng Việt</a>
@@ -83,6 +84,15 @@
                 </section>
                 <aside class="rail" aria-label="Sidebar"><div class="ad-slot"><span class="ad-label">Ad</span><div class="ad-body"><ins class="adsbygoogle ad-rail" style="display:block" data-ad-client="ca-pub-2823470980745945" data-ad-slot="REPLACE_WATERMARK_RAIL_SLOT_ID" data-ad-format="auto" data-full-width-responsive="true"></ins></div><div class="ad-foot"></div></div><div class="rail-card trust"><h3>개인정보가 보호되는 이유</h3><div class="item"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg><div><b>브라우저 기반.</b> 워터마크는 Canvas로 로컬에서 그려집니다.</div></div><div class="item"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg><div><b>업로드 없음.</b> 이미지는 서버로 전송되지 않습니다.</div></div></div></aside>
             </div>
+
+            <section class="article aeo-summary" id="tool-summary">
+                <h2>What this tool does</h2>
+                <p>이미지를 선택하고 워터마크 텍스트, 위치, 투명도, 크기를 조정한 뒤 PNG로 내보냅니다. 이미지는 기기에 남아 있습니다.</p>
+                <h2>Privacy behavior</h2>
+                <p>Selected inputs are processed locally in your browser for this workflow. The public site may load ads and analytics; use the privacy build for privacy-sensitive workflows.</p>
+                <h2>Supported workflow</h2>
+                <p>워터마크는 소유권 표시, 초안 준비, 미리보기 라벨, 브랜드나 출처 맥락을 유지한 공유에 유용합니다.</p>
+            </section>
             <section id="how" class="article"><h2>언제 이미지에 워터마크를 넣나요?</h2><p>워터마크는 소유권 표시, 초안 준비, 미리보기 라벨, 브랜드나 출처 맥락을 유지한 공유에 유용합니다.</p><p>중요한 이미지 세부 정보를 가리지 않으면서 읽기 쉽게 배치하세요. 민감한 사진은 게시 전 metadata 제거도 고려하세요.</p></section>
             <section id="faq" class="article"><h2>자주 묻는 질문</h2>
                 <h3>무료인가요?</h3>
@@ -100,7 +110,7 @@
             <section id="terms" class="article"><h2>이용 약관</h2><p>ConvertUnlimited는 있는 그대로 제공됩니다. 생성한 이미지와 워터마크 텍스트는 사용자 책임입니다.</p></section>
 <!-- RELATED_TOOLS_START -->
         <section class="related-tools">
-            <div class="category-title">권장 다음 단계</div>
+            <div class="category-title">추천 다음 단계</div>
             <div class="tool-grid">
                 <a href="/ko/image-resizer/" class="tool-item" data-track="workflow-click" data-tool="image-resizer" data-category="image">
                     <div class="icon">

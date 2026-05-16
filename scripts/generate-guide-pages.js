@@ -5,16 +5,7 @@ const GUIDES = require('./data/guides.js');
 const ROOT = process.cwd();
 const BASE_URL = 'https://www.convertunlimited.com';
 
-const LOCALES = [
-  { code: 'en', prefix: '', hreflang: 'en', homeLabel: 'Home', toolsLabel: 'Tools', guidesLabel: 'Guides' },
-  { code: 'th', prefix: 'th', hreflang: 'th', homeLabel: 'หน้าแรก', toolsLabel: 'เครื่องมือ', guidesLabel: 'คู่มือ' },
-  { code: 'vi', prefix: 'vi', hreflang: 'vi', homeLabel: 'Trang chủ', toolsLabel: 'Công cụ', guidesLabel: 'Hướng dẫn' },
-  { code: 'zh', prefix: 'zh', hreflang: 'zh-Hans', homeLabel: '首页', toolsLabel: '工具', guidesLabel: '指南' },
-  { code: 'ja', prefix: 'ja', hreflang: 'ja', homeLabel: 'ホーム', toolsLabel: 'ツール', guidesLabel: 'ガイド' },
-  { code: 'ko', prefix: 'ko', hreflang: 'ko', homeLabel: '홈', toolsLabel: '도구', guidesLabel: '가이드' },
-  { code: 'es', prefix: 'es', hreflang: 'es', homeLabel: 'Inicio', toolsLabel: 'Herramientas', guidesLabel: 'Guías' },
-  { code: 'fr', prefix: 'fr', hreflang: 'fr', homeLabel: 'Accueil', toolsLabel: 'Outils', guidesLabel: 'Guides' },
-];
+const LOCALES = require('./data/locales');
 
 function htmlEscape(str) {
   if (!str) return '';
@@ -65,7 +56,9 @@ function renderSection(section) {
 function generate() {
   for (const guideData of GUIDES) {
     for (const locale of LOCALES) {
-      const langData = guideData[locale.code] || guideData['en']; // Fallback to English
+      const hasLocalizedGuide = Boolean(guideData[locale.code]);
+      const langData = guideData[locale.code] || guideData['en'];
+      const contentLanguage = hasLocalizedGuide ? locale.hreflang : 'en';
       const templatePath = locale.prefix ? path.join(ROOT, locale.prefix, 'index.html') : path.join(ROOT, 'index.html');
       
       if (!fs.existsSync(templatePath)) continue;
@@ -77,10 +70,11 @@ function generate() {
       
       const newHero = `<section class="hero"><h1 class="hero-title">${htmlEscape(langData.h1)}</h1><p class="sub hero-sub">${htmlEscape(langData.intro)}</p></section>`;
       const sectionsHtml = langData.sections.map(s => renderSection(s)).join('');
+      const fallbackHtml = hasLocalizedGuide ? '' : `<section class="article translation-status" data-translation-status="english-fallback"><h2>Translation status</h2><p>This guide is currently shown in English for this locale. Tool links still point to localized routes where available.</p></section>`;
       const faqHtml = `<section id="faq" class="article"><h2>FAQ</h2>${langData.faq.map(([q, a]) => `<h3>${htmlEscape(q)}</h3><p>${htmlEscape(a)}</p>`).join('')}</section>`;
       const ctaHtml = `<section class="article CTA"><h3>Action</h3><p>${langData.cta ? langData.cta.replace(/\[(.*?)\]\((.*?)\)/g, '<a href="$2">$1</a>') : ''}</p></section>`;
       
-      const newContent = `<div class="guide-content">${sectionsHtml}${faqHtml}${ctaHtml}</div></main>`;
+      const newContent = `<div class="guide-content">${fallbackHtml}${sectionsHtml}${faqHtml}${ctaHtml}</div></main>`;
 
       html = html.replace(heroRe, newHero);
       // We keep the main container but replace the inner grid
@@ -116,7 +110,7 @@ function generate() {
         "@type": guideData.slug === 'how-it-works' ? "AboutPage" : "TechArticle",
         "headline": langData.h1,
         "description": langData.description,
-        "inLanguage": locale.hreflang,
+        "inLanguage": contentLanguage,
         "author": { "@type": "Organization", "name": "ConvertUnlimited" },
         "publisher": { "@type": "Organization", "name": "ConvertUnlimited", "logo": { "@type": "ImageObject", "url": `${BASE_URL}/og-image.svg` } },
         "mainEntityOfPage": { "@type": guideData.slug === 'how-it-works' ? "AboutPage" : "WebPage", "@id": `${BASE_URL}${locale.prefix ? '/' + locale.prefix : ''}/guides/${guideData.slug}/` }
@@ -136,6 +130,7 @@ function generate() {
       const faqSchema = {
         "@context": "https://schema.org",
         "@type": "FAQPage",
+        "inLanguage": contentLanguage,
         "mainEntity": langData.faq.map(([q, a]) => ({
           "@type": "Question",
           "name": q,
@@ -155,6 +150,7 @@ function generate() {
       // Meta tags
       html = html.replace(/<title>.*?<\/title>/, `<title>${htmlEscape(langData.title)}</title>`);
       html = html.replace(/<meta name="description" content=".*?">/, `<meta name="description" content="${htmlEscape(langData.description)}">`);
+      html = html.replace('</head>', `    <meta name="translation-status" content="${hasLocalizedGuide ? 'localized' : 'english-fallback'}">\n</head>`);
       
       const canonical = `${BASE_URL}${locale.prefix ? '/' + locale.prefix : ''}/guides/${guideData.slug}/`;
       html = html.replace(/<link rel="canonical" href=".*?">/, `<link rel="canonical" href="${canonical}">`);

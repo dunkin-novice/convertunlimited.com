@@ -4,16 +4,8 @@ const path = require('path');
 const ROOT = process.cwd();
 const BASE_URL = 'https://www.convertunlimited.com';
 const ADSENSE = 'ca-pub-2823470980745945';
-const LOCALES = [
-  { code: 'en', prefix: '', hreflang: 'en', label: 'EN', name: 'English' },
-  { code: 'th', prefix: 'th', hreflang: 'th', label: 'TH', name: 'ไทย' },
-  { code: 'vi', prefix: 'vi', hreflang: 'vi', label: 'VI', name: 'Tiếng Việt' },
-  { code: 'zh', prefix: 'zh', hreflang: 'zh-Hans', label: 'ZH', name: '中文（简体）' },
-  { code: 'ja', prefix: 'ja', hreflang: 'ja', label: 'JA', name: '日本語' },
-  { code: 'ko', prefix: 'ko', hreflang: 'ko', label: 'KO', name: '한국어' },
-  { code: 'es', prefix: 'es', hreflang: 'es', label: 'ES', name: 'Español' },
-  { code: 'fr', prefix: 'fr', hreflang: 'fr', label: 'FR', name: 'Français' },
-];
+const LOCALES = require('./data/locales');
+const { aeoSummary, schemaScripts } = require('./data/page-helpers');
 
 const TEXT = {
   en: {
@@ -23,7 +15,7 @@ const TEXT = {
     sub: 'Add a text watermark to an image directly in your browser.',
     eyebrow: 'Local image watermarking',
     panelTitle: 'Create a watermarked image.',
-    panelText: 'Choose an image, edit the watermark text, adjust placement, opacity, and size, then export a PNG. Your image stays on your device.',
+    panelText: 'Choose an image, edit the watermark text, adjust placement, opacity, and size, then export a PNG. Selected image contents are processed locally in your browser.',
     dropTitle: 'Choose image',
     dropHint: 'JPG, PNG, WebP, or browser-supported image',
     text: 'Watermark text',
@@ -36,14 +28,14 @@ const TEXT = {
     empty: 'Image preview will appear here.',
     trustTitle: 'Why it is private',
     trustOne: '<b>Browser-based.</b> The watermark is drawn locally with Canvas.',
-    trustTwo: '<b>No uploads.</b> Images are not sent to a server.',
+    trustTwo: '<b>Local processing.</b> Image contents are processed locally in your browser.',
     articleTitle: 'When should you watermark an image?',
     articleP1: 'Watermarks help mark ownership, prepare drafts, label previews, and share images while keeping brand or source context visible.',
     articleP2: 'Keep watermarks readable without covering important image details. For privacy-sensitive photos, remove metadata before publishing.',
     faqTitle: 'Frequently Asked Questions',
-    faq: [['Is this Watermark Tool free?', 'Yes. You can add and download a text watermark without signup.'], ['Are my images uploaded?', 'No. The image is processed locally in your browser.'], ['Can I change watermark position?', 'Yes. Choose corner, center, or edge positions before exporting.'], ['Can I adjust opacity and size?', 'Yes. Use the sliders to tune the watermark preview.'], ['What format is exported?', 'The tool exports a PNG image from the browser canvas.']],
+    faq: [['Is this Watermark Tool free?', 'Yes. You can add and download a text watermark without signup.'], ['Are my images sent to ConvertUnlimited servers?', 'No server-side upload endpoint is used for this watermarking flow. The image is processed locally in your browser.'], ['Can I change watermark position?', 'Yes. Choose corner, center, or edge positions before exporting.'], ['Can I adjust opacity and size?', 'Yes. Use the sliders to tune the watermark preview.'], ['What format is exported?', 'The tool exports a PNG image from the browser canvas.']],
     privacyTitle: 'Privacy Policy',
-    privacy: 'We do not collect, store, upload, or transmit images used in this tool.',
+    privacy: 'ConvertUnlimited does not provide a server-side upload endpoint for this watermarking flow. Selected image contents are processed locally in your browser.',
     termsTitle: 'Terms of Use',
     terms: 'ConvertUnlimited is provided as is. You are responsible for the images and watermark text you create.',
   },
@@ -272,7 +264,6 @@ const home = (locale) => locale.prefix ? `/${locale.prefix}/` : '/';
 const abs = (locale) => `${BASE_URL}${route(locale)}`;
 const link = (locale, slug) => `${locale.prefix ? `/${locale.prefix}` : ''}${slug ? `/${slug}/` : '/'}`;
 const alternates = () => `${LOCALES.map((locale) => `    <link rel="alternate" hreflang="${locale.hreflang}" href="${abs(locale)}">`).join('\n')}\n    <link rel="alternate" hreflang="x-default" href="${abs(LOCALES[0])}">`;
-const faqSchema = (text, locale) => JSON.stringify({ '@context': 'https://schema.org', '@type': 'FAQPage', inLanguage: locale.hreflang, mainEntity: text.faq.map(([q, a]) => ({ '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: a } })) });
 
 function page(locale) {
   const text = TEXT[locale.code];
@@ -298,7 +289,7 @@ ${alternates()}
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/style.css">
     <style>.watermark-preview{width:100%;max-height:520px;object-fit:contain;border:1px solid var(--line);border-radius:8px;background:var(--bg-2)}.watermark-empty{display:grid;min-height:280px;place-items:center;border:1px dashed var(--line);border-radius:8px;color:var(--ink-3);text-align:center;padding:24px}.watermark-select{width:100%;min-height:42px;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--ink);padding:0 10px}</style>
-    <script type="application/ld+json">${faqSchema(text, locale)}</script>
+    ${schemaScripts(text, locale, { url: abs(locale) })}
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${ADSENSE}" crossorigin="anonymous"></script>
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-98HSCSEKBX"></script>
     <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-98HSCSEKBX');</script>
@@ -346,6 +337,7 @@ ${LOCALES.map((item) => `                        <a href="${route(item)}" hrefla
                 </section>
                 <aside class="rail" aria-label="Sidebar"><div class="ad-slot"><span class="ad-label">Ad</span><div class="ad-body"><ins class="adsbygoogle ad-rail" style="display:block" data-ad-client="${ADSENSE}" data-ad-slot="REPLACE_WATERMARK_RAIL_SLOT_ID" data-ad-format="auto" data-full-width-responsive="true"></ins></div><div class="ad-foot"></div></div><div class="rail-card trust"><h3>${esc(text.trustTitle)}</h3><div class="item"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg><div>${text.trustOne}</div></div><div class="item"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg><div>${text.trustTwo}</div></div></div></aside>
             </div>
+${aeoSummary(text, esc)}
             <section id="how" class="article"><h2>${esc(text.articleTitle)}</h2><p>${esc(text.articleP1)}</p><p>${esc(text.articleP2)}</p></section>
             <section id="faq" class="article"><h2>${esc(text.faqTitle)}</h2>
 ${text.faq.map(([q, a]) => `                <h3>${esc(q)}</h3>\n                <p>${esc(a)}</p>`).join('\n')}

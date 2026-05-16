@@ -29,6 +29,7 @@
     <link rel="stylesheet" href="/style.css">
     <style>.jwt-output{min-height:170px;max-height:320px;overflow:auto;white-space:pre-wrap;overflow-wrap:anywhere;border:1px solid var(--line);border-radius:8px;padding:12px}.jwt-claim-row{display:flex;justify-content:space-between;gap:12px;border-bottom:1px solid var(--line);padding:8px 0;overflow-wrap:anywhere}.jwt-signature{max-height:100px;overflow:auto;white-space:pre-wrap;overflow-wrap:anywhere}</style>
     <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","inLanguage":"vi","mainEntity":[{"@type":"Question","name":"Công cụ có xác minh chữ ký JWT không?","acceptedAnswer":{"@type":"Answer","text":"Không. Nó chỉ giải mã header và payload."}},{"@type":"Question","name":"JWT của tôi có được upload không?","acceptedAnswer":{"@type":"Answer","text":"Không. Việc giải mã chạy cục bộ trong trình duyệt."}},{"@type":"Question","name":"Có xem được exp và iat không?","acceptedAnswer":{"@type":"Answer","text":"Có. Timestamp sẽ hiển thị thành ngày ISO khi có."}},{"@type":"Question","name":"Có nên dán production token không?","acceptedAnswer":{"@type":"Answer","text":"Tránh dán token production nhạy cảm nếu bạn chưa hiểu rủi ro."}},{"@type":"Question","name":"Có hỗ trợ Unicode không?","acceptedAnswer":{"@type":"Answer","text":"Có. Nội dung UTF-8 trong payload được giải mã an toàn."}}]}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"JWT Decoder","description":"Giải mã JWT header và payload cục bộ trong trình duyệt. Xem claims, phần token và ngày mà không upload hoặc tuyên bố xác minh chữ ký.","url":"https://www.convertunlimited.com/vi/jwt-decoder/","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","isAccessibleForFree":true,"inLanguage":"vi","featureList":["Kiểm tra JWT mà không upload.","Processed locally in your browser for supported operations","No account required"],"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2823470980745945" crossorigin="anonymous"></script>
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-98HSCSEKBX"></script>
     <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-98HSCSEKBX');</script>
@@ -40,7 +41,7 @@
             <nav class="topnav" aria-label="Primary">
                 <span class="pill"><span class="dot"></span>100% free, no signup</span>
                 <details class="tools-dropdown"><summary aria-label="Tools">Tools <svg width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin-left: 2px; opacity: 0.5;"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></summary><div class="dropdown-menu" role="menu"><div class="dropdown-section">Developer Tools</div><a href="/vi/jwt-decoder/" aria-current="page">JWT Decoder</a><a href="/vi/json-formatter/">JSON Formatter</a><a href="/vi/base64-encoder-decoder/">Base64</a><a href="/vi/timestamp-converter/">Timestamp Converter</a></div></details>
-                <details class="lang-switcher"><summary aria-label="Language"><span aria-hidden="true">🌐</span> VI</summary><div class="lang-menu" role="menu">
+                <details class="lang-switcher"><summary aria-label="Language"><span aria-hidden="true">🌐</span> Tiếng Việt</summary><div class="lang-menu" role="menu">
                         <a href="/jwt-decoder/" hreflang="en" lang="en">English</a>
                         <a href="/th/jwt-decoder/" hreflang="th" lang="th">ไทย</a>
                         <a href="/vi/jwt-decoder/" hreflang="vi" lang="vi" aria-current="page">Tiếng Việt</a>
@@ -85,6 +86,15 @@
                 </section>
                 <aside class="rail" aria-label="Sidebar"><div class="ad-slot"><span class="ad-label">Ad</span><div class="ad-body"><ins class="adsbygoogle ad-rail" style="display:block" data-ad-client="ca-pub-2823470980745945" data-ad-slot="REPLACE_JWT_RAIL_SLOT_ID" data-ad-format="auto" data-full-width-responsive="true"></ins></div><div class="ad-foot"></div></div><div class="rail-card trust"><h3>Riêng tư từ thiết kế</h3><div class="item"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg><div><b>Giải mã cục bộ.</b> JWT chạy trong trình duyệt.</div></div><div class="item"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg><div><b>Không upload.</b> Token ở lại trên thiết bị.</div></div></div></aside>
             </div>
+
+            <section class="article aeo-summary" id="tool-summary">
+                <h2>What this tool does</h2>
+                <p>Dán token, giải mã header và payload, xem claims và lưu ý rõ: công cụ này không xác minh chữ ký.</p>
+                <h2>Privacy behavior</h2>
+                <p>Selected inputs are processed locally in your browser for this workflow. The public site may load ads and analytics; use the privacy build for privacy-sensitive workflows.</p>
+                <h2>Supported workflow</h2>
+                <p>JWT decoder giúp xem token header, payload và claims phổ biến như exp, iat, nbf khi debug API và luồng xác thực.</p>
+            </section>
             <section id="how" class="article"><h2>JWT Decoder có thể hiển thị gì?</h2><p>JWT decoder giúp xem token header, payload và claims phổ biến như exp, iat, nbf khi debug API và luồng xác thực.</p><p>Giải mã JWT không giống xác minh JWT. Token đã giải mã vẫn có thể bị giả mạo hoặc hết hạn nếu hệ thống tin cậy không xác thực chữ ký và claims.</p></section>
             <section id="faq" class="article"><h2>Câu hỏi thường gặp</h2>
                 <h3>Công cụ có xác minh chữ ký JWT không?</h3>
@@ -102,7 +112,7 @@
             <section id="terms" class="article"><h2>Điều khoản sử dụng</h2><p>ConvertUnlimited được cung cấp nguyên trạng. Đừng xem kết quả giải mã JWT là bằng chứng token hợp lệ.</p></section>
 <!-- RELATED_TOOLS_START -->
         <section class="related-tools">
-            <div class="category-title">Các bước đề xuất tiếp theo</div>
+            <div class="category-title">Bước tiếp theo được đề xuất</div>
             <div class="tool-grid">
                 <a href="/vi/base64-encoder-decoder/" class="tool-item" data-track="workflow-click" data-tool="base64-encoder-decoder" data-category="developer">
                     <div class="icon">

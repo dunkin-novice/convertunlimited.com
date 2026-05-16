@@ -4,29 +4,21 @@ const path = require('path');
 const ROOT = process.cwd();
 const BASE_URL = 'https://www.convertunlimited.com';
 const ADSENSE = 'ca-pub-2823470980745945';
-const LOCALES = [
-  { code: 'en', prefix: '', hreflang: 'en', label: 'EN', name: 'English' },
-  { code: 'th', prefix: 'th', hreflang: 'th', label: 'TH', name: 'ไทย' },
-  { code: 'vi', prefix: 'vi', hreflang: 'vi', label: 'VI', name: 'Tiếng Việt' },
-  { code: 'zh', prefix: 'zh', hreflang: 'zh-Hans', label: 'ZH', name: '中文（简体）' },
-  { code: 'ja', prefix: 'ja', hreflang: 'ja', label: 'JA', name: '日本語' },
-  { code: 'ko', prefix: 'ko', hreflang: 'ko', label: 'KO', name: '한국어' },
-  { code: 'es', prefix: 'es', hreflang: 'es', label: 'ES', name: 'Español' },
-  { code: 'fr', prefix: 'fr', hreflang: 'fr', label: 'FR', name: 'Français' },
-];
+const LOCALES = require('./data/locales');
+const { aeoSummary, schemaScripts } = require('./data/page-helpers');
 
 const TEXT = {
   en: {
     title: 'Base64 Encoder Decoder - Encode & Decode Base64 Online | ConvertUnlimited',
-    description: 'Encode and decode Base64 locally in your browser. Supports Unicode text, URL-safe Base64, copy output, and no uploads.',
+    description: 'Encode and decode Base64 locally in your browser. Supports Unicode text, URL-safe Base64, and copy output.',
     hero: 'Base64 Encoder / Decoder', sub: 'Encode and decode Base64 text locally in your browser.',
-    eyebrow: 'Local developer encoding tool', panelTitle: 'Convert text and Base64 safely.', panelText: 'Encode Unicode text to Base64 or decode Base64 back to readable text without uploading data.',
+    eyebrow: 'Local developer encoding tool', panelTitle: 'Convert text and Base64 safely.', panelText: 'Encode Unicode text to Base64 or decode Base64 back to readable text with selected inputs processed locally in your browser.',
     input: 'Input', output: 'Output', urlSafe: 'URL-safe Base64', encode: 'Encode Base64', decode: 'Decode Base64', copy: 'Copy output', clear: 'Clear', sample: 'Sample text',
-    chars: 'Characters', bytes: 'Bytes', trustTitle: 'Private by design', trustOne: '<b>Local processing.</b> Base64 encoding and decoding run in your browser.', trustTwo: '<b>No uploads.</b> Text stays on your device.',
+    chars: 'Characters', bytes: 'Bytes', trustTitle: 'Private by design', trustOne: '<b>Local processing.</b> Base64 encoding and decoding run in your browser.', trustTwo: '<b>Local processing.</b> Text is processed locally in your browser.',
     articleTitle: 'When should you use Base64?', articleP1: 'Base64 is commonly used to represent text or binary data in APIs, embeds, tokens, and data transfer workflows where plain text transport is needed.', articleP2: 'This tool validates Base64 before decoding and supports URL-safe variants that use hyphens and underscores.',
     faqTitle: 'Frequently Asked Questions',
-    faq: [['Is this Base64 tool free?', 'Yes. You can encode, decode, copy, and clear text without signup.'], ['Is my text uploaded?', 'No. All encoding and decoding happens locally in your browser.'], ['Does it support Unicode?', 'Yes. UTF-8 text, emojis, accents, and non-Latin scripts are preserved.'], ['What is URL-safe Base64?', 'URL-safe Base64 replaces + and / with - and _ so encoded text is easier to use in URLs.'], ['What happens with invalid Base64?', 'The tool shows a friendly warning and keeps your original input.']],
-    privacyTitle: 'Privacy Policy', privacy: 'We do not collect, store, upload, or transmit text entered into this tool.', termsTitle: 'Terms of Use', terms: 'ConvertUnlimited is provided as is. Review encoded or decoded output before using it in production systems.',
+    faq: [['Is this Base64 tool free?', 'Yes. You can encode, decode, copy, and clear text without signup.'], ['Is my text sent to ConvertUnlimited servers?', 'No. All encoding and decoding happens locally in your browser.'], ['Does it support Unicode?', 'Yes. UTF-8 text, emojis, accents, and non-Latin scripts are preserved.'], ['What is URL-safe Base64?', 'URL-safe Base64 replaces + and / with - and _ so encoded text is easier to use in URLs.'], ['What happens with invalid Base64?', 'The tool shows a friendly warning and keeps your original input.']],
+    privacyTitle: 'Privacy Policy', privacy: 'ConvertUnlimited does not provide a server-side upload endpoint for this Base64 encoding and decoding flow. Text input is processed locally in your browser.', termsTitle: 'Terms of Use', terms: 'ConvertUnlimited is provided as is. Review encoded or decoded output before using it in production systems.',
   },
   th: {
     title: 'ตัวเข้ารหัสและถอดรหัส Base64 ออนไลน์ | ConvertUnlimited', description: 'เข้ารหัสและถอดรหัส Base64 ในเบราว์เซอร์ รองรับ Unicode, URL-safe Base64, คัดลอกผลลัพธ์ และไม่อัปโหลด',
@@ -106,7 +98,6 @@ const home = (l) => l.prefix ? `/${l.prefix}/` : '/';
 const abs = (l) => `${BASE_URL}${route(l)}`;
 const link = (l, slug) => `${l.prefix ? `/${l.prefix}` : ''}${slug ? `/${slug}/` : '/'}`;
 const alternates = () => `${LOCALES.map((l) => `    <link rel="alternate" hreflang="${l.hreflang}" href="${abs(l)}">`).join('\n')}\n    <link rel="alternate" hreflang="x-default" href="${abs(LOCALES[0])}">`;
-const faqSchema = (t, l) => JSON.stringify({ '@context': 'https://schema.org', '@type': 'FAQPage', inLanguage: l.hreflang, mainEntity: t.faq.map(([q, a]) => ({ '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: a } })) });
 
 function page(locale) {
   const t = TEXT[locale.code];
@@ -131,7 +122,7 @@ ${alternates()}
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/style.css">
-    <script type="application/ld+json">${faqSchema(t, locale)}</script>
+    ${schemaScripts(t, locale, { url: abs(locale) })}
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${ADSENSE}" crossorigin="anonymous"></script>
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-98HSCSEKBX"></script>
     <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-98HSCSEKBX');</script>
@@ -176,6 +167,7 @@ ${LOCALES.map((l) => `                        <a href="${route(l)}" hreflang="${
                 </section>
                 <aside class="rail" aria-label="Sidebar"><div class="ad-slot"><span class="ad-label">Ad</span><div class="ad-body"><ins class="adsbygoogle ad-rail" style="display:block" data-ad-client="${ADSENSE}" data-ad-slot="REPLACE_BASE64_RAIL_SLOT_ID" data-ad-format="auto" data-full-width-responsive="true"></ins></div><div class="ad-foot"></div></div><div class="rail-card trust"><h3>${esc(t.trustTitle)}</h3><div class="item"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg><div>${t.trustOne}</div></div><div class="item"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg><div>${t.trustTwo}</div></div></div></aside>
             </div>
+${aeoSummary(t, esc)}
             <section id="how" class="article"><h2>${esc(t.articleTitle)}</h2><p>${esc(t.articleP1)}</p><p>${esc(t.articleP2)}</p></section>
             <section id="faq" class="article"><h2>${esc(t.faqTitle)}</h2>
 ${t.faq.map(([q, a]) => `                <h3>${esc(q)}</h3>\n                <p>${esc(a)}</p>`).join('\n')}

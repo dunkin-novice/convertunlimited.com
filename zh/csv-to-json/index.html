@@ -28,6 +28,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/style.css">
     <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","inLanguage":"zh-Hans","mainEntity":[{"@type":"Question","name":"这个 CSV 转 JSON 工具免费吗？","acceptedAnswer":{"@type":"Answer","text":"免费。无需注册即可粘贴、转换、复制和下载 JSON。"}},{"@type":"Question","name":"CSV 文件会上传吗？","acceptedAnswer":{"@type":"Answer","text":"不会。CSV 会在浏览器本地读取和转换。"}},{"@type":"Question","name":"JSON 键如何创建？","acceptedAnswer":{"@type":"Answer","text":"CSV 第一行用作标题行，后续每行变成一个 JSON 对象。"}},{"@type":"Question","name":"重复标题会怎样？","acceptedAnswer":{"@type":"Answer","text":"工具会显示警告并添加编号键，避免值被静默覆盖。"}},{"@type":"Question","name":"支持 Unicode 吗？","acceptedAnswer":{"@type":"Answer","text":"支持。有效 CSV 字段中的 UTF-8、重音、亚洲文字和 emoji 会保留。"}}]}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"CSV 转 JSON 工具","description":"在浏览器中将 CSV 转为 JSON。粘贴或打开 CSV 文件，用首行作为键，复制并下载 JSON，无需上传。","url":"https://www.convertunlimited.com/zh/csv-to-json/","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","isAccessibleForFree":true,"inLanguage":"zh-Hans","featureList":["粘贴 CSV 并转换为 JSON。","Processed locally in your browser for supported operations","No account required"],"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2823470980745945" crossorigin="anonymous"></script>
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-98HSCSEKBX"></script>
     <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-98HSCSEKBX');</script>
@@ -39,7 +40,7 @@
             <nav class="topnav" aria-label="Primary">
                 <span class="pill"><span class="dot"></span>100% free, no signup</span>
                 <details class="tools-dropdown"><summary aria-label="Tools">Tools <svg width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin-left: 2px; opacity: 0.5;"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></summary><div class="dropdown-menu" role="menu"><div class="dropdown-section">Developer Tools</div><a href="/zh/csv-cleaner/">CSV Cleaner</a><a href="/zh/csv-to-json/" aria-current="page">CSV to JSON</a><a href="/zh/json-formatter/">JSON Formatter</a><div class="dropdown-section">SEO Tools</div><a href="/zh/meta-preview-checker/">Meta Preview Checker</a></div></details>
-                <details class="lang-switcher"><summary aria-label="Language"><span aria-hidden="true">🌐</span> ZH</summary><div class="lang-menu" role="menu">
+                <details class="lang-switcher"><summary aria-label="Language"><span aria-hidden="true">🌐</span> 中文（简体）</summary><div class="lang-menu" role="menu">
                         <a href="/csv-to-json/" hreflang="en" lang="en">English</a>
                         <a href="/th/csv-to-json/" hreflang="th" lang="th">ไทย</a>
                         <a href="/vi/csv-to-json/" hreflang="vi" lang="vi">Tiếng Việt</a>
@@ -80,6 +81,15 @@
                 </section>
                 <aside class="rail" aria-label="Sidebar"><div class="ad-slot"><span class="ad-label">Ad</span><div class="ad-body"><ins class="adsbygoogle ad-rail" style="display:block" data-ad-client="ca-pub-2823470980745945" data-ad-slot="REPLACE_CSV_JSON_RAIL_SLOT_ID" data-ad-format="auto" data-full-width-responsive="true"></ins></div><div class="ad-foot"></div></div><div class="rail-card trust"><h3>隐私优先设计</h3><div class="item"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg><div><b>本地转换。</b> CSV 解析和 JSON 生成在浏览器中运行。</div></div><div class="item"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg><div><b>无需上传。</b> 文件留在你的设备上。</div></div></div></aside>
             </div>
+
+            <section class="article aeo-summary" id="tool-summary">
+                <h2>What this tool does</h2>
+                <p>使用首行作为标题，保留 Unicode，并在不发送到服务器的情况下下载结构化 JSON。</p>
+                <h2>Privacy behavior</h2>
+                <p>Selected inputs are processed locally in your browser for this workflow. The public site may load ads and analytics; use the privacy build for privacy-sensitive workflows.</p>
+                <h2>Supported workflow</h2>
+                <p>CSV 适合电子表格导出，JSON 更适合 API、配置、前端原型和开发流程。</p>
+            </section>
             <section id="how" class="article"><h2>什么时候需要把 CSV 转为 JSON？</h2><p>CSV 适合电子表格导出，JSON 更适合 API、配置、前端原型和开发流程。</p><p>本工具把 CSV 首行作为字段名。如果发现重复标题，会提醒你并用编号键保留值，避免静默覆盖。</p></section>
             <section id="faq" class="article"><h2>常见问题</h2>
                 <h3>这个 CSV 转 JSON 工具免费吗？</h3>
@@ -97,7 +107,7 @@
             <section id="terms" class="article"><h2>使用条款</h2><p>ConvertUnlimited 按原样提供。在生产系统使用前请检查生成的 JSON。</p></section>
 <!-- RELATED_TOOLS_START -->
         <section class="related-tools">
-            <div class="category-title">推荐后续步骤</div>
+            <div class="category-title">推荐的后续步骤</div>
             <div class="tool-grid">
                 <a href="/zh/base64-encoder-decoder/" class="tool-item" data-track="workflow-click" data-tool="base64-encoder-decoder" data-category="developer">
                     <div class="icon">

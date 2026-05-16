@@ -4,16 +4,7 @@ const path = require('path');
 const ROOT = process.cwd();
 const BASE_URL = 'https://www.convertunlimited.com';
 
-const LOCALES = [
-  { code: 'en', prefix: '', hreflang: 'en', homeLabel: 'Home', toolsLabel: 'Tools', conversionsLabel: 'Image Conversions' },
-  { code: 'th', prefix: 'th', hreflang: 'th', homeLabel: 'หน้าแรก', toolsLabel: 'เครื่องมือ', conversionsLabel: 'การแปลงรูปภาพ' },
-  { code: 'vi', prefix: 'vi', hreflang: 'vi', homeLabel: 'Trang chủ', toolsLabel: 'Công cụ', conversionsLabel: 'Chuyển đổi ảnh' },
-  { code: 'zh', prefix: 'zh', hreflang: 'zh-Hans', homeLabel: '首页', toolsLabel: '工具', conversionsLabel: '图片转换' },
-  { code: 'ja', prefix: 'ja', hreflang: 'ja', homeLabel: 'ホーム', toolsLabel: 'ツール', conversionsLabel: '画像変換' },
-  { code: 'ko', prefix: 'ko', hreflang: 'ko', homeLabel: '홈', toolsLabel: '도구', conversionsLabel: '이미지 변환' },
-  { code: 'es', prefix: 'es', hreflang: 'es', homeLabel: 'Inicio', toolsLabel: 'Herramientas', conversionsLabel: 'Conversiones de imagen' },
-  { code: 'fr', prefix: 'fr', hreflang: 'fr', homeLabel: 'Accueil', toolsLabel: 'Outils', conversionsLabel: 'Conversions d\'image' },
-];
+const LOCALES = require('./data/locales');
 
 const FORMAT_INFO = {
   en: {
@@ -281,16 +272,11 @@ function generate() {
       for (const switchLocale of LOCALES) {
         const href = routeFor(switchLocale, pair.slug);
         const current = switchLocale.code === locale.code ? ' aria-current="page"' : '';
-        const label = switchLocale.code === 'en' ? 'English' : {
-          th: 'ไทย',
-          vi: 'Tiếng Việt',
-          zh: '中文（简体）',
-          ja: '日本語',
-          ko: '한국어',
-          es: 'Español',
-          fr: 'Français',
-        }[switchLocale.code];
-        const switcherRe = new RegExp(`<a href="[^"]*" hreflang="${switchLocale.hreflang}" lang="${switchLocale.hreflang}"(?: aria-current="page")?>${label.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}</a>`, 'g');
+        const label = switchLocale.label;
+        const labelPattern = switchLocale.code === 'zh'
+          ? '(?:中文（简体）|中文\\(简体\\))'
+          : label.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+        const switcherRe = new RegExp(`<a href="[^"]*" hreflang="${switchLocale.hreflang}" lang="${switchLocale.hreflang}"(?: aria-current="page")?>${labelPattern}</a>`, 'g');
         html = html.replace(switcherRe, `<a href="${href}" hreflang="${switchLocale.hreflang}" lang="${switchLocale.hreflang}"${current}>${label}</a>`);
       }
 

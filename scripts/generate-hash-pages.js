@@ -4,29 +4,21 @@ const path = require('path');
 const ROOT = process.cwd();
 const BASE_URL = 'https://www.convertunlimited.com';
 const ADSENSE = 'ca-pub-2823470980745945';
-const LOCALES = [
-  { code: 'en', prefix: '', hreflang: 'en', label: 'EN', name: 'English' },
-  { code: 'th', prefix: 'th', hreflang: 'th', label: 'TH', name: 'ไทย' },
-  { code: 'vi', prefix: 'vi', hreflang: 'vi', label: 'VI', name: 'Tiếng Việt' },
-  { code: 'zh', prefix: 'zh', hreflang: 'zh-Hans', label: 'ZH', name: '中文（简体）' },
-  { code: 'ja', prefix: 'ja', hreflang: 'ja', label: 'JA', name: '日本語' },
-  { code: 'ko', prefix: 'ko', hreflang: 'ko', label: 'KO', name: '한국어' },
-  { code: 'es', prefix: 'es', hreflang: 'es', label: 'ES', name: 'Español' },
-  { code: 'fr', prefix: 'fr', hreflang: 'fr', label: 'FR', name: 'Français' },
-];
+const LOCALES = require('./data/locales');
+const { aeoSummary, schemaScripts } = require('./data/page-helpers');
 
 const TEXT = {
   en: {
     title: 'Hash Generator - SHA-256, SHA-384 & SHA-512 Online | ConvertUnlimited',
-    description: 'Generate SHA-256, SHA-384, and SHA-512 hashes locally in your browser. Hash Unicode text, copy output, and no uploads.',
+    description: 'Generate SHA-256, SHA-384, and SHA-512 hashes locally in your browser. Hash Unicode text and copy output.',
     hero: 'Hash Generator', sub: 'Generate SHA hashes locally for checksums, API testing, and development workflows.',
-    eyebrow: 'Local developer checksum tool', panelTitle: 'Hash text with browser crypto APIs.', panelText: 'Create SHA-256, SHA-384, or SHA-512 hashes without sending text to a server.',
+    eyebrow: 'Local developer checksum tool', panelTitle: 'Hash text with browser crypto APIs.', panelText: 'Create SHA-256, SHA-384, or SHA-512 hashes with selected text processed locally in your browser.',
     input: 'Text input', output: 'Hash output', algorithm: 'Algorithm', uppercase: 'Uppercase output', generate: 'Generate hash', copy: 'Copy hash', clear: 'Clear', sample: 'Sample text',
-    chars: 'Characters', bytes: 'Bytes', trustTitle: 'Private by design', trustOne: '<b>Local hashing.</b> Hashes are generated in your browser.', trustTwo: '<b>No uploads.</b> Text is not sent to a server.',
+    chars: 'Characters', bytes: 'Bytes', trustTitle: 'Private by design', trustOne: '<b>Local hashing.</b> Hashes are generated in your browser.', trustTwo: '<b>Local hashing.</b> Text is processed locally in your browser.',
     articleTitle: 'When should you generate hashes?', articleP1: 'Hashes are useful for checksums, API signing examples, cache keys, debugging, and comparing whether text content changed.', articleP2: 'Hashes are one-way digests, not encryption. This tool does not store input and does not send generated hashes anywhere.',
     faqTitle: 'Frequently Asked Questions',
-    faq: [['Is this Hash Generator free?', 'Yes. You can generate and copy SHA hashes without signup.'], ['Is my text uploaded?', 'No. Hashing happens locally in your browser.'], ['Which algorithms are supported?', 'SHA-256, SHA-384, and SHA-512 are supported through the Web Crypto API.'], ['Can hashes be reversed?', 'No. Hashes are one-way digests, not reversible encryption.'], ['Does it support Unicode?', 'Yes. UTF-8 text, emojis, accents, and non-Latin scripts are supported.']],
-    privacyTitle: 'Privacy Policy', privacy: 'We do not collect, store, upload, or transmit text entered into this tool or generated hashes.', termsTitle: 'Terms of Use', terms: 'ConvertUnlimited is provided as is. Do not treat hashes as password storage guidance or encryption.',
+    faq: [['Is this Hash Generator free?', 'Yes. You can generate and copy SHA hashes without signup.'], ['Is my text sent to ConvertUnlimited servers?', 'No. Hashing happens locally in your browser.'], ['Which algorithms are supported?', 'SHA-256, SHA-384, and SHA-512 are supported through the Web Crypto API.'], ['Can hashes be reversed?', 'No. Hashes are one-way digests, not reversible encryption.'], ['Does it support Unicode?', 'Yes. UTF-8 text, emojis, accents, and non-Latin scripts are supported.']],
+    privacyTitle: 'Privacy Policy', privacy: 'ConvertUnlimited does not provide a server-side upload endpoint for this hashing flow. Text input is processed locally in your browser.', termsTitle: 'Terms of Use', terms: 'ConvertUnlimited is provided as is. Do not treat hashes as password storage guidance or encryption.',
   },
   th: { title: 'ตัวสร้าง Hash - SHA-256, SHA-384 และ SHA-512 | ConvertUnlimited', description: 'สร้าง SHA-256, SHA-384 และ SHA-512 ในเบราว์เซอร์ รองรับ Unicode คัดลอกผลลัพธ์ และไม่อัปโหลด', hero: 'ตัวสร้าง Hash', sub: 'สร้าง SHA hash ในเครื่องสำหรับ checksum, API testing และงานพัฒนา', eyebrow: 'เครื่องมือ checksum ในเครื่อง', panelTitle: 'สร้าง hash ด้วย browser crypto APIs', panelText: 'สร้าง SHA-256, SHA-384 หรือ SHA-512 โดยไม่ส่งข้อความไปเซิร์ฟเวอร์', input: 'ข้อความขาเข้า', output: 'ผลลัพธ์ hash', algorithm: 'อัลกอริทึม', uppercase: 'ผลลัพธ์ตัวพิมพ์ใหญ่', generate: 'สร้าง hash', copy: 'คัดลอก hash', clear: 'ล้าง', sample: 'ข้อความตัวอย่าง', chars: 'อักขระ', bytes: 'ไบต์', trustTitle: 'ออกแบบเพื่อความเป็นส่วนตัว', trustOne: '<b>สร้างในเครื่อง</b> Hash ถูกสร้างในเบราว์เซอร์', trustTwo: '<b>ไม่อัปโหลด</b> ข้อความไม่ถูกส่งไปเซิร์ฟเวอร์', articleTitle: 'ควรสร้าง hash เมื่อใด?', articleP1: 'Hash เหมาะกับ checksum ตัวอย่าง API signing cache key debugging และการเทียบว่าข้อความเปลี่ยนหรือไม่', articleP2: 'Hash เป็น digest ทางเดียว ไม่ใช่การเข้ารหัส เครื่องมือนี้ไม่เก็บและไม่ส่งข้อมูล', faqTitle: 'คำถามที่พบบ่อย', faq: [['เครื่องมือนี้ฟรีไหม?', 'ฟรี สร้างและคัดลอก SHA hash ได้โดยไม่ต้องสมัคร'], ['ข้อความถูกอัปโหลดไหม?', 'ไม่ การสร้าง hash ทำในเบราว์เซอร์'], ['รองรับอะไรบ้าง?', 'SHA-256, SHA-384 และ SHA-512 ผ่าน Web Crypto API'], ['Hash ย้อนกลับได้ไหม?', 'ไม่ได้ Hash เป็น digest ทางเดียว ไม่ใช่ encryption'], ['รองรับ Unicode ไหม?', 'รองรับ UTF-8 อีโมจิ เครื่องหมาย และภาษาที่ไม่ใช่ละติน']], privacyTitle: 'นโยบายความเป็นส่วนตัว', privacy: 'เราไม่เก็บ ไม่จัดเก็บ ไม่อัปโหลด และไม่ส่งข้อความหรือ hash ที่สร้าง', termsTitle: 'ข้อกำหนดการใช้งาน', terms: 'ConvertUnlimited ให้บริการตามสภาพจริง อย่าใช้ข้อมูลนี้เป็นคำแนะนำการเก็บรหัสผ่านหรือ encryption' },
   vi: { title: 'Trình tạo Hash - SHA-256, SHA-384 & SHA-512 | ConvertUnlimited', description: 'Tạo hash SHA-256, SHA-384 và SHA-512 trong trình duyệt. Hỗ trợ Unicode, sao chép đầu ra và không upload.', hero: 'Trình tạo Hash', sub: 'Tạo SHA hash cục bộ cho checksum, kiểm thử API và workflow lập trình.', eyebrow: 'Công cụ checksum cục bộ', panelTitle: 'Hash văn bản bằng browser crypto APIs.', panelText: 'Tạo SHA-256, SHA-384 hoặc SHA-512 mà không gửi văn bản lên máy chủ.', input: 'Văn bản đầu vào', output: 'Hash đầu ra', algorithm: 'Thuật toán', uppercase: 'Đầu ra chữ hoa', generate: 'Tạo hash', copy: 'Sao chép hash', clear: 'Xóa', sample: 'Văn bản mẫu', chars: 'Ký tự', bytes: 'Byte', trustTitle: 'Riêng tư từ thiết kế', trustOne: '<b>Hash cục bộ.</b> Hash được tạo trong trình duyệt.', trustTwo: '<b>Không upload.</b> Văn bản không gửi lên máy chủ.', articleTitle: 'Khi nào nên tạo hash?', articleP1: 'Hash hữu ích cho checksum, ví dụ ký API, cache key, debug và so sánh nội dung văn bản.', articleP2: 'Hash là digest một chiều, không phải mã hóa. Công cụ không lưu và không gửi dữ liệu.', faqTitle: 'Câu hỏi thường gặp', faq: [['Công cụ này miễn phí không?', 'Có. Bạn có thể tạo và sao chép SHA hash không cần đăng ký.'], ['Văn bản có được upload không?', 'Không. Hash chạy cục bộ trong trình duyệt.'], ['Hỗ trợ thuật toán nào?', 'SHA-256, SHA-384 và SHA-512 qua Web Crypto API.'], ['Hash có đảo ngược được không?', 'Không. Hash là digest một chiều, không phải mã hóa có thể đảo ngược.'], ['Có hỗ trợ Unicode không?', 'Có. UTF-8, emoji, dấu và chữ không Latin được hỗ trợ.']], privacyTitle: 'Chính sách quyền riêng tư', privacy: 'Chúng tôi không thu thập, lưu trữ, upload hoặc truyền văn bản hay hash đã tạo.', termsTitle: 'Điều khoản sử dụng', terms: 'ConvertUnlimited được cung cấp nguyên trạng. Không xem hash như hướng dẫn lưu mật khẩu hoặc mã hóa.' },
@@ -43,7 +35,6 @@ const home = (l) => l.prefix ? `/${l.prefix}/` : '/';
 const abs = (l) => `${BASE_URL}${route(l)}`;
 const link = (l, slug) => `${l.prefix ? `/${l.prefix}` : ''}${slug ? `/${slug}/` : '/'}`;
 const alternates = () => `${LOCALES.map((l) => `    <link rel="alternate" hreflang="${l.hreflang}" href="${abs(l)}">`).join('\n')}\n    <link rel="alternate" hreflang="x-default" href="${abs(LOCALES[0])}">`;
-const faqSchema = (t, l) => JSON.stringify({ '@context': 'https://schema.org', '@type': 'FAQPage', inLanguage: l.hreflang, mainEntity: t.faq.map(([q, a]) => ({ '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: a } })) });
 
 function page(locale) {
   const t = TEXT[locale.code];
@@ -68,7 +59,7 @@ ${alternates()}
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/style.css">
-    <script type="application/ld+json">${faqSchema(t, locale)}</script>
+    ${schemaScripts(t, locale, { url: abs(locale) })}
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${ADSENSE}" crossorigin="anonymous"></script>
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-98HSCSEKBX"></script>
     <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-98HSCSEKBX');</script>
@@ -113,6 +104,7 @@ ${LOCALES.map((l) => `                        <a href="${route(l)}" hreflang="${
                 </section>
                 <aside class="rail" aria-label="Sidebar"><div class="ad-slot"><span class="ad-label">Ad</span><div class="ad-body"><ins class="adsbygoogle ad-rail" style="display:block" data-ad-client="${ADSENSE}" data-ad-slot="REPLACE_HASH_RAIL_SLOT_ID" data-ad-format="auto" data-full-width-responsive="true"></ins></div><div class="ad-foot"></div></div><div class="rail-card trust"><h3>${esc(t.trustTitle)}</h3><div class="item"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg><div>${t.trustOne}</div></div><div class="item"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg><div>${t.trustTwo}</div></div></div></aside>
             </div>
+${aeoSummary(t, esc)}
             <section id="how" class="article"><h2>${esc(t.articleTitle)}</h2><p>${esc(t.articleP1)}</p><p>${esc(t.articleP2)}</p></section>
             <section id="faq" class="article"><h2>${esc(t.faqTitle)}</h2>
 ${t.faq.map(([q, a]) => `                <h3>${esc(q)}</h3>\n                <p>${esc(a)}</p>`).join('\n')}

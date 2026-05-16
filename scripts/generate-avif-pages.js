@@ -5,16 +5,8 @@ const ROOT = process.cwd();
 const BASE_URL = 'https://www.convertunlimited.com';
 const ADSENSE = 'ca-pub-2823470980745945';
 
-const LOCALES = [
-  { code: 'en', prefix: '', hreflang: 'en', label: 'EN', name: 'English' },
-  { code: 'th', prefix: 'th', hreflang: 'th', label: 'TH', name: 'ไทย' },
-  { code: 'vi', prefix: 'vi', hreflang: 'vi', label: 'VI', name: 'Tiếng Việt' },
-  { code: 'zh', prefix: 'zh', hreflang: 'zh-Hans', label: 'ZH', name: '中文（简体）' },
-  { code: 'ja', prefix: 'ja', hreflang: 'ja', label: 'JA', name: '日本語' },
-  { code: 'ko', prefix: 'ko', hreflang: 'ko', label: 'KO', name: '한국어' },
-  { code: 'es', prefix: 'es', hreflang: 'es', label: 'ES', name: 'Español' },
-  { code: 'fr', prefix: 'fr', hreflang: 'fr', label: 'FR', name: 'Français' },
-];
+const LOCALES = require('./data/locales');
+const { aeoSummary, schemaScripts } = require('./data/page-helpers');
 
 const TEXT = {
   en: {
@@ -24,7 +16,7 @@ const TEXT = {
     sub: 'Create modern, lightweight AVIF images in your browser.',
     eyebrow: 'Local-first AVIF conversion',
     panelTitle: 'Convert images to AVIF.',
-    panelText: 'Upload JPG, PNG, WebP, or AVIF images and export AVIF files for modern websites. Your files stay on your device when your browser supports local conversion.',
+    panelText: 'Upload JPG, PNG, WebP, or AVIF images and export AVIF files for modern websites. Selected file contents are processed locally in your browser when your browser supports local conversion.',
     dropTitle: 'Drop images here',
     dropHint: 'JPG, PNG, WebP, or AVIF where supported · processed on your device',
     quality: 'AVIF Quality',
@@ -42,12 +34,12 @@ const TEXT = {
     faq: [
       ['What is AVIF?', 'AVIF is a modern image format based on AV1 compression. It is designed to deliver high-quality images with smaller file sizes for the web.'],
       ['Is AVIF smaller than WebP?', 'Often, yes, but not always. Results depend on the image and quality setting, so compare the output before replacing production assets.'],
-      ['Are my images uploaded?', 'No. This tool uses your browser to decode and encode images locally when AVIF encoding is supported.'],
+      ['Are my images sent to ConvertUnlimited servers?', 'No server-side upload endpoint is used for this AVIF conversion flow. The browser decodes and encodes images locally when AVIF encoding is supported.'],
       ['Why does AVIF conversion not work in some browsers?', 'Some browsers can display AVIF but cannot export AVIF through Canvas yet. In that case the page shows a friendly unsupported-browser message.'],
       ['Can I convert multiple images at once?', 'Yes. Add multiple files, convert them together, then download each AVIF file or a ZIP archive.'],
     ],
     privacyTitle: 'Privacy Policy',
-    privacy: 'We do not collect, store, or transmit images you process. Conversion runs locally in your browser when supported.',
+    privacy: 'ConvertUnlimited does not provide a server-side upload endpoint for this AVIF conversion flow. Selected image contents are processed locally in your browser when supported.',
     termsTitle: 'Terms of Use',
     terms: 'ConvertUnlimited is provided as is. You are responsible for the files you process and for checking browser compatibility before publishing AVIF images.',
   },
@@ -333,17 +325,6 @@ ${LOCALES.map((locale) => `                        <a href="${route(locale)}" hr
 const alternates = () => `${LOCALES.map((locale) => `    <link rel="alternate" hreflang="${locale.hreflang}" href="${absolute(locale)}">`).join('\n')}
     <link rel="alternate" hreflang="x-default" href="${absolute(LOCALES[0])}">`;
 
-const faqSchema = (text, locale) => ({
-  '@context': 'https://schema.org',
-  '@type': 'FAQPage',
-  inLanguage: locale.hreflang,
-  mainEntity: text.faq.map(([question, answer]) => ({
-    '@type': 'Question',
-    name: question,
-    acceptedAnswer: { '@type': 'Answer', text: answer },
-  })),
-});
-
 const page = (locale) => {
   const text = TEXT[locale.code];
   return `<!DOCTYPE html>
@@ -369,7 +350,7 @@ ${alternates()}
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/style.css">
 
-    <script type="application/ld+json">${JSON.stringify(faqSchema(text, locale))}</script>
+    ${schemaScripts(text, locale, { url: absolute(locale), applicationCategory: 'MultimediaApplication' })}
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${ADSENSE}" crossorigin="anonymous"></script>
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-98HSCSEKBX"></script>
     <script>
@@ -475,6 +456,7 @@ ${alternates()}
                 </aside>
             </div>
 
+${aeoSummary(text, htmlEscape)}
             <section id="how" class="article">
                 <h2>${htmlEscape(text.articleTitle)}</h2>
                 <p>${htmlEscape(text.articleP1)}</p>

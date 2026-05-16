@@ -28,6 +28,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/style.css">
     <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","inLanguage":"zh-Hans","mainEntity":[{"@type":"Question","name":"这个 UUID 工具免费吗？","acceptedAnswer":{"@type":"Answer","text":"免费。无需注册即可生成和复制 UUID。"}},{"@type":"Question","name":"UUID 是本地生成的吗？","acceptedAnswer":{"@type":"Answer","text":"是的。使用浏览器原生 crypto API。"}},{"@type":"Question","name":"生成哪个 UUID 版本？","acceptedAnswer":{"@type":"Answer","text":"本工具生成 UUID v4。"}},{"@type":"Question","name":"可以批量生成吗？","acceptedAnswer":{"@type":"Answer","text":"可以。一次最多生成 500 个。"}},{"@type":"Question","name":"生成的 UUID 会存储吗？","acceptedAnswer":{"@type":"Answer","text":"不会。不会上传、存储或传输。"}}]}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"UUID 生成器","description":"在浏览器中本地生成 UUID v4。批量生成随机 UUID、复制输出，无需上传。","url":"https://www.convertunlimited.com/zh/uuid-generator/","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","isAccessibleForFree":true,"inLanguage":"zh-Hans","featureList":["生成一个或多个 UUID。","Processed locally in your browser for supported operations","No account required"],"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2823470980745945" crossorigin="anonymous"></script>
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-98HSCSEKBX"></script>
     <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-98HSCSEKBX');</script>
@@ -39,7 +40,7 @@
             <nav class="topnav" aria-label="Primary">
                 <span class="pill"><span class="dot"></span>100% free, no signup</span>
                 <details class="tools-dropdown"><summary aria-label="Tools">Tools <svg width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin-left: 2px; opacity: 0.5;"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></summary><div class="dropdown-menu" role="menu"><div class="dropdown-section">Developer Tools</div><a href="/zh/uuid-generator/" aria-current="page">UUID Generator</a><a href="/zh/url-encoder-decoder/">URL Encoder</a><a href="/zh/base64-encoder-decoder/">Base64</a><a href="/zh/json-formatter/">JSON Formatter</a></div></details>
-                <details class="lang-switcher"><summary aria-label="Language"><span aria-hidden="true">🌐</span> ZH</summary><div class="lang-menu" role="menu">
+                <details class="lang-switcher"><summary aria-label="Language"><span aria-hidden="true">🌐</span> 中文（简体）</summary><div class="lang-menu" role="menu">
                         <a href="/uuid-generator/" hreflang="en" lang="en">English</a>
                         <a href="/th/uuid-generator/" hreflang="th" lang="th">ไทย</a>
                         <a href="/vi/uuid-generator/" hreflang="vi" lang="vi">Tiếng Việt</a>
@@ -77,6 +78,15 @@
                 </section>
                 <aside class="rail" aria-label="Sidebar"><div class="ad-slot"><span class="ad-label">Ad</span><div class="ad-body"><ins class="adsbygoogle ad-rail" style="display:block" data-ad-client="ca-pub-2823470980745945" data-ad-slot="REPLACE_UUID_RAIL_SLOT_ID" data-ad-format="auto" data-full-width-responsive="true"></ins></div><div class="ad-foot"></div></div><div class="rail-card trust"><h3>隐私优先设计</h3><div class="item"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg><div><b>本地生成。</b> UUID 在浏览器中生成。</div></div><div class="item"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg><div><b>无需上传。</b> 不需要服务器请求。</div></div></div></aside>
             </div>
+
+            <section class="article aeo-summary" id="tool-summary">
+                <h2>What this tool does</h2>
+                <p>在浏览器中创建 RFC4122 风格的随机 UUID v4，无需服务器请求。</p>
+                <h2>Privacy behavior</h2>
+                <p>Selected inputs are processed locally in your browser for this workflow. The public site may load ads and analytics; use the privacy build for privacy-sensitive workflows.</p>
+                <h2>Supported workflow</h2>
+                <p>UUID 适用于测试数据、请求 ID、数据库键、API 示例和客户端原型。</p>
+            </section>
             <section id="how" class="article"><h2>什么时候使用 UUID？</h2><p>UUID 适用于测试数据、请求 ID、数据库键、API 示例和客户端原型。</p><p>本工具使用浏览器 crypto API 生成 UUID v4，不会发送生成的 ID。</p></section>
             <section id="faq" class="article"><h2>常见问题</h2>
                 <h3>这个 UUID 工具免费吗？</h3>
@@ -94,7 +104,7 @@
             <section id="terms" class="article"><h2>使用条款</h2><p>ConvertUnlimited 按原样提供。在生产系统使用前请检查生成的标识符。</p></section>
 <!-- RELATED_TOOLS_START -->
         <section class="related-tools">
-            <div class="category-title">推荐后续步骤</div>
+            <div class="category-title">推荐的后续步骤</div>
             <div class="tool-grid">
                 <a href="/zh/timestamp-converter/" class="tool-item" data-track="workflow-click" data-tool="timestamp-converter" data-category="developer">
                     <div class="icon">

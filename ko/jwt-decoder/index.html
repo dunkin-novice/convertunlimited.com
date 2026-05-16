@@ -29,6 +29,7 @@
     <link rel="stylesheet" href="/style.css">
     <style>.jwt-output{min-height:170px;max-height:320px;overflow:auto;white-space:pre-wrap;overflow-wrap:anywhere;border:1px solid var(--line);border-radius:8px;padding:12px}.jwt-claim-row{display:flex;justify-content:space-between;gap:12px;border-bottom:1px solid var(--line);padding:8px 0;overflow-wrap:anywhere}.jwt-signature{max-height:100px;overflow:auto;white-space:pre-wrap;overflow-wrap:anywhere}</style>
     <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","inLanguage":"ko","mainEntity":[{"@type":"Question","name":"JWT 서명을 검증하나요?","acceptedAnswer":{"@type":"Answer","text":"아니요. header와 payload만 디코드합니다."}},{"@type":"Question","name":"JWT가 업로드되나요?","acceptedAnswer":{"@type":"Answer","text":"아니요. 디코딩은 브라우저에서 로컬로 실행됩니다."}},{"@type":"Question","name":"exp와 iat를 볼 수 있나요?","acceptedAnswer":{"@type":"Answer","text":"네. Unix timestamp claims는 ISO 날짜로 표시됩니다."}},{"@type":"Question","name":"프로덕션 token을 붙여넣어도 되나요?","acceptedAnswer":{"@type":"Answer","text":"위험을 이해하지 못했다면 민감한 프로덕션 token은 피하세요."}},{"@type":"Question","name":"Unicode claims를 지원하나요?","acceptedAnswer":{"@type":"Answer","text":"네. UTF-8 payload를 안전하게 디코드합니다."}}]}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"JWT Decoder","description":"브라우저에서 JWT header와 payload를 로컬로 디코드합니다. claims, token parts, 날짜를 확인하며 업로드와 서명 검증 주장은 없습니다.","url":"https://www.convertunlimited.com/ko/jwt-decoder/","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","isAccessibleForFree":true,"inLanguage":"ko","featureList":["업로드 없이 JWT를 검사하세요.","Processed locally in your browser for supported operations","No account required"],"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2823470980745945" crossorigin="anonymous"></script>
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-98HSCSEKBX"></script>
     <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-98HSCSEKBX');</script>
@@ -40,7 +41,7 @@
             <nav class="topnav" aria-label="Primary">
                 <span class="pill"><span class="dot"></span>100% free, no signup</span>
                 <details class="tools-dropdown"><summary aria-label="Tools">Tools <svg width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin-left: 2px; opacity: 0.5;"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></summary><div class="dropdown-menu" role="menu"><div class="dropdown-section">Developer Tools</div><a href="/ko/jwt-decoder/" aria-current="page">JWT Decoder</a><a href="/ko/json-formatter/">JSON Formatter</a><a href="/ko/base64-encoder-decoder/">Base64</a><a href="/ko/timestamp-converter/">Timestamp Converter</a></div></details>
-                <details class="lang-switcher"><summary aria-label="Language"><span aria-hidden="true">🌐</span> KO</summary><div class="lang-menu" role="menu">
+                <details class="lang-switcher"><summary aria-label="Language"><span aria-hidden="true">🌐</span> 한국어</summary><div class="lang-menu" role="menu">
                         <a href="/jwt-decoder/" hreflang="en" lang="en">English</a>
                         <a href="/th/jwt-decoder/" hreflang="th" lang="th">ไทย</a>
                         <a href="/vi/jwt-decoder/" hreflang="vi" lang="vi">Tiếng Việt</a>
@@ -85,6 +86,15 @@
                 </section>
                 <aside class="rail" aria-label="Sidebar"><div class="ad-slot"><span class="ad-label">Ad</span><div class="ad-body"><ins class="adsbygoogle ad-rail" style="display:block" data-ad-client="ca-pub-2823470980745945" data-ad-slot="REPLACE_JWT_RAIL_SLOT_ID" data-ad-format="auto" data-full-width-responsive="true"></ins></div><div class="ad-foot"></div></div><div class="rail-card trust"><h3>개인정보 보호 설계</h3><div class="item"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg><div><b>로컬 디코드.</b> JWT 디코딩은 브라우저에서 실행됩니다.</div></div><div class="item"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg><div><b>업로드 없음.</b> Token은 기기에 남아 있습니다.</div></div></div></aside>
             </div>
+
+            <section class="article aeo-summary" id="tool-summary">
+                <h2>What this tool does</h2>
+                <p>Token을 붙여넣고 header와 payload를 디코드하며 claims를 확인합니다. 이 도구는 서명을 검증하지 않습니다.</p>
+                <h2>Privacy behavior</h2>
+                <p>Selected inputs are processed locally in your browser for this workflow. The public site may load ads and analytics; use the privacy build for privacy-sensitive workflows.</p>
+                <h2>Supported workflow</h2>
+                <p>JWT decoder는 API와 인증 흐름을 디버깅할 때 token header, payload, exp, iat, nbf 같은 일반 claims를 확인하는 데 유용합니다.</p>
+            </section>
             <section id="how" class="article"><h2>JWT Decoder는 무엇을 보여주나요?</h2><p>JWT decoder는 API와 인증 흐름을 디버깅할 때 token header, payload, exp, iat, nbf 같은 일반 claims를 확인하는 데 유용합니다.</p><p>JWT 디코딩은 검증과 다릅니다. 신뢰하는 시스템이 서명과 claims를 검증하지 않으면 디코드된 token도 위조되었거나 만료되었을 수 있습니다.</p></section>
             <section id="faq" class="article"><h2>자주 묻는 질문</h2>
                 <h3>JWT 서명을 검증하나요?</h3>
@@ -102,7 +112,7 @@
             <section id="terms" class="article"><h2>이용 약관</h2><p>ConvertUnlimited는 있는 그대로 제공됩니다. JWT 디코드 결과를 token 유효성의 증거로 사용하지 마세요.</p></section>
 <!-- RELATED_TOOLS_START -->
         <section class="related-tools">
-            <div class="category-title">권장 다음 단계</div>
+            <div class="category-title">추천 다음 단계</div>
             <div class="tool-grid">
                 <a href="/ko/base64-encoder-decoder/" class="tool-item" data-track="workflow-click" data-tool="base64-encoder-decoder" data-category="developer">
                     <div class="icon">

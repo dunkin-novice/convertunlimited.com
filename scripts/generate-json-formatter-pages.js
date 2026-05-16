@@ -4,28 +4,20 @@ const path = require('path');
 const ROOT = process.cwd();
 const BASE_URL = 'https://www.convertunlimited.com';
 const ADSENSE = 'ca-pub-2823470980745945';
-const LOCALES = [
-  { code: 'en', prefix: '', hreflang: 'en', label: 'EN', name: 'English' },
-  { code: 'th', prefix: 'th', hreflang: 'th', label: 'TH', name: 'ไทย' },
-  { code: 'vi', prefix: 'vi', hreflang: 'vi', label: 'VI', name: 'Tiếng Việt' },
-  { code: 'zh', prefix: 'zh', hreflang: 'zh-Hans', label: 'ZH', name: '中文（简体）' },
-  { code: 'ja', prefix: 'ja', hreflang: 'ja', label: 'JA', name: '日本語' },
-  { code: 'ko', prefix: 'ko', hreflang: 'ko', label: 'KO', name: '한국어' },
-  { code: 'es', prefix: 'es', hreflang: 'es', label: 'ES', name: 'Español' },
-  { code: 'fr', prefix: 'fr', hreflang: 'fr', label: 'FR', name: 'Français' },
-];
+const LOCALES = require('./data/locales');
+const { aeoSummary, schemaScripts } = require('./data/page-helpers');
 
 const TEXT = {
   en: {
     title: 'JSON Formatter - Format, Validate & Minify JSON Online | ConvertUnlimited',
-    description: 'Format, validate, beautify, and minify JSON locally in your browser. Free JSON formatter with Unicode support, copy, download, and no uploads.',
+    description: 'Format, validate, beautify, and minify JSON locally in your browser. Free JSON formatter with Unicode support, copy, and download.',
     hero: 'JSON Formatter', sub: 'Format, validate, and minify JSON locally in your browser.',
     eyebrow: 'Local developer tool', panelTitle: 'Paste JSON and clean it up.',
-    panelText: 'Beautify nested objects, minify payloads, and validate JSON without uploading data to a server.',
+    panelText: 'Beautify nested objects, minify payloads, and validate JSON with selected inputs processed locally in your browser.',
     input: 'JSON input', output: 'Formatted output', indent: 'Indentation', upload: 'Open .json file',
     format: 'Format', minify: 'Minify', validate: 'Validate', copy: 'Copy output', clear: 'Clear', sample: 'Sample JSON', download: 'Download JSON',
     count: 'Input characters', error: 'Validation message',
-    trustTitle: 'Private by design', trustOne: '<b>Local processing.</b> JSON is parsed in your browser.', trustTwo: '<b>No uploads.</b> Data is not sent to a server.',
+    trustTitle: 'Private by design', trustOne: '<b>Local processing.</b> JSON is parsed in your browser.', trustTwo: '<b>Local processing.</b> Data is processed locally in your browser.',
     articleTitle: 'When should you format JSON?', articleP1: 'Formatted JSON is easier to inspect, debug, review, and share with teammates. Minified JSON is useful when you need compact payloads for APIs, examples, or configuration files.',
     articleP2: 'This tool validates strict JSON. It does not repair invalid JSON or accept JavaScript-style comments, trailing commas, or unquoted keys.',
     faqTitle: 'Frequently Asked Questions',
@@ -36,7 +28,7 @@ const TEXT = {
       ['Can it fix invalid JSON?', 'No. It validates strict JSON and shows an error so you can fix the source manually.'],
       ['What indentation should I use?', 'Two spaces are common for web projects, four spaces are easier to read, and tabs are useful when your project requires them.'],
     ],
-    privacyTitle: 'Privacy Policy', privacy: 'We do not collect, store, upload, or transmit the JSON you paste. Files opened through the picker are read locally in your browser.',
+    privacyTitle: 'Privacy Policy', privacy: 'ConvertUnlimited does not provide a server-side upload endpoint for this JSON formatting flow. JSON input and selected files are processed locally in your browser.',
     termsTitle: 'Terms of Use', terms: 'ConvertUnlimited is provided as is. Always review formatted JSON before using it in production systems.',
   },
   th: {
@@ -166,7 +158,6 @@ const home = (l) => l.prefix ? `/${l.prefix}/` : '/';
 const abs = (l) => `${BASE_URL}${route(l)}`;
 const link = (l, slug) => `${l.prefix ? `/${l.prefix}` : ''}${slug ? `/${slug}/` : '/'}`;
 const alternates = () => `${LOCALES.map((l) => `    <link rel="alternate" hreflang="${l.hreflang}" href="${abs(l)}">`).join('\n')}\n    <link rel="alternate" hreflang="x-default" href="${abs(LOCALES[0])}">`;
-const faqSchema = (t, l) => JSON.stringify({ '@context': 'https://schema.org', '@type': 'FAQPage', inLanguage: l.hreflang, mainEntity: t.faq.map(([q, a]) => ({ '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: a } })) });
 
 function page(locale) {
   const t = TEXT[locale.code];
@@ -191,7 +182,7 @@ ${alternates()}
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/style.css">
-    <script type="application/ld+json">${faqSchema(t, locale)}</script>
+    ${schemaScripts(t, locale, { url: abs(locale) })}
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${ADSENSE}" crossorigin="anonymous"></script>
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-98HSCSEKBX"></script>
     <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-98HSCSEKBX');</script>
@@ -238,6 +229,7 @@ ${LOCALES.map((l) => `                        <a href="${route(l)}" hreflang="${
                 </section>
                 <aside class="rail" aria-label="Sidebar"><div class="ad-slot"><span class="ad-label">Ad</span><div class="ad-body"><ins class="adsbygoogle ad-rail" style="display:block" data-ad-client="${ADSENSE}" data-ad-slot="REPLACE_JSON_RAIL_SLOT_ID" data-ad-format="auto" data-full-width-responsive="true"></ins></div><div class="ad-foot"></div></div><div class="rail-card trust"><h3>${esc(t.trustTitle)}</h3><div class="item"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg><div>${t.trustOne}</div></div><div class="item"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg><div>${t.trustTwo}</div></div></div></aside>
             </div>
+${aeoSummary(t, esc)}
             <section id="how" class="article"><h2>${esc(t.articleTitle)}</h2><p>${esc(t.articleP1)}</p><p>${esc(t.articleP2)}</p></section>
             <section id="faq" class="article"><h2>${esc(t.faqTitle)}</h2>
 ${t.faq.map(([q, a]) => `                <h3>${esc(q)}</h3>\n                <p>${esc(a)}</p>`).join('\n')}

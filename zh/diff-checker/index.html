@@ -29,6 +29,7 @@
     <link rel="stylesheet" href="/style.css">
     <style>.diff-row{display:flex;gap:10px;padding:4px 8px;border-bottom:1px solid var(--line);white-space:pre-wrap;overflow-wrap:anywhere}.diff-added{background:rgba(58,161,126,.12)}.diff-removed{background:rgba(220,80,80,.12)}.diff-same{background:transparent}.diff-sign{font-weight:700;min-width:14px}</style>
     <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","inLanguage":"zh-Hans","mainEntity":[{"@type":"Question","name":"这个 Diff 工具免费吗？","acceptedAnswer":{"@type":"Answer","text":"免费。无需注册即可比较、复制和清空。"}},{"@type":"Question","name":"文本会上传吗？","acceptedAnswer":{"@type":"Answer","text":"不会。比较在浏览器本地完成。"}},{"@type":"Question","name":"使用哪种 diff？","acceptedAnswer":{"@type":"Answer","text":"基于行的 diff，标记新增、删除和未变行。"}},{"@type":"Question","name":"可以忽略空白或大小写吗？","acceptedAnswer":{"@type":"Answer","text":"可以。比较前打开对应选项。"}},{"@type":"Question","name":"支持 Unicode 吗？","acceptedAnswer":{"@type":"Answer","text":"支持。Unicode 文本和 emoji 会作为浏览器字符串处理。"}}]}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Diff 检查器","description":"在浏览器中本地比较两段文本。显示新增、删除和未变行，包含统计、复制输出，无需上传。","url":"https://www.convertunlimited.com/zh/diff-checker/","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","isAccessibleForFree":true,"inLanguage":"zh-Hans","featureList":["比较原始文本和修改文本。","Processed locally in your browser for supported operations","No account required"],"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2823470980745945" crossorigin="anonymous"></script>
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-98HSCSEKBX"></script>
     <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-98HSCSEKBX');</script>
@@ -40,7 +41,7 @@
             <nav class="topnav" aria-label="Primary">
                 <span class="pill"><span class="dot"></span>100% free, no signup</span>
                 <details class="tools-dropdown"><summary aria-label="Tools">Tools <svg width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin-left: 2px; opacity: 0.5;"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></summary><div class="dropdown-menu" role="menu"><div class="dropdown-section">Developer Tools</div><a href="/zh/diff-checker/" aria-current="page">Diff Checker</a><a href="/zh/regex-tester/">Regex Tester</a><a href="/zh/json-formatter/">JSON Formatter</a><a href="/zh/timestamp-converter/">Timestamp Converter</a></div></details>
-                <details class="lang-switcher"><summary aria-label="Language"><span aria-hidden="true">🌐</span> ZH</summary><div class="lang-menu" role="menu">
+                <details class="lang-switcher"><summary aria-label="Language"><span aria-hidden="true">🌐</span> 中文（简体）</summary><div class="lang-menu" role="menu">
                         <a href="/diff-checker/" hreflang="en" lang="en">English</a>
                         <a href="/th/diff-checker/" hreflang="th" lang="th">ไทย</a>
                         <a href="/vi/diff-checker/" hreflang="vi" lang="vi">Tiếng Việt</a>
@@ -80,6 +81,15 @@
                 </section>
                 <aside class="rail" aria-label="Sidebar"><div class="ad-slot"><span class="ad-label">Ad</span><div class="ad-body"><ins class="adsbygoogle ad-rail" style="display:block" data-ad-client="ca-pub-2823470980745945" data-ad-slot="REPLACE_DIFF_RAIL_SLOT_ID" data-ad-format="auto" data-full-width-responsive="true"></ins></div><div class="ad-foot"></div></div><div class="rail-card trust"><h3>隐私优先设计</h3><div class="item"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg><div><b>本地比较。</b> 文本比较在浏览器中运行。</div></div><div class="item"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg><div><b>无需上传。</b> 文本留在你的设备上。</div></div></div></aside>
             </div>
+
+            <section class="article aeo-summary" id="tool-summary">
+                <h2>What this tool does</h2>
+                <p>粘贴两个版本，运行基于行的 diff，并复制结果，无需发送到服务器。</p>
+                <h2>Privacy behavior</h2>
+                <p>Selected inputs are processed locally in your browser for this workflow. The public site may load ads and analytics; use the privacy build for privacy-sensitive workflows.</p>
+                <h2>Supported workflow</h2>
+                <p>Diff 可用于审查编辑、比较代码片段、检查配置变更和调试文本输出。</p>
+            </section>
             <section id="how" class="article"><h2>什么时候使用 Diff Checker？</h2><p>Diff 可用于审查编辑、比较代码片段、检查配置变更和调试文本输出。</p><p>本工具使用简单的行级比较，并把文本安全渲染为文本，而不是 HTML。</p></section>
             <section id="faq" class="article"><h2>常见问题</h2>
                 <h3>这个 Diff 工具免费吗？</h3>
@@ -97,7 +107,7 @@
             <section id="terms" class="article"><h2>使用条款</h2><p>ConvertUnlimited 按原样提供。在生产流程使用前请检查 diff 输出。</p></section>
 <!-- RELATED_TOOLS_START -->
         <section class="related-tools">
-            <div class="category-title">推荐后续步骤</div>
+            <div class="category-title">推荐的后续步骤</div>
             <div class="tool-grid">
                 <a href="/zh/regex-tester/" class="tool-item" data-track="workflow-click" data-tool="regex-tester" data-category="developer">
                     <div class="icon">
