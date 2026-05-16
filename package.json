@@ -9,6 +9,8 @@
     "test:privacy-network": "node tests/no-network-processing.js",
     "apply:strategy-v5": "node scripts/apply-strategy-v5.js",
     "validate:strategy-v5": "node scripts/validate-strategy-v5.js",
+    "apply:gtm": "node scripts/apply-gtm.js",
+    "validate:gtm": "node scripts/validate-gtm.js",
     "verify:privacy": "npm run build:privacy && npm run audit:privacy && npm run test:privacy-network"
   },
   "engines": {

@@ -122,6 +122,14 @@ function stripThirdPartyRuntime(html) {
     "\n"
   );
   out = out.replace(
+    /\s*<!-- Google Tag Manager -->\s*<script>\(function\(w,d,s,l,i\)\{[\s\S]*?googletagmanager\.com\/gtm\.js\?id=[\s\S]*?<\/script>\s*<!-- End Google Tag Manager -->\s*/gi,
+    "\n"
+  );
+  out = out.replace(
+    /\s*<!-- Google Tag Manager \(noscript\) -->\s*<noscript><iframe\s+src="https:\/\/www\.googletagmanager\.com\/ns\.html\?id=GTM-[A-Z0-9]+"[\s\S]*?<\/iframe><\/noscript>\s*<!-- End Google Tag Manager \(noscript\) -->\s*/gi,
+    "\n"
+  );
+  out = out.replace(
     /\s*<script>\s*window\.dataLayer=window\.dataLayer\|\|\[\];function gtag\(\)\{dataLayer\.push\(arguments\);\}gtag\('js',new Date\(\)\);gtag\('config','G-98HSCSEKBX'\);\s*<\/script>\s*/gi,
     "\n"
   );
