@@ -23,7 +23,7 @@ Object URL or generated Blob
 Browser download
 ```
 
-There is no upload endpoint in this repository. The privacy build does not
+There is no server-side file-ingest endpoint in this repository. The privacy build does not
 include analytics or advertising code that receives file-operation events.
 
 ## Tool Verification Summary

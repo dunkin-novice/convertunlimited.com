@@ -4,7 +4,7 @@
 
 | Area | Current public build | Privacy build requirement | Status |
 | --- | --- | --- | --- |
-| File upload paths | Core tools use browser APIs; no upload endpoint found in audited tool code | Preserve local processing | PASS with verification |
+| File upload paths | Core tools use browser APIs; no server-side file-ingest endpoint found in audited tool code | Preserve local processing | PASS with verification |
 | Google Analytics | Present on pages and conversion events | Remove | FAIL public / PASS privacy build |
 | Google AdSense | Present with auto/manual ads | Remove | FAIL public / PASS privacy build |
 | Google Fonts | Present | Self-host or system fonts | FAIL public / PASS privacy build |

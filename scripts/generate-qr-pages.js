@@ -23,7 +23,7 @@ const TEXT = {
     faqTitle: 'Frequently Asked Questions',
     faq: [
       ['Is this QR Generator free?', 'Yes. You can create and download QR codes without signup or usage limits.'],
-      ['Are QR codes generated locally?', 'Yes. The QR image is generated in your browser; your text or URL is not uploaded.'],
+      ['Are QR codes generated locally?', 'Yes. The QR image is generated in your browser; text or URL input is processed locally in your browser.'],
       ['Can I use QR codes commercially?', 'Yes. Static QR codes generated here can be used for business cards, flyers, packaging, and websites.'],
       ['What is the best QR code size?', 'For digital use, 512 px is usually enough. For print, use a larger PNG or SVG and test it at the final size.'],
       ['Do QR codes expire?', 'Static QR codes do not expire. They keep working as long as the encoded URL or text remains useful.'],

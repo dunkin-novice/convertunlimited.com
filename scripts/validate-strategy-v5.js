@@ -17,12 +17,23 @@ const BANNED = [
   /completely private/i,
   /nothing is sent/i,
   /nothing is uploaded/i,
+  /\bno uploads\b/i,
+  /\bno upload\b/i,
+  /\bnot uploaded\b/i,
+  /\bnever uploaded\b/i,
+  /we do not collect/i,
   /no one else sees/i,
+  /nothing for us to see/i,
   /military-?grade/i,
   /zero-knowledge/i,
+  /full privacy/i,
+  /total security/i,
   /files never leave your device/i,
   /files never leave your browser/i,
   /your files never leave/i,
+  /stay on your device/i,
+  /stays on your device/i,
+  /strictly local/i,
 ];
 
 const MIXED_LANGUAGE = [
@@ -106,6 +117,9 @@ function checkHtmlBasics() {
     if (!/application\/ld\+json/i.test(text)) {
       FINDINGS.push(`${rel(file)}: missing JSON-LD`);
     }
+    if (!/class="article aeo-summary"/i.test(text)) {
+      FINDINGS.push(`${rel(file)}: missing AEO summary block`);
+    }
   }
 }
 
@@ -121,6 +135,38 @@ function checkLocaleSwitcherRoutes() {
       if (routePattern.test(href)) {
         FINDINGS.push(`${rel(file)}: locale switcher for ${hreflang} points to home route ${href}`);
       }
+      if (href.startsWith("/")) {
+        const target = href.replace(/^\/+/, "").replace(/\/$/, "");
+        const targetFile = path.join(ROOT, target, "index.html");
+        const rootTarget = href === "/" ? path.join(ROOT, "index.html") : targetFile;
+        if (!fs.existsSync(rootTarget)) {
+          FINDINGS.push(`${rel(file)}: locale switcher for ${hreflang} points to missing route ${href}`);
+        }
+      }
+    }
+  }
+}
+
+function checkFallbackGuides() {
+  const localizedGuideRe = /^(th|vi|zh|ja|ko|es|fr)\/guides\/([^/]+)\/index\.html$/;
+  const englishSignals = [
+    /How Local Processing Works/,
+    /The Magic of Browser-Native Processing/,
+    /This guide is currently shown in English/,
+    /Comparison: Local vs\. Upload/,
+  ];
+  for (const file of htmlFiles()) {
+    const relative = rel(file);
+    const match = relative.match(localizedGuideRe);
+    if (!match) continue;
+    const text = fs.readFileSync(file, "utf8");
+    const looksEnglish = englishSignals.some((pattern) => pattern.test(text));
+    const markedFallback = /translation-status["'][^>]+english-fallback|data-translation-status="english-fallback"|content="english-fallback"/i.test(text);
+    if (looksEnglish && !markedFallback) {
+      FINDINGS.push(`${relative}: mostly-English localized guide is not marked as english-fallback`);
+    }
+    if (markedFallback && !/"inLanguage"\s*:\s*"en"/.test(text)) {
+      FINDINGS.push(`${relative}: english-fallback guide JSON-LD should use inLanguage "en"`);
     }
   }
 }
@@ -202,6 +248,7 @@ function checkTrustBuildSeparation() {
 checkTextFiles();
 checkHtmlBasics();
 checkLocaleSwitcherRoutes();
+checkFallbackGuides();
 checkLlms();
 checkGeneratorLocaleCentralization();
 checkGeneratorPrivacyWording();
