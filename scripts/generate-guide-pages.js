@@ -27,6 +27,10 @@ function htmlEscape(str) {
   })[m]);
 }
 
+function routeFor(locale, guideSlug) {
+  return `${locale.prefix ? `/${locale.prefix}` : ''}/guides/${guideSlug}/`;
+}
+
 function renderSection(section) {
   let html = `<section class="article"><h2>${htmlEscape(section.title)}</h2>`;
   if (section.content) {
@@ -112,6 +116,7 @@ function generate() {
         "@type": guideData.slug === 'how-it-works' ? "AboutPage" : "TechArticle",
         "headline": langData.h1,
         "description": langData.description,
+        "inLanguage": locale.hreflang,
         "author": { "@type": "Organization", "name": "ConvertUnlimited" },
         "publisher": { "@type": "Organization", "name": "ConvertUnlimited", "logo": { "@type": "ImageObject", "url": `${BASE_URL}/og-image.svg` } },
         "mainEntityOfPage": { "@type": guideData.slug === 'how-it-works' ? "AboutPage" : "WebPage", "@id": `${BASE_URL}${locale.prefix ? '/' + locale.prefix : ''}/guides/${guideData.slug}/` }
@@ -170,6 +175,24 @@ function generate() {
       html = html.replace(/<meta property="og:title" content=".*?">/, `<meta property="og:title" content="${htmlEscape(langData.title)}">`);
       html = html.replace(/<meta property="og:description" content=".*?">/, `<meta property="og:description" content="${htmlEscape(langData.description)}">`);
       html = html.replace(/<meta property="og:url" content=".*?">/, `<meta property="og:url" content="${canonical}">`);
+
+      for (const switchLocale of LOCALES) {
+        const href = routeFor(switchLocale, guideData.slug);
+        const current = switchLocale.code === locale.code ? ' aria-current="page"' : '';
+        const label = {
+          en: 'English',
+          th: 'ไทย',
+          vi: 'Tiếng Việt',
+          zh: '中文(简体)',
+          ja: '日本語',
+          ko: '한국어',
+          es: 'Español',
+          fr: 'Français',
+        }[switchLocale.code];
+        const altLabel = switchLocale.code === 'zh' ? '中文（简体）' : label;
+        const switcherRe = new RegExp(`<a href="[^"]*" hreflang="${switchLocale.hreflang}" lang="${switchLocale.hreflang}"(?: aria-current="page")?>(${label.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}|${altLabel.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})</a>`, 'g');
+        html = html.replace(switcherRe, `<a href="${href}" hreflang="${switchLocale.hreflang}" lang="${switchLocale.hreflang}"${current}>${altLabel}</a>`);
+      }
 
       // Remove heavy JS
       html = html.replace('<script src="/script.js"></script>', '');

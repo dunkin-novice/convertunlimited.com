@@ -116,7 +116,7 @@
           "name": "Are my files uploaded to a server?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "No. ConvertUnlimited runs entirely inside your browser using the HTML canvas API. Your files never leave your device — there is nothing for us to see, store, or share."
+            "text": "No. ConvertUnlimited runs entirely inside your browser using the HTML canvas API. Selected file contents are processed locally in your browser — there is nothing for us to see, store, or share."
           }
         },
         {
@@ -132,7 +132,7 @@
           "name": "Why is it free?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "A small ad in the right rail and one in the footer cover hosting costs. Because nothing is uploaded, there is no per-user storage bill — so we don't need a subscription model."
+            "text": "A small ad in the right rail and one in the footer cover hosting costs. Because file contents are not intentionally uploaded by this tool, there is no per-user storage bill — so we don't need a subscription model."
           }
         },
         {
@@ -343,7 +343,7 @@
                     <h3>Why ConvertUnlimited</h3>
                     <div class="item">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l8 4v6c0 5-3.5 9-8 10-4.5-1-8-5-8-10V6l8-4z"/><polyline points="9 12 11 14 15 10"/></svg>
-                        <div><b>Stays on your device.</b> Files never leave your browser.</div>
+                        <div><b>Stays on your device.</b> Selected file contents are processed locally in your browser.</div>
                     </div>
                     <div class="item">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M18.6 6.6a4 4 0 0 0-5.66 0L12 7.5l-.94-.95a4 4 0 1 0 0 5.65L12 11.5l.94.95a4 4 0 1 0 0-5.65L12 7.5"/></svg>
@@ -385,8 +385,8 @@
 
         <section id="how" class="article">
             <h2>How ConvertUnlimited works</h2>
-            <p>ConvertUnlimited is a free image converter that runs entirely inside your browser. Drop in JPGs, PNGs, GIFs, WebPs, BMPs, or SVGs, choose an output format, and a converted copy is ready to download in seconds. Nothing is uploaded to a server: every image is decoded, redrawn, and re-encoded locally using your browser's HTML canvas API.</p>
-            <p>That local-only model has two practical consequences. First, the tool is private — your files never leave your device, so there's nothing for us (or anyone else) to log, look at, or leak. Second, there are no per-user storage costs to subsidise, which is why we can offer it for free with no caps, no signup, and no watermark. The only operating cost is keeping the page online, and a small ad block in the right rail covers it.</p>
+            <p>ConvertUnlimited is a free image converter that runs entirely inside your browser. Drop in JPGs, PNGs, GIFs, WebPs, BMPs, or SVGs, choose an output format, and a converted copy is ready to download in seconds. file contents are not intentionally uploaded by this tool to a server: every image is decoded, redrawn, and re-encoded locally using your browser's HTML canvas API.</p>
+            <p>That local-only model has two practical consequences. First, the tool is private — Selected file contents are processed locally in your browser, so file contents are not intentionally uploaded by this tool. Second, there are no per-user storage costs to subsidise, which is why we can offer it for free with no caps, no signup, and no watermark. The only operating cost is keeping the page online, and a small ad block in the right rail covers it.</p>
             <p>Conversion uses your computer's CPU and memory. For most laptops, dragging in 30–80 photos at typical phone-camera resolutions feels instant. Very large batches — hundreds of high-megapixel images at once — will use more RAM and may slow your machine briefly while they encode. We suggest queuing roughly 50 images at a time as a comfortable middle ground, but the tool doesn't enforce a limit; use whatever your machine handles cleanly. See <a href="#batches">Tips for big batches</a> for guidance on larger jobs.</p>
         </section>
 
@@ -438,13 +438,13 @@
             <p>No software-imposed cap. The only ceiling is what your browser and computer can handle. We suggest about 50 images at a time as a comfortable starting point — most modern laptops handle two or three times that without trouble.</p>
 
             <h3>Are my files uploaded to a server?</h3>
-            <p>No. ConvertUnlimited runs entirely inside your browser using the HTML canvas API. Your files never leave your device — there is nothing for us to see, store, or share.</p>
+            <p>No. ConvertUnlimited runs entirely inside your browser using the HTML canvas API. Selected file contents are processed locally in your browser — there is nothing for us to see, store, or share.</p>
 
             <h3>Will big batches slow my computer?</h3>
             <p>Briefly, yes. Each image decode and encode uses your CPU and RAM. Big batches (200+ high-resolution photos) can momentarily peak system memory. Use at your own discretion.</p>
 
             <h3>Why is it free?</h3>
-            <p>A small ad in the right rail and one in the footer cover hosting costs. Because nothing is uploaded, there's no per-user storage bill — so we don't need a subscription model.</p>
+            <p>A small ad in the right rail and one in the footer cover hosting costs. Because file contents are not intentionally uploaded by this tool, there's no per-user storage bill — so we don't need a subscription model.</p>
 
             <h3>What's the difference between WebP, JPEG, and PNG?</h3>
             <p>WebP is smallest at equivalent quality and supports transparency — best default for the web. JPEG is universal and best for photos when compatibility is the priority. PNG is lossless and supports transparency — best for screenshots, logos, and icons. The full breakdown is in our <a href="#formats">image format guide</a>.</p>
@@ -467,7 +467,7 @@
 
         <section id="privacy" class="article">
             <h2>Privacy</h2>
-            <p><b>Your images.</b> ConvertUnlimited converts images entirely inside your browser. No file is ever uploaded to a server, and we never see, store, or transmit your images. There is nothing to log, because nothing is sent.</p>
+            <p><b>Selected images.</b> ConvertUnlimited converts images entirely inside your browser. No file is ever uploaded to a server, and we never see, store, or transmit your images. File contents are not intentionally uploaded by this tool.</p>
             <p><b>Analytics.</b> We use Google Analytics 4 to understand which features people use and how the site performs in aggregate. GA4 sets first-party cookies (typically named <code>_ga</code> and <code>_ga_&lt;property&gt;</code>) to count distinct visits, and Google truncates IP addresses before storage. The data we collect is page-level — what was loaded, from where, on what device — never the contents of files you convert (which never leave your device in the first place). You can opt out by installing Google's <a href="https://tools.google.com/dlpage/gaoptout" rel="noopener" target="_blank">Analytics Opt-out browser add-on</a>, by enabling your browser's tracker-blocker, or by browsing in private/incognito mode.</p>
             <p><b>Ads.</b> We use Google AdSense to keep the tool free. Google and its ad partners may set additional cookies on the ad iframe to serve relevant ads and measure performance. You can manage personalised-ad settings at <a href="https://www.google.com/settings/ads" rel="noopener" target="_blank">google.com/settings/ads</a>, and European users can opt out of personalised advertising at <a href="https://www.youronlinechoices.eu/" rel="noopener" target="_blank">youronlinechoices.eu</a>.</p>
             <p><b>Server logs.</b> Your hosting provider's standard server logs (your IP address, browser type, referrer) are kept for normal abuse and security purposes only. They are not used for analytics or advertising.</p>

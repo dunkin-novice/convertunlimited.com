@@ -60,6 +60,20 @@ async function cdp(port, method, pathSuffix = "") {
   return fetch(`http://127.0.0.1:${port}${pathSuffix}`, { method }).then((r) => r.json());
 }
 
+async function waitForCdp(port) {
+  let lastError;
+  for (let i = 0; i < 30; i += 1) {
+    try {
+      await cdp(port, "GET", "/json/version");
+      return;
+    } catch (error) {
+      lastError = error;
+      await wait(250);
+    }
+  }
+  throw lastError || new Error("Chrome debugging endpoint did not become ready.");
+}
+
 async function run() {
   if (!fs.existsSync(SITE)) {
     throw new Error("dist/privacy-build missing. Run node scripts/build-privacy.js first.");
@@ -79,7 +93,7 @@ async function run() {
   ], { stdio: "ignore" });
 
   try {
-    await wait(1500);
+    await waitForCdp(debugPort);
     const target = await cdp(debugPort, "PUT", `/json/new?${encodeURIComponent(`http://127.0.0.1:${PORT}/`)}`);
     const ws = new WebSocket(target.webSocketDebuggerUrl);
     const requests = [];

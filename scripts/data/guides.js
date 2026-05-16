@@ -153,14 +153,14 @@ const GUIDES = [
   {
     slug: 'local-processing',
     en: {
-      title: "Local Processing: Why Your Files Never Leave Your Device | ConvertUnlimited",
+      title: "Local Processing: How Browser-Native File Tools Work | ConvertUnlimited",
       description: "Discover the technology behind local-first file processing. Learn how we use Canvas, WASM, and File APIs to process images and PDFs without server uploads.",
       h1: "How Local Processing Works",
-      intro: "ConvertUnlimited is built on the principle of 'Local-First' software. This means that every image you convert and every PDF you merge is processed entirely within your web browser, using your own device's hardware.",
+      intro: "ConvertUnlimited is built around browser-native processing. Supported file tools process selected file contents locally in your browser using your own device's hardware.",
       sections: [
         {
           title: "What is Local Processing?",
-          content: "Most 'Online Converters' are actually upload services. When you use them, your files are sent over the internet to a remote server, processed there, and then sent back to you. Local processing eliminates this round-trip. Your files stay in the browser's memory and are handled by client-side scripts."
+          content: "Many online converters are upload services: files are sent to a remote server, processed there, and sent back. Local processing avoids that round trip for supported flows. Selected file contents are handled in browser memory by client-side scripts."
         },
         {
           title: "The Browser APIs Behind the Scenes",
@@ -171,10 +171,10 @@ const GUIDES = [
           isTable: true,
           headers: ["Feature", "Upload-Based Sites", "ConvertUnlimited"],
           rows: [
-            ["Privacy", "High Risk (Files stored on server)", "100% Private (No upload)"],
-            ["Security", "Server breach risk", "Zero-Knowledge model"],
+            ["Privacy", "Higher exposure risk because files are uploaded", "File contents are processed locally in your browser"],
+            ["Security", "Server breach risk", "No server-side upload endpoint for supported local flows"],
             ["Wait Time", "Upload + Download time", "Instant local processing"],
-            ["Data Usage", "Double (Upload + Download)", "Near Zero (Page load only)"],
+            ["Data Usage", "Upload + download", "Static page load, then local processing for supported flows"],
             ["Internet", "Required for processing", "Not required after load"]
           ]
         },
@@ -184,8 +184,8 @@ const GUIDES = [
         }
       ],
       faq: [
-        ["Can you see my files?", "No. Our server never receives your file data. The connection is only used to send you the static HTML/JS code."],
-        ["Is it safe for work documents?", "Yes. Since the processing is local, it is often safer than using cloud-based office suites for sensitive document merging or metadata stripping."]
+        ["Can ConvertUnlimited see my files?", "For supported local-processing flows, ConvertUnlimited does not provide a server-side upload endpoint for selected file contents. The public site may still load ads and analytics."],
+        ["Which version should I use for sensitive documents?", "Use the privacy build for privacy-sensitive workflows. It is designed without ads, analytics, remote fonts, or third-party runtime scripts."]
       ],
       cta: "Try the local-first experience. [Go to the Metadata Remover](/metadata-remover/)."
     },

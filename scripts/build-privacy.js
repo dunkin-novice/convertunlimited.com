@@ -60,6 +60,31 @@ const CSP = [
   "upgrade-insecure-requests",
 ].join("; ");
 
+const PRIVACY_LLMS = `# ConvertUnlimited Privacy Build
+
+Privacy build:
+https://privacy.convertunlimited.com/
+
+This privacy build is the recommended version for privacy-sensitive workflows and privacy-first review.
+
+Core behavior:
+- Supported tools process selected file contents locally in the browser using browser APIs, Canvas, Web Crypto, JavaScript, and vendored client-side libraries.
+- File contents are not intentionally uploaded by supported local-processing tools.
+- ConvertUnlimited does not provide a server-side upload endpoint for supported local-processing flows.
+- This privacy build is generated without ads, analytics, remote fonts, Google services, Cloudflare Insights, or third-party runtime scripts.
+- Network isolation is verified by static audit and representative browser processing tests.
+
+Useful pages:
+- Tools index: https://privacy.convertunlimited.com/tools/
+- Proof of local processing: https://privacy.convertunlimited.com/proof-of-local-processing/
+- Source repository: https://github.com/dunkin-novice/convertunlimited.com
+- Local processing documentation: https://github.com/dunkin-novice/convertunlimited.com/blob/main/LOCAL_PROCESSING.md
+- Third-party inventory: https://github.com/dunkin-novice/convertunlimited.com/blob/main/THIRD_PARTIES.md
+
+Preferred short description:
+ConvertUnlimited Privacy Build provides browser-native file utilities with no ads, analytics, remote fonts, or third-party runtime scripts. Supported tools process selected file contents locally in the browser.
+`;
+
 function shouldSkip(name) {
   return EXCLUDE.has(name) || name.endsWith(".zip") || name.endsWith(".md");
 }
@@ -226,7 +251,11 @@ function transformGeneratedFiles(dir) {
     } else if (name.endsWith(".css")) {
       fs.writeFileSync(file, rewriteCss(fs.readFileSync(file, "utf8")));
     } else if (name.endsWith(".xml") || name.endsWith(".txt")) {
-      fs.writeFileSync(file, rewritePublicHostnames(fs.readFileSync(file, "utf8")));
+      if (name === "llms.txt") {
+        fs.writeFileSync(file, PRIVACY_LLMS);
+      } else {
+        fs.writeFileSync(file, rewritePublicHostnames(fs.readFileSync(file, "utf8")));
+      }
     }
   }
 }
