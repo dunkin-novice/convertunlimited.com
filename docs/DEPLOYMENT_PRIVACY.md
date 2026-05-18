@@ -17,7 +17,63 @@ privacy.convertunlimited.com
 Do not point `privacy.convertunlimited.com` at the repository root or the public
 ad-supported build.
 
+## Cloudflare Workers Static Assets
+
+The committed Worker configuration is `wrangler.jsonc`.
+
+| Setting | Value |
+| --- | --- |
+| Worker name | `convertunlimited-privacy` |
+| Assets directory | `dist/privacy-build` |
+| Worker script | `workers/privacy-worker.js` |
+| Compatibility date | `2026-05-18` |
+| Staging Worker URL | `https://convertunlimited-privacy.kitikornr.workers.dev` |
+| Production domain | `privacy.convertunlimited.com` |
+| `workers_dev` | Enabled for staging checks |
+| `preview_urls` | Disabled; enable only if PR/preview URLs are needed |
+
+Recommended Cloudflare Worker build/deploy settings:
+
+| Setting | Value |
+| --- | --- |
+| Build command | `npm run build:privacy` |
+| Deploy command | `npx wrangler deploy` |
+| Root directory | repository root |
+| Custom domain / route | `privacy.convertunlimited.com` |
+
+Equivalent manual deploy command:
+
+```sh
+npm run build:privacy
+npx wrangler deploy
+```
+
+The previous manual deployment command also works for assets-only testing:
+
+```sh
+npx wrangler deploy --assets=dist/privacy-build --compatibility-date=2026-05-18
+```
+
+Use the committed `wrangler.jsonc` for production deploys so the Worker wrapper
+is included. The wrapper adds `X-Robots-Tag: noindex, nofollow, noarchive` only
+when the request hostname ends in `.workers.dev`. It does not noindex
+`privacy.convertunlimited.com`.
+
+Required environment variables / token permissions:
+
+- `CLOUDFLARE_API_TOKEN` for CI deploys, or an authenticated local Wrangler
+  session for manual deploys.
+- Token permissions should be scoped to deploy Workers for the account/zone that
+  owns `convertunlimited.com`.
+- Optional for CI: set `WRANGLER_SEND_METRICS=false` if you want Wrangler CLI
+  telemetry disabled during deployment jobs.
+- If deploying the custom domain through Wrangler is not configured, add
+  `privacy.convertunlimited.com` to the Worker in the Cloudflare dashboard.
+
 ## Cloudflare Pages
+
+Cloudflare Workers Static Assets is the current deployment target. Cloudflare
+Pages remains a compatible fallback for the generated static artifact.
 
 Recommended Cloudflare Pages settings:
 

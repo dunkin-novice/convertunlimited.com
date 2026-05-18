@@ -1,0 +1,12 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "convertunlimited-privacy",
+  "main": "workers/privacy-worker.js",
+  "compatibility_date": "2026-05-18",
+  "workers_dev": true,
+  "preview_urls": false,
+  "assets": {
+    "directory": "./dist/privacy-build",
+    "binding": "ASSETS"
+  }
+}
