@@ -51,8 +51,6 @@ ${alternates()}
     <style>.jwt-output{min-height:170px;max-height:320px;overflow:auto;white-space:pre-wrap;overflow-wrap:anywhere;border:1px solid var(--line);border-radius:8px;padding:12px}.jwt-claim-row{display:flex;justify-content:space-between;gap:12px;border-bottom:1px solid var(--line);padding:8px 0;overflow-wrap:anywhere}.jwt-signature{max-height:100px;overflow:auto;white-space:pre-wrap;overflow-wrap:anywhere}</style>
     ${schemaScripts(text, locale, { url: abs(locale) })}
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${ADSENSE}" crossorigin="anonymous"></script>
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-98HSCSEKBX"></script>
-    <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-98HSCSEKBX');</script>
 </head>
 <body>
     <div class="app">

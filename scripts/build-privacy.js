@@ -17,6 +17,7 @@ const EXCLUDE = new Set([
   "tests",
   "ads.txt",
   "CNAME",
+  "analytics-events.js",
   "package.json",
   "package-lock.json",
 ]);
@@ -119,6 +120,10 @@ function stripThirdPartyRuntime(html) {
   );
   out = out.replace(
     /\s*<script[^>]+src="https:\/\/www\.googletagmanager\.com\/gtag\/js\?id=[^"]+"[^>]*><\/script>\s*/gi,
+    "\n"
+  );
+  out = out.replace(
+    /\s*<script\s+src="\/analytics-events\.js"><\/script>\s*/gi,
     "\n"
   );
   out = out.replace(
