@@ -72,6 +72,8 @@
     "option_name",
     "option_value",
     "destination_tool",
+    "destination_guide",
+    "guide_type",
     "workflow_cluster",
     "reason",
     "position"
@@ -214,12 +216,31 @@
     return null;
   }
 
+  function guideLink(target) {
+    while (target && target !== document) {
+      if (target.getAttribute && target.getAttribute("data-track") === "guide-click") return target;
+      target = target.parentNode;
+    }
+    return null;
+  }
+
   document.addEventListener("click", function (event) {
     var link = relatedToolLink(event.target);
     if (!link || typeof window.cuTrack !== "function") return;
     window.cuTrack("related_tool_clicked", {
       destination_tool: link.getAttribute("data-destination-tool"),
       workflow_cluster: link.getAttribute("data-workflow-cluster"),
+      reason: link.getAttribute("data-reason"),
+      position: Number(link.getAttribute("data-position") || 0)
+    });
+  });
+
+  document.addEventListener("click", function (event) {
+    var link = guideLink(event.target);
+    if (!link || typeof window.cuTrack !== "function") return;
+    window.cuTrack("guide_clicked", {
+      destination_guide: link.getAttribute("data-destination-guide"),
+      guide_type: link.getAttribute("data-guide-type"),
       reason: link.getAttribute("data-reason"),
       position: Number(link.getAttribute("data-position") || 0)
     });

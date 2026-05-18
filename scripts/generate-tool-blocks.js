@@ -6,6 +6,7 @@ const REGISTRY_PATH = path.join(ROOT, 'tools-registry.json');
 
 const LOCALES = require('./data/locales');
 const { WORKFLOW_CLUSTERS } = require('./data/workflow-clusters');
+const { TRUST_GUIDE_BLOCKS, GUIDE_TYPES, GUIDE_REASONS } = require('./data/trust-guide-blocks');
 
 const CATEGORY_LABELS = {
   en: { image: 'Image Tools', pdf: 'PDF Tools', seo: 'SEO Tools', developer: 'Developer Tools', 'image-conversions': 'Popular Image Conversions' },
@@ -54,6 +55,8 @@ const START_HUB = '<!-- TOOLS_HUB_START -->';
 const END_HUB = '<!-- TOOLS_HUB_END -->';
 const START_RELATED = '<!-- RELATED_TOOLS_START -->';
 const END_RELATED = '<!-- RELATED_TOOLS_END -->';
+const START_GUIDES = '<!-- GUIDE_BLOCKS_START -->';
+const END_GUIDES = '<!-- GUIDE_BLOCKS_END -->';
 const RELATED_REASON_ALLOWLIST = new Set([
   'immediate_next_action',
   'same_file_type',
@@ -124,6 +127,12 @@ const workflowForTool = (slug) => WORKFLOW_CLUSTERS.find((cluster) =>
   (cluster.primary_tools || []).includes(canonicalSlug(slug))
 );
 
+const localizedGuideHref = (guide, locale) => {
+  const supportsLocale = (guide.locale_support || []).includes(locale.code);
+  if (!supportsLocale || !guide.href.startsWith('/guides/')) return guide.href;
+  return locale.prefix ? `/${locale.prefix}${guide.href}` : guide.href;
+};
+
 const reasonForCandidate = (currentSlug, targetSlug) => {
   const currentParts = conversionParts(currentSlug);
   const targetParts = conversionParts(targetSlug);
@@ -182,6 +191,50 @@ const workflowRelatedTools = (registry, currentSlug, locale) => {
     ...item,
     position: index + 1,
   }));
+};
+
+const trustGuidesForTool = (currentSlug, locale) => {
+  const currentCanonical = canonicalSlug(currentSlug);
+  const currentWorkflow = workflowForTool(currentCanonical);
+  const candidates = [];
+  const seen = new Set();
+
+  for (const guide of TRUST_GUIDE_BLOCKS) {
+    if (guide.status !== 'live') continue;
+    if (!GUIDE_TYPES.includes(guide.type) || !GUIDE_REASONS.includes(guide.reason)) continue;
+
+    const targetTools = guide.target_tools || [];
+    const workflowClusters = guide.workflow_clusters || [];
+    const toolMatches = targetTools.includes('*') || targetTools.includes(currentCanonical);
+    const workflowMatches = currentWorkflow && workflowClusters.includes(currentWorkflow.workflow_id);
+    if (!toolMatches && !workflowMatches) continue;
+
+    const href = localizedGuideHref(guide, locale);
+    if (seen.has(href)) continue;
+    const targetFile = href === '/'
+      ? path.join(ROOT, 'index.html')
+      : path.join(ROOT, href.replace(/^\/+/, '').replace(/\/$/, ''), 'index.html');
+    if (!fs.existsSync(targetFile)) continue;
+
+    seen.add(href);
+    candidates.push({ ...guide, href, workflow_cluster: currentWorkflow ? currentWorkflow.workflow_id : '' });
+  }
+
+  const priorityOrder = {
+    troubleshooting: 1,
+    trust_explainer: 2,
+    metadata_explainer: 2,
+    comparison: 3,
+    workflow_help: 4,
+    browser_behavior: 4,
+    compatibility: 5,
+    optimization: 5,
+  };
+
+  return candidates
+    .sort((a, b) => (priorityOrder[a.type] || 99) - (priorityOrder[b.type] || 99) || b.priority - a.priority)
+    .slice(0, 3)
+    .map((guide, index) => ({ ...guide, position: index + 1 }));
 };
 
 const extractCards = (html, locale, labels) => {
@@ -307,6 +360,30 @@ const renderRelated = (registry, currentSlug, locale, labels) => {
   ].join('\n');
 };
 
+const guideSectionLabel = (guides) => {
+  if (guides.some((guide) => guide.type === 'troubleshooting')) return 'Troubleshooting';
+  if (guides.some((guide) => guide.reason === 'privacy_clarification')) return 'Privacy & processing';
+  return 'Helpful guides';
+};
+
+const renderGuideBlocks = (currentSlug, locale) => {
+  const guides = trustGuidesForTool(currentSlug, locale);
+  if (!guides.length) return '';
+  return [
+    '        <section class="guide-help-blocks" aria-label="Helpful guides">',
+    `            <div class="category-title">${escapeHtml(guideSectionLabel(guides))}</div>`,
+    '            <div class="guide-help-grid">',
+    ...guides.map((guide) => [
+      `                <a href="${escapeHtml(guide.href)}" class="guide-help-card" data-track="guide-click" data-destination-guide="${escapeHtml(guide.slug)}" data-guide-type="${escapeHtml(guide.type)}" data-reason="${escapeHtml(guide.reason)}" data-position="${escapeHtml(guide.position)}">`,
+      `                    <span class="guide-help-type">${escapeHtml(guide.type.replace(/_/g, ' '))}</span>`,
+      `                    <span class="guide-help-title">${escapeHtml(guide.title)}</span>`,
+      '                </a>',
+    ].join('\n')),
+    '            </div>',
+    '        </section>',
+  ].join('\n');
+};
+
 const replaceMarked = (html, start, end, content) => {
   const marked = new RegExp(`${start.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}[\\s\\S]*?${end.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}`);
   if (marked.test(html)) return html.replace(marked, `${start}\n${content}\n${end}`);
@@ -355,6 +432,26 @@ const updateRelatedPage = (registry, file, locale, labels) => {
   if (next !== original) fs.writeFileSync(file, next, 'utf8');
 };
 
+const updateGuideBlocksPage = (registry, file, locale) => {
+  const slug = currentSlugFromFile(file, locale);
+  if (slug === null || slug === 'tools') return;
+  const tools = toolBySlug(registry);
+  if (!tools.has(slug)) return;
+  const original = fs.readFileSync(file, 'utf8');
+  const content = renderGuideBlocks(slug, locale);
+  if (!content) return;
+  let next = replaceMarked(original, START_GUIDES, END_GUIDES, content);
+  if (next === null) {
+    const relatedStart = original.indexOf(START_RELATED);
+    const legacyRelatedStart = original.indexOf('        <section class="related-tools">');
+    const mainEnd = original.indexOf('        </main>');
+    const stop = relatedStart > -1 ? relatedStart : legacyRelatedStart > -1 ? legacyRelatedStart : mainEnd;
+    if (stop === -1) throw new Error(`Could not place guide markers in ${path.relative(ROOT, file)}`);
+    next = `${original.slice(0, stop)}${START_GUIDES}\n${content}\n${END_GUIDES}\n${original.slice(stop)}`;
+  }
+  if (next !== original) fs.writeFileSync(file, next, 'utf8');
+};
+
 const validateRegistry = (registry) => {
   const errors = [];
   const slugs = new Set();
@@ -389,6 +486,20 @@ const validateRegistry = (registry) => {
       }
     }
   }
+  const guideSlugs = new Set();
+  for (const guide of TRUST_GUIDE_BLOCKS) {
+    if (guideSlugs.has(guide.slug)) errors.push(`Duplicate trust guide slug: ${guide.slug}`);
+    guideSlugs.add(guide.slug);
+    if (!GUIDE_TYPES.includes(guide.type)) errors.push(`Guide ${guide.slug} has unsupported type ${guide.type}`);
+    if (!GUIDE_REASONS.includes(guide.reason)) errors.push(`Guide ${guide.slug} has unsupported reason ${guide.reason}`);
+    if (!['live', 'planned'].includes(guide.status)) errors.push(`Guide ${guide.slug} has invalid status ${guide.status}`);
+    for (const slug of guide.target_tools || []) {
+      if (slug !== '*' && !canonicalSlugs.has(slug)) errors.push(`Guide ${guide.slug} references unknown tool ${slug}`);
+    }
+    for (const workflowId of guide.workflow_clusters || []) {
+      if (!workflowIds.has(workflowId)) errors.push(`Guide ${guide.slug} references unknown workflow ${workflowId}`);
+    }
+  }
   return errors;
 };
 
@@ -404,10 +515,13 @@ const main = () => {
   for (const locale of LOCALES) {
     for (const tool of getAllTools(registry).filter((item) => item.status === 'live')) {
       const file = fileForTool(tool.slug, locale);
-      if (fs.existsSync(file)) updateRelatedPage(registry, file, locale, labels);
+      if (fs.existsSync(file)) {
+        updateGuideBlocksPage(registry, file, locale);
+        updateRelatedPage(registry, file, locale, labels);
+      }
     }
   }
-  console.log('Generated tool hub and related-tool blocks from tools-registry.json');
+  console.log('Generated tool hub, guide blocks, and related-tool blocks from tools-registry.json');
 };
 
 main();
