@@ -15,11 +15,13 @@ const EXCLUDE = new Set([
   "docs",
   "scripts",
   "tests",
+  "workers",
   "ads.txt",
   "CNAME",
   "analytics-events.js",
   "package.json",
   "package-lock.json",
+  "wrangler.jsonc",
 ]);
 
 const THIRD_PARTY_SCRIPT_MAP = new Map([

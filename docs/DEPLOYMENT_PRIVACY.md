@@ -31,6 +31,7 @@ The committed Worker configuration is `wrangler.jsonc`.
 | Production domain | `privacy.convertunlimited.com` |
 | `workers_dev` | Enabled for staging checks |
 | `preview_urls` | Disabled; enable only if PR/preview URLs are needed |
+| Custom-domain route | `privacy.convertunlimited.com` via `routes[].custom_domain` |
 
 Recommended Cloudflare Worker build/deploy settings:
 
@@ -57,7 +58,9 @@ npx wrangler deploy --assets=dist/privacy-build --compatibility-date=2026-05-18
 Use the committed `wrangler.jsonc` for production deploys so the Worker wrapper
 is included. The wrapper adds `X-Robots-Tag: noindex, nofollow, noarchive` only
 when the request hostname ends in `.workers.dev`. It does not noindex
-`privacy.convertunlimited.com`.
+`privacy.convertunlimited.com`. The `assets.run_worker_first` setting is
+intentional; without it, Cloudflare may serve matching static assets before the
+Worker wrapper can add staging-only headers.
 
 Required environment variables / token permissions:
 
@@ -67,8 +70,9 @@ Required environment variables / token permissions:
   owns `convertunlimited.com`.
 - Optional for CI: set `WRANGLER_SEND_METRICS=false` if you want Wrangler CLI
   telemetry disabled during deployment jobs.
-- If deploying the custom domain through Wrangler is not configured, add
-  `privacy.convertunlimited.com` to the Worker in the Cloudflare dashboard.
+- The committed `wrangler.jsonc` includes a custom-domain route for
+  `privacy.convertunlimited.com`. If the account cannot attach it during
+  deploy, add it manually in the Cloudflare dashboard.
 
 ## Cloudflare Pages
 
