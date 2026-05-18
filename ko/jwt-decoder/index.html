@@ -8,6 +8,7 @@
     'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
     })(window,document,'script','dataLayer','GTM-KQHC5ZGV');</script>
     <!-- End Google Tag Manager -->
+    <script src="/analytics-events.js"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>JWT Decoder - JWT Header와 Payload 디코드 | ConvertUnlimited</title>
@@ -38,10 +39,8 @@
     <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","inLanguage":"ko","mainEntity":[{"@type":"Question","name":"JWT 서명을 검증하나요?","acceptedAnswer":{"@type":"Answer","text":"아니요. header와 payload만 디코드합니다."}},{"@type":"Question","name":"JWT가 업로드되나요?","acceptedAnswer":{"@type":"Answer","text":"아니요. 디코딩은 브라우저에서 로컬로 실행됩니다."}},{"@type":"Question","name":"exp와 iat를 볼 수 있나요?","acceptedAnswer":{"@type":"Answer","text":"네. Unix timestamp claims는 ISO 날짜로 표시됩니다."}},{"@type":"Question","name":"프로덕션 token을 붙여넣어도 되나요?","acceptedAnswer":{"@type":"Answer","text":"위험을 이해하지 못했다면 민감한 프로덕션 token은 피하세요."}},{"@type":"Question","name":"Unicode claims를 지원하나요?","acceptedAnswer":{"@type":"Answer","text":"네. UTF-8 payload를 안전하게 디코드합니다."}}]}</script>
     <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"JWT Decoder","description":"브라우저에서 JWT header와 payload를 로컬로 디코드합니다. claims, token parts, 날짜를 확인하며 업로드와 서명 검증 주장은 없습니다.","url":"https://www.convertunlimited.com/ko/jwt-decoder/","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","isAccessibleForFree":true,"inLanguage":"ko","featureList":["업로드 없이 JWT를 검사하세요.","Processed locally in your browser for supported operations","No account required"],"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2823470980745945" crossorigin="anonymous"></script>
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-98HSCSEKBX"></script>
-    <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-98HSCSEKBX');</script>
 </head>
-<body>
+<body data-tool="jwt-decoder" data-page-type="tool">
     <!-- Google Tag Manager (noscript) -->
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KQHC5ZGV"
     height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
@@ -125,26 +124,40 @@
         <section class="related-tools">
             <div class="category-title">추천 다음 단계</div>
             <div class="tool-grid">
-                <a href="/ko/base64-encoder-decoder/" class="tool-item" data-track="workflow-click" data-tool="base64-encoder-decoder" data-category="developer">
-                    <div class="icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M7 8h10"/><path d="M7 16h10"/><path d="M9 4 5 20"/><path d="M19 4l-4 16"/><path d="M4 12h16"/></svg>
-                    </div>
-                    <h3>Base64 인코더 / 디코더</h3>
-                    <p>브라우저에서 Base64 텍스트를 인코딩하고 디코딩합니다.</p>
-                </a>
-                <a href="/ko/json-formatter/" class="tool-item" data-track="workflow-click" data-tool="json-formatter" data-category="developer">
+                <a href="/ko/json-formatter/" class="tool-item" data-track="related-tool-click" data-destination-tool="json-formatter" data-workflow-cluster="developer-data" data-reason="immediate_next_action" data-workflow-stage="next_action" data-depth="2" data-position="1" data-tool="json-formatter" data-category="developer">
                     <div class="icon">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M8 6 4 12l4 6"/><path d="m16 6 4 6-4 6"/><path d="M14 4 10 20"/></svg>
                     </div>
                     <h3>JSON 포매터</h3>
                     <p>브라우저에서 JSON을 포맷, 검증, 압축합니다.</p>
                 </a>
-                <a href="/ko/timestamp-converter/" class="tool-item" data-track="workflow-click" data-tool="timestamp-converter" data-category="developer">
+                <a href="/ko/csv-cleaner/" class="tool-item" data-track="related-tool-click" data-destination-tool="csv-cleaner" data-workflow-cluster="developer-data" data-reason="immediate_next_action" data-workflow-stage="next_action" data-depth="2" data-position="2" data-tool="csv-cleaner" data-category="developer">
                     <div class="icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/><path d="M3 3l4 4"/><path d="M21 3l-4 4"/></svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16"/><path d="M4 10h16"/><path d="M4 15h16"/><path d="M8 5v14"/><path d="M16 5v14"/><path d="M4 19h16"/></svg>
                     </div>
-                    <h3>타임스탬프 변환기</h3>
-                    <p>브라우저에서 Unix 타임스탬프와 날짜를 변환합니다.</p>
+                    <h3>CSV 클리너</h3>
+                    <p>브라우저에서 CSV 행 정리, 공백 제거, 빈 행 삭제, 중복 제거를 수행합니다.</p>
+                </a>
+                <a href="/ko/csv-to-json/" class="tool-item" data-track="related-tool-click" data-destination-tool="csv-to-json" data-workflow-cluster="developer-data" data-reason="immediate_next_action" data-workflow-stage="next_action" data-depth="2" data-position="3" data-tool="csv-to-json" data-category="developer">
+                    <div class="icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h7"/><path d="M4 9h7"/><path d="M4 13h7"/><path d="M15 7l4 5-4 5"/><path d="M19 12H9"/><path d="M16 3h2a2 2 0 0 1 2 2v2"/><path d="M16 21h2a2 2 0 0 0 2-2v-2"/></svg>
+                    </div>
+                    <h3>CSV to JSON 변환기</h3>
+                    <p>브라우저에서 CSV 행을 JSON 객체로 변환합니다.</p>
+                </a>
+                <a href="/ko/json-to-csv/" class="tool-item" data-track="related-tool-click" data-destination-tool="json-to-csv" data-workflow-cluster="developer-data" data-reason="immediate_next_action" data-workflow-stage="next_action" data-depth="2" data-position="4" data-tool="json-to-csv" data-category="developer">
+                    <div class="icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M8 6 4 12l4 6"/><path d="M16 6l4 6-4 6"/><path d="M3 21h18"/><path d="M7 17h10"/><path d="M7 13h10"/><path d="M10 13v8"/><path d="M14 13v8"/></svg>
+                    </div>
+                    <h3>JSON to CSV 변환기</h3>
+                    <p>브라우저에서 JSON 객체를 CSV로 변환합니다.</p>
+                </a>
+                <a href="/ko/diff-checker/" class="tool-item" data-track="related-tool-click" data-destination-tool="diff-checker" data-workflow-cluster="developer-data" data-reason="immediate_next_action" data-workflow-stage="next_action" data-depth="2" data-position="5" data-tool="diff-checker" data-category="developer">
+                    <div class="icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M6 5h8"/><path d="M6 9h12"/><path d="M6 15h8"/><path d="M6 19h12"/><path d="M3 5h.01"/><path d="M3 9h.01"/><path d="M3 15h.01"/><path d="M3 19h.01"/><path d="m17 4 4 4-4 4"/></svg>
+                    </div>
+                    <h3>Diff 체커</h3>
+                    <p>브라우저에서 두 텍스트를 비교합니다.</p>
                 </a>
             </div>
         </section>

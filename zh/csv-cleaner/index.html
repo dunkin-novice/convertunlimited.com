@@ -8,6 +8,7 @@
     'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
     })(window,document,'script','dataLayer','GTM-KQHC5ZGV');</script>
     <!-- End Google Tag Manager -->
+    <script src="/analytics-events.js"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CSV 清理工具 - 去重、去空行和修剪空白 | ConvertUnlimited</title>
@@ -37,10 +38,8 @@
     <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","inLanguage":"zh-Hans","mainEntity":[{"@type":"Question","name":"这个 CSV 工具免费吗？","acceptedAnswer":{"@type":"Answer","text":"免费。无需注册即可粘贴、清理、预览、复制和下载 CSV。"}},{"@type":"Question","name":"CSV 文件会上传吗？","acceptedAnswer":{"@type":"Answer","text":"不会。CSV 会在浏览器本地读取和清理。"}},{"@type":"Question","name":"会应用哪些清理规则？","acceptedAnswer":{"@type":"Answer","text":"修剪单元格空白、删除空行、标准化换行，并删除完全相同的重复行。"}},{"@type":"Question","name":"会改变列顺序吗？","acceptedAnswer":{"@type":"Answer","text":"不会。列顺序会保留。"}},{"@type":"Question","name":"CSV 格式异常怎么办？","acceptedAnswer":{"@type":"Answer","text":"工具会显示友好警告并保留原始输入。"}}]}</script>
     <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"CSV 清理工具","description":"在浏览器中清理 CSV。修剪空白、删除空行、移除重复行、预览数据、复制并下载，无需上传。","url":"https://www.convertunlimited.com/zh/csv-cleaner/","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","isAccessibleForFree":true,"inLanguage":"zh-Hans","featureList":["粘贴 CSV 并安全清理。","Processed locally in your browser for supported operations","No account required"],"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2823470980745945" crossorigin="anonymous"></script>
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-98HSCSEKBX"></script>
-    <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-98HSCSEKBX');</script>
 </head>
-<body>
+<body data-tool="csv-cleaner" data-page-type="tool">
     <!-- Google Tag Manager (noscript) -->
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KQHC5ZGV"
     height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
@@ -121,26 +120,40 @@
         <section class="related-tools">
             <div class="category-title">推荐的后续步骤</div>
             <div class="tool-grid">
-                <a href="/zh/diff-checker/" class="tool-item" data-track="workflow-click" data-tool="diff-checker" data-category="developer">
-                    <div class="icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M6 5h8"/><path d="M6 9h12"/><path d="M6 15h8"/><path d="M6 19h12"/><path d="M3 5h.01"/><path d="M3 9h.01"/><path d="M3 15h.01"/><path d="M3 19h.01"/><path d="m17 4 4 4-4 4"/></svg>
-                    </div>
-                    <h3>Diff 检查器</h3>
-                    <p>在浏览器中本地比较两段文本。</p>
-                </a>
-                <a href="/zh/csv-to-json/" class="tool-item" data-track="workflow-click" data-tool="csv-to-json" data-category="developer">
+                <a href="/zh/csv-to-json/" class="tool-item" data-track="related-tool-click" data-destination-tool="csv-to-json" data-workflow-cluster="developer-data" data-reason="immediate_next_action" data-workflow-stage="next_action" data-depth="1" data-position="1" data-tool="csv-to-json" data-category="developer">
                     <div class="icon">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h7"/><path d="M4 9h7"/><path d="M4 13h7"/><path d="M15 7l4 5-4 5"/><path d="M19 12H9"/><path d="M16 3h2a2 2 0 0 1 2 2v2"/><path d="M16 21h2a2 2 0 0 0 2-2v-2"/></svg>
                     </div>
                     <h3>CSV 转 JSON 工具</h3>
                     <p>在浏览器中本地将 CSV 行转换为 JSON 对象。</p>
                 </a>
-                <a href="/zh/json-to-csv/" class="tool-item" data-track="workflow-click" data-tool="json-to-csv" data-category="developer">
+                <a href="/zh/json-formatter/" class="tool-item" data-track="related-tool-click" data-destination-tool="json-formatter" data-workflow-cluster="developer-data" data-reason="immediate_next_action" data-workflow-stage="next_action" data-depth="1" data-position="2" data-tool="json-formatter" data-category="developer">
+                    <div class="icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M8 6 4 12l4 6"/><path d="m16 6 4 6-4 6"/><path d="M14 4 10 20"/></svg>
+                    </div>
+                    <h3>JSON 格式化工具</h3>
+                    <p>在浏览器中本地格式化、验证和压缩 JSON。</p>
+                </a>
+                <a href="/zh/json-to-csv/" class="tool-item" data-track="related-tool-click" data-destination-tool="json-to-csv" data-workflow-cluster="developer-data" data-reason="immediate_next_action" data-workflow-stage="next_action" data-depth="2" data-position="3" data-tool="json-to-csv" data-category="developer">
                     <div class="icon">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M8 6 4 12l4 6"/><path d="M16 6l4 6-4 6"/><path d="M3 21h18"/><path d="M7 17h10"/><path d="M7 13h10"/><path d="M10 13v8"/><path d="M14 13v8"/></svg>
                     </div>
                     <h3>JSON 转 CSV 工具</h3>
                     <p>在浏览器中本地将 JSON 对象转换为 CSV。</p>
+                </a>
+                <a href="/zh/diff-checker/" class="tool-item" data-track="related-tool-click" data-destination-tool="diff-checker" data-workflow-cluster="developer-data" data-reason="immediate_next_action" data-workflow-stage="next_action" data-depth="2" data-position="4" data-tool="diff-checker" data-category="developer">
+                    <div class="icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M6 5h8"/><path d="M6 9h12"/><path d="M6 15h8"/><path d="M6 19h12"/><path d="M3 5h.01"/><path d="M3 9h.01"/><path d="M3 15h.01"/><path d="M3 19h.01"/><path d="m17 4 4 4-4 4"/></svg>
+                    </div>
+                    <h3>Diff 检查器</h3>
+                    <p>在浏览器中本地比较两段文本。</p>
+                </a>
+                <a href="/zh/regex-tester/" class="tool-item" data-track="related-tool-click" data-destination-tool="regex-tester" data-workflow-cluster="developer-data" data-reason="immediate_next_action" data-workflow-stage="next_action" data-depth="2" data-position="5" data-tool="regex-tester" data-category="developer">
+                    <div class="icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h4"/><path d="M6 5v4"/><path d="M12 7h.01"/><path d="M16 7h.01"/><path d="M20 7h.01"/><path d="M5 16c2-3 5-3 7 0s5 3 7 0"/></svg>
+                    </div>
+                    <h3>Regex 测试工具</h3>
+                    <p>在浏览器中本地测试 JavaScript regex pattern。</p>
                 </a>
             </div>
         </section>
