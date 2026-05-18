@@ -109,6 +109,8 @@ Each weekly review should produce one of:
 
 Use `docs/GROWTH_DASHBOARDS.md` as the operating view for GA4 and Looker Studio setup. Query Intelligence should not rely on impressions alone.
 
+Use `docs/QUERY_INTELLIGENCE_OPERATIONS.md` for the review cadence, scoring model, decision outputs, and operator templates.
+
 Connect each promising query cluster to:
 
 - A landing page from GSC or Bing.
