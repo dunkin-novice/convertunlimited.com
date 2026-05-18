@@ -30,6 +30,8 @@
   let lastDiffText = "";
   const CHAR_LIMIT = 200000;
   const CELL_LIMIT = 250000;
+  let textStarted = false;
+  let userActionReady = false;
 
   function normalize(line) {
     let value = line;
@@ -115,10 +117,12 @@
       summaryEl.textContent = "";
       statusEl.textContent = t.long;
       lastDiffText = "";
+      if (typeof window.cuTrack === "function") window.cuTrack("error_shown", { error_type: "timeout" });
       return;
     }
     render(diff(leftEl.value, rightEl.value));
     statusEl.textContent = t.compared;
+    if (userActionReady && typeof window.cuTrack === "function") window.cuTrack("tool_completed", { option_name: "mode", option_value: ignoreWhitespaceEl.checked ? "normalized" : "standard" });
   }
 
   async function copyDiff() {
@@ -135,11 +139,13 @@
       area.remove();
       statusEl.textContent = t.copied;
     }
+    if (typeof window.cuTrack === "function") window.cuTrack("copy_clicked");
   }
 
   function sample() {
     leftEl.value = "name: ConvertUnlimited\nstatus: draft\nlocale: en\nemoji: hello 👋\ncity: Bangkok";
     rightEl.value = "name: ConvertUnlimited\nstatus: live\nlocale: en\nemoji: hello 👋\ncity: Bangkok\nupdated: 2026-05-12";
+    if (userActionReady && typeof window.cuTrack === "function") window.cuTrack("sample_used");
     compare();
   }
 
@@ -156,7 +162,21 @@
   copyBtn.addEventListener("click", copyDiff);
   sampleBtn.addEventListener("click", sample);
   clearBtn.addEventListener("click", clearAll);
-  ignoreCaseEl.addEventListener("change", compare);
-  ignoreWhitespaceEl.addEventListener("change", compare);
+  ignoreCaseEl.addEventListener("change", () => {
+    if (typeof window.cuTrack === "function") window.cuTrack("option_changed", { option_name: "ignore_case", option_value: ignoreCaseEl.checked ? "enabled" : "disabled" });
+    compare();
+  });
+  ignoreWhitespaceEl.addEventListener("change", () => {
+    if (typeof window.cuTrack === "function") window.cuTrack("option_changed", { option_name: "ignore_whitespace", option_value: ignoreWhitespaceEl.checked ? "enabled" : "disabled" });
+    compare();
+  });
+  [leftEl, rightEl].forEach((el) => el.addEventListener("input", () => {
+    if (!textStarted && (leftEl.value || rightEl.value)) {
+      textStarted = true;
+      if (typeof window.cuTrack === "function") window.cuTrack("text_input_started");
+    }
+  }));
   sample();
+  userActionReady = true;
+  if (typeof window.cuTrack === "function") window.cuTrack("tool_loaded");
 })();

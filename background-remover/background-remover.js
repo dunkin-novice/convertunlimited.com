@@ -19,12 +19,6 @@
   let resultUrl = null;
   let resultName = "transparent-background.png";
 
-  function track(name, params) {
-    try {
-      if (typeof window.gtag === "function") window.gtag("event", name, params || {});
-    } catch (_) { /* noop */ }
-  }
-
   function baseOf(name) {
     const i = name.lastIndexOf(".");
     return i >= 0 ? name.slice(0, i) : name;
@@ -167,7 +161,7 @@
     resultName = `${baseOf(file.name)}-no-bg.png`;
     processBtn.disabled = false;
     setStatus(statusEl.dataset.readyText || "Ready. Works best when the background touches the image edges and is mostly one color.");
-    track("bg_file_added", { bytes: file.size || 0 });
+    if (typeof window.cuTrack === "function") window.cuTrack("file_selected", { bytes: file.size || 0, file_count: 1 });
   }
 
   async function processFile() {
@@ -200,10 +194,11 @@
       doneText = doneText.replace("{w}", w).replace("{h}", h);
       setStatus(doneText);
       
-      track("bg_remove_completed", { bytes: sourceFile.size || 0, width: w, height: h });
+      if (typeof window.cuTrack === "function") window.cuTrack("processing_completed", { bytes: sourceFile.size || 0, width: w, height: h, file_count: 1 });
     } catch (error) {
       clearResult();
       setStatus(statusEl.dataset.errorText || "Could not remove this background. Try an image with a simpler white or solid background.");
+      if (typeof window.cuTrack === "function") window.cuTrack("error_shown", { error_type: "unknown" });
     } finally {
       processBtn.disabled = !sourceFile;
     }
@@ -219,7 +214,7 @@
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
-    track("bg_download_png", { bytes: resultBlob.size || 0 });
+    if (typeof window.cuTrack === "function") window.cuTrack("download_clicked", { bytes: resultBlob.size || 0, file_count: 1 });
   }
 
   dropzone.addEventListener("click", () => fileInput.click());

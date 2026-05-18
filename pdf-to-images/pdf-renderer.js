@@ -35,12 +35,6 @@
   let pages = [];
   let isRendering = false;
 
-  function track(name, params) {
-    try {
-      if (typeof window.gtag === "function") window.gtag("event", name, params || {});
-    } catch (_) { /* noop */ }
-  }
-
   function createEl(tag, className, text) {
     const el = document.createElement(tag);
     if (className) el.className = className;
@@ -105,10 +99,11 @@
       pageEndInput.max = String(currentPdf.numPages);
       renderBtn.disabled = false;
       statusEl.textContent = `${t.loaded}: ${currentPdf.numPages} ${t.pages}. ${t.convert}`;
-      track("pdf_to_img_loaded", { pages: currentPdf.numPages });
+      if (typeof window.cuTrack === "function") window.cuTrack("tool_loaded", { page_count: currentPdf.numPages });
     } catch (error) {
       console.error("PDF load failed:", error);
       statusEl.textContent = t.failed;
+      if (typeof window.cuTrack === "function") window.cuTrack("error_shown", { error_type: "corrupt_input" });
     }
   }
 
@@ -175,12 +170,13 @@
         const card = createEl("div", "file-card", `${t.pageFailed}: ${pageNumber}`);
         card.style = "background:var(--bg-2);border-radius:12px;padding:12px;color:var(--ink-3);";
         fileListEl.appendChild(card);
+        if (typeof window.cuTrack === "function") window.cuTrack("error_shown", { error_type: "unknown" });
       }
     }
 
     statusEl.textContent = pages.length ? t.done : t.noPages;
     setBusy(false);
-    track("pdf_to_img_completed", { pages: pages.length, format: formatSelect.value });
+    if (typeof window.cuTrack === "function") window.cuTrack("pdf_action_completed", { page_count: pages.length, format: formatSelect.value });
   }
 
   function downloadPage(page) {

@@ -27,6 +27,8 @@
   const lang = (document.documentElement.lang || "en").toLowerCase().split("-")[0];
   const t = STRINGS[lang] || STRINGS.en;
   const LIMIT = 200000;
+  let textStarted = false;
+  let userActionReady = false;
 
   function flags() {
     const selected = flagIds.filter(([id]) => $(id).checked).map(([, flag]) => flag).join("");
@@ -70,6 +72,7 @@
     if (textEl.value.length > LIMIT) {
       warningEl.textContent = t.long;
       statusEl.textContent = t.long;
+      if (typeof window.cuTrack === "function") window.cuTrack("error_shown", { error_type: "timeout" });
       return;
     }
     let re;
@@ -78,6 +81,7 @@
     } catch (_) {
       warningEl.textContent = t.invalid;
       statusEl.textContent = t.invalid;
+      if (typeof window.cuTrack === "function") window.cuTrack("error_shown", { error_type: "unsupported_format" });
       return;
     }
     const matches = [];
@@ -100,6 +104,7 @@
     } catch (_) {
       replacePreviewEl.value = "";
     }
+    if (userActionReady && typeof window.cuTrack === "function") window.cuTrack("tool_completed", { option_name: "mode", option_value: replaceEl.value ? "replace" : "test" });
   }
 
   function sample() {
@@ -108,6 +113,7 @@
     replaceEl.value = "[email]";
     $("regex-flag-g").checked = true;
     $("regex-flag-i").checked = true;
+    if (userActionReady && typeof window.cuTrack === "function") window.cuTrack("sample_used");
     testRegex();
   }
 
@@ -122,9 +128,20 @@
     statusEl.textContent = t.cleared;
   }
 
-  [patternEl, textEl, replaceEl].forEach((el) => el.addEventListener("input", testRegex));
-  flagIds.forEach(([id]) => $(id).addEventListener("change", testRegex));
+  [patternEl, textEl, replaceEl].forEach((el) => el.addEventListener("input", () => {
+    if (!textStarted && (patternEl.value || textEl.value || replaceEl.value)) {
+      textStarted = true;
+      if (typeof window.cuTrack === "function") window.cuTrack("text_input_started");
+    }
+    testRegex();
+  }));
+  flagIds.forEach(([id, flag]) => $(id).addEventListener("change", () => {
+    if (typeof window.cuTrack === "function") window.cuTrack("option_changed", { option_name: "flag", option_value: flag });
+    testRegex();
+  }));
   sampleBtn.addEventListener("click", sample);
   clearBtn.addEventListener("click", clearAll);
   sample();
+  userActionReady = true;
+  if (typeof window.cuTrack === "function") window.cuTrack("tool_loaded");
 })();

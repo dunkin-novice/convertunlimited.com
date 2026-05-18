@@ -31,6 +31,8 @@
   const EC_CODEWORDS = [0, 7, 10, 15, 20, 26];
   const ALIGNMENT = [[], [], [6, 18], [6, 22], [6, 26], [6, 30]];
   let latestMatrix = null;
+  let textStarted = false;
+  let userActionReady = false;
 
   function gfMul(x, y) {
     let z = 0;
@@ -198,6 +200,7 @@
       statusEl.textContent = error.message;
       latestMatrix = null;
       clearCanvas();
+      if (typeof window.cuTrack === "function") window.cuTrack("error_shown", { error_type: "unsupported_format" });
       return;
     }
     if (!text) {
@@ -212,12 +215,14 @@
       statusEl.textContent = t.ready;
       downloadPngBtn.disabled = false;
       downloadSvgBtn.disabled = false;
+      if (userActionReady && typeof window.cuTrack === "function") window.cuTrack("tool_completed", { output_format: "png", option_name: "mode", option_value: modeEl.value });
     } catch (error) {
       latestMatrix = null;
       clearCanvas();
       statusEl.textContent = error.message || t.tooLong;
       downloadPngBtn.disabled = true;
       downloadSvgBtn.disabled = true;
+      if (typeof window.cuTrack === "function") window.cuTrack("error_shown", { error_type: "unsupported_format" });
     }
   }
 
@@ -281,6 +286,7 @@
     if (!latestMatrix) return;
     renderCanvas();
     download(canvas.toDataURL("image/png"), "qr-code.png");
+    if (typeof window.cuTrack === "function") window.cuTrack("download_clicked", { output_format: "png" });
   }
 
   function downloadSvg() {
@@ -289,13 +295,27 @@
     const url = URL.createObjectURL(blob);
     download(url, "qr-code.svg");
     URL.revokeObjectURL(url);
+    if (typeof window.cuTrack === "function") window.cuTrack("download_clicked", { output_format: "svg" });
   }
 
   [modeEl, valueEl, sizeEl, marginEl, darkEl, lightEl, transparentEl].forEach((el) => {
-    el.addEventListener("input", draw);
-    el.addEventListener("change", draw);
+    el.addEventListener("input", () => {
+      if (el === valueEl && !textStarted && valueEl.value) {
+        textStarted = true;
+        if (typeof window.cuTrack === "function") window.cuTrack("text_input_started", { option_name: "mode", option_value: modeEl.value });
+      }
+      draw();
+    });
+    el.addEventListener("change", () => {
+      if (el === modeEl && typeof window.cuTrack === "function") window.cuTrack("option_changed", { option_name: "mode", option_value: modeEl.value });
+      else if (el === transparentEl && typeof window.cuTrack === "function") window.cuTrack("option_changed", { option_name: "transparent", option_value: transparentEl.checked ? "enabled" : "disabled" });
+      else if ((el === sizeEl || el === marginEl) && typeof window.cuTrack === "function") window.cuTrack("option_changed", { option_name: el === sizeEl ? "size" : "margin" });
+      draw();
+    });
   });
   downloadPngBtn.addEventListener("click", downloadPng);
   downloadSvgBtn.addEventListener("click", downloadSvg);
   draw();
+  userActionReady = true;
+  if (typeof window.cuTrack === "function") window.cuTrack("tool_loaded");
 })();

@@ -19,12 +19,6 @@
     return parseFloat((bytes / Math.pow(k, i)).toFixed(1)) + " " + sizes[i];
   }
 
-  function track(name, params) {
-    try {
-      if (typeof window.gtag === "function") window.gtag("event", name, params || {});
-    } catch (_) { /* noop */ }
-  }
-
   async function addFiles(files) {
     for (const file of files) {
       if (file.type !== "application/pdf") continue;
@@ -38,7 +32,7 @@
     }
     renderFileList();
     mergeBtn.disabled = filesToProcess.length < 2;
-    track("pdf_merge_files_added", { count: files.length });
+    if (typeof window.cuTrack === "function") window.cuTrack("file_selected", { file_count: files.length });
   }
 
   function renderFileList() {
@@ -106,10 +100,11 @@
         a.download = "merged-document.pdf";
         a.click();
         statusEl.textContent = "Done. Merged PDF downloaded.";
-        track("pdf_merge_completed", { count: filesToProcess.length });
+        if (typeof window.cuTrack === "function") window.cuTrack("pdf_action_completed", { file_count: filesToProcess.length });
     } catch (err) {
         console.error("Merge failed:", err);
         statusEl.textContent = "Error merging PDFs. Ensure they are not password protected.";
+        if (typeof window.cuTrack === "function") window.cuTrack("error_shown", { error_type: "corrupt_input" });
     } finally {
         mergeBtn.disabled = false;
     }

@@ -32,6 +32,7 @@
 
   let image = null;
   let fileName = "watermarked-image";
+  let textStarted = false;
 
   function setStatus(message) {
     statusEl.textContent = message;
@@ -87,6 +88,7 @@
   function loadFile(file) {
     if (!file || !file.type || !file.type.startsWith("image/")) {
       setStatus(t.invalid);
+      if (typeof window.cuTrack === "function") window.cuTrack("error_shown", { error_type: "unsupported_format" });
       return;
     }
     const url = URL.createObjectURL(file);
@@ -97,10 +99,13 @@
       fileName = file.name.replace(/\.[^.]+$/, "") || "watermarked-image";
       draw();
       setStatus(t.loaded);
+      if (typeof window.cuTrack === "function") window.cuTrack("file_selected", { file_count: 1, input_format: file.type || "image" });
+      if (typeof window.cuTrack === "function") window.cuTrack("processing_completed", { file_count: 1, output_format: "png" });
     };
     nextImage.onerror = () => {
       URL.revokeObjectURL(url);
       setStatus(t.loadError);
+      if (typeof window.cuTrack === "function") window.cuTrack("error_shown", { error_type: "corrupt_input" });
     };
     nextImage.src = url;
   }
@@ -122,6 +127,7 @@
       a.click();
       URL.revokeObjectURL(url);
       setStatus(t.downloaded);
+      if (typeof window.cuTrack === "function") window.cuTrack("download_clicked", { output_format: "png", file_count: 1 });
     }, "image/png");
   }
 
@@ -155,14 +161,25 @@
     const file = event.dataTransfer.files && event.dataTransfer.files[0];
     if (file) loadFile(file);
   });
-  textInput.addEventListener("input", updatePreview);
-  positionSelect.addEventListener("change", updatePreview);
+  textInput.addEventListener("input", () => {
+    if (!textStarted && textInput.value) {
+      textStarted = true;
+      if (typeof window.cuTrack === "function") window.cuTrack("text_input_started");
+    }
+    updatePreview();
+  });
+  positionSelect.addEventListener("change", () => {
+    if (typeof window.cuTrack === "function") window.cuTrack("option_changed", { option_name: "position", option_value: positionSelect.value });
+    updatePreview();
+  });
   opacityRange.addEventListener("input", () => {
     opacityValue.textContent = `${opacityRange.value}%`;
+    if (typeof window.cuTrack === "function") window.cuTrack("option_changed", { option_name: "opacity" });
     updatePreview();
   });
   sizeRange.addEventListener("input", () => {
     sizeValue.textContent = `${sizeRange.value}%`;
+    if (typeof window.cuTrack === "function") window.cuTrack("option_changed", { option_name: "size" });
     updatePreview();
   });
   downloadBtn.addEventListener("click", download);
@@ -171,4 +188,5 @@
   textInput.value = textInput.value || "ConvertUnlimited";
   setStatus(t.ready);
   draw();
+  if (typeof window.cuTrack === "function") window.cuTrack("tool_loaded");
 })();

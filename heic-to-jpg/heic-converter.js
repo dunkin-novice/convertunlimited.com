@@ -23,12 +23,6 @@
     return parseFloat((bytes / Math.pow(k, i)).toFixed(1)) + " " + sizes[i];
   }
 
-  function track(name, params) {
-    try {
-      if (typeof window.gtag === "function") window.gtag("event", name, params || {});
-    } catch (_) { /* noop */ }
-  }
-
   async function addFiles(files) {
     for (const file of files) {
       if (!file.name.toLowerCase().endsWith(".heic") && !file.name.toLowerCase().endsWith(".heif") && !file.type.includes("heic")) continue;
@@ -43,7 +37,7 @@
     }
     renderFileList();
     convertAllBtn.disabled = filesToProcess.length === 0;
-    track("heic_files_added", { count: files.length });
+    if (typeof window.cuTrack === "function") window.cuTrack("file_selected", { file_count: files.length });
   }
 
   function renderFileList() {
@@ -110,6 +104,7 @@
     } catch (err) {
       console.error("HEIC conversion failed:", err);
       item.status = "err";
+      if (typeof window.cuTrack === "function") window.cuTrack("conversion_failed", { error_type: "unknown" });
     }
   }
 
@@ -133,7 +128,7 @@
     downloadAllBtn.disabled = filesToProcess.every(i => i.status !== "done");
     isConverting = false;
     convertAllBtn.disabled = false;
-    track("heic_all_completed", { count: filesToProcess.length, format });
+    if (typeof window.cuTrack === "function") window.cuTrack("conversion_completed", { file_count: filesToProcess.length, format });
   }
 
   async function downloadAll() {
@@ -152,7 +147,7 @@
     a.download = "converted-photos.zip";
     a.click();
     URL.revokeObjectURL(url);
-    track("heic_download_zip", { count: filesToProcess.length });
+    if (typeof window.cuTrack === "function") window.cuTrack("batch_download_clicked", { file_count: filesToProcess.length });
   }
 
   qualitySlider.addEventListener("input", () => {

@@ -26,6 +26,8 @@
   };
   const lang = (document.documentElement.lang || "en").toLowerCase().split("-")[0];
   const t = STRINGS[lang] || STRINGS.en;
+  let textStarted = false;
+  let userActionReady = false;
 
   function unitFactor() {
     return unitEl.value === "ms" ? 1 : 1000;
@@ -72,6 +74,7 @@
     if (!/^-?\d+(\.\d+)?$/.test(raw)) {
       warningEl.textContent = t.invalidTimestamp;
       statusEl.textContent = t.invalidTimestamp;
+      if (typeof window.cuTrack === "function") window.cuTrack("error_shown", { error_type: "unsupported_format" });
       return;
     }
     const value = Number(raw);
@@ -79,10 +82,12 @@
     if (!Number.isFinite(value) || Number.isNaN(date.getTime())) {
       warningEl.textContent = t.invalidTimestamp;
       statusEl.textContent = t.invalidTimestamp;
+      if (typeof window.cuTrack === "function") window.cuTrack("error_shown", { error_type: "unsupported_format" });
       return;
     }
     dateEl.value = date.toISOString().slice(0, 19);
     render(date);
+    if (typeof window.cuTrack === "function") window.cuTrack("conversion_completed", { input_format: unitEl.value, output_format: "date" });
   }
 
   function dateToTimestamp() {
@@ -96,10 +101,12 @@
     if (Number.isNaN(date.getTime())) {
       warningEl.textContent = t.invalidDate;
       statusEl.textContent = t.invalidDate;
+      if (typeof window.cuTrack === "function") window.cuTrack("error_shown", { error_type: "unsupported_format" });
       return;
     }
     timestampEl.value = unitEl.value === "ms" ? String(date.getTime()) : String(Math.floor(date.getTime() / 1000));
     render(date);
+    if (typeof window.cuTrack === "function") window.cuTrack("conversion_completed", { input_format: "date", output_format: unitEl.value });
   }
 
   function setNow() {
@@ -109,6 +116,7 @@
     dateEl.value = date.toISOString().slice(0, 19);
     render(date);
     statusEl.textContent = t.now;
+    if (userActionReady && typeof window.cuTrack === "function") window.cuTrack("tool_completed", { option_name: "mode", option_value: "now", output_format: unitEl.value });
   }
 
   async function copyOutput() {
@@ -121,6 +129,7 @@
       document.execCommand("copy");
       statusEl.textContent = t.copied;
     }
+    if (typeof window.cuTrack === "function") window.cuTrack("copy_clicked");
   }
 
   function clearAll() {
@@ -137,8 +146,23 @@
   copyBtn.addEventListener("click", copyOutput);
   clearBtn.addEventListener("click", clearAll);
   unitEl.addEventListener("change", () => {
+    if (typeof window.cuTrack === "function") window.cuTrack("option_changed", { option_name: "format", option_value: unitEl.value });
     if (timestampEl.value.trim()) timestampToDate();
     else if (dateEl.value.trim()) dateToTimestamp();
   });
+  timestampEl.addEventListener("input", () => {
+    if (!textStarted && timestampEl.value) {
+      textStarted = true;
+      if (typeof window.cuTrack === "function") window.cuTrack("text_input_started", { input_format: unitEl.value });
+    }
+  });
+  dateEl.addEventListener("input", () => {
+    if (!textStarted && dateEl.value) {
+      textStarted = true;
+      if (typeof window.cuTrack === "function") window.cuTrack("text_input_started", { input_format: "date" });
+    }
+  });
   setNow();
+  userActionReady = true;
+  if (typeof window.cuTrack === "function") window.cuTrack("tool_loaded");
 })();

@@ -30,6 +30,7 @@
 
   const lang = (document.documentElement.lang || "en").toLowerCase().split("-")[0];
   const t = STRINGS[lang] || STRINGS.en;
+  let textStarted = false;
 
   function indentValue() {
     if (indentEl.value === "tab") return "\t";
@@ -72,13 +73,16 @@
       const parsed = parseJson();
       if (mode === "validate") {
         setStatus(t.valid, false);
+        if (typeof window.cuTrack === "function") window.cuTrack("tool_completed", { option_name: "mode", option_value: mode, input_format: "json" });
         return;
       }
       outputEl.value = mode === "minify" ? JSON.stringify(parsed) : JSON.stringify(parsed, null, indentValue());
       setStatus(mode === "minify" ? t.minified : t.formatted, false);
+      if (typeof window.cuTrack === "function") window.cuTrack("tool_completed", { option_name: "mode", option_value: mode, input_format: "json", output_format: "json" });
     } catch (error) {
       errorEl.textContent = error.message;
       setStatus(error.message, true);
+      if (typeof window.cuTrack === "function") window.cuTrack("error_shown", { error_type: "unsupported_format" });
     }
   }
 
@@ -92,6 +96,7 @@
       document.execCommand("copy");
       setStatus(t.copied, false);
     }
+    if (typeof window.cuTrack === "function") window.cuTrack("copy_clicked", { output_format: "json" });
   }
 
   function clearAll() {
@@ -110,6 +115,7 @@
       settings: { localFirst: true, uploads: false, indent: 2 },
     });
     updateCount();
+    if (typeof window.cuTrack === "function") window.cuTrack("sample_used", { input_format: "json" });
     run("format");
   }
 
@@ -122,6 +128,7 @@
     a.download = t.downloadName;
     a.click();
     URL.revokeObjectURL(url);
+    if (typeof window.cuTrack === "function") window.cuTrack("download_clicked", { output_format: "json" });
   }
 
   function loadFile(file) {
@@ -131,12 +138,22 @@
       inputEl.value = String(reader.result || "");
       updateCount();
       setStatus(t.fileLoaded, false);
+      if (typeof window.cuTrack === "function") window.cuTrack("file_selected", { file_count: 1, input_format: "json" });
     };
-    reader.onerror = () => setStatus(reader.error ? reader.error.message : t.invalid, true);
+    reader.onerror = () => {
+      setStatus(reader.error ? reader.error.message : t.invalid, true);
+      if (typeof window.cuTrack === "function") window.cuTrack("error_shown", { error_type: "unknown" });
+    };
     reader.readAsText(file);
   }
 
-  inputEl.addEventListener("input", updateCount);
+  inputEl.addEventListener("input", () => {
+    updateCount();
+    if (!textStarted && inputEl.value) {
+      textStarted = true;
+      if (typeof window.cuTrack === "function") window.cuTrack("text_input_started", { input_format: "json" });
+    }
+  });
   fileEl.addEventListener("change", (event) => {
     loadFile(event.target.files[0]);
     event.target.value = "";
@@ -148,6 +165,10 @@
   clearBtn.addEventListener("click", clearAll);
   sampleBtn.addEventListener("click", sample);
   downloadBtn.addEventListener("click", downloadOutput);
+  indentEl.addEventListener("change", () => {
+    if (typeof window.cuTrack === "function") window.cuTrack("option_changed", { option_name: "indent", option_value: indentEl.value });
+  });
   updateCount();
   setStatus(t.empty, false);
+  if (typeof window.cuTrack === "function") window.cuTrack("tool_loaded");
 })();

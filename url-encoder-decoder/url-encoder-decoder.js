@@ -28,6 +28,7 @@
   const lang = (document.documentElement.lang || "en").toLowerCase().split("-")[0];
   const t = STRINGS[lang] || STRINGS.en;
   const encoder = new TextEncoder();
+  let textStarted = false;
 
   function useComponentMode() {
     return modeEl.value === "component";
@@ -47,6 +48,7 @@
     }
     outputEl.value = useComponentMode() ? encodeURIComponent(inputEl.value) : encodeURI(inputEl.value);
     statusEl.textContent = t.encoded;
+    if (typeof window.cuTrack === "function") window.cuTrack("tool_completed", { option_name: "mode", option_value: "encode", output_format: modeEl.value });
   }
 
   function decode() {
@@ -58,9 +60,11 @@
     try {
       outputEl.value = useComponentMode() ? decodeURIComponent(inputEl.value) : decodeURI(inputEl.value);
       statusEl.textContent = t.decoded;
+      if (typeof window.cuTrack === "function") window.cuTrack("tool_completed", { option_name: "mode", option_value: "decode", input_format: modeEl.value });
     } catch (_) {
       warningEl.textContent = t.invalid;
       statusEl.textContent = t.invalid;
+      if (typeof window.cuTrack === "function") window.cuTrack("error_shown", { error_type: "unsupported_format" });
     }
   }
 
@@ -74,6 +78,7 @@
       document.execCommand("copy");
       statusEl.textContent = t.copied;
     }
+    if (typeof window.cuTrack === "function") window.cuTrack("copy_clicked");
   }
 
   function clearAll() {
@@ -87,6 +92,7 @@
   function sample() {
     inputEl.value = "https://www.convertunlimited.com/search?q=hello world 👋&city=กรุงเทพ&note=café 世界";
     updateCounts();
+    if (typeof window.cuTrack === "function") window.cuTrack("sample_used");
     encode();
   }
 
@@ -96,9 +102,17 @@
   clearBtn.addEventListener("click", clearAll);
   sampleBtn.addEventListener("click", sample);
   modeEl.addEventListener("change", () => {
+    if (typeof window.cuTrack === "function") window.cuTrack("option_changed", { option_name: "mode", option_value: modeEl.value });
     if (inputEl.value) encode();
   });
-  inputEl.addEventListener("input", updateCounts);
+  inputEl.addEventListener("input", () => {
+    updateCounts();
+    if (!textStarted && inputEl.value) {
+      textStarted = true;
+      if (typeof window.cuTrack === "function") window.cuTrack("text_input_started");
+    }
+  });
   updateCounts();
   statusEl.textContent = t.empty;
+  if (typeof window.cuTrack === "function") window.cuTrack("tool_loaded");
 })();

@@ -20,12 +20,6 @@
     return parseFloat((bytes / Math.pow(k, i)).toFixed(1)) + " " + sizes[i];
   }
 
-  function track(name, params) {
-    try {
-      if (typeof window.gtag === "function") window.gtag("event", name, params || {});
-    } catch (_) { /* noop */ }
-  }
-
   async function loadPdf(file) {
     if (file.type !== "application/pdf") return;
     currentFile = file;
@@ -40,10 +34,11 @@
         splitBtn.disabled = false;
         splitAllBtn.disabled = false;
         fileListEl.innerHTML = `<strong>Selected:</strong> ${file.name} (${formatSize(file.size)})`;
-        track("pdf_split_loaded", { pages: pageCount });
+        if (typeof window.cuTrack === "function") window.cuTrack("tool_loaded", { page_count: pageCount });
     } catch (err) {
         console.error("Load failed:", err);
         statusEl.textContent = "Error loading PDF. Ensure it's not encrypted.";
+        if (typeof window.cuTrack === "function") window.cuTrack("error_shown", { error_type: "corrupt_input" });
     }
   }
 
@@ -123,10 +118,11 @@
             a.click();
             statusEl.textContent = `Done. ${indices.length} pages extracted.`;
         }
-        track("pdf_split_completed", { mode: all ? "all" : "range" });
+        if (typeof window.cuTrack === "function") window.cuTrack("pdf_action_completed", { option_name: "mode", option_value: all ? "all" : "range" });
     } catch (err) {
         console.error("Split failed:", err);
         statusEl.textContent = "Error splitting PDF.";
+        if (typeof window.cuTrack === "function") window.cuTrack("error_shown", { error_type: "unknown" });
     } finally {
         splitBtn.disabled = false;
         splitAllBtn.disabled = false;

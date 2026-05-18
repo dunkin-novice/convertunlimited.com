@@ -27,12 +27,6 @@
     return parseFloat((bytes / Math.pow(k, i)).toFixed(1)) + " " + sizes[i];
   }
 
-  function track(name, params) {
-    try {
-      if (typeof window.gtag === "function") window.gtag("event", name, params || {});
-    } catch (_) { /* noop */ }
-  }
-
   async function addFiles(files) {
     for (const file of files) {
       if (!file.type.startsWith("image/")) continue;
@@ -67,7 +61,7 @@
     
     renderFileList();
     resizeAllBtn.disabled = filesToProcess.length === 0;
-    track("resizer_files_added", { count: files.length });
+    if (typeof window.cuTrack === "function") window.cuTrack("file_selected", { file_count: files.length });
   }
 
   function renderFileList() {
@@ -182,6 +176,7 @@
         await resizeFile(item, targetW, targetH, format, quality);
       } catch (err) {
         console.error(err);
+        if (typeof window.cuTrack === "function") window.cuTrack("error_shown", { error_type: "unknown" });
       }
     }
     
@@ -190,7 +185,7 @@
     downloadAllBtn.disabled = filesToProcess.every(i => !i.resizedBlob);
     isResizing = false;
     resizeAllBtn.disabled = false;
-    track("resizer_all_completed", { count: filesToProcess.length, format });
+    if (typeof window.cuTrack === "function") window.cuTrack("processing_completed", { file_count: filesToProcess.length, format });
   }
 
   async function downloadAll() {
@@ -209,7 +204,7 @@
     a.download = "resized-images.zip";
     a.click();
     URL.revokeObjectURL(url);
-    track("resizer_download_zip", { count: filesToProcess.length });
+    if (typeof window.cuTrack === "function") window.cuTrack("batch_download_clicked", { file_count: filesToProcess.length });
   }
 
   // Handle auto-calculation for aspect ratio UI

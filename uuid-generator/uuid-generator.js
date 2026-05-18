@@ -24,6 +24,7 @@
   };
   const lang = (document.documentElement.lang || "en").toLowerCase().split("-")[0];
   const t = STRINGS[lang] || STRINGS.en;
+  let userActionReady = false;
 
   function fallbackUuid() {
     const bytes = new Uint8Array(16);
@@ -61,6 +62,7 @@
     quantityEl.value = String(total);
     for (let i = 0; i < total; i += 1) items.push(createUuid());
     render(items);
+    if (userActionReady && typeof window.cuTrack === "function") window.cuTrack("tool_completed", { file_count: total, option_name: "format", option_value: uppercaseEl.checked ? "uppercase" : "lowercase" });
   }
 
   async function copyOutput() {
@@ -73,6 +75,7 @@
       document.execCommand("copy");
       statusEl.textContent = t.copied;
     }
+    if (typeof window.cuTrack === "function") window.cuTrack("copy_clicked");
   }
 
   function clearAll() {
@@ -84,7 +87,15 @@
   generateBtn.addEventListener("click", generate);
   copyBtn.addEventListener("click", copyOutput);
   clearBtn.addEventListener("click", clearAll);
-  uppercaseEl.addEventListener("change", generate);
-  separatorEl.addEventListener("change", generate);
+  uppercaseEl.addEventListener("change", () => {
+    if (typeof window.cuTrack === "function") window.cuTrack("option_changed", { option_name: "format", option_value: uppercaseEl.checked ? "uppercase" : "lowercase" });
+    generate();
+  });
+  separatorEl.addEventListener("change", () => {
+    if (typeof window.cuTrack === "function") window.cuTrack("option_changed", { option_name: "separator", option_value: separatorEl.value });
+    generate();
+  });
   generate();
+  userActionReady = true;
+  if (typeof window.cuTrack === "function") window.cuTrack("tool_loaded");
 })();

@@ -34,12 +34,6 @@
     return `${parseFloat((bytes / Math.pow(1024, index)).toFixed(1))} ${units[index]}`;
   }
 
-  function track(name, params) {
-    try {
-      if (typeof window.gtag === "function") window.gtag("event", name, params || {});
-    } catch (_) { /* noop */ }
-  }
-
   function isSupportedImage(file) {
     return ["image/jpeg", "image/png", "image/webp"].includes(file.type) || /\.(jpe?g|png|webp)$/i.test(file.name);
   }
@@ -113,7 +107,7 @@
     renderFileList();
     updateGenerateState();
     statusEl.textContent = rejected ? `${t.added} ${rejected} ${t.invalid.toLowerCase()}.` : t.added;
-    track("pdf_creator_files_added", { count: accepted, rejected });
+    if (typeof window.cuTrack === "function") window.cuTrack("file_selected", { file_count: accepted });
   }
 
   function updateGenerateState() {
@@ -263,10 +257,11 @@
 
       doc.save("convertunlimited-images.pdf");
       statusEl.textContent = t.done;
-      track("pdf_creator_completed", { count: items.length });
+      if (typeof window.cuTrack === "function") window.cuTrack("pdf_action_completed", { file_count: items.length });
     } catch (error) {
       console.error("PDF generation failed:", error);
       statusEl.textContent = t.error;
+      if (typeof window.cuTrack === "function") window.cuTrack("error_shown", { error_type: "unknown" });
     } finally {
       isGenerating = false;
       updateGenerateState();

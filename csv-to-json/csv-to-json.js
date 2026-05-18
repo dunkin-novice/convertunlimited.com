@@ -30,6 +30,7 @@
   };
   const lang = (document.documentElement.lang || "en").toLowerCase().split("-")[0];
   const t = STRINGS[lang] || STRINGS.en;
+  let textStarted = false;
 
   function delimiter() {
     return delimiterEl.value === "tab" ? "\t" : delimiterEl.value;
@@ -151,9 +152,11 @@
       if (result.duplicates.length) {
         warningEl.textContent = t.duplicate.replace("{headers}", result.duplicates.join(", "));
       }
+      if (typeof window.cuTrack === "function") window.cuTrack("conversion_completed", { input_format: "csv", output_format: "json" });
     } catch (error) {
       warningEl.textContent = error.message;
       statusEl.textContent = error.message;
+      if (typeof window.cuTrack === "function") window.cuTrack("conversion_failed", { input_format: "csv", output_format: "json", error_type: "unsupported_format" });
     }
   }
 
@@ -167,6 +170,7 @@
       document.execCommand("copy");
       statusEl.textContent = t.copied;
     }
+    if (typeof window.cuTrack === "function") window.cuTrack("copy_clicked", { output_format: "json" });
   }
 
   function clearAll() {
@@ -182,6 +186,7 @@
   function sample() {
     inputEl.value = "name,city,active,note\nAlice,Bangkok,true,hello 👋\nBob,Paris,false,café\nChao,Taipei,true,unicode 世界";
     fileSizeEl.textContent = formatSize(new Blob([inputEl.value]).size);
+    if (typeof window.cuTrack === "function") window.cuTrack("sample_used", { input_format: "csv" });
     convert();
   }
 
@@ -194,6 +199,7 @@
     a.download = t.download;
     a.click();
     URL.revokeObjectURL(url);
+    if (typeof window.cuTrack === "function") window.cuTrack("download_clicked", { output_format: "json" });
   }
 
   function loadFile(file) {
@@ -203,16 +209,24 @@
     reader.onload = () => {
       inputEl.value = String(reader.result || "");
       statusEl.textContent = t.loaded;
+      if (typeof window.cuTrack === "function") window.cuTrack("file_selected", { file_count: 1, input_format: "csv" });
     };
     reader.onerror = () => {
       statusEl.textContent = reader.error ? reader.error.message : t.empty;
+      if (typeof window.cuTrack === "function") window.cuTrack("error_shown", { error_type: "unknown" });
     };
     reader.readAsText(file);
   }
 
   convertBtn.addEventListener("click", convert);
-  delimiterEl.addEventListener("change", convert);
-  indentEl.addEventListener("change", convert);
+  delimiterEl.addEventListener("change", () => {
+    if (typeof window.cuTrack === "function") window.cuTrack("option_changed", { option_name: "delimiter", option_value: delimiterEl.value });
+    convert();
+  });
+  indentEl.addEventListener("change", () => {
+    if (typeof window.cuTrack === "function") window.cuTrack("option_changed", { option_name: "indent", option_value: indentEl.value });
+    convert();
+  });
   copyBtn.addEventListener("click", copyOutput);
   clearBtn.addEventListener("click", clearAll);
   sampleBtn.addEventListener("click", sample);
@@ -223,6 +237,11 @@
   });
   inputEl.addEventListener("input", () => {
     fileSizeEl.textContent = formatSize(new Blob([inputEl.value]).size);
+    if (!textStarted && inputEl.value) {
+      textStarted = true;
+      if (typeof window.cuTrack === "function") window.cuTrack("text_input_started", { input_format: "csv" });
+    }
   });
   statusEl.textContent = t.empty;
+  if (typeof window.cuTrack === "function") window.cuTrack("tool_loaded");
 })();

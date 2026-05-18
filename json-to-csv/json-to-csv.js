@@ -30,6 +30,7 @@
   };
   const lang = (document.documentElement.lang || "en").toLowerCase().split("-")[0];
   const t = STRINGS[lang] || STRINGS.en;
+  let textStarted = false;
 
   function delimiter() {
     return delimiterEl.value === "tab" ? "\t" : delimiterEl.value;
@@ -112,10 +113,12 @@
       fieldCountEl.textContent = `${result.headers.length} ${t.fields}`;
       statusEl.textContent = t.converted;
       if (result.nested) warningEl.textContent = t.nested;
+      if (typeof window.cuTrack === "function") window.cuTrack("conversion_completed", { input_format: "json", output_format: "csv" });
     } catch (error) {
       const message = error instanceof SyntaxError ? t.invalid.replace("{message}", error.message) : error.message;
       warningEl.textContent = message;
       statusEl.textContent = message;
+      if (typeof window.cuTrack === "function") window.cuTrack("conversion_failed", { input_format: "json", output_format: "csv", error_type: "unsupported_format" });
     }
   }
 
@@ -129,6 +132,7 @@
       document.execCommand("copy");
       statusEl.textContent = t.copied;
     }
+    if (typeof window.cuTrack === "function") window.cuTrack("copy_clicked", { output_format: "csv" });
   }
 
   function clearAll() {
@@ -148,6 +152,7 @@
       { name: "Chao", city: "Taipei", active: true, profile: { note: "unicode 世界" } }
     ], null, 2);
     fileSizeEl.textContent = formatSize(new Blob([inputEl.value]).size);
+    if (typeof window.cuTrack === "function") window.cuTrack("sample_used", { input_format: "json" });
     convert();
   }
 
@@ -160,6 +165,7 @@
     a.download = t.download;
     a.click();
     URL.revokeObjectURL(url);
+    if (typeof window.cuTrack === "function") window.cuTrack("download_clicked", { output_format: "csv" });
   }
 
   function loadFile(file) {
@@ -169,16 +175,24 @@
     reader.onload = () => {
       inputEl.value = String(reader.result || "");
       statusEl.textContent = t.loaded;
+      if (typeof window.cuTrack === "function") window.cuTrack("file_selected", { file_count: 1, input_format: "json" });
     };
     reader.onerror = () => {
       statusEl.textContent = reader.error ? reader.error.message : t.empty;
+      if (typeof window.cuTrack === "function") window.cuTrack("error_shown", { error_type: "unknown" });
     };
     reader.readAsText(file);
   }
 
   convertBtn.addEventListener("click", convert);
-  delimiterEl.addEventListener("change", convert);
-  headersEl.addEventListener("change", convert);
+  delimiterEl.addEventListener("change", () => {
+    if (typeof window.cuTrack === "function") window.cuTrack("option_changed", { option_name: "delimiter", option_value: delimiterEl.value });
+    convert();
+  });
+  headersEl.addEventListener("change", () => {
+    if (typeof window.cuTrack === "function") window.cuTrack("option_changed", { option_name: "headers", option_value: headersEl.checked ? "enabled" : "disabled" });
+    convert();
+  });
   copyBtn.addEventListener("click", copyOutput);
   clearBtn.addEventListener("click", clearAll);
   sampleBtn.addEventListener("click", sample);
@@ -189,6 +203,11 @@
   });
   inputEl.addEventListener("input", () => {
     fileSizeEl.textContent = formatSize(new Blob([inputEl.value]).size);
+    if (!textStarted && inputEl.value) {
+      textStarted = true;
+      if (typeof window.cuTrack === "function") window.cuTrack("text_input_started", { input_format: "json" });
+    }
   });
   statusEl.textContent = t.empty;
+  if (typeof window.cuTrack === "function") window.cuTrack("tool_loaded");
 })();

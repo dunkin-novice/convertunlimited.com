@@ -54,13 +54,36 @@
   let bgResultName = "transparent-background.png";
   const nextId = () => ++_idCounter;
 
-  // GA4 event helper — silently no-ops if gtag is unavailable (ad-blocker, offline).
+  // Analytics helper — privacy build rewrites this to a no-op.
   function track(name, params) {
     try {
-      if (typeof window.gtag === "function") {
-        window.gtag("event", name, params || {});
-      }
+      if (typeof window.cuTrack === "function") window.cuTrack(name, params || {});
     } catch (_) { /* noop */ }
+  }
+
+  function formatOfFile(file) {
+    return extOf((file && file.name) || "") || ((file && file.type || "").split("/")[1] || "unknown");
+  }
+
+  function inputFormatOfFiles(files) {
+    const formats = Array.from(files || []).map(formatOfFile).filter(Boolean);
+    const unique = Array.from(new Set(formats));
+    if (!unique.length) return "unknown";
+    return unique.length === 1 ? unique[0] : "mixed";
+  }
+
+  function inputFormatOfItems(list) {
+    return inputFormatOfFiles(Array.from(list || []).map((item) => item.file));
+  }
+
+  function errorReason(error) {
+    const message = String((error && error.message) || error || "").toLowerCase();
+    if (!message) return "unknown";
+    if (message.includes("decode")) return "decode_failed";
+    if (message.includes("canvas")) return "canvas_failed";
+    if (message.includes("export") || message.includes("blob")) return "export_failed";
+    if (message.includes("type") || message.includes("format")) return "unsupported_format";
+    return "processing_failed";
   }
 
   // ---- i18n: dynamic strings rendered by JS. Static page text is translated in each /<lang>/index.html. ----
@@ -330,7 +353,13 @@
     bgResultName = baseOf(file.name) + "-no-bg.png";
     bgProcessBtn.disabled = false;
     setBgStatus("Ready. Works best when the background touches the image edges and is mostly one color.");
-    track("bg_file_added", { bytes: file.size || 0 });
+    track("file_selected", {
+      input_format: formatOfFile(file),
+      output_format: "png",
+      file_count: 1,
+      batch: false,
+      bytes: file.size || 0,
+    });
   }
 
   async function processBackgroundFile() {
@@ -357,10 +386,25 @@
       if (!bgResultBlob) throw new Error("PNG export failed");
       bgDownloadBtn.disabled = false;
       setBgStatus(`Done. Export keeps the source dimensions: ${w}×${h}px transparent PNG.`);
-      track("bg_remove_completed", { bytes: bgFile.size || 0, width: w, height: h });
+      track("processing_completed", {
+        input_format: formatOfFile(bgFile),
+        output_format: "png",
+        file_count: 1,
+        batch: false,
+        bytes: bgFile.size || 0,
+        width: w,
+        height: h,
+      });
     } catch (e) {
       clearBgResult();
       setBgStatus("Could not remove this background. Try an image with a simpler white or solid background.");
+      track("error_shown", {
+        input_format: formatOfFile(bgFile),
+        output_format: "png",
+        file_count: 1,
+        batch: false,
+        error_type: errorReason(e),
+      });
     } finally {
       bgProcessBtn.disabled = !bgFile;
     }
@@ -376,7 +420,12 @@
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
-    track("bg_download_png", { bytes: bgResultBlob.size || 0 });
+    track("download_clicked", {
+      output_format: "png",
+      file_count: 1,
+      batch: false,
+      bytes: bgResultBlob.size || 0,
+    });
   }
 
   async function addFiles(filelist, source) {
@@ -406,10 +455,12 @@
     );
     items = items.concat(newItems);
     render();
-    track("add_files", {
-      count: arr.length,
-      source: source || "picker",
-      total_bytes: arr.reduce((a, b) => a + (b.size || 0), 0),
+    track("file_selected", {
+      input_format: inputFormatOfFiles(arr),
+      output_format: format,
+      file_count: arr.length,
+      batch: arr.length > 1,
+      total_in_bytes: arr.reduce((a, b) => a + (b.size || 0), 0),
     });
   }
 
@@ -432,9 +483,11 @@
     target.status = "busy";
     target.error = null;
     render();
-    track("convert_started", {
-      count: 1,
-      format,
+    track("conversion_started", {
+      input_format: inputFormatOfItems([target]),
+      output_format: format,
+      file_count: 1,
+      batch: false,
       quality,
       total_bytes: target.srcSize || 0,
     });
@@ -447,26 +500,26 @@
       target.downloaded = false;
       const inB = target.srcSize || 0;
       const outB = blob.size || 0;
-      track("convert_completed", {
-        count: 1,
-        format,
+      track("conversion_completed", {
+        input_format: inputFormatOfItems([target]),
+        output_format: format,
+        file_count: 1,
+        batch: false,
         quality,
         total_in_bytes: inB,
         total_out_bytes: outB,
-        saved_pct: inB > 0 ? Math.round(((inB - outB) / inB) * 100) : 0,
-        errors: 0,
       });
     } catch (e) {
       target.status = "err";
       target.error = String(e && e.message || e);
-      track("convert_completed", {
-        count: 0,
-        format,
+      track("conversion_failed", {
+        input_format: inputFormatOfItems([target]),
+        output_format: format,
+        file_count: 1,
+        batch: false,
         quality,
         total_in_bytes: target.srcSize || 0,
-        total_out_bytes: 0,
-        saved_pct: 0,
-        errors: 1,
+        error_type: errorReason(e),
       });
     }
     render();
@@ -479,13 +532,14 @@
     targets.forEach((t) => { t.status = "busy"; t.error = null; });
     render();
     const startedBytes = targets.reduce((a, b) => a + (b.srcSize || 0), 0);
-    track("convert_started", {
-      count: targets.length,
-      format,
+    track("conversion_started", {
+      input_format: inputFormatOfItems(targets),
+      output_format: format,
+      file_count: targets.length,
+      batch: targets.length > 1,
       quality,
       total_bytes: startedBytes,
     });
-    let successCount = 0;
     let errorCount = 0;
     let totalInBytes = 0;
     let totalOutBytes = 0;
@@ -500,7 +554,6 @@
           target.outUrl = URL.createObjectURL(blob);
           target.outSize = blob.size;
           target.downloaded = false;
-          successCount++;
           totalInBytes += target.srcSize || 0;
           totalOutBytes += blob.size || 0;
         } catch (e) {
@@ -513,17 +566,15 @@
     }
     bulkBusy = false;
     render();
-    const savedPct = totalInBytes > 0
-      ? Math.round(((totalInBytes - totalOutBytes) / totalInBytes) * 100)
-      : 0;
-    track("convert_completed", {
-      count: successCount,
-      format,
+    track(errorCount ? "conversion_failed" : "conversion_completed", {
+      input_format: inputFormatOfItems(targets),
+      output_format: format,
+      file_count: targets.length,
+      batch: targets.length > 1,
       quality,
       total_in_bytes: totalInBytes,
       total_out_bytes: totalOutBytes,
-      saved_pct: savedPct,
-      errors: errorCount,
+      error_type: errorCount ? "processing_failed" : undefined,
     });
   }
 
@@ -537,7 +588,13 @@
     document.body.removeChild(a);
     it.downloaded = true;
     render();
-    track("download_single", { format, bytes: it.outSize || 0 });
+    track("download_clicked", {
+      input_format: inputFormatOfItems([it]),
+      output_format: format,
+      file_count: 1,
+      batch: false,
+      bytes: it.outSize || 0,
+    });
   }
 
   async function downloadAllZip() {
@@ -558,9 +615,11 @@
     URL.revokeObjectURL(url);
     dones.forEach((it) => { it.downloaded = true; });
     render();
-    track("download_zip", {
-      count: dones.length,
-      format,
+    track("batch_download_clicked", {
+      input_format: inputFormatOfItems(dones),
+      output_format: format,
+      file_count: dones.length,
+      batch: true,
       bytes: content.size || 0,
     });
   }
@@ -730,7 +789,11 @@
     const btn = e.target.closest("button[data-format]");
     if (!btn) return;
     if (btn.dataset.format !== format) {
-      track("select_format", { format: btn.dataset.format });
+      track("option_changed", {
+        option_name: "format",
+        option_value: btn.dataset.format,
+        output_format: btn.dataset.format,
+      });
     }
     format = btn.dataset.format;
     render();

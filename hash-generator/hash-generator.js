@@ -28,6 +28,7 @@
   const lang = (document.documentElement.lang || "en").toLowerCase().split("-")[0];
   const t = STRINGS[lang] || STRINGS.en;
   const encoder = new TextEncoder();
+  let textStarted = false;
 
   function updateCounts() {
     const text = inputEl.value;
@@ -50,6 +51,7 @@
     if (!supported()) {
       warningEl.textContent = t.unsupported;
       statusEl.textContent = t.unsupported;
+      if (typeof window.cuTrack === "function") window.cuTrack("error_shown", { error_type: "unsupported_format" });
       return;
     }
     if (!inputEl.value) {
@@ -60,9 +62,11 @@
       const digest = await window.crypto.subtle.digest(algorithmEl.value, encoder.encode(inputEl.value));
       outputEl.value = toHex(digest);
       statusEl.textContent = t.generated;
+      if (typeof window.cuTrack === "function") window.cuTrack("tool_completed", { option_name: "algorithm", option_value: algorithmEl.value });
     } catch (_) {
       warningEl.textContent = t.failed;
       statusEl.textContent = t.failed;
+      if (typeof window.cuTrack === "function") window.cuTrack("error_shown", { error_type: "unknown" });
     }
   }
 
@@ -76,6 +80,7 @@
       document.execCommand("copy");
       statusEl.textContent = t.copied;
     }
+    if (typeof window.cuTrack === "function") window.cuTrack("copy_clicked");
   }
 
   function clearAll() {
@@ -89,6 +94,7 @@
   function sample() {
     inputEl.value = "ConvertUnlimited hash sample 👋 สวัสดี café 世界";
     updateCounts();
+    if (typeof window.cuTrack === "function") window.cuTrack("sample_used");
     generate();
   }
 
@@ -96,9 +102,22 @@
   copyBtn.addEventListener("click", copyOutput);
   clearBtn.addEventListener("click", clearAll);
   sampleBtn.addEventListener("click", sample);
-  algorithmEl.addEventListener("change", generate);
-  uppercaseEl.addEventListener("change", generate);
-  inputEl.addEventListener("input", updateCounts);
+  algorithmEl.addEventListener("change", () => {
+    if (typeof window.cuTrack === "function") window.cuTrack("option_changed", { option_name: "algorithm", option_value: algorithmEl.value });
+    generate();
+  });
+  uppercaseEl.addEventListener("change", () => {
+    if (typeof window.cuTrack === "function") window.cuTrack("option_changed", { option_name: "format", option_value: uppercaseEl.checked ? "uppercase" : "lowercase" });
+    generate();
+  });
+  inputEl.addEventListener("input", () => {
+    updateCounts();
+    if (!textStarted && inputEl.value) {
+      textStarted = true;
+      if (typeof window.cuTrack === "function") window.cuTrack("text_input_started");
+    }
+  });
   updateCounts();
   statusEl.textContent = supported() ? t.empty : t.unsupported;
+  if (typeof window.cuTrack === "function") window.cuTrack("tool_loaded");
 })();

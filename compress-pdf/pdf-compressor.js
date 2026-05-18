@@ -20,19 +20,13 @@
     return parseFloat((bytes / Math.pow(k, i)).toFixed(1)) + " " + sizes[i];
   }
 
-  function track(name, params) {
-    try {
-      if (typeof window.gtag === "function") window.gtag("event", name, params || {});
-    } catch (_) { /* noop */ }
-  }
-
   async function loadPdf(file) {
     if (file.type !== "application/pdf") return;
     currentFile = file;
     statusEl.textContent = `File ready: ${file.name} (${formatSize(file.size)})`;
     compressBtn.disabled = false;
     fileListEl.innerHTML = "";
-    track("pdf_compress_loaded", { size: file.size });
+    if (typeof window.cuTrack === "function") window.cuTrack("tool_loaded", { bytes: file.size });
   }
 
   async function compressPdf() {
@@ -93,15 +87,15 @@
             statusEl.textContent = `Done! Reduced file size by ${savedPct}%.`;
         }
         
-        track("pdf_compress_completed", { 
-            original_size: originalSize, 
-            compressed_size: compressedSize,
-            saved_pct: savedPct
+        if (typeof window.cuTrack === "function") window.cuTrack("pdf_action_completed", { 
+            total_in_bytes: originalSize, 
+            total_out_bytes: compressedSize
         });
 
     } catch (err) {
       console.error("Compression failed:", err);
       statusEl.textContent = "Error processing PDF. Ensure it is not password protected.";
+      if (typeof window.cuTrack === "function") window.cuTrack("error_shown", { error_type: "corrupt_input" });
     } finally {
       isCompressing = false;
       compressBtn.disabled = false;

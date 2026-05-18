@@ -32,12 +32,6 @@
     return `${parseFloat((bytes / Math.pow(1024, index)).toFixed(1))} ${units[index]}`;
   }
 
-  function track(name, params) {
-    try {
-      if (typeof window.gtag === "function") window.gtag("event", name, params || {});
-    } catch (_) { /* noop */ }
-  }
-
   function isSupportedImage(file) {
     return ["image/jpeg", "image/png", "image/webp"].includes(file.type) || /\.(jpe?g|png|webp)$/i.test(file.name);
   }
@@ -82,7 +76,7 @@
     removeAllBtn.disabled = filesToProcess.every((item) => item.status !== "ready");
     downloadAllBtn.disabled = filesToProcess.every((item) => !item.strippedBlob);
     statusEl.textContent = rejected ? `${t.added} ${rejected} ${t.invalid.toLowerCase()}.` : t.added;
-    track("metadata_remover_files_added", { count: accepted, rejected });
+    if (typeof window.cuTrack === "function") window.cuTrack("file_selected", { file_count: accepted });
   }
 
   function statusText(item) {
@@ -213,7 +207,7 @@
     downloadAllBtn.disabled = filesToProcess.every((item) => !item.strippedBlob);
     removeAllBtn.disabled = filesToProcess.every((item) => item.status !== "ready" && item.status !== "failed");
     isStripping = false;
-    track("metadata_remover_all_completed", { count: processable.length });
+    if (typeof window.cuTrack === "function") window.cuTrack("processing_completed", { file_count: processable.length });
   }
 
   async function downloadAll() {
@@ -229,7 +223,7 @@
     });
     const content = await zip.generateAsync({ type: "blob" });
     downloadBlob(content, "clean-images.zip");
-    track("metadata_remover_download_zip", { count: cleaned.length });
+    if (typeof window.cuTrack === "function") window.cuTrack("batch_download_clicked", { file_count: cleaned.length });
   }
 
   dropzone.addEventListener("click", () => fileInput.click());

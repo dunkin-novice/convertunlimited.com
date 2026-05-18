@@ -29,6 +29,8 @@
 
   let decodedHeader = "";
   let decodedPayload = "";
+  let textStarted = false;
+  let userActionReady = false;
 
   function base64UrlDecode(part) {
     if (!/^[A-Za-z0-9_-]*$/.test(part)) throw new Error("badBase64");
@@ -108,6 +110,7 @@
     const parts = token.split(".");
     if (parts.length !== 3 || !parts[0] || !parts[1]) {
       setError(t.malformed);
+      if (typeof window.cuTrack === "function") window.cuTrack("error_shown", { error_type: "unsupported_format" });
       return;
     }
     let headerText;
@@ -117,6 +120,7 @@
       payloadText = base64UrlDecode(parts[1]);
     } catch (_) {
       setError(t.badBase64);
+      if (typeof window.cuTrack === "function") window.cuTrack("error_shown", { error_type: "unsupported_format" });
       return;
     }
     let headerJson;
@@ -126,6 +130,7 @@
       payloadJson = JSON.parse(payloadText);
     } catch (_) {
       setError(t.badJson);
+      if (typeof window.cuTrack === "function") window.cuTrack("error_shown", { error_type: "unsupported_format" });
       return;
     }
     decodedHeader = pretty(headerJson);
@@ -135,6 +140,7 @@
     signatureEl.textContent = parts[2] || "-";
     renderClaims(payloadJson);
     statusEl.textContent = t.decoded;
+    if (userActionReady && typeof window.cuTrack === "function") window.cuTrack("tool_completed", { input_format: "jwt", output_format: "json" });
   }
 
   async function copyText(value, message) {
@@ -150,6 +156,7 @@
       area.remove();
     }
     statusEl.textContent = message;
+    if (typeof window.cuTrack === "function") window.cuTrack("copy_clicked", { output_format: "json" });
   }
 
   function sample() {
@@ -167,6 +174,7 @@
       .replace(/\//g, "_")
       .replace(/=+$/g, "");
     inputEl.value = `${encode(header)}.${encode(payload)}.sample-signature-not-verified`;
+    if (userActionReady && typeof window.cuTrack === "function") window.cuTrack("sample_used", { input_format: "jwt" });
     decode();
   }
 
@@ -181,5 +189,13 @@
   copyPayloadBtn.addEventListener("click", () => copyText(decodedPayload, t.copiedPayload));
   sampleBtn.addEventListener("click", sample);
   clearBtn.addEventListener("click", clearAll);
+  inputEl.addEventListener("input", () => {
+    if (!textStarted && inputEl.value) {
+      textStarted = true;
+      if (typeof window.cuTrack === "function") window.cuTrack("text_input_started", { input_format: "jwt" });
+    }
+  });
   sample();
+  userActionReady = true;
+  if (typeof window.cuTrack === "function") window.cuTrack("tool_loaded");
 })();

@@ -22,12 +22,6 @@
     return parseFloat((bytes / Math.pow(k, i)).toFixed(1)) + " " + sizes[i];
   }
 
-  function track(name, params) {
-    try {
-      if (typeof window.gtag === "function") window.gtag("event", name, params || {});
-    } catch (_) { /* noop */ }
-  }
-
   async function addFiles(files) {
     for (const file of files) {
       if (!file.type.startsWith("image/")) continue;
@@ -40,7 +34,7 @@
     }
     renderFileList();
     compressAllBtn.disabled = filesToProcess.length === 0;
-    track("compress_files_added", { count: files.length });
+    if (typeof window.cuTrack === "function") window.cuTrack("file_selected", { file_count: files.length });
   }
 
   function renderFileList() {
@@ -136,13 +130,14 @@
         await compressFile(item, quality);
       } catch (err) {
         console.error(err);
+        if (typeof window.cuTrack === "function") window.cuTrack("error_shown", { error_type: "unknown" });
       }
     }
     
     renderFileList();
     statusEl.textContent = "Done. All files processed.";
     downloadAllBtn.disabled = filesToProcess.every(i => !i.compressedBlob);
-    track("compress_all_completed", { count: filesToProcess.length, quality });
+    if (typeof window.cuTrack === "function") window.cuTrack("processing_completed", { file_count: filesToProcess.length, quality });
   }
 
   async function downloadAll() {
@@ -160,7 +155,7 @@
     a.download = "compressed-images.zip";
     a.click();
     URL.revokeObjectURL(url);
-    track("compress_download_zip", { count: filesToProcess.length });
+    if (typeof window.cuTrack === "function") window.cuTrack("batch_download_clicked", { file_count: filesToProcess.length });
   }
 
   qualitySlider.addEventListener("input", () => {

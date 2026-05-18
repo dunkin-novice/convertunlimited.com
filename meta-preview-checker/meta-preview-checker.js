@@ -40,6 +40,9 @@
 
   const lang = (document.documentElement.lang || "en").toLowerCase().split("-")[0];
   const t = STRINGS[lang] || STRINGS.en;
+  let textStarted = false;
+  let userActionReady = false;
+  let previewTracked = false;
 
   function text(el, value) {
     el.textContent = value;
@@ -107,6 +110,10 @@
     text(xUrlEl, hostOf(url));
     setPreviewImage(ogImageEl, imageEl.value);
     setPreviewImage(xImageEl, imageEl.value);
+    if (userActionReady && !previewTracked && typeof window.cuTrack === "function") {
+      previewTracked = true;
+      window.cuTrack("tool_completed");
+    }
   }
 
   function fillSample() {
@@ -115,6 +122,7 @@
     urlEl.value = "https://www.convertunlimited.com/tools/";
     imageEl.value = "https://www.convertunlimited.com/og-image.svg";
     siteEl.value = "ConvertUnlimited";
+    if (userActionReady && typeof window.cuTrack === "function") window.cuTrack("sample_used");
     update();
   }
 
@@ -134,6 +142,7 @@
     } catch (_) {
       statusMessage(value);
     }
+    if (typeof window.cuTrack === "function") window.cuTrack("copy_clicked");
   }
 
   function statusMessage(value) {
@@ -141,9 +150,17 @@
     status.textContent = value;
   }
 
-  [titleEl, descEl, urlEl, imageEl, siteEl].forEach((el) => el.addEventListener("input", update));
+  [titleEl, descEl, urlEl, imageEl, siteEl].forEach((el) => el.addEventListener("input", () => {
+    if (!textStarted && (titleEl.value || descEl.value || urlEl.value || imageEl.value || siteEl.value)) {
+      textStarted = true;
+      if (typeof window.cuTrack === "function") window.cuTrack("text_input_started");
+    }
+    update();
+  }));
   fillBtn.addEventListener("click", fillSample);
   clearBtn.addEventListener("click", clearAll);
   copyBtn.addEventListener("click", copyPreview);
   update();
+  userActionReady = true;
+  if (typeof window.cuTrack === "function") window.cuTrack("tool_loaded");
 })();

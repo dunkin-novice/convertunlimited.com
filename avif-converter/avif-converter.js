@@ -41,12 +41,6 @@
     return index > -1 ? name.slice(0, index) : name;
   }
 
-  function track(name, params) {
-    try {
-      if (typeof window.gtag === "function") window.gtag("event", name, params || {});
-    } catch (_) { /* noop */ }
-  }
-
   function detectAvifEncoding() {
     return new Promise((resolve) => {
       const canvas = document.createElement("canvas");
@@ -68,7 +62,7 @@
     }
     renderFileList();
     convertAllBtn.disabled = !avifSupported || filesToProcess.length === 0;
-    track("avif_files_added", { count: files.length });
+    if (typeof window.cuTrack === "function") window.cuTrack("file_selected", { file_count: files.length });
   }
 
   function renderFileList() {
@@ -164,6 +158,7 @@
         await convertFile(item, quality);
       } catch (error) {
         item.error = error && error.message ? error.message : t.failed;
+        if (typeof window.cuTrack === "function") window.cuTrack("conversion_failed", { error_type: "unknown" });
       }
       renderFileList();
       await new Promise((resolve) => setTimeout(resolve, 0));
@@ -172,7 +167,7 @@
     statusEl.textContent = t.done;
     downloadAllBtn.disabled = filesToProcess.every((item) => !item.resultBlob);
     convertAllBtn.disabled = filesToProcess.length === 0;
-    track("avif_convert_completed", { count: filesToProcess.length, quality: qualitySlider.value });
+    if (typeof window.cuTrack === "function") window.cuTrack("conversion_completed", { file_count: filesToProcess.length, quality: qualitySlider.value });
   }
 
   function downloadBlob(blob, filename) {
@@ -196,7 +191,7 @@
     converted.forEach((item) => zip.file(`${baseName(item.file.name)}.avif`, item.resultBlob));
     const content = await zip.generateAsync({ type: "blob" });
     downloadBlob(content, t.zip);
-    track("avif_download_zip", { count: converted.length });
+    if (typeof window.cuTrack === "function") window.cuTrack("batch_download_clicked", { file_count: converted.length });
   }
 
   qualitySlider.addEventListener("input", () => {
