@@ -5,6 +5,7 @@ const ROOT = process.cwd();
 const REGISTRY_PATH = path.join(ROOT, 'tools-registry.json');
 
 const LOCALES = require('./data/locales');
+const { WORKFLOW_CLUSTERS } = require('./data/workflow-clusters');
 
 const CATEGORY_LABELS = {
   en: { image: 'Image Tools', pdf: 'PDF Tools', seo: 'SEO Tools', developer: 'Developer Tools', 'image-conversions': 'Popular Image Conversions' },
@@ -53,6 +54,14 @@ const START_HUB = '<!-- TOOLS_HUB_START -->';
 const END_HUB = '<!-- TOOLS_HUB_END -->';
 const START_RELATED = '<!-- RELATED_TOOLS_START -->';
 const END_RELATED = '<!-- RELATED_TOOLS_END -->';
+const RELATED_REASON_ALLOWLIST = new Set([
+  'immediate_next_action',
+  'same_file_type',
+  'optimization_cleanup',
+  'reverse_conversion',
+  'alternative_conversion',
+  'trust_help',
+]);
 
 const readRegistry = () => JSON.parse(fs.readFileSync(REGISTRY_PATH, 'utf8'));
 
@@ -98,6 +107,82 @@ const getAllTools = (registry) => registry.categories.flatMap((category) =>
 );
 
 const toolBySlug = (registry) => new Map(getAllTools(registry).map((tool) => [tool.slug, tool]));
+
+const canonicalSlug = (slug) => slug === '' ? 'image-converter' : slug;
+
+const registrySlug = (slug) => slug === 'image-converter' ? '' : slug;
+
+const canonicalToolMap = (registry) => new Map(getAllTools(registry).map((tool) => [canonicalSlug(tool.slug), tool]));
+
+const conversionParts = (slug) => {
+  const match = String(slug || '').match(/^([a-z0-9]+)-to-([a-z0-9]+)$/);
+  if (!match) return null;
+  return { input: match[1], output: match[2] };
+};
+
+const workflowForTool = (slug) => WORKFLOW_CLUSTERS.find((cluster) =>
+  (cluster.primary_tools || []).includes(canonicalSlug(slug))
+);
+
+const reasonForCandidate = (currentSlug, targetSlug) => {
+  const currentParts = conversionParts(currentSlug);
+  const targetParts = conversionParts(targetSlug);
+  if (currentParts && targetParts) {
+    if (currentParts.input === targetParts.output && currentParts.output === targetParts.input) return 'reverse_conversion';
+    if (currentParts.input === targetParts.input || currentParts.output === targetParts.output) return 'same_file_type';
+    return 'alternative_conversion';
+  }
+  if (['image-compressor', 'metadata-remover', 'image-resizer'].includes(targetSlug)) return 'optimization_cleanup';
+  return 'immediate_next_action';
+};
+
+const workflowStageForReason = (reason) => ({
+  immediate_next_action: 'next_action',
+  same_file_type: 'format_adjacent',
+  optimization_cleanup: 'cleanup',
+  reverse_conversion: 'reverse',
+  alternative_conversion: 'alternative',
+  trust_help: 'help',
+}[reason] || 'next_action');
+
+const workflowRelatedTools = (registry, currentSlug, locale) => {
+  const currentCanonical = canonicalSlug(currentSlug);
+  const tools = canonicalToolMap(registry);
+  const currentWorkflow = workflowForTool(currentCanonical);
+  if (!currentWorkflow) return [];
+
+  const candidates = [];
+  const seen = new Set([currentCanonical]);
+  const add = (slug, reason, depth) => {
+    const canonical = canonicalSlug(slug);
+    if (seen.has(canonical)) return;
+    if (!RELATED_REASON_ALLOWLIST.has(reason)) return;
+    const tool = tools.get(canonical);
+    if (!tool || tool.status !== 'live') return;
+    if (!fs.existsSync(fileForTool(registrySlug(canonical), locale))) return;
+    seen.add(canonical);
+    candidates.push({
+      tool,
+      workflow_cluster: currentWorkflow.workflow_id,
+      reason,
+      workflow_stage: workflowStageForReason(reason),
+      depth,
+    });
+  };
+
+  for (const slug of (currentWorkflow.next_actions && currentWorkflow.next_actions[currentCanonical]) || []) {
+    add(slug, reasonForCandidate(currentCanonical, slug), 1);
+  }
+
+  for (const slug of currentWorkflow.primary_tools || []) {
+    add(slug, reasonForCandidate(currentCanonical, slug), 2);
+  }
+
+  return candidates.slice(0, 5).map((item, index) => ({
+    ...item,
+    position: index + 1,
+  }));
+};
 
 const extractCards = (html, locale, labels) => {
   const cardRe = /<a href="([^"]+)" class="tool-item"[\s\S]*?<h3>([\s\S]*?)<\/h3>\s*<p>([\s\S]*?)<\/p>[\s\S]*?<\/a>/g;
@@ -160,7 +245,7 @@ const iconFor = (tool) => {
   return `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">${body}</svg>`;
 };
 
-const renderToolCard = (tool, locale, labels, { allowPlanned = false } = {}) => {
+const renderToolCard = (tool, locale, labels, { allowPlanned = false, relatedMeta = null } = {}) => {
   const text = labelFor(tool, locale, labels);
   const inner = [
     '                    <div class="icon">',
@@ -170,8 +255,17 @@ const renderToolCard = (tool, locale, labels, { allowPlanned = false } = {}) => 
     `                    <p>${escapeHtml(text.description)}</p>`,
   ].join('\n');
   if (tool.status === 'live') {
+    const relatedAttrs = relatedMeta ? [
+      'data-track="related-tool-click"',
+      `data-destination-tool="${escapeHtml(canonicalSlug(tool.slug))}"`,
+      `data-workflow-cluster="${escapeHtml(relatedMeta.workflow_cluster)}"`,
+      `data-reason="${escapeHtml(relatedMeta.reason)}"`,
+      `data-workflow-stage="${escapeHtml(relatedMeta.workflow_stage)}"`,
+      `data-depth="${escapeHtml(relatedMeta.depth)}"`,
+      `data-position="${escapeHtml(relatedMeta.position)}"`,
+    ].join(' ') : 'data-track="workflow-click"';
     return [
-      `                <a href="${slugToPath(tool.slug, locale)}" class="tool-item" data-track="workflow-click" data-tool="${tool.slug || 'home'}" data-category="${tool.categoryId}">`,
+      `                <a href="${slugToPath(tool.slug, locale)}" class="tool-item" ${relatedAttrs} data-tool="${canonicalSlug(tool.slug)}" data-category="${tool.categoryId}">`,
       inner,
       '                </a>',
     ].join('\n');
@@ -201,16 +295,13 @@ const renderRelated = (registry, currentSlug, locale, labels) => {
   const tools = toolBySlug(registry);
   const current = tools.get(currentSlug);
   if (!current || current.status !== 'live') return '';
-  const related = (current.related || [])
-    .map((slug) => tools.get(slug))
-    .filter((tool) => tool && tool.status === 'live' && fs.existsSync(fileForTool(tool.slug, locale)))
-    .slice(0, 3);
+  const related = workflowRelatedTools(registry, currentSlug, locale);
   if (!related.length) return '';
   return [
     '        <section class="related-tools">',
     `            <div class="category-title">${escapeHtml(locale.relatedLabel)}</div>`,
     '            <div class="tool-grid">',
-    ...related.map((tool) => renderToolCard(tool, locale, labels)),
+    ...related.map((item) => renderToolCard(item.tool, locale, labels, { relatedMeta: item })),
     '            </div>',
     '        </section>',
   ].join('\n');
@@ -267,11 +358,13 @@ const updateRelatedPage = (registry, file, locale, labels) => {
 const validateRegistry = (registry) => {
   const errors = [];
   const slugs = new Set();
+  const canonicalSlugs = new Set();
   for (const category of registry.categories || []) {
     if (!category.id || !category.label || !Array.isArray(category.tools)) errors.push(`Invalid category: ${JSON.stringify(category)}`);
     for (const tool of category.tools || []) {
       if (slugs.has(tool.slug)) errors.push(`Duplicate tool slug: ${tool.slug || '(home)'}`);
       slugs.add(tool.slug);
+      canonicalSlugs.add(canonicalSlug(tool.slug));
       if (!['live', 'planned'].includes(tool.status)) errors.push(`Invalid status for ${tool.slug}: ${tool.status}`);
       if (!Array.isArray(tool.related)) errors.push(`Missing related list for ${tool.slug}`);
     }
@@ -279,6 +372,21 @@ const validateRegistry = (registry) => {
   for (const tool of getAllTools(registry)) {
     for (const related of tool.related || []) {
       if (!slugs.has(related)) errors.push(`Unknown related slug "${related}" on ${tool.slug || '(home)'}`);
+    }
+  }
+  const workflowIds = new Set();
+  for (const workflow of WORKFLOW_CLUSTERS) {
+    if (!workflow.workflow_id) errors.push('Workflow cluster missing workflow_id');
+    if (workflowIds.has(workflow.workflow_id)) errors.push(`Duplicate workflow_id: ${workflow.workflow_id}`);
+    workflowIds.add(workflow.workflow_id);
+    for (const slug of workflow.primary_tools || []) {
+      if (!canonicalSlugs.has(slug)) errors.push(`Workflow ${workflow.workflow_id} references unknown tool ${slug}`);
+    }
+    for (const [source, targets] of Object.entries(workflow.next_actions || {})) {
+      if (!canonicalSlugs.has(source)) errors.push(`Workflow ${workflow.workflow_id} has unknown next_actions source ${source}`);
+      for (const target of targets || []) {
+        if (!canonicalSlugs.has(target)) errors.push(`Workflow ${workflow.workflow_id} has unknown next_actions target ${target}`);
+      }
     }
   }
   return errors;
