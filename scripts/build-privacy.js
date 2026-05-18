@@ -105,7 +105,139 @@ function copyTree(src, dest) {
   fs.copyFileSync(src, dest);
 }
 
-function stripThirdPartyRuntime(html) {
+const LANGUAGE_CODES = new Map([
+  ["en", "EN"],
+  ["th", "TH"],
+  ["vi", "VI"],
+  ["zh", "ZH"],
+  ["ja", "JA"],
+  ["ko", "KO"],
+  ["es", "ES"],
+  ["fr", "FR"],
+]);
+
+function removeAdScaffold(html) {
+  let out = html;
+  out = out.replace(
+    /\s*<div\b[^>]*class="[^"]*\bbanner-ad\b[^"]*"[^>]*>[\s\S]*?<\/div>\s*/gi,
+    "\n"
+  );
+  out = out.replace(
+    /\s*<div\b[^>]*class="[^"]*\bfooter-ad\b[^"]*"[^>]*>[\s\S]*?<\/div>\s*/gi,
+    "\n"
+  );
+  out = out.replace(
+    /\s*<div\b[^>]*class="[^"]*\bad-slot\b[^"]*"[^>]*>[\s\S]*?<div\b[^>]*class="[^"]*\bad-foot\b[^"]*"[^>]*>[\s\S]*?<\/div>\s*<\/div>\s*/gi,
+    "\n"
+  );
+  out = out.replace(
+    /\s*<div\b[^>]*class="[^"]*\bad-slot\b[^"]*"[^>]*>[\s\S]*?<\/div>\s*/gi,
+    "\n"
+  );
+  return out;
+}
+
+function standardizeLanguageSwitcher(html, relPath) {
+  const locale = relPath.split(path.sep)[0];
+  const currentCode = LANGUAGE_CODES.get(locale) || "EN";
+  return html.replace(
+    /<details class="lang-switcher">[\s\S]*?<\/details>/gi,
+    (block) => {
+      let next = block.replace(
+        /(<summary\b[^>]*>\s*<span\b[^>]*>[\s\S]*?<\/span>\s*)[^<]+(<\/summary>)/i,
+        `$1${currentCode}$2`
+      );
+      for (const [code, label] of LANGUAGE_CODES.entries()) {
+        const hreflang = code === "zh" ? "zh-Hans" : code;
+        next = next.replace(
+          new RegExp(`(<a\\b[^>]*hreflang="${hreflang}"[^>]*>)[\\s\\S]*?(<\\/a>)`, "gi"),
+          `$1${label}$2`
+        );
+      }
+      return next;
+    }
+  );
+}
+
+function localizeThaiPrivacyTrustCopy(html) {
+  return html
+    .replace(
+      /<span class="pill"><span class="dot"><\/span>ฟรี 100% ไม่ต้องสมัคร<\/span>/g,
+      `<span class="pill"><span class="dot"></span>โหมดความเป็นส่วนตัว: ไม่มีโฆษณา ไม่มีการติดตาม และไม่มีสคริปต์ภายนอก</span>`
+    )
+    .replace(/<h2>What this page does<\/h2>/g, "<h2>หน้านี้ทำอะไร</h2>")
+    .replace(/<h2>Privacy behavior<\/h2>/g, "<h2>พฤติกรรมด้านความเป็นส่วนตัว</h2>")
+    .replace(/<h2>Supported workflow<\/h2>/g, "<h2>ขั้นตอนการทำงานที่รองรับ</h2>")
+    .replace(
+      /<p>Use the controls on this page, review the output in your browser, then download the result from this tab\.<\/p>/g,
+      "<p>ใช้ตัวควบคุมบนหน้านี้ ตรวจสอบผลลัพธ์ในเบราว์เซอร์ แล้วดาวน์โหลดไฟล์จากแท็บนี้</p>"
+    )
+    .replace(
+      /<p>Selected file contents are processed locally in your browser for supported workflows\. This privacy build does not intentionally load ads, analytics, remote fonts, or third-party runtime scripts\.<\/p>/g,
+      "<p>สำหรับขั้นตอนที่รองรับ เนื้อหาไฟล์ที่เลือกจะประมวลผลในเบราว์เซอร์ของคุณ โหมดความเป็นส่วนตัวนี้ไม่ได้ตั้งใจโหลดโฆษณา การวิเคราะห์ ฟอนต์ระยะไกล หรือสคริปต์ภายนอก</p>"
+    )
+    .replace(
+      /<span class="guide-help-type">trust explainer<\/span>/g,
+      `<span class="guide-help-type">คำอธิบายความเป็นส่วนตัว</span>`
+    )
+    .replace(
+      /<span class="guide-help-title">How to verify local processing<\/span>/g,
+      `<span class="guide-help-title">วิธีตรวจสอบการประมวลผลในเบราว์เซอร์</span>`
+    )
+    .replace(
+      /<span class="guide-help-title">How browser-based processing works<\/span>/g,
+      `<span class="guide-help-title">การประมวลผลในเบราว์เซอร์ทำงานอย่างไร</span>`
+    )
+    .replace(
+      /<span class="guide-help-type">comparison<\/span>/g,
+      `<span class="guide-help-type">เปรียบเทียบ</span>`
+    )
+    .replace(
+      /<span class="guide-help-title">WebP vs PNG: when to use each format<\/span>/g,
+      `<span class="guide-help-title">WebP กับ PNG: ควรใช้รูปแบบไหน</span>`
+    )
+    .replace(
+      /<p>ไม่ ConvertUnlimited ทำงานในเบราว์เซอร์ของคุณ ผ่าน HTML canvas API ไฟล์ของคุณไม่เคยออกจากเครื่อง — ไม่มีอะไรให้เราเห็น เก็บ หรือแชร์ออกไป<\/p>/g,
+      `<p>สำหรับขั้นตอนที่รองรับ เนื้อหาไฟล์ที่เลือกจะประมวลผลในเบราว์เซอร์ของคุณ ConvertUnlimited ไม่มีปลายทางอัปโหลดไฟล์ฝั่งเซิร์ฟเวอร์สำหรับขั้นตอนนี้</p>`
+    )
+    .replace(
+      /<p class="bg-status" id="compress-status">รูปภาพถูกบีบอัดในเบราว์เซอร์ของคุณ ไฟล์จะไม่ถูกอัปโหลด<\/p>/g,
+      `<p class="bg-status" id="compress-status">รูปภาพถูกบีบอัดในเบราว์เซอร์ของคุณ เนื้อหาไฟล์ไม่ได้ถูกอัปโหลดโดยเจตนาในขั้นตอนนี้</p>`
+    )
+    .replace(
+      /<p>ใช่ เปิดตัวตรวจสอบเครือข่ายในเครื่องมือสำหรับนักพัฒนาซอฟต์แวร์ของเบราว์เซอร์ แล้วคุณจะเห็นว่าไม่มีการส่งข้อมูลรูปภาพใด ๆ ไปยังเซิร์ฟเวอร์ของเรา ตรรกะทั้งหมดทำงานในสภาพแวดล้อมท้องถิ่นของเบราว์เซอร์ของคุณ<\/p>/g,
+      `<p>สำหรับขั้นตอนที่รองรับ เนื้อหารูปภาพที่เลือกจะประมวลผลในเบราว์เซอร์ของคุณ สามารถตรวจสอบได้ด้วยแผง Network ในเครื่องมือสำหรับนักพัฒนาของเบราว์เซอร์</p>`
+    )
+    .replace(
+      /<p>ไม่เคย สิ่งเดียวที่เซิร์ฟเวอร์ของเราจัดเตรียมให้คือโค้ดแบบคงที่ที่จำเป็นสำหรับการรันเครื่องมือในเบราว์เซอร์ของคุณ<\/p>/g,
+      `<p>ConvertUnlimited ไม่มีปลายทางอัปโหลดไฟล์ฝั่งเซิร์ฟเวอร์สำหรับขั้นตอนนี้ เนื้อหาไฟล์ที่เลือกจะประมวลผลในเบราว์เซอร์ของคุณ</p>`
+    )
+    .replace(/ไม่มีการอัปโหลด/g, "ประมวลผลในเบราว์เซอร์")
+    .replace(/ไม่อัปโหลด/g, "ประมวลผลในเบราว์เซอร์")
+    .replace(/ทำงานในเบราว์เซอร์ทั้งหมด — ประมวลผลในเบราว์เซอร์ ปลอดภัยเต็มที่/g, "ประมวลผลในเบราว์เซอร์สำหรับขั้นตอนที่รองรับ")
+    .replace(
+      /ไฟล์ของคุณไม่เคยออกจากเครื่อง — ไม่มีอะไรให้เราเห็น เก็บ หรือแบ่งปัน/g,
+      "เนื้อหาไฟล์ที่เลือกจะประมวลผลในเบราว์เซอร์ของคุณสำหรับขั้นตอนที่รองรับ"
+    )
+    .replace(
+      /โฆษณาเล็ก ๆ ในแถบด้านขวาและที่ฐานหน้าครอบคลุมค่าโฮสต์ และเนื่องจากประมวลผลในเบราว์เซอร์อะไรขึ้นเซิร์ฟเวอร์ จึงไม่มีค่าใช้จ่ายต่อผู้ใช้ — เราจึงไม่ต้องคิดค่าสมาชิก/g,
+      "โหมดความเป็นส่วนตัวนี้ไม่มีโฆษณา การวิเคราะห์ ฟอนต์ระยะไกล หรือสคริปต์ภายนอก"
+    )
+    .replace(
+      /รูปภาพส่วนตัวของคุณจึงไม่เคยออกจากอุปกรณ์ของคุณ/g,
+      "เนื้อหารูปภาพที่เลือกจะประมวลผลในเบราว์เซอร์ของคุณ"
+    )
+    .replace(
+      /ไฟล์ไม่เคยออกจากเบราว์เซอร์/g,
+      "เนื้อหาไฟล์ที่เลือกประมวลผลในเบราว์เซอร์"
+    )
+    .replace(
+      /<p><b>รูปภาพของคุณ<\/b> ConvertUnlimited แปลงรูปภาพในเบราว์เซอร์ของคุณ ไม่มีไฟล์ไหนอัปโหลดไปเซิร์ฟเวอร์ และเราไม่เคยเห็น เก็บ หรือส่งต่อภาพของคุณเลย ไม่มีอะไรให้บันทึก เพราะไม่มีข้อมูลถูกส่งออกไป<\/p>/g,
+      `<p><b>รูปภาพของคุณ</b> สำหรับขั้นตอนที่รองรับ ConvertUnlimited แปลงรูปภาพในเบราว์เซอร์ของคุณ และไม่มีปลายทางอัปโหลดไฟล์ฝั่งเซิร์ฟเวอร์สำหรับขั้นตอนนี้</p>`
+    );
+}
+
+function stripThirdPartyRuntime(html, relPath = "") {
   let out = html;
 
   out = out.replace(
@@ -158,6 +290,10 @@ function stripThirdPartyRuntime(html) {
   out = out.replace(/<p\b[^>]*>(?:(?!<\/p>).)*Google Analytics(?:(?!<\/p>).)*<\/p>/gis, "");
   out = out.replace(/<p\b[^>]*>(?:(?!<\/p>).)*Google AdSense(?:(?!<\/p>).)*<\/p>/gis, "");
   out = out.replace(
+    /(<h2>Privacy behavior<\/h2>)\s*(<h2>Supported workflow<\/h2>)/g,
+    `$1\n                <p>Selected file contents are processed locally in your browser for supported workflows. This privacy build does not intentionally load ads, analytics, remote fonts, or third-party runtime scripts.</p>\n                $2`
+  );
+  out = out.replace(
     /<section id="privacy" class="article">\s*<h2>Privacy(?: Policy)?<\/h2>/i,
     `<section id="privacy" class="article">\n                <h2>Privacy</h2>\n                <p><b>Privacy build:</b> This build removes ads, analytics, remote fonts, runtime CDN scripts, and file-operation telemetry. Selected files are processed in the browser using local JavaScript and browser APIs.</p>`
   );
@@ -175,6 +311,10 @@ function stripThirdPartyRuntime(html) {
   out = out.replace(/Files never leave your browser/gi, "Selected file contents are processed locally in your browser");
   out = out.replace(/There is nothing to log, because nothing is sent\./gi, "The privacy build does not include file-operation telemetry.");
   out = out.replace(/there's nothing for us \(or anyone else\) to log, look at, or leak\./gi, "the privacy build does not include file-operation telemetry.");
+  out = out.replace(/No files are sent to any server\./gi, "ConvertUnlimited does not provide a server-side upload endpoint for this processing flow.");
+  out = out.replace(/No file is ever uploaded to a server, and we never see, store, or transmit your images\./gi, "ConvertUnlimited does not provide a server-side upload endpoint for this image-processing flow.");
+  out = out.replace(/Free, bulk, and secure\./gi, "Free and browser-based.");
+  out = out.replace(/Join multiple PDF files into one secure document\./gi, "Join multiple PDF files into one document in your browser.");
   out = out.replace(/a small ad block in the right rail covers it\./gi, "the privacy build removes ad code; public deployment costs must be funded separately.");
   out = out.replace(/A small ad in the right rail and one in the footer cover hosting costs\./gi, "The privacy build does not include ads.");
   out = out.replace(/static HTML, CSS, JavaScript, and ads/gi, "static HTML, CSS, and JavaScript");
@@ -183,15 +323,7 @@ function stripThirdPartyRuntime(html) {
   out = out.replace(/Experience the privacy\./gi, "Try the privacy build.");
   out = out.replace(/The actual file processing uses zero data because it happens offline on your device\./gi, "After the static assets are loaded, supported processing flows are verified by tests to run without network requests.");
 
-  out = out.replace(
-    /\s*<div class="banner-ad">\s*<span class="ad-label">Ad<\/span>\s*<ins class="adsbygoogle[\s\S]*?<\/ins>\s*<\/div>\s*/gi,
-    "\n"
-  );
-  out = out.replace(
-    /\s*<div class="footer-ad">\s*<span class="ad-label">Ad<\/span>\s*<ins class="adsbygoogle[\s\S]*?<\/ins>\s*<\/div>\s*/gi,
-    "\n"
-  );
-  out = out.replace(/class="ad-slot"/g, `class="ad-slot privacy-build-hidden"`);
+  out = removeAdScaffold(out);
   out = out.replace(
     /\s*<ins class="adsbygoogle[\s\S]*?<\/ins>\s*/gi,
     "\n"
@@ -214,9 +346,17 @@ function stripThirdPartyRuntime(html) {
     `<span class="pill"><span class="dot"></span>Privacy build: no ads, analytics, or third-party runtime scripts</span>`
   );
   out = out.replace(
+    /<meta name="robots" content="index,follow">/gi,
+    `<meta name="robots" content="index,follow,max-image-preview:large">`
+  );
+  out = out.replace(
     /<div>© <span id="copyright-year">2026<\/span> ConvertUnlimited\.com — runs entirely in your browser\.<\/div>/g,
     `<div>© <span id="copyright-year">2026</span> ConvertUnlimited privacy build — file processing runs in your browser.</div>`
   );
+  out = standardizeLanguageSwitcher(out, relPath);
+  if (relPath.split(path.sep)[0] === "th") {
+    out = localizeThaiPrivacyTrustCopy(out);
+  }
 
   return out;
 }
@@ -247,8 +387,8 @@ function rewriteJs(js) {
 function rewriteCss(css) {
   return css
     .replace(/\/\* Ads \*\/[\s\S]*?\/\* Related Tools \*\//g, "/* Related Tools */")
-    .replace(/adsbygoogle/g, "privacy-build-removed-ad-selector")
-    .concat("\n.privacy-build-hidden{display:none!important;}\n");
+    .replace(/\n\.ad-slot\s*\{[\s\S]*?\/\* trust card \*\//g, "\n/* trust card */")
+    .replace(/adsbygoogle/g, "privacy-build-removed-ad-selector");
 }
 
 function transformGeneratedFiles(dir) {
@@ -260,7 +400,7 @@ function transformGeneratedFiles(dir) {
       continue;
     }
     if (name.endsWith(".html")) {
-      fs.writeFileSync(file, stripThirdPartyRuntime(fs.readFileSync(file, "utf8")));
+      fs.writeFileSync(file, stripThirdPartyRuntime(fs.readFileSync(file, "utf8"), path.relative(OUT, file)));
     } else if (name.endsWith(".js")) {
       fs.writeFileSync(file, rewriteJs(fs.readFileSync(file, "utf8")));
     } else if (name.endsWith(".css")) {

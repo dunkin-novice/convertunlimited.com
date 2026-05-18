@@ -101,10 +101,14 @@ Disable:
 - Cloudflare Web Analytics;
 - Zaraz;
 - Rocket Loader;
+- Browser Insights / Web Analytics beacon scripts such as
+  `static.cloudflareinsights.com/beacon.min.js`;
+- email address obfuscation;
 - Auto Minify features that rewrite or inject scripts;
 - performance beacons or browser insight scripts;
 - Bot Fight Mode or managed challenges on normal tool pages if they inject
   challenge scripts into the browsing session;
+- challenge/platform injections on normal successful page loads;
 - any app, worker, or transform rule that adds analytics, ads, or runtime JS.
 
 Bot protection at the edge is acceptable only if normal successful page loads do
