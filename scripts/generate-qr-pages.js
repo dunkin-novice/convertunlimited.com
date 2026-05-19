@@ -2,7 +2,7 @@ const fs = require('fs');
 const path = require('path');
 
 const ROOT = process.cwd();
-const BASE_URL = 'https://www.convertunlimited.com';
+const BASE_URL = 'https://convertunlimited.com';
 const ADSENSE = 'ca-pub-2823470980745945';
 const LOCALES = require('./data/locales');
 const { aeoSummary, schemaScripts } = require('./data/page-helpers');
@@ -156,7 +156,7 @@ const TEXT = {
 const esc = (v) => String(v).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 const route = (l) => `${l.prefix ? `/${l.prefix}` : ''}/qr-generator/`;
 const home = (l) => l.prefix ? `/${l.prefix}/` : '/';
-const abs = (l) => `https://www.convertunlimited.com${route(l)}`;
+const abs = (l) => `https://convertunlimited.com${route(l)}`;
 const alternates = () => `${LOCALES.map((l) => `    <link rel="alternate" hreflang="${l.hreflang}" href="${abs(l)}">`).join('\n')}\n    <link rel="alternate" hreflang="x-default" href="${abs(LOCALES[0])}">`;
 const link = (l, slug) => `${l.prefix ? `/${l.prefix}` : ''}${slug ? `/${slug}/` : '/'}`;
 

@@ -141,6 +141,6 @@ npm run verify:privacy
 
 ## Separation From Public Build
 
-The public website at `www.convertunlimited.com` may include ads and analytics.
+The public website at `convertunlimited.com` may include ads and analytics.
 The privacy build is the review and submission target. Privacy-sensitive
 workflows should use `privacy.convertunlimited.com`.

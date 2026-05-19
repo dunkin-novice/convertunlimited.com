@@ -6,7 +6,7 @@ const path = require("path");
 const { INTENT_PAGES } = require("./data/intent-pages");
 
 const ROOT = process.cwd();
-const BASE_URL = "https://www.convertunlimited.com";
+const BASE_URL = "https://convertunlimited.com";
 const FINDINGS = [];
 const BANNED = [
   /100%\s+private/i,

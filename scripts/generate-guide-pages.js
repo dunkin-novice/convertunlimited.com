@@ -3,7 +3,7 @@ const path = require('path');
 const GUIDES = require('./data/guides.js');
 
 const ROOT = process.cwd();
-const BASE_URL = 'https://www.convertunlimited.com';
+const BASE_URL = 'https://convertunlimited.com';
 
 const LOCALES = require('./data/locales');
 

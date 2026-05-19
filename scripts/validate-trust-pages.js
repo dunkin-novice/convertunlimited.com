@@ -35,7 +35,7 @@ for (const page of TRUST_PAGES) {
   const html = readRoute(route);
   if (!html) continue;
 
-  if (!html.includes(`<link rel="canonical" href="https://www.convertunlimited.com${route}">`)) {
+  if (!html.includes(`<link rel="canonical" href="https://convertunlimited.com${route}">`)) {
     FINDINGS.push(`${route}: missing canonical`);
   }
   if (!html.includes('"@type":"BreadcrumbList"')) FINDINGS.push(`${route}: missing BreadcrumbList JSON-LD`);
@@ -54,7 +54,7 @@ for (const page of TRUST_PAGES) {
 const sitemap = fs.existsSync(path.join(ROOT, "sitemap.xml")) ? fs.readFileSync(path.join(ROOT, "sitemap.xml"), "utf8") : "";
 for (const page of TRUST_PAGES) {
   const route = routeFor(page);
-  if (sitemap && !sitemap.includes(`https://www.convertunlimited.com${route}`)) {
+  if (sitemap && !sitemap.includes(`https://convertunlimited.com${route}`)) {
     FINDINGS.push(`${route}: missing sitemap entry`);
   }
 }

@@ -2,7 +2,7 @@ const fs = require('fs');
 const path = require('path');
 
 const ROOT = process.cwd();
-const BASE_URL = 'https://www.convertunlimited.com';
+const BASE_URL = 'https://convertunlimited.com';
 
 const LOCALES = require('./data/locales');
 

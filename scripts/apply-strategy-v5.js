@@ -5,7 +5,7 @@ const fs = require("fs");
 const path = require("path");
 
 const ROOT = process.cwd();
-const BASE_URL = "https://www.convertunlimited.com";
+const BASE_URL = "https://convertunlimited.com";
 const LOCALE_LINKS = require("./data/locales");
 
 const SKIP_DIRS = new Set([".git", "dist", "node_modules", "vendor"]);

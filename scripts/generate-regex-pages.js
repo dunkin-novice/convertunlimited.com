@@ -2,7 +2,7 @@ const fs = require('fs');
 const path = require('path');
 
 const ROOT = process.cwd();
-const BASE_URL = 'https://www.convertunlimited.com';
+const BASE_URL = 'https://convertunlimited.com';
 const ADSENSE = 'ca-pub-2823470980745945';
 const LOCALES = require('./data/locales');
 const { aeoSummary, schemaScripts } = require('./data/page-helpers');

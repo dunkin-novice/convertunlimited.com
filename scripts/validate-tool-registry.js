@@ -2,7 +2,7 @@ const fs = require('fs');
 const path = require('path');
 
 const ROOT = process.cwd();
-const BASE_URL = 'https://www.convertunlimited.com';
+const BASE_URL = 'https://convertunlimited.com';
 const REGISTRY_PATH = path.join(ROOT, 'tools-registry.json');
 const SITEMAP_PATH = path.join(ROOT, 'sitemap.xml');
 
@@ -130,7 +130,7 @@ for (const locale of LOCALES) {
 addCheck('tools pages have canonical, AdSense, and hreflang alternates', toolsPageIssues.length === 0, toolsPageIssues.join('; '));
 
 const allHtml = allHtmlFiles().map((file) => fs.readFileSync(file, 'utf8')).join('\n');
-addCheck('no bare-domain canonical remains', !/rel="canonical" href="https:\/\/convertunlimited\.com/.test(allHtml));
+addCheck('no www canonical remains', !/rel="canonical" href="https:\/\/www\.convertunlimited\.com/.test(allHtml));
 
 const sitemap = fs.existsSync(SITEMAP_PATH) ? fs.readFileSync(SITEMAP_PATH, 'utf8') : '';
 const missingSitemap = [];
@@ -141,8 +141,8 @@ for (const tool of liveTools) {
   }
 }
 addCheck('sitemap includes all live localized tool pages', missingSitemap.length === 0, missingSitemap.slice(0, 20).join('; '));
-addCheck('robots points to www sitemap', read('robots.txt').includes(`Sitemap: ${BASE_URL}/sitemap-index.xml`));
-addCheck('no bare production domain remains', !/https:\/\/convertunlimited\.com/.test(`${allHtml}\n${sitemap}\n${read('robots.txt')}\n${read('scripts/generate-sitemap.js')}`));
+addCheck('robots points to canonical sitemap', read('robots.txt').includes(`Sitemap: ${BASE_URL}/sitemap-index.xml`));
+addCheck('no www production domain remains', !/https:\/\/www\.convertunlimited\.com/.test(`${allHtml}\n${sitemap}\n${read('robots.txt')}\n${read('scripts/generate-sitemap.js')}`));
 
 const missingLocalizedRegistryText = [];
 for (const tool of tools) {

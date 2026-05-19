@@ -108,7 +108,7 @@ function checkTextFiles() {
 function checkHtmlBasics() {
   for (const file of htmlFiles()) {
     const text = fs.readFileSync(file, "utf8");
-    if (!/<link rel="canonical" href="https:\/\/www\.convertunlimited\.com\/[^"]*">/i.test(text)) {
+    if (!/<link rel="canonical" href="https:\/\/convertunlimited\.com\/[^"]*">/i.test(text)) {
       FINDINGS.push(`${rel(file)}: missing canonical`);
     }
     if (!/hreflang="x-default"/i.test(text)) {
@@ -179,7 +179,7 @@ function checkLlms() {
   }
   const text = fs.readFileSync(llms, "utf8");
   for (const required of [
-    "https://www.convertunlimited.com/",
+    "https://convertunlimited.com/",
     "https://privacy.convertunlimited.com/",
     "use the privacy build for privacy-sensitive workflows",
     "file contents are not intentionally uploaded",

@@ -56,7 +56,7 @@ For the generated privacy build:
 These guarantees are about the generated build artifact. They do not describe
 the current public ad-supported website.
 
-The public website at `www.convertunlimited.com` may include ads and analytics.
+The public website at `convertunlimited.com` may include ads and analytics.
 Use `privacy.convertunlimited.com` for privacy-sensitive workflows and for OSS
 privacy review.
 

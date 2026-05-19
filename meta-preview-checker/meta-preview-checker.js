@@ -119,8 +119,8 @@
   function fillSample() {
     titleEl.value = "ConvertUnlimited - Free Browser-Based Utility Tools";
     descEl.value = "Convert, compress, preview, and generate useful web assets directly in your browser with no signup and no uploads.";
-    urlEl.value = "https://www.convertunlimited.com/tools/";
-    imageEl.value = "https://www.convertunlimited.com/og-image.svg";
+    urlEl.value = "https://convertunlimited.com/tools/";
+    imageEl.value = "https://convertunlimited.com/og-image.svg";
     siteEl.value = "ConvertUnlimited";
     if (userActionReady && typeof window.cuTrack === "function") window.cuTrack("sample_used");
     update();

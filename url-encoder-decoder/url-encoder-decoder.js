@@ -90,7 +90,7 @@
   }
 
   function sample() {
-    inputEl.value = "https://www.convertunlimited.com/search?q=hello world 👋&city=กรุงเทพ&note=café 世界";
+    inputEl.value = "https://convertunlimited.com/search?q=hello world 👋&city=กรุงเทพ&note=café 世界";
     updateCounts();
     if (typeof window.cuTrack === "function") window.cuTrack("sample_used");
     encode();

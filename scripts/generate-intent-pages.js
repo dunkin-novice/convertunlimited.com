@@ -7,7 +7,7 @@ const { INTENT_PAGES, PRIVACY_NOTE } = require("./data/intent-pages");
 require("./data/locales");
 
 const ROOT = process.cwd();
-const BASE_URL = "https://www.convertunlimited.com";
+const BASE_URL = "https://convertunlimited.com";
 const GTM_ID = "GTM-KQHC5ZGV";
 
 const TOOL_LABELS = {

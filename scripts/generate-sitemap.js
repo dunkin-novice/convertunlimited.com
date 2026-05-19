@@ -2,7 +2,7 @@ const fs = require('fs');
 const path = require('path');
 const { execFileSync } = require('child_process');
 
-const DEFAULT_BASE_URL = 'https://www.convertunlimited.com';
+const DEFAULT_BASE_URL = 'https://convertunlimited.com';
 const RAW_BASE_URL = process.env.BASE_URL || DEFAULT_BASE_URL;
 const BASE_URL = RAW_BASE_URL.replace(/\/+$/, '');
 const ROOT_DIR = process.cwd();
