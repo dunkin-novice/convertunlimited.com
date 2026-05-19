@@ -10,6 +10,7 @@ const DEPLOY_DIR = process.env.DEPLOY_DIR || '.';
 const SOURCE_DIR = path.resolve(ROOT_DIR, DEPLOY_DIR);
 const OUTPUT_SITEMAP_INDEX = path.join(SOURCE_DIR, 'sitemap-index.xml');
 const OUTPUT_ROBOTS = path.join(SOURCE_DIR, 'robots.txt');
+const { isIndexableRoute } = require('./data/index-policy');
 
 if (/[<>]/.test(BASE_URL)) {
   throw new Error(`BASE_URL contains invalid characters: ${BASE_URL}`);
@@ -110,6 +111,12 @@ const LOCALES = require('./data/locales');
 const LOCALE_BY_PREFIX = new Map(LOCALES.filter((locale) => locale.prefix).map((locale) => [locale.prefix, locale]));
 const LOCALIZED_HOME_PATHS = new Set(['/', '/th/', '/vi/', '/zh/', '/ja/', '/ko/', '/es/', '/fr/']);
 
+for (const file of fs.readdirSync(SOURCE_DIR)) {
+  if (/^sitemap-[a-z]+\.xml$/i.test(file)) {
+    fs.unlinkSync(path.join(SOURCE_DIR, file));
+  }
+}
+
 const generateSitemapFile = (localeCode, urls, clusters) => {
   const lines = [
     '<?xml version="1.0" encoding="UTF-8"?>',
@@ -162,6 +169,7 @@ const clusters = new Map();
 
 for (const relPath of htmlFiles) {
   const urlPath = formatUrlPath(relPath);
+  if (!isIndexableRoute(urlPath)) continue;
   const segments = urlPath.split('/').filter(Boolean);
   const locale = LOCALE_BY_PREFIX.get(segments[0]) || LOCALES[0];
   const clusterPath = locale.code === 'en' ? urlPath : `/${segments.slice(1).join('/')}${segments.length > 1 ? '/' : ''}`;

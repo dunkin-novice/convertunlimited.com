@@ -4,6 +4,7 @@
 const fs = require("fs");
 const path = require("path");
 const { INTENT_PAGES } = require("./data/intent-pages");
+const { isIndexableRoute } = require("./data/index-policy");
 
 const ROOT = process.cwd();
 const BASE_URL = "https://convertunlimited.com";
@@ -108,7 +109,13 @@ for (const page of INTENT_PAGES) {
     if (!routeExists(href)) FINDINGS.push(`${relative}: internal link does not resolve ${href}`);
   }
 
-  if (!sitemap.includes(`<loc>${canonical}</loc>`)) FINDINGS.push(`${relative}: sitemap missing ${canonical}`);
+  if (isIndexableRoute(page.path)) {
+    if (!html.includes('<meta name="robots" content="index,follow,max-image-preview:large">')) FINDINGS.push(`${relative}: indexable page missing index robots`);
+    if (!sitemap.includes(`<loc>${canonical}</loc>`)) FINDINGS.push(`${relative}: sitemap missing ${canonical}`);
+  } else {
+    if (!html.includes('<meta name="robots" content="noindex,follow">')) FINDINGS.push(`${relative}: noindex page missing noindex robots`);
+    if (sitemap.includes(`<loc>${canonical}</loc>`)) FINDINGS.push(`${relative}: noindex page remains in sitemap ${canonical}`);
+  }
 }
 
 for (const route of HUB_ROUTES) {
@@ -122,7 +129,12 @@ for (const route of HUB_ROUTES) {
   if (!html.includes(`<link rel="canonical" href="${canonical}">`)) FINDINGS.push(`${route}: missing hub canonical`);
   if (!/"@type":"FAQPage"/.test(html)) FINDINGS.push(`${route}: missing hub FAQ JSON-LD`);
   if (!/class="article aeo-summary" id="answer-first"/.test(html)) FINDINGS.push(`${route}: missing hub answer-first block`);
-  if (!sitemap.includes(`<loc>${canonical}</loc>`)) FINDINGS.push(`${route}: sitemap missing hub ${canonical}`);
+  if (isIndexableRoute(route)) {
+    if (!sitemap.includes(`<loc>${canonical}</loc>`)) FINDINGS.push(`${route}: sitemap missing hub ${canonical}`);
+  } else {
+    if (!html.includes('<meta name="robots" content="noindex,follow">')) FINDINGS.push(`${route}: noindex hub missing noindex robots`);
+    if (sitemap.includes(`<loc>${canonical}</loc>`)) FINDINGS.push(`${route}: noindex hub remains in sitemap ${canonical}`);
+  }
 }
 
 const homeHtml = fs.existsSync(path.join(ROOT, "index.html")) ? fs.readFileSync(path.join(ROOT, "index.html"), "utf8") : "";

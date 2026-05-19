@@ -5,6 +5,7 @@ const ROOT = process.cwd();
 const BASE_URL = 'https://convertunlimited.com';
 const REGISTRY_PATH = path.join(ROOT, 'tools-registry.json');
 const SITEMAP_PATH = path.join(ROOT, 'sitemap.xml');
+const { isIndexableRoute, shouldKeepHreflang } = require('./data/index-policy');
 
 const LOCALES = require('./data/locales').map((locale) => ({
   ...locale,
@@ -123,6 +124,7 @@ for (const locale of LOCALES) {
   if (!html.includes('rel="canonical"')) toolsPageIssues.push(`${locale.code}:missing canonical`);
   if (!html.includes('google-adsense-account')) toolsPageIssues.push(`${locale.code}:missing adsense`);
   for (const alt of LOCALES) {
+    if (!shouldKeepHreflang(alt.hreflang)) continue;
     if (!html.includes(`hreflang="${alt.hreflang}"`)) toolsPageIssues.push(`${locale.code}:missing ${alt.hreflang}`);
   }
   if (!html.includes('hreflang="x-default"')) toolsPageIssues.push(`${locale.code}:missing x-default`);
@@ -137,10 +139,11 @@ const missingSitemap = [];
 for (const tool of liveTools) {
   for (const locale of LOCALES) {
     const loc = `${BASE_URL}${slugPath(tool.slug, locale)}`;
+    if (!isIndexableRoute(slugPath(tool.slug, locale))) continue;
     if (!sitemap.includes(`<loc>${loc}</loc>`)) missingSitemap.push(loc);
   }
 }
-addCheck('sitemap includes all live localized tool pages', missingSitemap.length === 0, missingSitemap.slice(0, 20).join('; '));
+addCheck('sitemap includes indexable live tool pages', missingSitemap.length === 0, missingSitemap.slice(0, 20).join('; '));
 addCheck('robots points to canonical sitemap', read('robots.txt').includes(`Sitemap: ${BASE_URL}/sitemap-index.xml`));
 addCheck('no www production domain remains', !/https:\/\/www\.convertunlimited\.com/.test(`${allHtml}\n${sitemap}\n${read('robots.txt')}\n${read('scripts/generate-sitemap.js')}`));
 

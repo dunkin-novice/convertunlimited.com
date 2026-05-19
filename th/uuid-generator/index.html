@@ -12,7 +12,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ตัวสร้าง UUID - สร้าง UUID v4 ออนไลน์ | ConvertUnlimited</title>
-    <meta name="description" content="สร้าง UUID v4 ในเบราว์เซอร์ สร้างหลายรายการ คัดลอกผลลัพธ์ และใช้ browser randomness โดยไม่อัปโหลด">
+    <meta name="description" content="สร้าง UUID v4 ในเบราว์เซอร์ สร้างหลายรายการ คัดลอกผลลัพธ์ และใช้ browser randomness โดยประมวลผลในเบราว์เซอร์">
     <meta name="robots" content="index,follow,max-image-preview:large">
     <meta name="theme-color" content="#3aa17e">
     <meta name="google-adsense-account" content="ca-pub-2823470980745945">
@@ -20,12 +20,6 @@
 
     <link rel="alternate" hreflang="en" href="https://convertunlimited.com/uuid-generator/">
     <link rel="alternate" hreflang="th" href="https://convertunlimited.com/th/uuid-generator/">
-    <link rel="alternate" hreflang="vi" href="https://convertunlimited.com/vi/uuid-generator/">
-    <link rel="alternate" hreflang="zh-Hans" href="https://convertunlimited.com/zh/uuid-generator/">
-    <link rel="alternate" hreflang="ja" href="https://convertunlimited.com/ja/uuid-generator/">
-    <link rel="alternate" hreflang="ko" href="https://convertunlimited.com/ko/uuid-generator/">
-    <link rel="alternate" hreflang="es" href="https://convertunlimited.com/es/uuid-generator/">
-    <link rel="alternate" hreflang="fr" href="https://convertunlimited.com/fr/uuid-generator/">
     <link rel="alternate" hreflang="x-default" href="https://convertunlimited.com/uuid-generator/">
 
     <link rel="icon" type="image/svg+xml" href="/favicon.svg">
@@ -35,9 +29,12 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/style.css">
-    <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","inLanguage":"th","mainEntity":[{"@type":"Question","name":"เครื่องมือนี้ฟรีไหม?","acceptedAnswer":{"@type":"Answer","text":"ฟรี สร้างและคัดลอก UUID ได้โดยไม่ต้องสมัคร"}},{"@type":"Question","name":"UUID สร้างในเครื่องไหม?","acceptedAnswer":{"@type":"Answer","text":"ใช่ สร้างในเบราว์เซอร์ด้วย crypto APIs"}},{"@type":"Question","name":"สร้าง UUID เวอร์ชันใด?","acceptedAnswer":{"@type":"Answer","text":"เครื่องมือนี้สร้าง UUID v4"}},{"@type":"Question","name":"สร้างหลายรายการได้ไหม?","acceptedAnswer":{"@type":"Answer","text":"ได้ ใช้ช่องจำนวนเพื่อสร้างได้สูงสุด 500 รายการ"}},{"@type":"Question","name":"UUID ถูกจัดเก็บไหม?","acceptedAnswer":{"@type":"Answer","text":"ไม่ ไม่อัปโหลด ไม่จัดเก็บ และไม่ส่งต่อ"}}]}</script>
-    <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"ตัวสร้าง UUID","description":"สร้าง UUID v4 ในเบราว์เซอร์ สร้างหลายรายการ คัดลอกผลลัพธ์ และใช้ browser randomness โดยไม่อัปโหลด","url":"https://convertunlimited.com/th/uuid-generator/","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","isAccessibleForFree":true,"inLanguage":"th","featureList":["สร้าง UUID หนึ่งรายการหรือหลายรายการ","Processed locally in your browser for supported operations","No account required"],"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","inLanguage":"th","mainEntity":[{"@type":"Question","name":"เครื่องมือนี้ฟรีไหม?","acceptedAnswer":{"@type":"Answer","text":"ฟรี สร้างและคัดลอก UUID ได้โดยไม่ต้องสมัคร"}},{"@type":"Question","name":"UUID สร้างในเครื่องไหม?","acceptedAnswer":{"@type":"Answer","text":"ใช่ สร้างในเบราว์เซอร์ด้วย crypto APIs"}},{"@type":"Question","name":"สร้าง UUID เวอร์ชันใด?","acceptedAnswer":{"@type":"Answer","text":"เครื่องมือนี้สร้าง UUID v4"}},{"@type":"Question","name":"สร้างหลายรายการได้ไหม?","acceptedAnswer":{"@type":"Answer","text":"ได้ ใช้ช่องจำนวนเพื่อสร้างได้สูงสุด 500 รายการ"}},{"@type":"Question","name":"UUID ถูกจัดเก็บไหม?","acceptedAnswer":{"@type":"Answer","text":"ไม่ ประมวลผลในเบราว์เซอร์ ไม่จัดเก็บ และไม่ส่งต่อ"}}]}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"ตัวสร้าง UUID","description":"สร้าง UUID v4 ในเบราว์เซอร์ สร้างหลายรายการ คัดลอกผลลัพธ์ และใช้ browser randomness โดยประมวลผลในเบราว์เซอร์","url":"https://convertunlimited.com/th/uuid-generator/","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","isAccessibleForFree":true,"inLanguage":"th","featureList":["สร้าง UUID หนึ่งรายการหรือหลายรายการ","Processed locally in your browser for supported operations","No account required"],"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2823470980745945" crossorigin="anonymous"></script>
+    <style id="ADSENSE_RECOVERY_CSS">
+      .banner-ad, .footer-ad, .ad-slot { display: none !important; }
+    </style>
 </head>
 <body data-tool="uuid-generator" data-page-type="tool">
     <!-- Google Tag Manager (noscript) -->
@@ -48,7 +45,7 @@
         <header class="topbar">
             <a href="/th/" class="brand" aria-label="ConvertUnlimited home"><span class="mark" aria-hidden="true"></span><span class="word"><b>Convert</b><span>Unlimited</span></span></a>
             <nav class="topnav" aria-label="Primary">
-                <span class="pill"><span class="dot"></span>100% free, no signup</span>
+                <span class="pill"><span class="dot"></span>Browser-native tools</span>
                 <details class="tools-dropdown"><summary aria-label="Tools">Tools <svg width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin-left: 2px; opacity: 0.5;"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></summary><div class="dropdown-menu" role="menu"><div class="dropdown-section">Developer Tools</div><a href="/th/uuid-generator/" aria-current="page">UUID Generator</a><a href="/th/url-encoder-decoder/">URL Encoder</a><a href="/th/base64-encoder-decoder/">Base64</a><a href="/th/json-formatter/">JSON Formatter</a></div></details>
                 <details class="lang-switcher"><summary aria-label="Language"><span aria-hidden="true">🌐</span> ไทย</summary><div class="lang-menu" role="menu">
                         <a href="/uuid-generator/" hreflang="en" lang="en">English</a>
@@ -86,7 +83,7 @@
                     </div>
                     <div class="banner-ad"><span class="ad-label">Ad</span><ins class="adsbygoogle ad-below" style="display:block" data-ad-client="ca-pub-2823470980745945" data-ad-slot="REPLACE_UUID_BELOW_TOOL_SLOT_ID" data-ad-format="auto" data-full-width-responsive="true"></ins></div>
                 </section>
-                <aside class="rail" aria-label="Sidebar"><div class="ad-slot"><span class="ad-label">Ad</span><div class="ad-body"><ins class="adsbygoogle ad-rail" style="display:block" data-ad-client="ca-pub-2823470980745945" data-ad-slot="REPLACE_UUID_RAIL_SLOT_ID" data-ad-format="auto" data-full-width-responsive="true"></ins></div><div class="ad-foot"></div></div><div class="rail-card trust"><h3>ออกแบบเพื่อความเป็นส่วนตัว</h3><div class="item"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg><div><b>สร้างในเครื่อง</b> UUID ถูกสร้างในเบราว์เซอร์</div></div><div class="item"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg><div><b>ไม่อัปโหลด</b> ไม่ต้องเรียกเซิร์ฟเวอร์</div></div></div></aside>
+                <aside class="rail" aria-label="Sidebar"><div class="ad-slot"><span class="ad-label">Ad</span><div class="ad-body"><ins class="adsbygoogle ad-rail" style="display:block" data-ad-client="ca-pub-2823470980745945" data-ad-slot="REPLACE_UUID_RAIL_SLOT_ID" data-ad-format="auto" data-full-width-responsive="true"></ins></div><div class="ad-foot"></div></div><div class="rail-card trust"><h3>ออกแบบเพื่อความเป็นส่วนตัว</h3><div class="item"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg><div><b>สร้างในเครื่อง</b> UUID ถูกสร้างในเบราว์เซอร์</div></div><div class="item"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg><div><b>ประมวลผลในเบราว์เซอร์</b> ไม่ต้องเรียกเซิร์ฟเวอร์</div></div></div></aside>
             </div>
 
             <section class="article aeo-summary" id="tool-summary">
@@ -108,9 +105,9 @@
                 <h3>สร้างหลายรายการได้ไหม?</h3>
                 <p>ได้ ใช้ช่องจำนวนเพื่อสร้างได้สูงสุด 500 รายการ</p>
                 <h3>UUID ถูกจัดเก็บไหม?</h3>
-                <p>ไม่ ไม่อัปโหลด ไม่จัดเก็บ และไม่ส่งต่อ</p>
+                <p>ไม่ ประมวลผลในเบราว์เซอร์ ไม่จัดเก็บ และไม่ส่งต่อ</p>
             </section>
-            <section id="privacy" class="article"><h2>นโยบายความเป็นส่วนตัว</h2><p>เราไม่เก็บ ไม่จัดเก็บ ไม่อัปโหลด และไม่ส่ง UUID ที่สร้าง</p></section>
+            <section id="privacy" class="article"><h2>นโยบายความเป็นส่วนตัว</h2><p>เราไม่เก็บ ไม่จัดเก็บ ประมวลผลในเบราว์เซอร์ และไม่ส่ง UUID ที่สร้าง</p></section>
             <section id="terms" class="article"><h2>ข้อกำหนดการใช้งาน</h2><p>ConvertUnlimited ให้บริการตามสภาพจริง ควรตรวจ ID ก่อนใช้ในระบบจริง</p></section>
 <!-- GUIDE_BLOCKS_START -->
         <section class="guide-help-blocks" aria-label="Helpful guides">
@@ -174,7 +171,11 @@
         </section>
 <!-- RELATED_TOOLS_END -->
         </main>
-        <footer class="footer"><div>© <span id="copyright-year">2026</span> ConvertUnlimited.com — runs entirely in your browser.</div><nav class="links" aria-label="Footer"><a href="/th/tools/">Tools</a><a href="/th/uuid-generator/#how">Guide</a><a href="/th/uuid-generator/#faq">FAQ</a><a href="/th/uuid-generator/#privacy">Privacy</a><a href="/th/uuid-generator/#terms">Terms</a></nav></footer>
+        <footer class="footer"><div>© <span id="copyright-year">2026</span> ConvertUnlimited.com — runs entirely in your browser.</div><nav class="links" aria-label="Footer"><a href="/th/tools/">Tools</a><a href="/th/uuid-generator/#how">Guide</a><a href="/th/uuid-generator/#faq">FAQ</a><a href="/th/uuid-generator/#privacy">Privacy</a><a href="/th/uuid-generator/#terms">Terms</a>
+                        <a href="/about/">About</a>
+                        <a href="/contact/">Contact</a>
+                        <a href="/privacy/">Privacy</a>
+                        <a href="/terms/">Terms</a></nav></footer>
     </div>
     <script src="/uuid-generator/uuid-generator.js"></script>
 </body>

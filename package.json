@@ -7,6 +7,8 @@
     "build:privacy": "node scripts/build-privacy.js",
     "audit:privacy": "node scripts/audit-privacy-build.js",
     "test:privacy-network": "node tests/no-network-processing.js",
+    "apply:index-policy": "node scripts/apply-index-policy.js",
+    "generate:legal-pages": "node scripts/generate-legal-pages.js",
     "apply:strategy-v5": "node scripts/apply-strategy-v5.js",
     "validate:strategy-v5": "node scripts/validate-strategy-v5.js && node scripts/validate-related-links.js && node scripts/validate-guide-blocks.js",
     "validate:related-links": "node scripts/validate-related-links.js",

@@ -12,7 +12,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ตัวแปลง CSV เป็น JSON - แปลง CSV เป็น JSON ออนไลน์ | ConvertUnlimited</title>
-    <meta name="description" content="แปลง CSV เป็น JSON ในเบราว์เซอร์ วางหรือเปิดไฟล์ CSV ใช้แถวแรกเป็นคีย์ คัดลอก และดาวน์โหลดโดยไม่อัปโหลด">
+    <meta name="description" content="แปลง CSV เป็น JSON ในเบราว์เซอร์ วางหรือเปิดไฟล์ CSV ใช้แถวแรกเป็นคีย์ คัดลอก และดาวน์โหลดโดยประมวลผลในเบราว์เซอร์">
     <meta name="robots" content="index,follow,max-image-preview:large">
     <meta name="theme-color" content="#3aa17e">
     <meta name="google-adsense-account" content="ca-pub-2823470980745945">
@@ -20,12 +20,6 @@
 
     <link rel="alternate" hreflang="en" href="https://convertunlimited.com/csv-to-json/">
     <link rel="alternate" hreflang="th" href="https://convertunlimited.com/th/csv-to-json/">
-    <link rel="alternate" hreflang="vi" href="https://convertunlimited.com/vi/csv-to-json/">
-    <link rel="alternate" hreflang="zh-Hans" href="https://convertunlimited.com/zh/csv-to-json/">
-    <link rel="alternate" hreflang="ja" href="https://convertunlimited.com/ja/csv-to-json/">
-    <link rel="alternate" hreflang="ko" href="https://convertunlimited.com/ko/csv-to-json/">
-    <link rel="alternate" hreflang="es" href="https://convertunlimited.com/es/csv-to-json/">
-    <link rel="alternate" hreflang="fr" href="https://convertunlimited.com/fr/csv-to-json/">
     <link rel="alternate" hreflang="x-default" href="https://convertunlimited.com/csv-to-json/">
 
     <link rel="icon" type="image/svg+xml" href="/favicon.svg">
@@ -36,8 +30,11 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/style.css">
     <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","inLanguage":"th","mainEntity":[{"@type":"Question","name":"เครื่องมือนี้ฟรีไหม?","acceptedAnswer":{"@type":"Answer","text":"ฟรี วาง แปลง คัดลอก และดาวน์โหลด JSON ได้โดยไม่ต้องสมัคร"}},{"@type":"Question","name":"ไฟล์ CSV ถูกอัปโหลดไหม?","acceptedAnswer":{"@type":"Answer","text":"ไม่ ไฟล์ถูกอ่านและแปลงในเบราว์เซอร์"}},{"@type":"Question","name":"คีย์ JSON สร้างอย่างไร?","acceptedAnswer":{"@type":"Answer","text":"ใช้แถวแรกของ CSV เป็นหัวตาราง และแต่ละแถวถัดไปเป็นออบเจกต์ JSON"}},{"@type":"Question","name":"ถ้าหัวตารางซ้ำจะเกิดอะไร?","acceptedAnswer":{"@type":"Answer","text":"เครื่องมือจะแจ้งเตือนและเพิ่มหมายเลขให้คีย์เพื่อไม่ให้ค่าถูกเขียนทับ"}},{"@type":"Question","name":"รองรับ Unicode ไหม?","acceptedAnswer":{"@type":"Answer","text":"รองรับข้อความ UTF-8 ภาษาเอเชีย เครื่องหมาย และอีโมจิในช่อง CSV ที่ถูกต้อง"}}]}</script>
-    <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"ตัวแปลง CSV เป็น JSON","description":"แปลง CSV เป็น JSON ในเบราว์เซอร์ วางหรือเปิดไฟล์ CSV ใช้แถวแรกเป็นคีย์ คัดลอก และดาวน์โหลดโดยไม่อัปโหลด","url":"https://convertunlimited.com/th/csv-to-json/","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","isAccessibleForFree":true,"inLanguage":"th","featureList":["วาง CSV แล้วแปลงเป็น JSON","Processed locally in your browser for supported operations","No account required"],"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"ตัวแปลง CSV เป็น JSON","description":"แปลง CSV เป็น JSON ในเบราว์เซอร์ วางหรือเปิดไฟล์ CSV ใช้แถวแรกเป็นคีย์ คัดลอก และดาวน์โหลดโดยประมวลผลในเบราว์เซอร์","url":"https://convertunlimited.com/th/csv-to-json/","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","isAccessibleForFree":true,"inLanguage":"th","featureList":["วาง CSV แล้วแปลงเป็น JSON","Processed locally in your browser for supported operations","No account required"],"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2823470980745945" crossorigin="anonymous"></script>
+    <style id="ADSENSE_RECOVERY_CSS">
+      .banner-ad, .footer-ad, .ad-slot { display: none !important; }
+    </style>
 </head>
 <body data-tool="csv-to-json" data-page-type="tool">
     <!-- Google Tag Manager (noscript) -->
@@ -48,7 +45,7 @@
         <header class="topbar">
             <a href="/th/" class="brand" aria-label="ConvertUnlimited home"><span class="mark" aria-hidden="true"></span><span class="word"><b>Convert</b><span>Unlimited</span></span></a>
             <nav class="topnav" aria-label="Primary">
-                <span class="pill"><span class="dot"></span>100% free, no signup</span>
+                <span class="pill"><span class="dot"></span>Browser-native tools</span>
                 <details class="tools-dropdown"><summary aria-label="Tools">Tools <svg width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin-left: 2px; opacity: 0.5;"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></summary><div class="dropdown-menu" role="menu"><div class="dropdown-section">Developer Tools</div><a href="/th/csv-cleaner/">CSV Cleaner</a><a href="/th/csv-to-json/" aria-current="page">CSV to JSON</a><a href="/th/json-formatter/">JSON Formatter</a><div class="dropdown-section">SEO Tools</div><a href="/th/meta-preview-checker/">Meta Preview Checker</a></div></details>
                 <details class="lang-switcher"><summary aria-label="Language"><span aria-hidden="true">🌐</span> ไทย</summary><div class="lang-menu" role="menu">
                         <a href="/csv-to-json/" hreflang="en" lang="en">English</a>
@@ -89,7 +86,7 @@
                     </div>
                     <div class="banner-ad"><span class="ad-label">Ad</span><ins class="adsbygoogle ad-below" style="display:block" data-ad-client="ca-pub-2823470980745945" data-ad-slot="REPLACE_CSV_JSON_BELOW_TOOL_SLOT_ID" data-ad-format="auto" data-full-width-responsive="true"></ins></div>
                 </section>
-                <aside class="rail" aria-label="Sidebar"><div class="ad-slot"><span class="ad-label">Ad</span><div class="ad-body"><ins class="adsbygoogle ad-rail" style="display:block" data-ad-client="ca-pub-2823470980745945" data-ad-slot="REPLACE_CSV_JSON_RAIL_SLOT_ID" data-ad-format="auto" data-full-width-responsive="true"></ins></div><div class="ad-foot"></div></div><div class="rail-card trust"><h3>ออกแบบเพื่อความเป็นส่วนตัว</h3><div class="item"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg><div><b>แปลงในเครื่อง</b> การอ่าน CSV และสร้าง JSON ทำในเบราว์เซอร์</div></div><div class="item"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg><div><b>ไม่อัปโหลด</b> ไฟล์อยู่บนอุปกรณ์ของคุณ</div></div></div></aside>
+                <aside class="rail" aria-label="Sidebar"><div class="ad-slot"><span class="ad-label">Ad</span><div class="ad-body"><ins class="adsbygoogle ad-rail" style="display:block" data-ad-client="ca-pub-2823470980745945" data-ad-slot="REPLACE_CSV_JSON_RAIL_SLOT_ID" data-ad-format="auto" data-full-width-responsive="true"></ins></div><div class="ad-foot"></div></div><div class="rail-card trust"><h3>ออกแบบเพื่อความเป็นส่วนตัว</h3><div class="item"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg><div><b>แปลงในเครื่อง</b> การอ่าน CSV และสร้าง JSON ทำในเบราว์เซอร์</div></div><div class="item"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg><div><b>ประมวลผลในเบราว์เซอร์</b> ไฟล์อยู่บนอุปกรณ์ของคุณ</div></div></div></aside>
             </div>
 
             <section class="article aeo-summary" id="tool-summary">
@@ -113,7 +110,7 @@
                 <h3>รองรับ Unicode ไหม?</h3>
                 <p>รองรับข้อความ UTF-8 ภาษาเอเชีย เครื่องหมาย และอีโมจิในช่อง CSV ที่ถูกต้อง</p>
             </section>
-            <section id="privacy" class="article"><h2>นโยบายความเป็นส่วนตัว</h2><p>เราไม่เก็บ ไม่จัดเก็บ ไม่อัปโหลด และไม่ส่งข้อมูล CSV หรือ JSON การเลือกไฟล์อ่านเฉพาะในเบราว์เซอร์</p></section>
+            <section id="privacy" class="article"><h2>นโยบายความเป็นส่วนตัว</h2><p>เราไม่เก็บ ไม่จัดเก็บ ประมวลผลในเบราว์เซอร์ และไม่ส่งข้อมูล CSV หรือ JSON การเลือกไฟล์อ่านเฉพาะในเบราว์เซอร์</p></section>
             <section id="terms" class="article"><h2>ข้อกำหนดการใช้งาน</h2><p>ConvertUnlimited ให้บริการตามสภาพจริง ควรตรวจ JSON ที่สร้างแล้วก่อนใช้ในระบบจริง</p></section>
 <!-- GUIDE_BLOCKS_START -->
         <section class="guide-help-blocks" aria-label="Helpful guides">
@@ -177,7 +174,11 @@
         </section>
 <!-- RELATED_TOOLS_END -->
         </main>
-        <footer class="footer"><div>© <span id="copyright-year">2026</span> ConvertUnlimited.com — runs entirely in your browser.</div><nav class="links" aria-label="Footer"><a href="/th/tools/">Tools</a><a href="/th/csv-to-json/#how">Guide</a><a href="/th/csv-to-json/#faq">FAQ</a><a href="/th/csv-to-json/#privacy">Privacy</a><a href="/th/csv-to-json/#terms">Terms</a></nav></footer>
+        <footer class="footer"><div>© <span id="copyright-year">2026</span> ConvertUnlimited.com — runs entirely in your browser.</div><nav class="links" aria-label="Footer"><a href="/th/tools/">Tools</a><a href="/th/csv-to-json/#how">Guide</a><a href="/th/csv-to-json/#faq">FAQ</a><a href="/th/csv-to-json/#privacy">Privacy</a><a href="/th/csv-to-json/#terms">Terms</a>
+                        <a href="/about/">About</a>
+                        <a href="/contact/">Contact</a>
+                        <a href="/privacy/">Privacy</a>
+                        <a href="/terms/">Terms</a></nav></footer>
     </div>
     <script src="/csv-to-json/csv-to-json.js"></script>
 </body>

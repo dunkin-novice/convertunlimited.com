@@ -121,6 +121,10 @@ const LANGUAGE_CODES = new Map([
 function removeAdScaffold(html) {
   let out = html;
   out = out.replace(
+    /\s*<style id="ADSENSE_RECOVERY_CSS">[\s\S]*?<\/style>\s*/gi,
+    "\n"
+  );
+  out = out.replace(
     /\s*<div\b[^>]*class="[^"]*\bbanner-ad\b[^"]*"[^>]*>[\s\S]*?<\/div>\s*/gi,
     "\n"
   );
