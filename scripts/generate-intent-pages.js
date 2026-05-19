@@ -26,7 +26,8 @@ const TOOL_LABELS = {
   "compress-pdf": ["Compress PDF", "/compress-pdf/"],
   "images-to-pdf": ["Images to PDF", "/images-to-pdf/"],
   "pdf-to-images": ["PDF to Images", "/pdf-to-images/"],
-  "json-formatter": ["JSON Formatter", "/json-formatter/"]
+  "json-formatter": ["JSON Formatter", "/json-formatter/"],
+  "hash-generator": ["Hash Generator", "/hash-generator/"]
 };
 
 function esc(value) {
@@ -137,7 +138,19 @@ function guideLabel(href) {
     "/guides/local-processing/": "What local processing means",
     "/guides/webp-vs-png/": "WebP vs PNG guide",
     "/guides/webp-vs-jpg/": "WebP vs JPG guide",
-    "/guides/what-is-webp/": "What WebP is"
+    "/guides/what-is-webp/": "What WebP is",
+    "/trust/": "Trust Center",
+    "/trust/local-processing/": "Local processing trust notes",
+    "/trust/privacy-build/": "Privacy build details",
+    "/trust/security-architecture/": "Security architecture",
+    "/trust/verification/": "How to verify local processing",
+    "/trust/limitations/": "Browser-native limitations",
+    "/trust/third-parties/": "Third-party runtime policy",
+    "/compare/browser-native-vs-cloud-converters/": "Browser-native vs cloud converters",
+    "/compare/no-upload-file-converters/": "No-upload converter checklist",
+    "/best/browser-based-pdf-tools/": "Browser-based PDF tools",
+    "/best/free-image-converter/": "Free image converter workflows",
+    "/compare/png-vs-webp/": "PNG vs WebP",
   }[href] || href.replace(/^\/|\/$/g, "").replace(/[-/]/g, " ");
 }
 
@@ -276,7 +289,7 @@ function renderPage(page) {
             </section>
 
             ${renderLinks("Related tools", toolLinks, "intent-related-tools")}
-            ${renderLinks("Helpful guides", guideLinks, "intent-guide-links")}
+            ${renderLinks("Related trust pages and guides", guideLinks, "intent-guide-links")}
 
             <section id="faq" class="article">
                 <h2>FAQ</h2>
@@ -303,6 +316,8 @@ function renderPage(page) {
                 <a href="/merge-pdf/">Merge PDF</a>
                 <a href="/guides/how-it-works/">How it works</a>
                 <a href="/proof-of-local-processing/">Proof</a>
+                <a href="/trust/">Trust Center</a>
+                <a href="/trust/verification/">Verification</a>
             </nav>
         </footer>
     </div>
@@ -346,6 +361,16 @@ function renderHub(hub) {
     inLanguage: "en",
     mainEntityOfPage: { "@type": "WebPage", "@id": canonical }
   };
+  const itemListSchema = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    itemListElement: allLinks.map((page, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      name: page.title,
+      url: `${BASE_URL}${page.path}`
+    }))
+  };
 
   return `<!DOCTYPE html>
 <html lang="en">
@@ -377,6 +402,7 @@ function renderHub(hub) {
     <link rel="stylesheet" href="/style.css">
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2823470980745945" crossorigin="anonymous"></script>
     ${jsonLd(webPageSchema)}
+    ${jsonLd(itemListSchema)}
     ${jsonLd(faqSchema)}
 </head>
 <body data-page-type="intent-hub">

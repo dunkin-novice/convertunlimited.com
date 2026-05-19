@@ -1,8 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://www.convertunlimited.com/alternatives/canva-converters/</loc>
+    <lastmod>2026-05-19T03:49:44.476Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
     <loc>https://www.convertunlimited.com/alternatives/cloudconvert/</loc>
     <lastmod>2026-05-18T16:40:33+07:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://www.convertunlimited.com/alternatives/freeconvert/</loc>
+    <lastmod>2026-05-19T03:49:44.476Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://www.convertunlimited.com/alternatives/ilovepdf/</loc>
+    <lastmod>2026-05-19T03:49:44.476Z</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -15,6 +33,12 @@
   <url>
     <loc>https://www.convertunlimited.com/alternatives/online-convert/</loc>
     <lastmod>2026-05-18T16:40:33+07:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://www.convertunlimited.com/alternatives/tinypng/</loc>
+    <lastmod>2026-05-19T03:49:44.476Z</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -88,8 +112,20 @@
     <priority>0.5</priority>
   </url>
   <url>
+    <loc>https://www.convertunlimited.com/compare/browser-native-vs-cloud-converters/</loc>
+    <lastmod>2026-05-19T03:49:44.475Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
     <loc>https://www.convertunlimited.com/compare/</loc>
     <lastmod>2026-05-18T16:40:33+07:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://www.convertunlimited.com/compare/no-upload-file-converters/</loc>
+    <lastmod>2026-05-19T03:49:44.476Z</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>

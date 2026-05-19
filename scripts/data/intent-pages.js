@@ -94,6 +94,290 @@ const INTENT_PAGES = [
     ]
   },
   {
+    slug: "browser-native-vs-cloud-converters",
+    path: "/compare/browser-native-vs-cloud-converters/",
+    type: "comparison",
+    title: "Browser-Native vs Cloud Converters",
+    metaDescription: "Compare browser-native file tools with cloud converters for privacy-sensitive workflows, format coverage, performance, and verification.",
+    h1: "Browser-native vs cloud converters",
+    summary: "Browser-native converters process supported files in your browser, while cloud converters send files to a remote service for processing. The right choice depends on privacy needs, file size, format coverage, automation, and device limits.",
+    answer: "Use browser-native tools when the workflow is supported and you want local processing; use cloud converters when you need broad format support, APIs, automation, or server-side power.",
+    reviewed: "May 2026",
+    sections: [
+      {
+        heading: "Core difference",
+        paragraphs: [
+          "A browser-native converter loads static code, reads the selected file in the browser, and writes the result from the same tab for supported workflows.",
+          "A cloud converter uploads the file to a remote service that performs conversion on server infrastructure. That model can support more formats and automation, but it changes the privacy and trust boundary."
+        ]
+      },
+      {
+        heading: "Comparison",
+        table: {
+          headers: ["Criteria", "Browser-native tools", "Cloud converters"],
+          rows: [
+            ["Processing location", "User browser for supported workflows", "Remote service"],
+            ["Upload requirement", "Not required for supported local flows", "Usually required for conversion"],
+            ["Format coverage", "Limited by browser APIs and vendored libraries", "Often broader"],
+            ["Automation/API", "Not the focus", "Often a strength"],
+            ["Privacy-sensitive workflows", "Use the privacy build and verify in DevTools", "Review upload, retention, and account policies"]
+          ]
+        }
+      },
+      {
+        heading: "Verification steps",
+        paragraphs: [
+          "For a browser-native workflow, open DevTools before selecting a file, clear the Network panel, run the conversion, and check whether processing creates upload, analytics, ad, CDN, or beacon requests.",
+          "For a cloud workflow, read the provider's upload, storage, deletion, and account policies before processing sensitive files."
+        ]
+      }
+    ],
+    limitations: [
+      "Browser-native workflows depend on browser support, memory, CPU, and included client-side libraries.",
+      "Cloud converters can be better for uncommon formats, very large files, batch automation, and API workflows.",
+      "A clean Network panel verifies only the tested workflow and environment; it is not a complete security proof."
+    ],
+    relatedTools: ["image-converter", "image-compressor", "metadata-remover", "merge-pdf", "json-formatter"],
+    guideLinks: ["/trust/local-processing/", "/trust/verification/", "/trust/limitations/", "/proof-of-local-processing/"],
+    faqs: [
+      ["Are browser-native converters always more private?", "No. They can reduce upload exposure for supported workflows, but the page, host, browser, and extensions still matter."],
+      ["When is a cloud converter better?", "Use a cloud converter when the format is unsupported in the browser, files are too large for the device, or automation/API workflows are required."],
+      ["Which ConvertUnlimited version should I use for privacy-sensitive files?", "Use privacy.convertunlimited.com, which is generated without ads, analytics, remote fonts, or third-party runtime scripts."]
+    ]
+  },
+  {
+    slug: "no-upload-file-converters",
+    path: "/compare/no-upload-file-converters/",
+    type: "comparison",
+    title: "No-Upload File Converters: What to Check",
+    metaDescription: "Learn how no-upload file converters work, what claims to verify, and when browser-native processing is a good fit.",
+    h1: "No-upload file converters",
+    summary: "A no-upload converter should make its processing model testable. For supported ConvertUnlimited workflows, selected file contents are processed locally in the browser and the privacy build removes ads, analytics, remote fonts, and third-party runtime scripts.",
+    answer: "Do not trust a no-upload claim by wording alone. Check where processing happens, whether an upload endpoint is used, whether third-party scripts run, and whether the behavior can be verified in DevTools.",
+    reviewed: "May 2026",
+    sections: [
+      {
+        heading: "What no-upload should mean",
+        paragraphs: [
+          "A useful no-upload claim should be scoped to a specific processing flow, not the entire website. It should explain that the selected file is read and transformed locally in the browser for supported tools.",
+          "The claim should also be testable. Network inspection should not show file-content upload requests during the processing step."
+        ]
+      },
+      {
+        heading: "Claim checklist",
+        table: {
+          headers: ["Question", "Why it matters", "ConvertUnlimited privacy build"],
+          rows: [
+            ["Is the tool browser-native?", "Local APIs reduce the need for upload", "Yes for supported workflows"],
+            ["Are ads or analytics loaded?", "Third parties can observe page activity", "No in the privacy build"],
+            ["Are runtime libraries same-origin?", "CDNs are executable dependencies", "Vendored where needed"],
+            ["Is connect-src restricted?", "Limits network APIs in supporting browsers", "connect-src 'none'"],
+            ["Can users verify behavior?", "Trust should be inspectable", "DevTools and repository tests"]
+          ]
+        }
+      },
+      {
+        heading: "Verification steps",
+        paragraphs: [
+          "Open a clean browser profile, visit the privacy build, open DevTools Network, disable cache, process a small sample file, and review new requests.",
+          "Expected activity should be same-origin static assets or local browser URLs such as blob: and data:. Unexpected upload, analytics, ad, CDN, or beacon requests should be investigated."
+        ]
+      }
+    ],
+    limitations: [
+      "No-upload does not mean no network requests before the page is loaded.",
+      "No-upload does not protect against compromised browsers, extensions, operating systems, or host-level script injection.",
+      "Some formats and files still require cloud or desktop tools."
+    ],
+    relatedTools: ["image-converter", "metadata-remover", "image-compressor", "images-to-pdf", "hash-generator"],
+    guideLinks: ["/trust/verification/", "/trust/privacy-build/", "/trust/third-parties/", "/trust/limitations/"],
+    faqs: [
+      ["How can I tell whether a converter uploads files?", "Inspect the Network panel while processing a sample file and look for upload or third-party requests."],
+      ["Does no-upload mean the site has no third parties?", "No. A site can process files locally while still loading ads or analytics. Use the privacy build when that distinction matters."],
+      ["Does ConvertUnlimited provide a server-side upload endpoint for supported local flows?", "No. Supported local-processing flows use browser APIs and client-side code rather than a ConvertUnlimited upload endpoint."]
+    ]
+  },
+  {
+    slug: "tinypng-alternative",
+    path: "/alternatives/tinypng/",
+    type: "alternative",
+    title: "TinyPNG Alternative for Browser-Based Image Workflows",
+    metaDescription: "Compare TinyPNG with ConvertUnlimited for image compression, WebP conversion, resizing, metadata cleanup, and privacy-sensitive browser workflows.",
+    h1: "TinyPNG alternative for browser-based image workflows",
+    summary: "ConvertUnlimited is a better fit when you want several browser-native image utilities in one place and privacy-sensitive workflows can run locally in your browser. TinyPNG is a strong fit when its compression service, API, or existing optimization pipeline is what you need.",
+    answer: "Use ConvertUnlimited for local browser image workflows such as compress, resize, convert, and remove metadata. Use TinyPNG when you specifically want TinyPNG/Tinify compression behavior, API integration, or an existing cloud optimization workflow.",
+    reviewed: "May 2026",
+    sections: [
+      {
+        heading: "Best fit",
+        paragraphs: [
+          "TinyPNG is known for image compression and the Tinify developer workflow. ConvertUnlimited is broader as a browser-native utility surface: conversion, compression, resizing, metadata cleanup, AVIF/WebP workflows, and related PDF/developer tools.",
+          "The privacy distinction is the main moat: for supported ConvertUnlimited image workflows, selected file contents are processed locally in the browser. Use the privacy build for no ads, analytics, remote fonts, or third-party runtime scripts."
+        ]
+      },
+      {
+        heading: "Comparison",
+        table: {
+          headers: ["Criteria", "ConvertUnlimited", "TinyPNG"],
+          rows: [
+            ["Primary use", "Browser-native image utility workflows", "Image compression service"],
+            ["Processing model", "Local browser processing for supported tools", "Service-based compression workflow"],
+            ["API/integration", "Not the focus", "Strong fit via Tinify-style workflows"],
+            ["Related tasks", "Convert, compress, resize, remove metadata", "Compression-focused"],
+            ["Privacy-sensitive use", "Use privacy.convertunlimited.com", "Review upload and API behavior"]
+          ]
+        }
+      }
+    ],
+    limitations: [
+      "ConvertUnlimited browser-native compression may not match a specialized service on every image.",
+      "TinyPNG can be better when an API, plugin, or existing cloud optimization pipeline is required.",
+      "Browser-native processing is limited by device memory, CPU, and browser encoder behavior."
+    ],
+    relatedTools: ["image-compressor", "image-resizer", "png-to-webp", "jpg-to-webp", "metadata-remover"],
+    guideLinks: ["/trust/local-processing/", "/trust/privacy-build/", "/trust/verification/", "/compare/png-vs-webp/"],
+    faqs: [
+      ["Is ConvertUnlimited a full TinyPNG replacement?", "No. It is a browser-native alternative for common image utility workflows, not a replacement for every TinyPNG/Tinify integration."],
+      ["When is ConvertUnlimited better?", "When the task is supported locally and you want image conversion, compression, resizing, or metadata cleanup without a server-side upload endpoint for that flow."],
+      ["When is TinyPNG better?", "When you need its specific compression service, API, plugin ecosystem, or an established cloud image-optimization pipeline."]
+    ]
+  },
+  {
+    slug: "ilovepdf-alternative",
+    path: "/alternatives/ilovepdf/",
+    type: "alternative",
+    title: "iLovePDF Alternative for Browser-Based PDF Tools",
+    metaDescription: "Compare iLovePDF with ConvertUnlimited for browser-based PDF merge, split, compress, images-to-PDF, and PDF-to-image workflows.",
+    h1: "iLovePDF alternative for browser-based PDF tools",
+    summary: "ConvertUnlimited is a lightweight browser-native alternative for common PDF workflows when local processing is a priority. iLovePDF is better for broad hosted PDF features, account workflows, and tools that require server-side document handling.",
+    answer: "Use ConvertUnlimited for simple browser-based PDF tasks that fit local processing. Use iLovePDF when you need a broad PDF platform, account features, OCR-style workflows, editing depth, or server-side processing.",
+    reviewed: "May 2026",
+    sections: [
+      {
+        heading: "Best fit",
+        paragraphs: [
+          "ConvertUnlimited supports common PDF tasks such as merging, splitting, compressing, creating PDFs from images, and rendering PDF pages as images. These workflows are limited by browser memory and client-side library behavior.",
+          "iLovePDF is a broader PDF platform. That breadth can be valuable, but it also means users should review upload, retention, account, and processing policies before using it for sensitive documents."
+        ]
+      },
+      {
+        heading: "Comparison",
+        table: {
+          headers: ["Criteria", "ConvertUnlimited", "iLovePDF"],
+          rows: [
+            ["Processing model", "Browser-native for supported PDF workflows", "Hosted PDF platform"],
+            ["Best use", "Quick local PDF utility tasks", "Broad PDF tool coverage"],
+            ["Advanced PDF features", "Limited", "Stronger fit"],
+            ["Large/complex PDFs", "Limited by browser resources", "Often better fit"],
+            ["Privacy-sensitive use", "Use the privacy build and verify", "Review upload and retention policy"]
+          ]
+        }
+      }
+    ],
+    limitations: [
+      "Browser PDF processing can fail on encrypted, damaged, or very large PDFs.",
+      "Some compression results are limited because browser-side tools cannot safely rewrite every PDF object.",
+      "iLovePDF may be better for OCR, editing, signing, account workflows, or advanced document tasks."
+    ],
+    relatedTools: ["merge-pdf", "split-pdf", "compress-pdf", "images-to-pdf", "pdf-to-images"],
+    guideLinks: ["/trust/local-processing/", "/trust/limitations/", "/trust/verification/", "/best/browser-based-pdf-tools/"],
+    faqs: [
+      ["Is ConvertUnlimited a complete iLovePDF replacement?", "No. It covers common browser-native PDF tasks, not every hosted PDF feature."],
+      ["When should I use ConvertUnlimited?", "Use it for supported quick PDF workflows where local browser processing and no-account use matter."],
+      ["When should I use iLovePDF?", "Use it when you need broader PDF editing, account workflows, OCR-style features, or server-side handling for large documents."]
+    ]
+  },
+  {
+    slug: "freeconvert-alternative",
+    path: "/alternatives/freeconvert/",
+    type: "alternative",
+    title: "FreeConvert Alternative for No-Upload Browser Workflows",
+    metaDescription: "Compare FreeConvert with ConvertUnlimited for browser-native image, PDF, and developer utilities where supported workflows can run locally.",
+    h1: "FreeConvert alternative for no-upload browser workflows",
+    summary: "ConvertUnlimited is a better fit when you need supported browser-native utility workflows and want to avoid a server-side upload endpoint for those flows. FreeConvert is broader when you need many cloud conversion categories, presets, or server-side handling.",
+    answer: "Use ConvertUnlimited for supported local browser tasks. Use FreeConvert when broad file conversion coverage, cloud processing, or formats outside browser support are the priority.",
+    reviewed: "May 2026",
+    sections: [
+      {
+        heading: "Best fit",
+        paragraphs: [
+          "FreeConvert is a broad cloud conversion service. ConvertUnlimited focuses on privacy-native browser utilities where the browser can do the work locally.",
+          "This makes ConvertUnlimited a stronger fit for common image, PDF, and developer tasks where local processing and verification matter more than long-tail format coverage."
+        ]
+      },
+      {
+        heading: "Comparison",
+        table: {
+          headers: ["Criteria", "ConvertUnlimited", "FreeConvert"],
+          rows: [
+            ["Processing model", "Browser-native for supported workflows", "Cloud/server-side conversion service"],
+            ["Format breadth", "Common browser-supported utilities", "Broader file conversion categories"],
+            ["Account/API workflows", "Not the focus", "Better fit when needed"],
+            ["Verification", "DevTools and privacy build tests", "Review provider policies"],
+            ["Privacy-sensitive use", "Use privacy.convertunlimited.com", "Review upload, storage, and processing behavior"]
+          ]
+        }
+      }
+    ],
+    limitations: [
+      "ConvertUnlimited is not intended to cover every file type.",
+      "FreeConvert or another cloud converter may be better for uncommon formats and very large files.",
+      "Use the privacy build for privacy-sensitive ConvertUnlimited workflows, not the public ad-supported site."
+    ],
+    relatedTools: ["image-converter", "avif-converter", "image-compressor", "merge-pdf", "json-formatter"],
+    guideLinks: ["/compare/browser-native-vs-cloud-converters/", "/compare/no-upload-file-converters/", "/trust/privacy-build/", "/trust/limitations/"],
+    faqs: [
+      ["Is ConvertUnlimited a full FreeConvert replacement?", "No. It is a browser-native alternative for supported utility workflows, not a broad cloud conversion platform."],
+      ["When is ConvertUnlimited better?", "When the task is supported locally and privacy-sensitive processing or no-account utility use matters."],
+      ["When is FreeConvert better?", "When you need broad server-side format conversion, larger files, presets, or workflows outside browser support."]
+    ]
+  },
+  {
+    slug: "canva-converters-alternative",
+    path: "/alternatives/canva-converters/",
+    type: "alternative",
+    title: "Canva Converter Alternative for Browser-Native Utility Workflows",
+    metaDescription: "Compare Canva converters with ConvertUnlimited for quick browser-native file utilities, image optimization, PDF workflows, and privacy-sensitive processing.",
+    h1: "Canva converter alternative for browser-native utility workflows",
+    summary: "ConvertUnlimited is a better fit for quick utility workflows such as image conversion, compression, resizing, metadata cleanup, and PDF utility tasks. Canva is better when the conversion is part of a design, template, collaboration, or publishing workflow.",
+    answer: "Use ConvertUnlimited when you need a fast file utility. Use Canva when you need design editing, templates, collaboration, brand assets, or publishing tools around the conversion.",
+    reviewed: "May 2026",
+    sections: [
+      {
+        heading: "Best fit",
+        paragraphs: [
+          "Canva is a design platform. Its converters make sense when file conversion is part of creating or exporting a design.",
+          "ConvertUnlimited is a utility platform. It is better suited to direct file tasks where the goal is convert, compress, resize, clean metadata, merge, split, or format data without entering a design workspace."
+        ]
+      },
+      {
+        heading: "Comparison",
+        table: {
+          headers: ["Criteria", "ConvertUnlimited", "Canva converters"],
+          rows: [
+            ["Primary model", "Browser-native utility tools", "Design platform workflow"],
+            ["Best use", "Direct file conversion and cleanup", "Design editing and export"],
+            ["Templates/collaboration", "Not the focus", "Strong fit"],
+            ["Privacy-sensitive file utilities", "Use the privacy build", "Review account, upload, and design storage behavior"],
+            ["Workflow speed", "Fast for utility tasks", "Better when design context is needed"]
+          ]
+        }
+      }
+    ],
+    limitations: [
+      "ConvertUnlimited does not provide design templates, brand kits, collaboration, or publishing workflows.",
+      "Canva may be better when conversion is part of a design project.",
+      "Browser-native utility tools remain limited by browser support and device resources."
+    ],
+    relatedTools: ["image-converter", "image-resizer", "image-compressor", "metadata-remover", "images-to-pdf"],
+    guideLinks: ["/trust/local-processing/", "/trust/privacy-build/", "/best/free-image-converter/", "/best/browser-based-pdf-tools/"],
+    faqs: [
+      ["Is ConvertUnlimited a Canva replacement?", "No. ConvertUnlimited is a browser-native utility platform, not a design workspace."],
+      ["When is ConvertUnlimited better?", "When you want a direct file utility without templates, accounts, design editing, or project storage."],
+      ["When is Canva better?", "When the conversion is part of design creation, collaboration, brand management, or publishing."]
+    ]
+  },
+  {
     slug: "free-image-converter",
     path: "/best/free-image-converter/",
     type: "best",

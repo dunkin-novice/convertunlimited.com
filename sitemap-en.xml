@@ -1,8 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://www.convertunlimited.com/alternatives/canva-converters/</loc>
+    <lastmod>2026-05-19T03:49:44.476Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
     <loc>https://www.convertunlimited.com/alternatives/cloudconvert/</loc>
     <lastmod>2026-05-18T16:40:33+07:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://www.convertunlimited.com/alternatives/freeconvert/</loc>
+    <lastmod>2026-05-19T03:49:44.476Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://www.convertunlimited.com/alternatives/ilovepdf/</loc>
+    <lastmod>2026-05-19T03:49:44.476Z</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -15,6 +33,12 @@
   <url>
     <loc>https://www.convertunlimited.com/alternatives/online-convert/</loc>
     <lastmod>2026-05-18T16:40:33+07:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://www.convertunlimited.com/alternatives/tinypng/</loc>
+    <lastmod>2026-05-19T03:49:44.476Z</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -88,8 +112,20 @@
     <priority>0.5</priority>
   </url>
   <url>
+    <loc>https://www.convertunlimited.com/compare/browser-native-vs-cloud-converters/</loc>
+    <lastmod>2026-05-19T03:49:44.475Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
     <loc>https://www.convertunlimited.com/compare/</loc>
     <lastmod>2026-05-18T16:40:33+07:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://www.convertunlimited.com/compare/no-upload-file-converters/</loc>
+    <lastmod>2026-05-19T03:49:44.476Z</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -107,7 +143,7 @@
   </url>
   <url>
     <loc>https://www.convertunlimited.com/compress-pdf/</loc>
-    <lastmod>2026-05-18T16:08:35+07:00</lastmod>
+    <lastmod>2026-05-19T09:48:51+07:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.convertunlimited.com/compress-pdf/"/>
@@ -296,7 +332,7 @@
   </url>
   <url>
     <loc>https://www.convertunlimited.com/image-compressor/</loc>
-    <lastmod>2026-05-18T16:08:35+07:00</lastmod>
+    <lastmod>2026-05-19T09:48:51+07:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.convertunlimited.com/image-compressor/"/>
@@ -326,7 +362,7 @@
   </url>
   <url>
     <loc>https://www.convertunlimited.com/images-to-pdf/</loc>
-    <lastmod>2026-05-18T16:08:35+07:00</lastmod>
+    <lastmod>2026-05-19T09:48:51+07:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.convertunlimited.com/images-to-pdf/"/>
@@ -341,7 +377,7 @@
   </url>
   <url>
     <loc>https://www.convertunlimited.com/</loc>
-    <lastmod>2026-05-18T16:40:33+07:00</lastmod>
+    <lastmod>2026-05-19T09:48:51+07:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.convertunlimited.com/"/>
@@ -356,7 +392,7 @@
   </url>
   <url>
     <loc>https://www.convertunlimited.com/jpg-to-webp/</loc>
-    <lastmod>2026-05-18T16:08:35+07:00</lastmod>
+    <lastmod>2026-05-19T09:48:51+07:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.convertunlimited.com/jpg-to-webp/"/>
@@ -416,7 +452,7 @@
   </url>
   <url>
     <loc>https://www.convertunlimited.com/merge-pdf/</loc>
-    <lastmod>2026-05-18T16:08:35+07:00</lastmod>
+    <lastmod>2026-05-19T09:48:51+07:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.convertunlimited.com/merge-pdf/"/>
@@ -446,7 +482,7 @@
   </url>
   <url>
     <loc>https://www.convertunlimited.com/metadata-remover/</loc>
-    <lastmod>2026-05-18T16:08:35+07:00</lastmod>
+    <lastmod>2026-05-19T09:48:51+07:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.convertunlimited.com/metadata-remover/"/>
@@ -461,7 +497,7 @@
   </url>
   <url>
     <loc>https://www.convertunlimited.com/pdf-to-images/</loc>
-    <lastmod>2026-05-18T16:08:35+07:00</lastmod>
+    <lastmod>2026-05-19T09:48:51+07:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.convertunlimited.com/pdf-to-images/"/>
@@ -476,7 +512,7 @@
   </url>
   <url>
     <loc>https://www.convertunlimited.com/png-to-jpg/</loc>
-    <lastmod>2026-05-18T16:08:35+07:00</lastmod>
+    <lastmod>2026-05-19T09:48:51+07:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.convertunlimited.com/png-to-jpg/"/>
@@ -491,7 +527,7 @@
   </url>
   <url>
     <loc>https://www.convertunlimited.com/png-to-webp/</loc>
-    <lastmod>2026-05-18T16:08:35+07:00</lastmod>
+    <lastmod>2026-05-19T09:48:51+07:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.convertunlimited.com/png-to-webp/"/>
@@ -542,7 +578,7 @@
   </url>
   <url>
     <loc>https://www.convertunlimited.com/split-pdf/</loc>
-    <lastmod>2026-05-18T16:08:35+07:00</lastmod>
+    <lastmod>2026-05-19T09:48:51+07:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.convertunlimited.com/split-pdf/"/>
@@ -572,7 +608,7 @@
   </url>
   <url>
     <loc>https://www.convertunlimited.com/tools/</loc>
-    <lastmod>2026-05-18T15:55:17+07:00</lastmod>
+    <lastmod>2026-05-19T09:48:51+07:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.convertunlimited.com/tools/"/>
@@ -587,43 +623,43 @@
   </url>
   <url>
     <loc>https://www.convertunlimited.com/trust/</loc>
-    <lastmod>2026-05-19T02:46:57.045Z</lastmod>
+    <lastmod>2026-05-19T09:48:51+07:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://www.convertunlimited.com/trust/limitations/</loc>
-    <lastmod>2026-05-19T02:46:57.046Z</lastmod>
+    <lastmod>2026-05-19T09:48:51+07:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://www.convertunlimited.com/trust/local-processing/</loc>
-    <lastmod>2026-05-19T02:46:57.045Z</lastmod>
+    <lastmod>2026-05-19T09:48:51+07:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://www.convertunlimited.com/trust/privacy-build/</loc>
-    <lastmod>2026-05-19T02:46:57.045Z</lastmod>
+    <lastmod>2026-05-19T09:48:51+07:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://www.convertunlimited.com/trust/security-architecture/</loc>
-    <lastmod>2026-05-19T02:46:57.045Z</lastmod>
+    <lastmod>2026-05-19T09:48:51+07:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://www.convertunlimited.com/trust/third-parties/</loc>
-    <lastmod>2026-05-19T02:46:57.046Z</lastmod>
+    <lastmod>2026-05-19T09:48:51+07:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://www.convertunlimited.com/trust/verification/</loc>
-    <lastmod>2026-05-19T02:46:57.046Z</lastmod>
+    <lastmod>2026-05-19T09:48:51+07:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -674,7 +710,7 @@
   </url>
   <url>
     <loc>https://www.convertunlimited.com/webp-to-jpg/</loc>
-    <lastmod>2026-05-18T16:08:35+07:00</lastmod>
+    <lastmod>2026-05-19T09:48:51+07:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.convertunlimited.com/webp-to-jpg/"/>
@@ -689,7 +725,7 @@
   </url>
   <url>
     <loc>https://www.convertunlimited.com/webp-to-png/</loc>
-    <lastmod>2026-05-18T16:08:35+07:00</lastmod>
+    <lastmod>2026-05-19T09:48:51+07:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.convertunlimited.com/webp-to-png/"/>
