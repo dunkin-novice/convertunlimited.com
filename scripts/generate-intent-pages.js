@@ -53,6 +53,15 @@ function pageKindLabel(type) {
   }[type] || "Guide";
 }
 
+function sectionLabel(section) {
+  return {
+    alternatives: "Alternatives",
+    compare: "Comparison",
+    best: "Best tools",
+    guides: "Guides"
+  }[section] || section;
+}
+
 const HUBS = [
   {
     path: "/alternatives/",
@@ -158,7 +167,7 @@ function breadcrumbs(page) {
   const section = page.path.split("/").filter(Boolean)[0];
   return [
     { "@type": "ListItem", position: 1, name: "Home", item: `${BASE_URL}/` },
-    { "@type": "ListItem", position: 2, name: section, item: `${BASE_URL}/${section}/` },
+    { "@type": "ListItem", position: 2, name: sectionLabel(section), item: `${BASE_URL}/${section}/` },
     { "@type": "ListItem", position: 3, name: page.h1, item: `${BASE_URL}${page.path}` }
   ];
 }
@@ -303,7 +312,7 @@ function renderPage(page) {
 
             <section class="article operator-note">
                 <h2>Review note</h2>
-                <p>Comparison criteria reviewed: ${esc(page.reviewed)}. This page is English-only and should not be localized until search demand and completion quality justify maintaining translated copy.</p>
+                <p>Comparison criteria reviewed: ${esc(page.reviewed)}.</p>
             </section>
         </main>
 

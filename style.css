@@ -1150,9 +1150,13 @@ a { color: inherit; }
 
 /* ===== Guide Content Styles ===== */
 .guide-content { max-width: 800px; margin: 0 auto; line-height: 1.6; }
+.table-container { width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; }
 .comparison-table { width: 100%; border-collapse: collapse; margin: 24px 0; font-size: 14px; }
 .comparison-table th, .comparison-table td { padding: 12px; border: 1px solid var(--line); text-align: left; }
 .comparison-table th { background: var(--paper); font-weight: 600; }
+@media (max-width: 640px) {
+  .comparison-table { min-width: 560px; }
+}
 .pros-cons-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; margin: 24px 0; }
 .pc-block { background: var(--paper); padding: 20px; border-radius: 12px; border: 1px solid var(--line); }
 .pc-block h3 { margin-top: 0; font-size: 16px; margin-bottom: 12px; }

@@ -111,6 +111,12 @@ Disable:
 - challenge/platform injections on normal successful page loads;
 - any app, worker, or transform rule that adds analytics, ads, or runtime JS.
 
+If `static.cloudflareinsights.com/beacon.min.js` or `data-cf-beacon` appears in
+rendered HTML while the repository and `dist/privacy-build` are clean, treat it
+as Cloudflare dashboard injection. Disable it at:
+Cloudflare Dashboard -> Analytics / Web Analytics -> remove or disable Web
+Analytics for `privacy.convertunlimited.com`.
+
 Bot protection at the edge is acceptable only if normal successful page loads do
 not receive injected JavaScript. If Cloudflare serves an interstitial challenge,
 that challenge page is outside the privacy-build artifact and should not be used
