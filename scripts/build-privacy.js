@@ -296,6 +296,10 @@ function stripThirdPartyRuntime(html, relPath = "") {
     `$1\n                <p>Selected file contents are processed locally in your browser for supported workflows. This privacy build does not intentionally load ads, analytics, remote fonts, or third-party runtime scripts.</p>\n                $2`
   );
   out = out.replace(
+    /(<h2>Privacy behavior<\/h2>)\s*(<h2>Best next step<\/h2>)/g,
+    `$1\n                <p>Selected file contents are processed locally in your browser for supported workflows. This privacy build uses same-origin runtime assets and does not intentionally load third-party runtime scripts.</p>\n                $2`
+  );
+  out = out.replace(
     /<section id="privacy" class="article">\s*<h2>Privacy(?: Policy)?<\/h2>/i,
     `<section id="privacy" class="article">\n                <h2>Privacy</h2>\n                <p><b>Privacy build:</b> This build removes ads, analytics, remote fonts, runtime CDN scripts, and file-operation telemetry. Selected files are processed in the browser using local JavaScript and browser APIs.</p>`
   );

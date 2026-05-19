@@ -193,7 +193,7 @@ const INTENT_PAGES = [
     guideLinks: ["/trust/verification/", "/trust/privacy-build/", "/trust/third-parties/", "/trust/limitations/"],
     faqs: [
       ["How can I tell whether a converter uploads files?", "Inspect the Network panel while processing a sample file and look for upload or third-party requests."],
-      ["Does no-upload mean the site has no third parties?", "No. A site can process files locally while still loading ads or analytics. Use the privacy build when that distinction matters."],
+      ["Does no-upload mean the site has no third parties?", "No. A site can process files locally while still loading third-party measurement or monetization scripts. Use the privacy build when that distinction matters."],
       ["Does ConvertUnlimited provide a server-side upload endpoint for supported local flows?", "No. Supported local-processing flows use browser APIs and client-side code rather than a ConvertUnlimited upload endpoint."]
     ]
   },
