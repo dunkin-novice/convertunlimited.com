@@ -177,7 +177,7 @@ function renderPage(page) {
 
   const articleSchema = {
     "@context": "https://schema.org",
-    "@type": page.type === "comparison" ? "Article" : "WebPage",
+    "@type": page.type === "comparison" ? "TechArticle" : "WebPage",
     headline: page.h1,
     description: page.metaDescription,
     inLanguage: "en",
