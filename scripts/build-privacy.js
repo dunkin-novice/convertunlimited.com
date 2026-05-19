@@ -3,9 +3,11 @@
 
 const fs = require("fs");
 const path = require("path");
+const { execFileSync } = require("child_process");
 
 const ROOT = path.resolve(__dirname, "..");
 const OUT = path.join(ROOT, "dist", "privacy-build");
+const TRUST_DIR = path.join(ROOT, "trust");
 
 const EXCLUDE = new Set([
   ".git",
@@ -426,6 +428,10 @@ function writeHeaders() {
   Cross-Origin-Resource-Policy: same-origin
 `;
   fs.writeFileSync(path.join(OUT, "_headers"), headers);
+}
+
+if (!fs.existsSync(TRUST_DIR)) {
+  execFileSync("node", ["scripts/generate-trust-pages.js"], { cwd: ROOT, stdio: "inherit" });
 }
 
 fs.rmSync(OUT, { recursive: true, force: true });

@@ -3436,6 +3436,48 @@
     <xhtml:link rel="alternate" hreflang="fr" href="https://www.convertunlimited.com/fr/tools/"/>
   </url>
   <url>
+    <loc>https://www.convertunlimited.com/trust/</loc>
+    <lastmod>2026-05-19T02:46:57.045Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://www.convertunlimited.com/trust/limitations/</loc>
+    <lastmod>2026-05-19T02:46:57.046Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://www.convertunlimited.com/trust/local-processing/</loc>
+    <lastmod>2026-05-19T02:46:57.045Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://www.convertunlimited.com/trust/privacy-build/</loc>
+    <lastmod>2026-05-19T02:46:57.045Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://www.convertunlimited.com/trust/security-architecture/</loc>
+    <lastmod>2026-05-19T02:46:57.045Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://www.convertunlimited.com/trust/third-parties/</loc>
+    <lastmod>2026-05-19T02:46:57.046Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://www.convertunlimited.com/trust/verification/</loc>
+    <lastmod>2026-05-19T02:46:57.046Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
     <loc>https://www.convertunlimited.com/url-encoder-decoder/</loc>
     <lastmod>2026-05-18T16:08:35+07:00</lastmod>
     <changefreq>weekly</changefreq>

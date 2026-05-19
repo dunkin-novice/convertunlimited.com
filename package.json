@@ -12,6 +12,7 @@
     "validate:related-links": "node scripts/validate-related-links.js",
     "validate:guide-blocks": "node scripts/validate-guide-blocks.js",
     "validate:intent-pages": "node scripts/validate-intent-pages.js",
+    "validate:trust-pages": "node scripts/validate-trust-pages.js",
     "apply:gtm": "node scripts/apply-gtm.js",
     "validate:analytics": "node scripts/validate-analytics-events.js",
     "validate:gtm": "node scripts/validate-gtm.js && node scripts/validate-analytics-events.js",

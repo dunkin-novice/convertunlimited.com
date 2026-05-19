@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-KQHC5ZGV');</script>
+    <!-- End Google Tag Manager -->
+    <script src="/analytics-events.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verification | ConvertUnlimited</title>
+    <meta name="description" content="Verification steps for checking ConvertUnlimited privacy build behavior in DevTools and with repository tests.">
+    <meta name="robots" content="index,follow,max-image-preview:large">
+    <meta name="theme-color" content="#3aa17e">
+    <meta name="google-adsense-account" content="ca-pub-2823470980745945">
+    <link rel="canonical" href="https://www.convertunlimited.com/trust/verification/">
+    <link rel="alternate" hreflang="en" href="https://www.convertunlimited.com/trust/verification/">
+    <link rel="alternate" hreflang="x-default" href="https://www.convertunlimited.com/trust/verification/">
+    <meta property="og:title" content="Verification | ConvertUnlimited">
+    <meta property="og:description" content="Verification steps for checking ConvertUnlimited privacy build behavior in DevTools and with repository tests.">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://www.convertunlimited.com/trust/verification/">
+    <meta property="og:site_name" content="ConvertUnlimited">
+    <meta property="og:locale" content="en_US">
+    <meta property="og:image" content="https://www.convertunlimited.com/og-image.svg">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Verification | ConvertUnlimited">
+    <meta name="twitter:description" content="Verification steps for checking ConvertUnlimited privacy build behavior in DevTools and with repository tests.">
+    <meta name="twitter:image" content="https://www.convertunlimited.com/og-image.svg">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="alternate icon" href="/favicon.svg">
+    <link rel="apple-touch-icon" href="/favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/style.css">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2823470980745945" crossorigin="anonymous"></script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://www.convertunlimited.com/"},{"@type":"ListItem","position":2,"name":"Trust Center","item":"https://www.convertunlimited.com/trust/"},{"@type":"ListItem","position":3,"name":"How to verify local processing","item":"https://www.convertunlimited.com/trust/verification/"}]}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"TechArticle","headline":"How to verify local processing","name":"How to verify local processing","description":"Verification steps for checking ConvertUnlimited privacy build behavior in DevTools and with repository tests.","inLanguage":"en","dateModified":"2026-05-19","author":{"@type":"Organization","name":"ConvertUnlimited"},"publisher":{"@type":"Organization","name":"ConvertUnlimited","logo":{"@type":"ImageObject","url":"https://www.convertunlimited.com/og-image.svg"}},"mainEntityOfPage":{"@type":"WebPage","@id":"https://www.convertunlimited.com/trust/verification/"}}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","inLanguage":"en","mainEntity":[{"@type":"Question","name":"What should I look for in the Network panel?","acceptedAnswer":{"@type":"Answer","text":"Look for unexpected upload, analytics, ad, CDN, or beacon requests during processing."}},{"@type":"Question","name":"Does a clean Network panel prove all security properties?","acceptedAnswer":{"@type":"Answer","text":"No. It verifies a narrow behavior: whether the tested processing flow caused network requests."}},{"@type":"Question","name":"Can browser extensions affect the result?","acceptedAnswer":{"@type":"Answer","text":"Yes. Extensions can inject scripts or inspect page data depending on their permissions."}}]}</script>
+</head>
+<body data-page-type="trust">
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KQHC5ZGV"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+    <div class="app">
+        <header class="topbar">
+            <a href="/" class="brand" aria-label="ConvertUnlimited home">
+                <span class="mark" aria-hidden="true"></span>
+                <span class="word"><b>Convert</b><span>Unlimited</span></span>
+            </a>
+            <nav class="topnav" aria-label="Primary">
+                <span class="pill"><span class="dot"></span>Trust documentation</span>
+                <a href="/tools/">Tools</a>
+                <a href="/guides/">Guides</a>
+                <a href="/proof-of-local-processing/">Proof</a>
+                <a href="https://privacy.convertunlimited.com/">Privacy build</a>
+            </nav>
+        </header>
+
+        <main>
+            <nav class="breadcrumbs" aria-label="Breadcrumb" style="margin-bottom: 24px; font-size: 14px; opacity: 0.8;">
+                <a href="/">Home</a> &gt; <a href="/trust/">Trust Center</a> &gt; <span>How to verify local processing</span>
+            </nav>
+
+            <section class="hero intent-hero">
+                <p class="section-eyebrow">Trust Center</p>
+                <h1 class="hero-title">How to verify local processing</h1>
+                <p class="sub hero-sub">Trust claims should be testable. You can inspect the Network panel, run the privacy build audit, and run the no-network processing test against representative workflows.</p>
+            </section>
+
+            <section class="article aeo-summary" id="answer-first">
+                <h2>Short answer</h2>
+                <p>Open DevTools before selecting a file, clear the Network log, run the tool, and confirm processing does not create third-party or upload requests. For repository verification, run npm run verify:privacy.</p>
+                <h2>Build boundary</h2>
+                <p>The public site may load ads and analytics. The privacy build at <a href="https://privacy.convertunlimited.com/">privacy.convertunlimited.com</a> is the no-ads, no-analytics review target.</p>
+                <h2>Verification path</h2>
+                <p>Use the verification page, browser DevTools, and repository privacy tests to inspect the behavior instead of relying on marketing language.</p>
+            </section>
+
+            <section class="article">
+<h2>Browser DevTools check</h2>
+<ul class="intent-link-list">
+<li><b>Open a clean browser profile:</b> Use privacy.convertunlimited.com and disable browser extensions if possible.</li>
+<li><b>Open Network panel:</b> Enable Preserve log and disable cache before selecting a file.</li>
+<li><b>Process a sample file:</b> Run the workflow and watch for new requests.</li>
+<li><b>Review requests:</b> Expected requests should be same-origin static assets, data URLs, or blob URLs. Third-party analytics, ads, or file uploads should not appear.</li>
+</ul>
+</section>
+
+<section class="article">
+<h2>Repository checks</h2>
+<p>The repository includes static and runtime checks for the privacy artifact. The static audit scans for known third-party runtime references. The runtime test blocks common network APIs while exercising representative processing flows.</p>
+<pre><code>npm run build:privacy
+npm run audit:privacy
+npm run test:privacy-network
+npm run verify:privacy</code></pre>
+</section>
+
+<section class="article">
+<h2>Related proof page</h2>
+<p>The existing proof page summarizes the privacy artifact, verification command, network isolation model, and threat-model limitations.</p>
+<ul class="intent-link-list">
+<li><a href="/proof-of-local-processing/">Proof of local processing</a></li>
+</ul>
+</section>
+
+            <section class="article intent-index">
+<h2>Trust topics</h2>
+<ul class="intent-link-list">
+<li><a href="/trust/">ConvertUnlimited Trust Center</a></li>
+<li><a href="/trust/local-processing/">How local browser processing works</a></li>
+<li><a href="/trust/privacy-build/">What the privacy build changes</a></li>
+<li><a href="/trust/security-architecture/">Security architecture</a></li>
+<li><a href="/trust/limitations/">Limitations of browser-native processing</a></li>
+<li><a href="/trust/third-parties/">Third-party and runtime script policy</a></li>
+</ul>
+</section>
+
+            <section id="faq" class="article">
+                <h2>FAQ</h2>
+                <h3>What should I look for in the Network panel?</h3><p>Look for unexpected upload, analytics, ad, CDN, or beacon requests during processing.</p>
+                <h3>Does a clean Network panel prove all security properties?</h3><p>No. It verifies a narrow behavior: whether the tested processing flow caused network requests.</p>
+                <h3>Can browser extensions affect the result?</h3><p>Yes. Extensions can inject scripts or inspect page data depending on their permissions.</p>
+            </section>
+
+            <section class="article operator-note">
+                <h2>Review note</h2>
+                <p>Trust documentation reviewed: May 2026. These pages describe the current public and privacy-build architecture and should be updated when deployment, telemetry, or runtime dependencies change.</p>
+            </section>
+        </main>
+
+        <footer class="footer">
+            <div>© <span id="copyright-year">2026</span> ConvertUnlimited.com — browser-native utility workflows.</div>
+            <nav class="links" aria-label="Footer">
+                <a href="/tools/">Tools</a>
+                <a href="/guides/">Guides</a>
+                <a href="/trust/">Trust Center</a>
+                <a href="/trust/verification/">Verification</a>
+                <a href="/proof-of-local-processing/">Proof</a>
+                <a href="https://privacy.convertunlimited.com/">Privacy Build</a>
+            </nav>
+        </footer>
+    </div>
+</body>
+</html>
