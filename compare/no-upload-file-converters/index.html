@@ -69,7 +69,7 @@
             <section class="hero intent-hero">
                 <p class="section-eyebrow">Comparison</p>
                 <h1 class="hero-title">No-upload file converters</h1>
-                <p class="sub hero-sub">A no-upload converter should make its processing model testable. For supported ConvertUnlimited workflows, selected file contents are processed locally in the browser and the privacy build removes ads, analytics, remote fonts, and third-party runtime scripts.</p>
+                <p class="sub hero-sub">A no-upload converter should make its processing model testable. For supported ConvertUnlimited workflows, selected file contents are processed locally in the browser and the privacy build uses same-origin runtime assets without third-party runtime scripts.</p>
             </section>
 
             <section class="article aeo-summary" id="answer-first">
@@ -96,7 +96,7 @@
 <section class="article">
 <h2>Verification steps</h2>
 <p>Open a clean browser profile, visit the privacy build, open DevTools Network, disable cache, process a small sample file, and review new requests.</p>
-<p>Expected activity should be same-origin static assets or local browser URLs such as blob: and data:. Unexpected upload, analytics, ad, CDN, or beacon requests should be investigated.</p>
+<p>Expected activity should be same-origin static assets or local browser URLs such as blob: and data:. Unexpected upload, measurement, monetization, CDN, or beacon requests should be investigated.</p>
 
 </section>
 

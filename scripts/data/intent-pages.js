@@ -83,14 +83,14 @@ const INTENT_PAGES = [
     limitations: [
       "Browser-native processing cannot support every media format.",
       "Some PDF and image workflows depend on browser memory and available JavaScript libraries.",
-      "The public build may load ads and analytics; use the privacy build when that matters."
+      "The public build may load third-party measurement or monetization scripts; use the privacy build when that matters."
     ],
     relatedTools: ["image-converter", "jpg-to-webp", "avif-converter", "images-to-pdf", "json-formatter"],
     guideLinks: ["/proof-of-local-processing/", "/guides/how-it-works/", "/guides/local-processing/"],
     faqs: [
       ["Is ConvertUnlimited server-side like Online-Convert?", "No. ConvertUnlimited focuses on browser-native tools for supported workflows."],
       ["Which is better for uncommon formats?", "A broad server-side converter is usually better for uncommon or legacy formats that browsers cannot decode."],
-      ["Which is better for quick privacy-sensitive tasks?", "Use the ConvertUnlimited privacy build when the task is supported and you want no ads, analytics, remote fonts, or third-party runtime scripts."]
+      ["Which is better for quick privacy-sensitive tasks?", "Use the ConvertUnlimited privacy build when the task is supported and you want same-origin runtime assets and no third-party runtime scripts."]
     ]
   },
   {
@@ -127,7 +127,7 @@ const INTENT_PAGES = [
       {
         heading: "Verification steps",
         paragraphs: [
-          "For a browser-native workflow, open DevTools before selecting a file, clear the Network panel, run the conversion, and check whether processing creates upload, analytics, ad, CDN, or beacon requests.",
+          "For a browser-native workflow, open DevTools before selecting a file, clear the Network panel, run the conversion, and check whether processing creates upload, measurement, monetization, CDN, or beacon requests.",
           "For a cloud workflow, read the provider's upload, storage, deletion, and account policies before processing sensitive files."
         ]
       }
@@ -142,7 +142,7 @@ const INTENT_PAGES = [
     faqs: [
       ["Are browser-native converters always more private?", "No. They can reduce upload exposure for supported workflows, but the page, host, browser, and extensions still matter."],
       ["When is a cloud converter better?", "Use a cloud converter when the format is unsupported in the browser, files are too large for the device, or automation/API workflows are required."],
-      ["Which ConvertUnlimited version should I use for privacy-sensitive files?", "Use privacy.convertunlimited.com, which is generated without ads, analytics, remote fonts, or third-party runtime scripts."]
+      ["Which ConvertUnlimited version should I use for privacy-sensitive files?", "Use privacy.convertunlimited.com, which is generated with same-origin runtime assets and without third-party runtime scripts."]
     ]
   },
   {
@@ -152,7 +152,7 @@ const INTENT_PAGES = [
     title: "No-Upload File Converters: What to Check",
     metaDescription: "Learn how no-upload file converters work, what claims to verify, and when browser-native processing is a good fit.",
     h1: "No-upload file converters",
-    summary: "A no-upload converter should make its processing model testable. For supported ConvertUnlimited workflows, selected file contents are processed locally in the browser and the privacy build removes ads, analytics, remote fonts, and third-party runtime scripts.",
+    summary: "A no-upload converter should make its processing model testable. For supported ConvertUnlimited workflows, selected file contents are processed locally in the browser and the privacy build uses same-origin runtime assets without third-party runtime scripts.",
     answer: "Do not trust a no-upload claim by wording alone. Check where processing happens, whether an upload endpoint is used, whether third-party scripts run, and whether the behavior can be verified in DevTools.",
     reviewed: "May 2026",
     sections: [
@@ -180,7 +180,7 @@ const INTENT_PAGES = [
         heading: "Verification steps",
         paragraphs: [
           "Open a clean browser profile, visit the privacy build, open DevTools Network, disable cache, process a small sample file, and review new requests.",
-          "Expected activity should be same-origin static assets or local browser URLs such as blob: and data:. Unexpected upload, analytics, ad, CDN, or beacon requests should be investigated."
+          "Expected activity should be same-origin static assets or local browser URLs such as blob: and data:. Unexpected upload, measurement, monetization, CDN, or beacon requests should be investigated."
         ]
       }
     ],
@@ -212,7 +212,7 @@ const INTENT_PAGES = [
         heading: "Best fit",
         paragraphs: [
           "TinyPNG is known for image compression and the Tinify developer workflow. ConvertUnlimited is broader as a browser-native utility surface: conversion, compression, resizing, metadata cleanup, AVIF/WebP workflows, and related PDF/developer tools.",
-          "The privacy distinction is the main moat: for supported ConvertUnlimited image workflows, selected file contents are processed locally in the browser. Use the privacy build for no ads, analytics, remote fonts, or third-party runtime scripts."
+          "The privacy distinction is the main moat: for supported ConvertUnlimited image workflows, selected file contents are processed locally in the browser. Use the privacy build for same-origin runtime assets and no third-party runtime scripts."
         ]
       },
       {
