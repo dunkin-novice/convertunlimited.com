@@ -51,6 +51,27 @@ const ICONS = {
   defaultDev: '<polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/>',
 };
 
+const CATEGORY_ICONS = {
+  image: '<rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/>',
+  pdf: '<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/>',
+  developer: '<polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/><line x1="13" y1="4" x2="11" y2="20"/>',
+  seo: '<circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.5" y2="16.5"/>',
+  'image-conversions': '<path d="M17 3 21 7l-4 4"/><path d="M3 7h18"/><path d="M7 21l-4-4 4-4"/><path d="M21 17H3"/>',
+};
+
+const categoryIcon = (id) => {
+  const body = CATEGORY_ICONS[id] || CATEGORY_ICONS.image;
+  return `<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${body}</svg>`;
+};
+
+const HUB_CROSS_LINKS = [
+  { href: '/trust/', label: 'Trust Center' },
+  { href: '/privacy/', label: 'Privacy' },
+  { href: '/terms/', label: 'Terms' },
+  { href: '/about/', label: 'About' },
+  { href: '/contact/', label: 'Contact' },
+];
+
 const START_HUB = '<!-- TOOLS_HUB_START -->';
 const END_HUB = '<!-- TOOLS_HUB_END -->';
 const START_RELATED = '<!-- RELATED_TOOLS_START -->';
@@ -332,16 +353,33 @@ const renderToolCard = (tool, locale, labels, { allowPlanned = false, relatedMet
 };
 
 const renderHub = (registry, locale, labels) => {
-  const chunks = [];
+  const chunks = ['            <section class="hub-categories" aria-label="Tool categories">'];
   for (const category of registry.categories) {
-    chunks.push(`            <div class="category-title">${escapeHtml((CATEGORY_LABELS[locale.code] && CATEGORY_LABELS[locale.code][category.id]) || category.label)}</div>`);
-    chunks.push('            <div class="tool-grid">');
-    for (const tool of category.tools) {
-      chunks.push(renderToolCard({ ...tool, categoryId: category.id }, locale, labels, { allowPlanned: true }));
+    const liveTools = (category.tools || []).filter((tool) => tool.status === 'live');
+    if (!liveTools.length) continue;
+    const categoryLabel = (CATEGORY_LABELS[locale.code] && CATEGORY_LABELS[locale.code][category.id]) || category.label;
+    chunks.push(`                <article class="hub-category" data-category="${escapeHtml(category.id)}">`);
+    chunks.push('                    <header class="hub-category-head">');
+    chunks.push(`                        <span class="hub-category-icon" aria-hidden="true">${categoryIcon(category.id)}</span>`);
+    chunks.push(`                        <h2 class="hub-category-title">${escapeHtml(categoryLabel)}</h2>`);
+    chunks.push('                    </header>');
+    chunks.push('                    <ul class="hub-tool-list">');
+    for (const tool of liveTools) {
+      const text = labelFor({ ...tool, categoryId: category.id }, locale, labels);
+      const href = slugToPath(tool.slug, locale);
+      const slug = canonicalSlug(tool.slug);
+      chunks.push(`                        <li><a href="${href}" class="hub-tool-link" data-track="workflow-click" data-tool="${escapeHtml(slug)}" data-category="${escapeHtml(category.id)}">${escapeHtml(text.title)}</a></li>`);
     }
-    chunks.push('            </div>');
+    chunks.push('                    </ul>');
+    chunks.push('                </article>');
   }
-  return chunks.filter(Boolean).join('\n');
+  chunks.push('            </section>');
+  chunks.push('            <nav class="hub-cross-links" aria-label="Trust and policy">');
+  chunks.push(HUB_CROSS_LINKS.map((link) =>
+    `                <a href="${link.href}">${escapeHtml(link.label)}</a>`
+  ).join('\n'));
+  chunks.push('            </nav>');
+  return chunks.join('\n');
 };
 
 const renderRelated = (registry, currentSlug, locale, labels) => {

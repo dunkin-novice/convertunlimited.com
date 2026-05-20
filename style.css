@@ -241,6 +241,97 @@ a { color: inherit; }
 }
 .category-title:first-child { margin-top: 0; }
 
+/* ===== Tools Hub — Category Cards ===== */
+.hub-categories {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 16px;
+  margin: 24px 0 32px;
+}
+.hub-category {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  background: var(--bg-2);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+}
+.hub-category-head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding-bottom: 12px;
+  margin-bottom: 12px;
+  border-bottom: 1px solid var(--line);
+}
+.hub-category-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  background: var(--bg);
+  border: 1px solid var(--line);
+  display: grid;
+  place-items: center;
+  color: var(--accent);
+  flex-shrink: 0;
+}
+.hub-category-title {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--ink);
+  letter-spacing: 0.005em;
+}
+.hub-tool-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+.hub-tool-list li { margin: 0; }
+.hub-tool-link {
+  display: block;
+  padding: 7px 10px;
+  margin: 0 -10px;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--ink-2);
+  text-decoration: none;
+  border-radius: 6px;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+.hub-tool-link:hover,
+.hub-tool-link:focus-visible {
+  background: var(--bg-3);
+  color: var(--ink);
+}
+@media (max-width: 1023px) {
+  .hub-categories { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 599px) {
+  .hub-categories { grid-template-columns: 1fr; }
+}
+
+.hub-cross-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 18px;
+  margin: 0 0 48px;
+  padding: 14px 0 0;
+  border-top: 1px solid var(--line);
+  font-size: 13px;
+}
+.hub-cross-links a {
+  color: var(--ink-3);
+  text-decoration: none;
+}
+.hub-cross-links a:hover,
+.hub-cross-links a:focus-visible {
+  color: var(--ink);
+  text-decoration: underline;
+}
+
 /* ===== Related Tools ===== */
 .related-tools {
   margin-top: 80px;
