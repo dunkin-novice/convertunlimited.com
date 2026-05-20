@@ -276,8 +276,8 @@
 
         <section id="how" class="article">
             <h2>How ConvertUnlimited works</h2>
-            <p>ConvertUnlimited is a free image converter that runs entirely inside your browser. Drop in JPGs, PNGs, GIFs, WebPs, BMPs, or SVGs, choose an output format, and a converted copy is ready to download in seconds. file contents are not intentionally uploaded by this tool to a server: every image is decoded, redrawn, and re-encoded locally using your browser's HTML canvas API.</p>
-            <p>That browser-native model has two practical consequences. First, Selected file contents are processed locally in your browser, so file contents are not intentionally uploaded by this tool. Second, there are no per-user storage costs to subsidise, which is why we can offer it for free with no caps, no signup, and no watermark. The product is kept lightweight so the tool remains usable without an account or upload queue.</p>
+            <p>The PNG to WebP converter reads selected PNG files with the browser File API, decodes them with browser image support, draws them to Canvas, and asks the browser to encode a WebP copy. The result is created as a browser Blob and downloaded from the same tab.</p>
+            <p>For this supported workflow, ConvertUnlimited does not provide a server-side upload endpoint. The public page can still load ads and analytics, so use the privacy build when you need the no-ads, no-analytics version.</p>
             <p>Conversion uses your computer's CPU and memory. For most laptops, dragging in 30–80 photos at typical phone-camera resolutions feels instant. Very large batches — hundreds of high-megapixel images at once — will use more RAM and may slow your machine briefly while they encode. We suggest queuing roughly 50 images at a time as a comfortable middle ground, but the tool doesn't enforce a limit; use whatever your machine handles cleanly. See <a href="#batches">Tips for big batches</a> for guidance on larger jobs.</p>
         </section>
 
@@ -325,11 +325,11 @@
         
             <section class="article aeo-summary" id="tool-summary">
                 <h2>What this tool does</h2>
-                <p>Free PNG to WebP Converter converts PNG images to WebP in your browser. WebP reduces image file sizes while preserving quality. It supports both lossy and lossless compression and transparency.</p>
+                <p>PNG to WebP Converter turns PNG images into WebP files in your browser. Use it when you want smaller web images while keeping transparency support where the browser encoder supports it.</p>
                 <h2>Privacy behavior</h2>
-                <p>Selected image contents are processed locally in your browser. File contents are not intentionally uploaded by this tool. The public site may load ads and analytics; use the privacy build for privacy-sensitive workflows.</p>
+                <p>Selected image contents are processed locally in your browser for this supported workflow. The public site may load ads and analytics; use the privacy build for privacy-sensitive workflows.</p>
                 <h2>Supported formats and workflow</h2>
-                <p>Choose one or more PNG images, convert them to WebP, then download the converted files from this browser tab.</p>
+                <p>Choose one or more PNG images, convert them to WebP, check the result and file size, then download the converted files from this browser tab. Very large PNGs can be limited by browser memory.</p>
             </section>
 
             <section class="article" style="margin-top: 40px; border-top: 1px solid var(--border); pt: 40px;">
@@ -341,9 +341,9 @@
             </section>
 <section id="faq" class="article">
 <h2>Frequently Asked Questions</h2>
-<h3>Is the conversion local?</h3><p>Yes. The conversion uses browser-native image processing. File contents are not intentionally uploaded by this tool.</p>
-<h3>Can I convert multiple PNG files at once?</h3><p>Yes, you can drag and drop hundreds of PNG files and convert them all to WebP in one click.</p>
-<h3>What is the limit?</h3><p>There is no account-level file count limit. Practical limits depend on your device memory and browser capability.</p>
+<h3>Is the conversion local?</h3><p>Yes. The conversion uses browser-native image processing for supported PNG files. The image is decoded and re-encoded by the browser rather than sent to a ConvertUnlimited upload service.</p>
+<h3>Can I convert multiple PNG files at once?</h3><p>Yes. You can add multiple PNG files and convert them as a batch. For large screenshots, product images, or high-resolution exports, smaller batches are more reliable on laptops and phones.</p>
+<h3>What is the limit?</h3><p>There is no account-level file count limit. Practical limits depend on your device memory, browser image support, PNG dimensions, and the browser's WebP encoder.</p>
 <h3>Which version should I use for sensitive files?</h3><p>Use the privacy build for privacy-sensitive workflows. It is designed without ads, analytics, remote fonts, or third-party runtime scripts.</p>
 </section>
 

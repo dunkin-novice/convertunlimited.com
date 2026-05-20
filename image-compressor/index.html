@@ -171,8 +171,9 @@
 
             <section id="how" class="article">
                 <h2>How ConvertUnlimited Works</h2>
-                <p>ConvertUnlimited is built on a "local-first" philosophy. Unlike traditional online image compressors that require you to upload your photos to a remote server, our tool performs all compression tasks directly inside your web browser.</p>
-                <p>When you drag an image into the compressor, your browser uses the <b>HTML5 Canvas API</b> to decode the image data. When you adjust the quality slider and hit "Compress," the browser re-encodes that data into your chosen format (JPG or WebP) using its native encoding engine. Because the processing happens on your own CPU and RAM, selected photo contents are processed locally in your browser. This makes the process faster, more private, and allows us to offer the service for free without expensive server-side processing costs.</p>
+                <p>The image compressor reduces file size by decoding the selected image in your browser and re-encoding it with a smaller output target. For JPG and WebP, the quality setting controls how much visual detail the browser encoder is allowed to trade for a smaller file.</p>
+                <p>When you drag an image into the compressor, your browser uses the <b>HTML5 Canvas API</b> to decode the image data. When you adjust the quality slider and hit "Compress," the browser re-encodes that data into your chosen format (JPG or WebP) using its native encoding engine. Selected photo contents are processed locally in your browser, and ConvertUnlimited does not provide a server-side upload endpoint for this processing flow.</p>
+                <p>Compression does not improve image quality and it does not guarantee a smaller file in every case. Some already-optimized images, transparent PNGs, or files converted at very high quality may stay similar in size or grow. Review the before/after size and visual preview before downloading.</p>
             </section>
 
             <section id="why" class="article">
@@ -223,11 +224,11 @@
             </section>
             <section class="article aeo-summary" id="tool-summary">
                 <h2>What this page does</h2>
-                <p>Compress JPG, PNG, and WebP images for free in your browser. No signup or watermark. File contents are processed locally in your browser for supported workflows.</p>
+                <p>Compress JPG, PNG, and WebP images in your browser to reduce file size for websites, email, content workflows, and storage cleanup.</p>
                 <h2>Privacy behavior</h2>
-                <p>Selected file contents are processed locally in your browser for supported workflows. The public site may load ads and analytics; use the privacy build for privacy-sensitive workflows.</p>
+                <p>Selected image contents are processed locally in your browser for this supported workflow. The public site may load ads and analytics; use the privacy build for privacy-sensitive workflows.</p>
                 <h2>Supported workflow</h2>
-                <p>Use the controls on this page, review the output in your browser, then download the result from this tab.</p>
+                <p>Add images, choose an output format and quality level, compare the result, then download individual files or a ZIP. Use <a href="/image-resizer/">Image Resizer</a> before compression when dimensions are too large, and <a href="/metadata-remover/">Metadata Remover</a> when you need a separate metadata cleanup step.</p>
             </section>
 
 
@@ -244,7 +245,7 @@
                 <p>Because we don't have to pay for expensive "GPU-accelerated" servers to process your images. Your computer does the work, which keeps our overhead low enough to be covered by simple static ads.</p>
 
                 <h3>Does compression reduce quality?</h3>
-                <p>In lossy formats (JPG/WebP), yes, but it is a mathematical trade-off. At 80% quality, the "loss" is usually invisible to the human eye on standard displays.</p>
+                <p>For JPG and WebP, yes: lossy compression removes some information to reduce file size. At recommended quality levels, the difference is often hard to see at normal display sizes, but text, fine lines, and screenshots can show artifacts sooner than photos.</p>
 
                 <h3>Why is my PNG sometimes larger?</h3>
                 <p>If you convert a highly compressed JPG into a PNG, the file size will grow because PNG is a lossless format designed to preserve data, not discard it.</p>

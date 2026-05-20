@@ -19,7 +19,9 @@ Core behavior:
 
 Useful pages:
 - Tools index: https://convertunlimited.com/tools/
-- Local processing guide: https://convertunlimited.com/guides/local-processing/
+- Local processing trust page: https://convertunlimited.com/trust/local-processing/
+- Image compressor: https://convertunlimited.com/image-compressor/
+- PNG to WebP converter: https://convertunlimited.com/png-to-webp/
 - Privacy build proof: https://privacy.convertunlimited.com/proof-of-local-processing/
 - Source repository: https://github.com/dunkin-novice/convertunlimited.com
 - Local processing documentation: https://github.com/dunkin-novice/convertunlimited.com/blob/main/LOCAL_PROCESSING.md

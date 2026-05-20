@@ -139,6 +139,7 @@ for (const route of HUB_ROUTES) {
 
 const homeHtml = fs.existsSync(path.join(ROOT, "index.html")) ? fs.readFileSync(path.join(ROOT, "index.html"), "utf8") : "";
 for (const route of HUB_ROUTES) {
+  if (!isIndexableRoute(route)) continue;
   if (!homeHtml.includes(`href="${route}"`)) FINDINGS.push(`index.html: missing discoverability link to ${route}`);
 }
 

@@ -78,7 +78,7 @@
 
             <section class="article aeo-summary" id="answer-first">
                 <h2>Short answer</h2>
-                <p>A supported local-processing tool reads the selected file in the browser, processes it with browser APIs or vendored client-side libraries, and creates a downloadable result from the same tab.</p>
+                <p>A supported local-processing tool reads the selected file in the browser, processes it with browser APIs or vendored client-side libraries, and creates a downloadable result from the same tab. ConvertUnlimited does not provide a server-side upload endpoint for those supported processing flows.</p>
                 <h2>Build boundary</h2>
                 <p>The public site may load ads and analytics. The privacy build at <a href="https://privacy.convertunlimited.com/">privacy.convertunlimited.com</a> is the no-ads, no-analytics review target.</p>
                 <h2>Verification path</h2>
@@ -89,12 +89,20 @@
 <h2>Processing path</h2>
 <p>A typical image workflow uses the File API to read the selected file, Canvas to decode or re-encode pixels, Blob or object URLs to hold the result, and a download link to save the new file.</p>
 <p>PDF and developer utilities may use ArrayBuffer, Blob, Web Crypto, or vendored JavaScript libraries. The important distinction is that the file operation is performed by the browser runtime, not by a ConvertUnlimited upload service.</p>
+<p>Local processing is scoped to the file operation itself. The public site can still load page assets, ads, analytics, fonts, and normal hosting responses. The privacy build removes those public-site third parties and is the better choice for sensitive files.</p>
 </section>
 
 <section class="article">
 <h2>When uploads are not required</h2>
 <p>Uploads are not required when the browser can decode, transform, and write the required output format locally. Examples include supported image conversion, image compression, metadata cleanup by re-encoding, many PDF operations, JSON formatting, hashing, Base64 conversion, and QR generation.</p>
 <p>If a browser cannot decode a format, runs out of memory, or lacks an encoder for the requested output, a local-processing tool may fail or need a different workflow.</p>
+<p>For example, a PNG to WebP conversion usually works in current browsers because they can decode PNG, draw pixels to Canvas, and encode WebP. A very large image or an unsupported format may fail before any conversion happens because the browser cannot hold or decode it reliably.</p>
+</section>
+
+<section class="article">
+<h2>What local processing does not guarantee</h2>
+<p>Local processing does not make a browser tab equivalent to a desktop security sandbox. Browser extensions, managed devices, malware, screenshots, clipboard tools, operating-system indexing, and other local software can still affect privacy outside ConvertUnlimited's page code.</p>
+<p>It also does not guarantee that metadata removal is complete for every file type or that every output is smaller, higher quality, or acceptable for compliance workflows. Review outputs before sharing and use specialist tools for legal, archival, forensic, or regulated workflows.</p>
 </section>
 
 <section class="article">
@@ -114,14 +122,16 @@
 <li><a href="/trust/verification/">How to verify local processing</a></li>
 <li><a href="/trust/limitations/">Limitations of browser-native processing</a></li>
 <li><a href="/trust/third-parties/">Third-party and runtime script policy</a></li>
+<li><a href="/privacy/">Privacy notice</a></li>
+<li><a href="/tools/">Indexed tool directory</a></li>
 </ul>
 </section>
 
             <section id="faq" class="article">
                 <h2>FAQ</h2>
-                <h3>Does local processing mean no network requests at all?</h3><p>No. The page must load static assets first. The privacy claim concerns supported processing flows after the page is loaded.</p>
-                <h3>Can local processing handle every format?</h3><p>No. It depends on browser support, available memory, and the client-side libraries included in the build.</p>
-                <h3>Is local processing the same as a desktop sandbox?</h3><p>No. The page still runs inside the browser and is affected by browser, extension, device, and host behavior.</p>
+                <h3>Does local processing mean no network requests at all?</h3><p>No. The page must load static assets first. On the public site, ads and analytics may also load. The privacy claim concerns supported processing flows after the page is loaded; the privacy build is audited separately for third-party runtime requests.</p>
+                <h3>Can local processing handle every format?</h3><p>No. It depends on browser support, available memory, file dimensions, and the client-side libraries included in the build. Unsupported formats or very large files may fail locally.</p>
+                <h3>Is local processing the same as a desktop sandbox?</h3><p>No. The page still runs inside the browser and is affected by browser, extension, device, operating-system, and host behavior. Use the privacy build and DevTools verification for sensitive workflows.</p>
             </section>
 
             <section class="article operator-note">

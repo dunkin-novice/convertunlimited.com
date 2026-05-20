@@ -353,9 +353,10 @@
 
         <section id="how" class="article">
             <h2>How ConvertUnlimited works</h2>
-            <p>ConvertUnlimited is a free image converter that runs entirely inside your browser. Drop in JPGs, PNGs, GIFs, WebPs, BMPs, or SVGs, choose an output format, and a converted copy is ready to download in seconds. file contents are not intentionally uploaded by this tool to a server: every image is decoded, redrawn, and re-encoded locally using your browser's HTML canvas API.</p>
-            <p>That browser-native model has two practical consequences. First, Selected file contents are processed locally in your browser, so file contents are not intentionally uploaded by this tool. Second, there are no per-user storage costs to subsidise, which is why we can offer it for free with no caps, no signup, and no watermark. The product is kept lightweight so the tool remains usable without an account or upload queue.</p>
+            <p>ConvertUnlimited is a browser-native utility site for common image, PDF, and developer tasks. For supported image workflows, the selected file is read by the browser, decoded with browser APIs such as Canvas, re-encoded in the selected output format, and offered back as a download from the same tab.</p>
+            <p>This local-processing model means ConvertUnlimited does not provide a server-side upload endpoint for supported image conversion flows. It does not mean every browser can process every file: very large images, unsupported formats, limited memory, or browser encoder differences can still affect results.</p>
             <p>Conversion uses your computer's CPU and memory. For most laptops, dragging in 30–80 photos at typical phone-camera resolutions feels instant. Very large batches — hundreds of high-megapixel images at once — will use more RAM and may slow your machine briefly while they encode. We suggest queuing roughly 50 images at a time as a comfortable middle ground, but the tool doesn't enforce a limit; use whatever your machine handles cleanly. See <a href="#batches">Tips for big batches</a> for guidance on larger jobs.</p>
+            <p>Start with the <a href="/tools/">tools index</a> when you need a specific workflow, or read <a href="/trust/local-processing/">how local browser processing works</a> before using the site with sensitive files.</p>
         </section>
 
         <section id="formats" class="article">
@@ -400,11 +401,11 @@
         </section>
             <section class="article aeo-summary" id="tool-summary">
                 <h2>What this page does</h2>
-                <p>Convert JPG, PNG, GIF, BMP, SVG, and WebP images in bulk — free, unlimited, no signup. Runs entirely in your browser. Download individually or as a ZIP. no watermark. File contents are processed locally in your browser for supported workflows.</p>
+                <p>ConvertUnlimited provides browser-based tools for converting images, compressing files, resizing images, removing metadata, working with PDFs, and running developer utilities from the browser.</p>
                 <h2>Privacy behavior</h2>
-                <p>Selected file contents are processed locally in your browser for supported workflows. The public site may load ads and analytics; use the privacy build for privacy-sensitive workflows.</p>
+                <p>Supported file-processing tools process selected file contents locally in your browser. The public site may load ads and analytics; use the privacy build for privacy-sensitive workflows.</p>
                 <h2>Supported workflow</h2>
-                <p>Use the controls on this page, review the output in your browser, then download the result from this tab.</p>
+                <p>Use this page for the main image converter, visit <a href="/tools/">all tools</a> for the full indexed tool list, or review <a href="/trust/local-processing/">the local-processing trust guide</a> for technical boundaries.</p>
             </section>
 
 
@@ -415,13 +416,13 @@
             <p>No software-imposed cap. The only ceiling is what your browser and computer can handle. We suggest about 50 images at a time as a comfortable starting point — most modern laptops handle two or three times that without trouble.</p>
 
             <h3>Are my files uploaded to a server?</h3>
-            <p>No. ConvertUnlimited runs entirely inside your browser using the HTML canvas API. Selected file contents are processed locally in your browser — file contents are not intentionally uploaded by this tool. See <a href="/trust/local-processing/">how local processing works</a> and <a href="/trust/verification/">how to verify it</a>.</p>
+            <p>For supported image conversion flows, ConvertUnlimited does not provide a server-side upload endpoint. The browser reads and re-encodes selected image contents locally, then creates downloadable results in the tab. See <a href="/trust/local-processing/">how local processing works</a> and <a href="/trust/verification/">how to verify it</a>.</p>
 
             <h3>Will big batches slow my computer?</h3>
             <p>Briefly, yes. Each image decode and encode uses your CPU and RAM. Big batches (200+ high-resolution photos) can momentarily peak system memory. Use at your own discretion.</p>
 
             <h3>Why is it free?</h3>
-            <p>A small ad in the right rail and one in the footer cover hosting costs. Because file contents are not intentionally uploaded by this tool, there's no per-user storage bill — so we don't need a subscription model.</p>
+            <p>The public site may use ads to support hosting and maintenance. The core tools are static browser utilities, so supported processing flows do not require a ConvertUnlimited upload service. Use the privacy build when you need the no-ads, no-analytics version.</p>
 
             <h3>What's the difference between WebP, JPEG, and PNG?</h3>
             <p>WebP is smallest at equivalent quality and supports transparency — best default for the web. JPEG is universal and best for photos when compatibility is the priority. PNG is lossless and supports transparency — best for screenshots, logos, and icons. The full breakdown is in our <a href="#formats">image format guide</a>.</p>
@@ -458,13 +459,14 @@
         </section>
 
         <section class="article intent-entry-points">
-            <h2>Research and comparisons</h2>
-            <p>Use these English guides when you need format comparisons, converter alternatives, or browser-based workflow notes before choosing a tool.</p>
+            <h2>Useful next pages</h2>
+            <p>Use these indexed pages when you need the full tool list, trust details, or practical format guidance before choosing a workflow.</p>
             <ul class="intent-link-list">
-                <li><a href="/guides/">Browser-native processing guides</a></li>
-                <li><a href="/compare/">Format comparisons</a></li>
-                <li><a href="/alternatives/">Converter alternatives</a></li>
-                <li><a href="/best/">Best browser-based workflows</a></li>
+                <li><a href="/tools/">All browser tools</a></li>
+                <li><a href="/trust/local-processing/">How local processing works</a></li>
+                <li><a href="/guides/">Practical file and format guides</a></li>
+                <li><a href="/guides/webp-vs-png/">WebP vs PNG guide</a></li>
+                <li><a href="/guides/webp-vs-jpg/">WebP vs JPG guide</a></li>
             </ul>
         </section>
         
@@ -517,7 +519,7 @@
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M17 3 21 7l-4 4"/><path d="M3 7h18"/><path d="M7 21l-4-4 4-4"/><path d="M21 17H3"/></svg>
                     </div>
                     <h3>PNG to WebP Converter</h3>
-                    <p>Convert PNG images to WebP locally in your browser. Free, bulk, and secure.</p>
+                    <p>Convert PNG images to WebP locally in your browser.</p>
                 </a>
                 <a href="/jpg-to-webp/" class="tool-item" data-track="related-tool-click" data-destination-tool="jpg-to-webp" data-workflow-cluster="image-optimization" data-reason="immediate_next_action" data-workflow-stage="next_action" data-depth="2" data-position="5" data-tool="jpg-to-webp" data-category="image-conversions">
                     <div class="icon">
