@@ -237,8 +237,12 @@ function renderPage(page) {
             <div>© <span id="copyright-year">2026</span> ConvertUnlimited.com — browser-native utility workflows.</div>
             <nav class="links" aria-label="Footer">
                 <a href="/tools/">Tools</a>
-                <a href="/guides/">Guides</a>
+                <a href="/about/">About</a>
+                <a href="/contact/">Contact</a>
+                <a href="/privacy/">Privacy Policy</a>
+                <a href="/terms/">Terms of Service</a>
                 <a href="/trust/">Trust Center</a>
+                <a href="/guides/">Guides</a>
                 <a href="/trust/verification/">Verification</a>
                 <a href="/proof-of-local-processing/">Proof</a>
                 <a href="https://privacy.convertunlimited.com/">Privacy Build</a>

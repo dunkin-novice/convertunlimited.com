@@ -32,7 +32,9 @@ module.exports = [
       }
     ],
     links: [
+      ["/tools/", "Tools directory"],
       ["/trust/", "Trust Center"],
+      ["/contact/", "Contact ConvertUnlimited"],
       ["/trust/local-processing/", "How local processing works"],
       ["/trust/privacy-build/", "Privacy build"]
     ]
@@ -67,6 +69,8 @@ module.exports = [
       }
     ],
     links: [
+      ["/tools/", "Tools directory"],
+      ["/trust/", "Trust Center"],
       ["/trust/verification/", "Verification guide"],
       ["/trust/limitations/", "Limitations"],
       ["/privacy/", "Privacy notice"]
@@ -110,9 +114,12 @@ module.exports = [
       }
     ],
     links: [
+      ["/trust/", "Trust Center"],
+      ["/contact/", "Contact ConvertUnlimited"],
       ["/trust/privacy-build/", "Privacy build details"],
       ["/trust/third-parties/", "Third-party policy"],
-      ["/trust/verification/", "How to verify behavior"]
+      ["/trust/verification/", "How to verify behavior"],
+      ["/terms/", "Terms of Use"]
     ]
   },
   {
