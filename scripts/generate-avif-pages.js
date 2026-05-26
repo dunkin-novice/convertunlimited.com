@@ -336,8 +336,7 @@ const page = (locale) => {
     <meta name="description" content="${htmlEscape(text.description)}">
     <meta name="robots" content="index,follow,max-image-preview:large">
     <meta name="theme-color" content="#3aa17e">
-    <meta name="google-adsense-account" content="${ADSENSE}">
-    <link rel="canonical" href="${absolute(locale)}">
+<link rel="canonical" href="${absolute(locale)}">
 
 ${alternates()}
 
@@ -351,7 +350,6 @@ ${alternates()}
     <link rel="stylesheet" href="/style.css">
 
     ${schemaScripts(text, locale, { url: absolute(locale), applicationCategory: 'MultimediaApplication' })}
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${ADSENSE}" crossorigin="anonymous"></script>
 </head>
 <body>
     <div class="app">
@@ -408,32 +406,11 @@ ${alternates()}
                         </div>
                     </div>
 
-                    <div class="banner-ad">
-                        <span class="ad-label">Ad</span>
-                        <ins class="adsbygoogle ad-below"
-                             style="display:block"
-                             data-ad-client="${ADSENSE}"
-                             data-ad-slot="REPLACE_AVIF_BELOW_TOOL_SLOT_ID"
-                             data-ad-format="auto"
-                             data-full-width-responsive="true"></ins>
-                    </div>
 
                     <div id="avif-file-list" class="file-list" style="margin-top: 24px;"></div>
                 </section>
 
                 <aside class="rail" aria-label="Sidebar">
-                    <div class="ad-slot">
-                        <span class="ad-label">Ad</span>
-                        <div class="ad-body">
-                            <ins class="adsbygoogle ad-rail"
-                                 style="display:block"
-                                 data-ad-client="${ADSENSE}"
-                                 data-ad-slot="REPLACE_AVIF_RAIL_SLOT_ID"
-                                 data-ad-format="auto"
-                                 data-full-width-responsive="true"></ins>
-                        </div>
-                        <div class="ad-foot"></div>
-                    </div>
 
                     <div class="rail-card trust">
                         <h3>${htmlEscape(text.trustTitle)}</h3>
@@ -475,15 +452,6 @@ ${text.faq.map(([question, answer]) => `                <h3>${htmlEscape(questio
 <!-- RELATED_TOOLS_END -->
         </main>
 
-        <div class="footer-ad">
-            <span class="ad-label">Ad</span>
-            <ins class="adsbygoogle ad-footer"
-                 style="display:block"
-                 data-ad-client="${ADSENSE}"
-                 data-ad-slot="REPLACE_AVIF_FOOTER_SLOT_ID"
-                 data-ad-format="auto"
-                 data-full-width-responsive="true"></ins>
-        </div>
 
         <footer class="footer">
             <div>© <span id="copyright-year">2026</span> ConvertUnlimited.com — runs entirely in your browser.</div>

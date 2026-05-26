@@ -15,8 +15,8 @@
     <meta name="description" content="Technical trust documentation for ConvertUnlimited browser-native tools, privacy build behavior, verification steps, and limitations.">
     <meta name="robots" content="index,follow,max-image-preview:large">
     <meta name="theme-color" content="#3aa17e">
-    <meta name="google-adsense-account" content="ca-pub-2823470980745945">
-    <link rel="canonical" href="https://convertunlimited.com/trust/">
+<link rel="canonical" href="https://convertunlimited.com/trust/">
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"ConvertUnlimited","alternateName":"ConvertUnlimited.com","url":"https://convertunlimited.com/","logo":"https://convertunlimited.com/og-image.svg","sameAs":["https://github.com/dunkin-novice/convertunlimited.com","https://privacy.convertunlimited.com/"],"contactPoint":[{"@type":"ContactPoint","contactType":"customer support","url":"https://convertunlimited.com/contact/","email":"info@convertunlimited.com"}]}</script>
     <link rel="alternate" hreflang="en" href="https://convertunlimited.com/trust/">
     <link rel="alternate" hreflang="x-default" href="https://convertunlimited.com/trust/">
     <meta property="og:title" content="Trust Center | ConvertUnlimited">
@@ -37,8 +37,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/style.css">
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2823470980745945" crossorigin="anonymous"></script>
-    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://convertunlimited.com/"},{"@type":"ListItem","position":2,"name":"Trust Center","item":"https://convertunlimited.com/trust/"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://convertunlimited.com/"},{"@type":"ListItem","position":2,"name":"Trust Center","item":"https://convertunlimited.com/trust/"}]}</script>
     <script type="application/ld+json">{"@context":"https://schema.org","@type":"AboutPage","headline":"ConvertUnlimited Trust Center","name":"ConvertUnlimited Trust Center","description":"Technical trust documentation for ConvertUnlimited browser-native tools, privacy build behavior, verification steps, and limitations.","inLanguage":"en","dateModified":"2026-05-19","author":{"@type":"Organization","name":"ConvertUnlimited"},"publisher":{"@type":"Organization","name":"ConvertUnlimited","logo":{"@type":"ImageObject","url":"https://convertunlimited.com/og-image.svg"}},"mainEntityOfPage":{"@type":"WebPage","@id":"https://convertunlimited.com/trust/"}}</script>
     <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","inLanguage":"en","mainEntity":[{"@type":"Question","name":"Is the public site the privacy-reviewed build?","acceptedAnswer":{"@type":"Answer","text":"No. The public site may load ads and analytics. The privacy-reviewed deployment target is privacy.convertunlimited.com."}},{"@type":"Question","name":"Does every workflow run without upload?","acceptedAnswer":{"@type":"Answer","text":"No. Trust claims are scoped to supported local-processing flows. Pages should state when browser support or device limits apply."}},{"@type":"Question","name":"How can I verify the behavior?","acceptedAnswer":{"@type":"Answer","text":"Use the verification guide, browser DevTools Network panel, and the repository privacy tests before processing sensitive files."}}]}</script>
     <script type="application/ld+json">{"@context":"https://schema.org","@type":"ItemList","itemListElement":[{"@type":"ListItem","position":1,"name":"How local browser processing works","url":"https://convertunlimited.com/trust/local-processing/"},{"@type":"ListItem","position":2,"name":"What the privacy build changes","url":"https://convertunlimited.com/trust/privacy-build/"},{"@type":"ListItem","position":3,"name":"Security architecture","url":"https://convertunlimited.com/trust/security-architecture/"},{"@type":"ListItem","position":4,"name":"How to verify local processing","url":"https://convertunlimited.com/trust/verification/"},{"@type":"ListItem","position":5,"name":"Limitations of browser-native processing","url":"https://convertunlimited.com/trust/limitations/"},{"@type":"ListItem","position":6,"name":"Third-party and runtime script policy","url":"https://convertunlimited.com/trust/third-parties/"}]}</script>
@@ -89,6 +88,17 @@
 <h2>What this Trust Center covers</h2>
 <p>This section documents the technical trust model behind ConvertUnlimited. It separates public-site behavior from privacy-build behavior and avoids broad claims that cannot be verified from the page itself.</p>
 <p>The main trust boundary is the browser tab. Supported tools use browser APIs, local JavaScript, Canvas, Web Crypto, and vendored client-side libraries to process selected files without a server-side upload endpoint for those processing flows.</p>
+</section>
+
+<section class="article">
+<h2>Who maintains this</h2>
+<p>ConvertUnlimited is an independently built and maintained project. A single maintainer is accountable for the public site, the privacy build, and this documentation. The source for both builds is public, so the claims here can be checked against the actual code rather than taken on trust.</p>
+<ul class="intent-link-list">
+<li><a href="https://github.com/dunkin-novice/convertunlimited.com" rel="noopener">Source repository</a></li>
+<li><a href="https://github.com/dunkin-novice/convertunlimited.com/blob/main/THIRD_PARTIES.md" rel="noopener">Third-party inventory</a></li>
+<li><a href="https://github.com/dunkin-novice/convertunlimited.com/blob/main/THREAT_MODEL.md" rel="noopener">Threat model</a></li>
+<li><a href="/about/">About the project and how it is funded</a></li>
+</ul>
 </section>
 
 <section class="article">

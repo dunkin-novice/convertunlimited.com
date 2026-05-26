@@ -736,4 +736,10 @@ const INTENT_PAGES = [
   }
 ];
 
-module.exports = { INTENT_PAGES, PRIVACY_NOTE };
+// /alternatives/* pages were removed during AdSense recovery (deleted from the
+// site, dropped from generation and validation). Filter them out here so neither
+// the generator recreates them nor the validator expects them. The entry data is
+// retained above for reference only.
+const ACTIVE_INTENT_PAGES = INTENT_PAGES.filter((page) => page.type !== "alternative");
+
+module.exports = { INTENT_PAGES: ACTIVE_INTENT_PAGES, PRIVACY_NOTE };

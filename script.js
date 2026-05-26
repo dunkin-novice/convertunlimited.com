@@ -917,16 +917,6 @@
     }
   });
 
-  // Initialise each AdSense <ins> on the page (one push() per slot).
-  // Manual slots coexist with Auto Ads — Auto Ads will fill remaining
-  // opportunities (incl. vignette/popup) once enabled in your AdSense dashboard.
-  try {
-    const adUnits = document.querySelectorAll("ins.adsbygoogle");
-    adUnits.forEach(() => {
-      (window.adsbygoogle = window.adsbygoogle || []).push({});
-    });
-  } catch (_) { /* noop */ }
-
   const yearEl = document.getElementById("copyright-year");
   if (yearEl) yearEl.textContent = String(new Date().getFullYear());
 

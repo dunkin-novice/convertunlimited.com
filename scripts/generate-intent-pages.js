@@ -63,14 +63,7 @@ function sectionLabel(section) {
 }
 
 const HUBS = [
-  {
-    path: "/alternatives/",
-    title: "Converter Alternatives",
-    h1: "Converter alternatives",
-    summary: "Compare ConvertUnlimited with server-side converter platforms and decide when browser-native processing is a better fit.",
-    type: "alternative",
-    filter: (page) => page.path.startsWith("/alternatives/")
-  },
+  // /alternatives/ hub removed during AdSense recovery (pages deleted from the site).
   {
     path: "/best/",
     title: "Best Browser-Based Tool Workflows",
@@ -222,8 +215,7 @@ function renderPage(page) {
     <meta name="description" content="${esc(page.metaDescription)}">
     <meta name="robots" content="index,follow,max-image-preview:large">
     <meta name="theme-color" content="#3aa17e">
-    <meta name="google-adsense-account" content="ca-pub-2823470980745945">
-    <link rel="canonical" href="${BASE_URL}${page.path}">
+<link rel="canonical" href="${BASE_URL}${page.path}">
     <link rel="alternate" hreflang="en" href="${BASE_URL}${page.path}">
     <link rel="alternate" hreflang="x-default" href="${BASE_URL}${page.path}">
     <meta property="og:title" content="${esc(page.title)} | ConvertUnlimited">
@@ -244,8 +236,7 @@ function renderPage(page) {
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/style.css">
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2823470980745945" crossorigin="anonymous"></script>
-    ${jsonLd(breadcrumbSchema)}
+${jsonLd(breadcrumbSchema)}
     ${jsonLd(articleSchema)}
     ${jsonLd(faqSchema)}
 </head>
@@ -398,8 +389,7 @@ function renderHub(hub) {
     <meta name="description" content="${esc(hub.summary)}">
     <meta name="robots" content="index,follow,max-image-preview:large">
     <meta name="theme-color" content="#3aa17e">
-    <meta name="google-adsense-account" content="ca-pub-2823470980745945">
-    <link rel="canonical" href="${canonical}">
+<link rel="canonical" href="${canonical}">
     <link rel="alternate" hreflang="en" href="${canonical}">
     <link rel="alternate" hreflang="x-default" href="${canonical}">
     <link rel="icon" type="image/svg+xml" href="/favicon.svg">
@@ -409,8 +399,7 @@ function renderHub(hub) {
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/style.css">
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2823470980745945" crossorigin="anonymous"></script>
-    ${jsonLd(webPageSchema)}
+${jsonLd(webPageSchema)}
     ${jsonLd(itemListSchema)}
     ${jsonLd(faqSchema)}
 </head>

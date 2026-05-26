@@ -122,14 +122,15 @@ const toolsPageIssues = [];
 for (const locale of LOCALES) {
   const html = read(locale.toolsPath);
   if (!html.includes('rel="canonical"')) toolsPageIssues.push(`${locale.code}:missing canonical`);
-  if (!html.includes('google-adsense-account')) toolsPageIssues.push(`${locale.code}:missing adsense`);
+  // AdSense intentionally removed pending re-approval. Flag accidental reintroduction.
+  if (html.includes('google-adsense-account') || html.includes('adsbygoogle')) toolsPageIssues.push(`${locale.code}:adsense present (must stay removed until approved)`);
   for (const alt of LOCALES) {
     if (!shouldKeepHreflang(alt.hreflang)) continue;
     if (!html.includes(`hreflang="${alt.hreflang}"`)) toolsPageIssues.push(`${locale.code}:missing ${alt.hreflang}`);
   }
   if (!html.includes('hreflang="x-default"')) toolsPageIssues.push(`${locale.code}:missing x-default`);
 }
-addCheck('tools pages have canonical, AdSense, and hreflang alternates', toolsPageIssues.length === 0, toolsPageIssues.join('; '));
+addCheck('tools pages have canonical and hreflang alternates, and no AdSense (removed pending approval)', toolsPageIssues.length === 0, toolsPageIssues.join('; '));
 
 const allHtml = allHtmlFiles().map((file) => fs.readFileSync(file, 'utf8')).join('\n');
 addCheck('no www canonical remains', !/rel="canonical" href="https:\/\/www\.convertunlimited\.com/.test(allHtml));

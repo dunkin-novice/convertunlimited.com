@@ -54,7 +54,8 @@ const seenTitles = new Map();
 const seenDescriptions = new Map();
 const sitemap = fs.existsSync(path.join(ROOT, "sitemap.xml")) ? fs.readFileSync(path.join(ROOT, "sitemap.xml"), "utf8") : "";
 const paths = new Set();
-const HUB_ROUTES = ["/alternatives/", "/best/", "/compare/", "/guides/"];
+// /alternatives/ removed during AdSense recovery.
+const HUB_ROUTES = ["/best/", "/compare/", "/guides/"];
 
 for (const page of INTENT_PAGES) {
   if (paths.has(page.path)) FINDINGS.push(`${page.path}: duplicate intent path`);

@@ -1124,67 +1124,6 @@ a { color: inherit; }
 .rail-card .stat .v { font-family: var(--font-mono); font-variant-numeric: tabular-nums; color: var(--ink); }
 .rail-card .stat .v.green { color: var(--accent-2); font-weight: 600; }
 
-.ad-slot {
-  background: var(--bg-2);
-  border: 1px solid var(--line);
-  border-radius: 12px;
-  padding: 14px;
-  position: relative;
-}
-.ad-slot .ad-label {
-  position: absolute; top: 8px; right: 12px;
-  font-family: var(--font-mono); font-size: 10px;
-  color: var(--ink-4);
-  letter-spacing: 0.06em; text-transform: uppercase;
-}
-.ad-slot .ad-body {
-  min-height: 240px;
-  border-radius: 8px;
-  background: var(--bg-3);
-  display: grid; place-items: center;
-  overflow: hidden;
-}
-.ad-slot .ad-body ins.adsbygoogle {
-  display: block;
-  width: 100%;
-  min-height: 240px;
-}
-.ad-slot .ad-foot {
-  margin-top: 8px;
-  font-size: 11px; color: var(--ink-4);
-  display: flex; justify-content: space-between; align-items: center;
-}
-.ad-slot .ad-foot a { color: var(--ink-3); text-decoration: none; }
-.ad-slot .ad-foot a:hover { color: var(--ink); }
-
-/* In-content + footer banner ad units */
-.banner-ad,
-.footer-ad {
-  position: relative;
-  margin: 16px;
-  padding: 14px;
-  background: var(--bg-3);
-  border: 1px solid var(--line);
-  border-radius: 10px;
-  min-height: 110px;
-  display: grid;
-  place-items: center;
-}
-.banner-ad .ad-label,
-.footer-ad .ad-label {
-  position: absolute; top: 6px; right: 10px;
-  font-family: var(--font-mono); font-size: 10px;
-  color: var(--ink-4);
-  letter-spacing: 0.06em; text-transform: uppercase;
-}
-.banner-ad ins.adsbygoogle,
-.footer-ad ins.adsbygoogle {
-  display: block; width: 100%; min-height: 90px;
-}
-.footer-ad {
-  margin: 28px 0 0;
-}
-
 /* trust card */
 .trust .item {
   display: flex; gap: 10px; padding: 8px 0;

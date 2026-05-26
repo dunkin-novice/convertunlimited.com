@@ -15,8 +15,8 @@
     <meta name="description" content="브라우저에서 JWT header와 payload를 로컬로 디코드합니다. claims, token parts, 날짜를 확인하며 업로드와 서명 검증 주장은 없습니다.">
     <meta name="robots" content="noindex,follow">
     <meta name="theme-color" content="#3aa17e">
-    <meta name="google-adsense-account" content="ca-pub-2823470980745945">
-    <link rel="canonical" href="https://convertunlimited.com/ko/jwt-decoder/">
+<link rel="canonical" href="https://convertunlimited.com/ko/jwt-decoder/">
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"ConvertUnlimited","alternateName":"ConvertUnlimited.com","url":"https://convertunlimited.com/","logo":"https://convertunlimited.com/og-image.svg","sameAs":["https://github.com/dunkin-novice/convertunlimited.com","https://privacy.convertunlimited.com/"],"contactPoint":[{"@type":"ContactPoint","contactType":"customer support","url":"https://convertunlimited.com/contact/","email":"info@convertunlimited.com"}]}</script>
 
     <link rel="alternate" hreflang="en" href="https://convertunlimited.com/jwt-decoder/">
     <link rel="alternate" hreflang="th" href="https://convertunlimited.com/th/jwt-decoder/">
@@ -32,10 +32,6 @@
     <style>.jwt-output{min-height:170px;max-height:320px;overflow:auto;white-space:pre-wrap;overflow-wrap:anywhere;border:1px solid var(--line);border-radius:8px;padding:12px}.jwt-claim-row{display:flex;justify-content:space-between;gap:12px;border-bottom:1px solid var(--line);padding:8px 0;overflow-wrap:anywhere}.jwt-signature{max-height:100px;overflow:auto;white-space:pre-wrap;overflow-wrap:anywhere}</style>
     <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","inLanguage":"ko","mainEntity":[{"@type":"Question","name":"JWT 서명을 검증하나요?","acceptedAnswer":{"@type":"Answer","text":"아니요. header와 payload만 디코드합니다."}},{"@type":"Question","name":"JWT가 업로드되나요?","acceptedAnswer":{"@type":"Answer","text":"아니요. 디코딩은 브라우저에서 로컬로 실행됩니다."}},{"@type":"Question","name":"exp와 iat를 볼 수 있나요?","acceptedAnswer":{"@type":"Answer","text":"네. Unix timestamp claims는 ISO 날짜로 표시됩니다."}},{"@type":"Question","name":"프로덕션 token을 붙여넣어도 되나요?","acceptedAnswer":{"@type":"Answer","text":"위험을 이해하지 못했다면 민감한 프로덕션 token은 피하세요."}},{"@type":"Question","name":"Unicode claims를 지원하나요?","acceptedAnswer":{"@type":"Answer","text":"네. UTF-8 payload를 안전하게 디코드합니다."}}]}</script>
     <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"JWT Decoder","description":"브라우저에서 JWT header와 payload를 로컬로 디코드합니다. claims, token parts, 날짜를 확인하며 업로드와 서명 검증 주장은 없습니다.","url":"https://convertunlimited.com/ko/jwt-decoder/","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","isAccessibleForFree":true,"inLanguage":"ko","featureList":["업로드 없이 JWT를 검사하세요.","Processed locally in your browser for supported operations","No account required"],"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2823470980745945" crossorigin="anonymous"></script>
-    <style id="ADSENSE_RECOVERY_CSS">
-      .banner-ad, .footer-ad, .ad-slot { display: none !important; }
-    </style>
 </head>
 <body data-tool="jwt-decoder" data-page-type="tool">
     <!-- Google Tag Manager (noscript) -->
@@ -89,9 +85,8 @@
                             <div class="range-field" style="margin-top:16px;"><span>서명 부분</span><pre id="jwt-signature" class="mono jwt-output jwt-signature"></pre></div>
                         </div>
                     </div>
-                    <div class="banner-ad"><span class="ad-label">Ad</span><ins class="adsbygoogle ad-below" style="display:block" data-ad-client="ca-pub-2823470980745945" data-ad-slot="REPLACE_JWT_BELOW_TOOL_SLOT_ID" data-ad-format="auto" data-full-width-responsive="true"></ins></div>
                 </section>
-                <aside class="rail" aria-label="Sidebar"><div class="ad-slot"><span class="ad-label">Ad</span><div class="ad-body"><ins class="adsbygoogle ad-rail" style="display:block" data-ad-client="ca-pub-2823470980745945" data-ad-slot="REPLACE_JWT_RAIL_SLOT_ID" data-ad-format="auto" data-full-width-responsive="true"></ins></div><div class="ad-foot"></div></div><div class="rail-card trust"><h3>개인정보 보호 설계</h3><div class="item"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg><div><b>로컬 디코드.</b> JWT 디코딩은 브라우저에서 실행됩니다.</div></div><div class="item"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg><div><b>업로드 없음.</b> Token은 기기에 남아 있습니다.</div></div></div></aside>
+                <aside class="rail" aria-label="Sidebar"><div class="rail-card trust"><h3>개인정보 보호 설계</h3><div class="item"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg><div><b>로컬 디코드.</b> JWT 디코딩은 브라우저에서 실행됩니다.</div></div><div class="item"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg><div><b>업로드 없음.</b> Token은 기기에 남아 있습니다.</div></div></div></aside>
             </div>
 
             <section class="article aeo-summary" id="tool-summary">

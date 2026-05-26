@@ -15,8 +15,8 @@
     <meta name="description" content="ブラウザ内で JWT header と payload をデコード。claims、token の各部分、日付を確認。アップロード不要、署名検証は行いません。">
     <meta name="robots" content="noindex,follow">
     <meta name="theme-color" content="#3aa17e">
-    <meta name="google-adsense-account" content="ca-pub-2823470980745945">
-    <link rel="canonical" href="https://convertunlimited.com/ja/jwt-decoder/">
+<link rel="canonical" href="https://convertunlimited.com/ja/jwt-decoder/">
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"ConvertUnlimited","alternateName":"ConvertUnlimited.com","url":"https://convertunlimited.com/","logo":"https://convertunlimited.com/og-image.svg","sameAs":["https://github.com/dunkin-novice/convertunlimited.com","https://privacy.convertunlimited.com/"],"contactPoint":[{"@type":"ContactPoint","contactType":"customer support","url":"https://convertunlimited.com/contact/","email":"info@convertunlimited.com"}]}</script>
 
     <link rel="alternate" hreflang="en" href="https://convertunlimited.com/jwt-decoder/">
     <link rel="alternate" hreflang="th" href="https://convertunlimited.com/th/jwt-decoder/">
@@ -32,10 +32,6 @@
     <style>.jwt-output{min-height:170px;max-height:320px;overflow:auto;white-space:pre-wrap;overflow-wrap:anywhere;border:1px solid var(--line);border-radius:8px;padding:12px}.jwt-claim-row{display:flex;justify-content:space-between;gap:12px;border-bottom:1px solid var(--line);padding:8px 0;overflow-wrap:anywhere}.jwt-signature{max-height:100px;overflow:auto;white-space:pre-wrap;overflow-wrap:anywhere}</style>
     <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","inLanguage":"ja","mainEntity":[{"@type":"Question","name":"JWT の署名を検証しますか？","acceptedAnswer":{"@type":"Answer","text":"いいえ。header と payload をデコードするだけです。"}},{"@type":"Question","name":"JWT はアップロードされますか？","acceptedAnswer":{"@type":"Answer","text":"いいえ。デコードはブラウザ内でローカルに行われます。"}},{"@type":"Question","name":"exp や iat を確認できますか？","acceptedAnswer":{"@type":"Answer","text":"はい。存在する Unix timestamp claims は ISO 日付で表示します。"}},{"@type":"Question","name":"本番 token を貼り付けてもよいですか？","acceptedAnswer":{"@type":"Answer","text":"リスクを理解していない場合、機密性の高い本番 token は避けてください。"}},{"@type":"Question","name":"Unicode claims に対応していますか？","acceptedAnswer":{"@type":"Answer","text":"はい。UTF-8 payload を安全にデコードします。"}}]}</script>
     <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"JWT Decoder","description":"ブラウザ内で JWT header と payload をデコード。claims、token の各部分、日付を確認。アップロード不要、署名検証は行いません。","url":"https://convertunlimited.com/ja/jwt-decoder/","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","isAccessibleForFree":true,"inLanguage":"ja","featureList":["アップロードせずに JWT を確認。","Processed locally in your browser for supported operations","No account required"],"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2823470980745945" crossorigin="anonymous"></script>
-    <style id="ADSENSE_RECOVERY_CSS">
-      .banner-ad, .footer-ad, .ad-slot { display: none !important; }
-    </style>
 </head>
 <body data-tool="jwt-decoder" data-page-type="tool">
     <!-- Google Tag Manager (noscript) -->
@@ -89,9 +85,8 @@
                             <div class="range-field" style="margin-top:16px;"><span>署名部分</span><pre id="jwt-signature" class="mono jwt-output jwt-signature"></pre></div>
                         </div>
                     </div>
-                    <div class="banner-ad"><span class="ad-label">Ad</span><ins class="adsbygoogle ad-below" style="display:block" data-ad-client="ca-pub-2823470980745945" data-ad-slot="REPLACE_JWT_BELOW_TOOL_SLOT_ID" data-ad-format="auto" data-full-width-responsive="true"></ins></div>
                 </section>
-                <aside class="rail" aria-label="Sidebar"><div class="ad-slot"><span class="ad-label">Ad</span><div class="ad-body"><ins class="adsbygoogle ad-rail" style="display:block" data-ad-client="ca-pub-2823470980745945" data-ad-slot="REPLACE_JWT_RAIL_SLOT_ID" data-ad-format="auto" data-full-width-responsive="true"></ins></div><div class="ad-foot"></div></div><div class="rail-card trust"><h3>プライバシー重視</h3><div class="item"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg><div><b>ローカルデコード。</b> JWT デコードはブラウザ内で実行されます。</div></div><div class="item"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg><div><b>アップロードなし。</b> Token は端末内に留まります。</div></div></div></aside>
+                <aside class="rail" aria-label="Sidebar"><div class="rail-card trust"><h3>プライバシー重視</h3><div class="item"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg><div><b>ローカルデコード。</b> JWT デコードはブラウザ内で実行されます。</div></div><div class="item"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg><div><b>アップロードなし。</b> Token は端末内に留まります。</div></div></div></aside>
             </div>
 
             <section class="article aeo-summary" id="tool-summary">

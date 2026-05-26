@@ -83,15 +83,10 @@ const ensureLegalFooterLinks = (html) => {
   );
 };
 
-const addRecoveryAdCss = (html) => {
-  if (html.includes("ADSENSE_RECOVERY_CSS")) return html;
-  const css = [
-    "    <style id=\"ADSENSE_RECOVERY_CSS\">",
-    "      .banner-ad, .footer-ad, .ad-slot { display: none !important; }",
-    "    </style>",
-  ].join("\n");
-  return html.replace("</head>", `${css}\n</head>`);
-};
+// AdSense removed from production pending re-approval. This previously injected
+// a hide rule for ad slots; it is now a no-op so the index policy never
+// reintroduces ad-related markup. Re-enable only after AdSense is approved.
+const addRecoveryAdCss = (html) => html;
 
 const standardizeRecoveryWording = (html) => html
   .replace(/100% free, no signup/g, "Browser-native tools")

@@ -153,8 +153,7 @@ function renderPage(page) {
     <meta name="description" content="${esc(page.description)}">
     <meta name="robots" content="index,follow,max-image-preview:large">
     <meta name="theme-color" content="#3aa17e">
-    <meta name="google-adsense-account" content="ca-pub-2823470980745945">
-    <link rel="canonical" href="${canonical}">
+<link rel="canonical" href="${canonical}">
     <link rel="alternate" hreflang="en" href="${canonical}">
     <link rel="alternate" hreflang="x-default" href="${canonical}">
     <meta property="og:title" content="${esc(page.title)} | ConvertUnlimited">
@@ -175,8 +174,7 @@ function renderPage(page) {
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/style.css">
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2823470980745945" crossorigin="anonymous"></script>
-    ${schema.join("\n    ")}
+${schema.join("\n    ")}
 </head>
 <body data-page-type="trust">
     <!-- Google Tag Manager (noscript) -->
