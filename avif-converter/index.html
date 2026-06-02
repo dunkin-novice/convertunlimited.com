@@ -13,7 +13,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AVIF Converter - Convert JPG, PNG &amp; WebP to AVIF Online | ConvertUnlimited</title>
     <meta name="description" content="Convert JPG, PNG, and WebP images to AVIF online in your browser. Local-first, free, no signup, and no server uploads when your browser supports AVIF encoding.">
-    <meta name="robots" content="noindex,follow,max-image-preview:large">
+    <meta name="robots" content="index,follow,max-image-preview:large">
     <meta name="theme-color" content="#3aa17e">
 <link rel="canonical" href="https://convertunlimited.com/avif-converter/">
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2823470980745945" crossorigin="anonymous"></script>
@@ -32,7 +32,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/style.css">
 
-    <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","inLanguage":"en","mainEntity":[{"@type":"Question","name":"What is AVIF?","acceptedAnswer":{"@type":"Answer","text":"AVIF is a modern image format based on AV1 compression. It is designed to deliver high-quality images with smaller file sizes for the web."}},{"@type":"Question","name":"Is AVIF smaller than WebP?","acceptedAnswer":{"@type":"Answer","text":"Often, yes, but not always. Results depend on the image and quality setting, so compare the output before replacing production assets."}},{"@type":"Question","name":"Are my images sent to ConvertUnlimited servers?","acceptedAnswer":{"@type":"Answer","text":"No server-side upload endpoint is used for this AVIF conversion flow. The browser decodes and encodes images locally when AVIF encoding is supported."}},{"@type":"Question","name":"Why does AVIF conversion not work in some browsers?","acceptedAnswer":{"@type":"Answer","text":"Some browsers can display AVIF but cannot export AVIF through Canvas yet. In that case the page shows a friendly unsupported-browser message."}},{"@type":"Question","name":"Can I convert multiple images at once?","acceptedAnswer":{"@type":"Answer","text":"Yes. Add multiple files, convert them together, then download each AVIF file or a ZIP archive."}}]}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","inLanguage":"en","mainEntity":[{"@type":"Question","name":"Is AVIF really smaller than WebP?","acceptedAnswer":{"@type":"Answer","text":"On photographs, yes — typically 20–35% smaller at the same visual quality. On flat graphics and small images, the gap narrows or disappears, and lossless WebP or PNG can win. Always compare on your actual content before replacing production assets."}},{"@type":"Question","name":"Will AVIF break older browsers?","acceptedAnswer":{"@type":"Answer","text":"Not if you serve it via a picture element with a WebP or JPEG fallback. The browser picks the first source it can decode and ignores the rest. The remaining ~5% of users without AVIF support will silently get the fallback."}},{"@type":"Question","name":"Why is encoding so slow compared to JPEG?","acceptedAnswer":{"@type":"Answer","text":"AV1's compression efficiency comes from a much more sophisticated encoding pipeline than JPEG's DCT-and-quantise. That pipeline is computationally expensive at encode time. Decoding, which is what end users experience, is fast."}},{"@type":"Question","name":"Does AVIF support animations?","acceptedAnswer":{"@type":"Answer","text":"Yes — AVIF can carry an AV1 image sequence as an animation, similar in spirit to animated WebP. For most use cases a real video file (MP4/AV1) is still the better choice, but if you need a single-file animated still, animated AVIF is a viable option."}},{"@type":"Question","name":"Can I convert AVIF back to JPEG or PNG?","acceptedAnswer":{"@type":"Answer","text":"Yes — the homepage image converter accepts AVIF input and exports JPG, PNG, or WebP. Use that path when you need to re-export an AVIF for a non-web pipeline."}}]}</script>
     <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"AVIF Converter","description":"Convert JPG, PNG, and WebP images to AVIF online in your browser. Local-first, free, no signup, and no server uploads when your browser supports AVIF encoding.","url":"https://convertunlimited.com/avif-converter/","applicationCategory":"MultimediaApplication","operatingSystem":"Any","isAccessibleForFree":true,"inLanguage":"en","featureList":["Convert images to AVIF.","Processed locally in your browser for supported operations","No account required"],"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
 </head>
 <body data-tool="avif-converter" data-page-type="tool">
@@ -146,42 +146,75 @@
                 </aside>
             </div>
 
-            <section class="article aeo-summary" id="tool-summary">
-                <h2>What this tool does</h2>
-                <p>Upload JPG, PNG, WebP, or AVIF images and export AVIF files for modern websites. Selected file contents are processed locally in your browser when your browser supports local conversion.</p>
-                <h2>Privacy behavior</h2>
-                <p>Selected inputs are processed locally in your browser for this workflow. The public site may load ads and analytics; use the privacy build for privacy-sensitive workflows.</p>
-                <h2>Supported workflow</h2>
-                <p>AVIF is a modern image format built for efficient web delivery. It can produce small files while preserving detail, especially for photos and rich graphics.</p>
+            <section class="article aeo-summary" id="answer-first">
+                <h2>Short answer</h2>
+                <p>AVIF is the most efficient image format you can practically ship to the web in 2026 — typically 30% smaller than WebP and 50% smaller than JPEG at visually identical quality. Use it for hero images, art-directed photography, and any page where performance matters. Keep JPEG or WebP fallbacks for the small remainder of browsers that cannot decode AVIF, and for non-web pipelines.</p>
+                <p style="font-size:14px;opacity:0.7;margin-top:6px">By <a href="https://github.com/dunkin-novice" rel="author noopener">dunkin-novice</a> · Last updated 3 June 2026</p>
             </section>
+
             <section id="how" class="article">
-                <h2>When should you use AVIF?</h2>
-                <p>AVIF is a modern image format built for efficient web delivery. It can produce small files while preserving detail, especially for photos and rich graphics.</p>
-                <p>Use AVIF for websites, landing pages, product images, and performance-sensitive pages where modern browser support is acceptable. Keep JPG, PNG, or WebP fallbacks for older browsers or workflows that do not support AVIF yet.</p>
+                <h2>What AVIF actually is</h2>
+                <p>AVIF (AV1 Image File Format) stores a single keyframe of AV1 video inside a HEIF-style container. AV1 is the open, royalty-free video codec developed by the Alliance for Open Media — the same codec your browser uses to decode YouTube and Netflix in their most efficient mode. Wrapping an AV1 keyframe as a still image gives you a format with a modern, ML-tuned compression backbone and no licensing fees.</p>
+                <p>Like HEIC and WebP, AVIF supports lossy and lossless encoding, alpha transparency, wide colour gamuts (Rec. 2020), 10- and 12-bit colour depth, and HDR. Unlike HEIC, it is fully unencumbered by patent royalties, which is why every browser vendor agreed to ship it.</p>
+            </section>
+
+            <section class="article">
+                <h2>Size and quality, against JPEG and WebP</h2>
+                <p>The often-quoted figures: AVIF lossy is around 30% smaller than WebP and 50% smaller than JPEG at equivalent visual quality. In practice the gap is larger on photographic content with smooth gradients (skies, skin, water) and narrower on flat graphic content with sharp edges (logos, screenshots) — where lossless PNG or lossless WebP often win on file size.</p>
+                <p>Where AVIF really separates from older formats is at low quality. JPEG below quality 0.5 shows visible 8×8 block boundaries; WebP shows softening; AVIF degrades much more gracefully. If you are aggressively budgeting bytes for hero images on mobile, AVIF gives you a usable image at file sizes where JPEG looks broken.</p>
+            </section>
+
+            <section class="article">
+                <h2>Browser support in 2026</h2>
+                <p>AVIF decoding is now supported in every current Chromium-based browser (since Chrome 85 in 2020), Firefox (since 93 in 2021), Safari (since 16.4 in 2023), Samsung Internet, and Opera. <a href="https://caniuse.com/avif" rel="noopener">caniuse.com</a> puts global decoding support at around 95% of users. The remaining ~5% is a long tail of older Android stock browsers, in-app webviews on older OS versions, and a small slice of Safari users on iOS 15 or earlier.</p>
+                <p>If you serve images via <code>&lt;picture&gt;</code> with an AVIF source and a WebP or JPEG fallback, you cover everyone:</p>
+                <pre><code>&lt;picture&gt;
+  &lt;source srcset="hero.avif" type="image/avif"&gt;
+  &lt;source srcset="hero.webp" type="image/webp"&gt;
+  &lt;img src="hero.jpg" alt="..."&gt;
+&lt;/picture&gt;</code></pre>
+                <p>Modern CDNs and image-CMS services can generate this triplet automatically. If you are doing it manually, this converter produces the AVIF; pair it with the <a href="/">image converter</a> for the WebP and JPEG fallbacks.</p>
+            </section>
+
+            <section class="article">
+                <h2>The encoding-speed catch</h2>
+                <p>AVIF's main practical limitation is encoding cost. The reference encoder, <code>libaom</code>, can take seconds to tens of seconds per image at high effort settings. Decoding is fast — that's what matters for end users — but encoding is slow enough that you should batch it and cache the output, not encode on every request.</p>
+                <p>The browser-based encoder in this tool wraps Chromium's <code>image/avif</code> Canvas export when available. It uses a faster effort setting than <code>libaom</code> at maximum, so output files will typically be slightly larger than what a desktop encoder produces. For most web use cases the difference is small. If you need to squeeze the last percent, run a batch through <code>cavif</code>, <code>avifenc</code>, or a serverside image pipeline.</p>
+            </section>
+
+            <section class="article">
+                <h2>Where AVIF is not the right answer</h2>
+                <ul>
+                    <li><b>Outside the browser.</b> Many image editors still treat AVIF as a second-class citizen. Photoshop has a plugin path, GIMP supports it via libheif, but the experience is rougher than JPEG or PNG. If a file is destined for a non-web tool, pick a more portable format.</li>
+                    <li><b>Sharp-edged graphics where every byte counts.</b> Logos, line art, screenshots: lossless WebP or PNG often beats AVIF on file size, and PNG remains the universally accepted format for these.</li>
+                    <li><b>Archival.</b> JPEG and PNG are the safest long-term bets. AVIF will probably still be readable in 20 years (AV1 is too widespread to disappear), but JPEG is closer to a true permanent format.</li>
+                    <li><b>Email and document workflows.</b> Outlook and many corporate document tools still expect JPEG or PNG.</li>
+                </ul>
+            </section>
+
+            <section class="article">
+                <h2>How this converter works</h2>
+                <p>The dropzone above accepts JPG, PNG, and WebP input. The browser decodes the input via the standard image pipeline, paints it onto a Canvas, and re-encodes as AVIF via <code>canvas.toBlob('image/avif', ...)</code>. The selected file does not leave your device; there is no server-side upload endpoint for this flow. If your browser can decode AVIF but cannot encode it through Canvas (a few earlier Safari builds were in that state), the page shows an unsupported-browser notice and recommends a desktop tool instead.</p>
+                <p>You can verify the local-only behaviour in DevTools → Network: open the panel before dropping a file and watch for outbound requests during processing.</p>
             </section>
 
             <section id="faq" class="article">
-                <h2>Frequently Asked Questions</h2>
-                <h3>What is AVIF?</h3>
-                <p>AVIF is a modern image format based on AV1 compression. It is designed to deliver high-quality images with smaller file sizes for the web.</p>
-                <h3>Is AVIF smaller than WebP?</h3>
-                <p>Often, yes, but not always. Results depend on the image and quality setting, so compare the output before replacing production assets.</p>
-                <h3>Are my images sent to ConvertUnlimited servers?</h3>
-                <p>No server-side upload endpoint is used for this AVIF conversion flow. The browser decodes and encodes images locally when AVIF encoding is supported.</p>
-                <h3>Why does AVIF conversion not work in some browsers?</h3>
-                <p>Some browsers can display AVIF but cannot export AVIF through Canvas yet. In that case the page shows a friendly unsupported-browser message.</p>
-                <h3>Can I convert multiple images at once?</h3>
-                <p>Yes. Add multiple files, convert them together, then download each AVIF file or a ZIP archive.</p>
+                <h2>Frequently asked questions</h2>
+                <h3>Is AVIF really smaller than WebP?</h3>
+                <p>On photographs, yes — typically 20–35% smaller at the same visual quality. On flat graphics and small images, the gap narrows or disappears, and lossless WebP or PNG can win. Always compare on your actual content before replacing production assets.</p>
+                <h3>Will AVIF break older browsers?</h3>
+                <p>Not if you serve it via a <code>&lt;picture&gt;</code> element with a WebP or JPEG fallback. The browser picks the first source it can decode and ignores the rest. The remaining ~5% of users without AVIF support will silently get the fallback.</p>
+                <h3>Why is encoding so slow compared to JPEG?</h3>
+                <p>AV1's compression efficiency comes from a much more sophisticated encoding pipeline than JPEG's DCT-and-quantise. That pipeline is computationally expensive at encode time. Decoding, which is what end users experience, is fast.</p>
+                <h3>Does AVIF support animations?</h3>
+                <p>Yes — AVIF can carry an AV1 image sequence as an animation, similar in spirit to animated WebP. For most use cases a real video file (MP4/AV1) is still the better choice, but if you need a single-file animated still, animated AVIF is a viable option.</p>
+                <h3>Can I convert AVIF back to JPEG or PNG?</h3>
+                <p>Yes — the homepage <a href="/">image converter</a> accepts AVIF input and exports JPG, PNG, or WebP. Use that path when you need to re-export an AVIF for a non-web pipeline.</p>
             </section>
 
-            <section id="privacy" class="article">
-                <h2>Privacy Policy</h2>
-                <p>ConvertUnlimited does not provide a server-side upload endpoint for this AVIF conversion flow. Selected image contents are processed locally in your browser when supported.</p>
-            </section>
-
-            <section id="terms" class="article">
-                <h2>Terms of Use</h2>
-                <p>ConvertUnlimited is provided as is. You are responsible for the files you process and for checking browser compatibility before publishing AVIF images.</p>
+            <section class="article">
+                <h2>Privacy and terms</h2>
+                <p>For supported workflows, selected file contents are processed locally in your browser. See the <a href="/privacy/">Privacy Policy</a> and the <a href="/terms/">Terms of Use</a> for what the public site does and does not do. For details on the local-processing model, see <a href="/trust/local-processing/">how local browser processing works</a>.</p>
             </section>
 
 <!-- GUIDE_BLOCKS_START -->

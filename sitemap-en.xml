@@ -345,4 +345,25 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://convertunlimited.com/watermark-tool/"/>
     <xhtml:link rel="alternate" hreflang="th" href="https://convertunlimited.com/th/watermark-tool/"/>
   </url>
+  <url>
+    <loc>https://convertunlimited.com/avif-converter/</loc>
+    <lastmod>2026-06-03T12:00:00+07:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://convertunlimited.com/avif-converter/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://convertunlimited.com/avif-converter/"/>
+    <xhtml:link rel="alternate" hreflang="th" href="https://convertunlimited.com/th/avif-converter/"/>
+  </url>
+  <url>
+    <loc>https://convertunlimited.com/guides/what-is-webp/</loc>
+    <lastmod>2026-06-03T12:00:00+07:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://convertunlimited.com/guides/webp-vs-png/</loc>
+    <lastmod>2026-06-03T12:00:00+07:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
 </urlset>
