@@ -1,6 +1,9 @@
 #!/usr/bin/env node
-// One-shot cleanup: removes all AdSense surface from production HTML and adds
-// Organization JSON-LD sitewide. Safe to re-run (idempotent).
+// Strips the *policy-risky* AdSense surface (manual <ins> ad units, ad-slot
+// wrapper divs, hidden-slot recovery CSS) and ensures Organization JSON-LD is
+// present sitewide. The Auto Ads loader script and <meta google-adsense-account>
+// are intentionally LEFT in place — they are needed for AdSense review and for
+// Auto Ads delivery once approved. Safe to re-run (idempotent).
 "use strict";
 
 const fs = require("fs");
@@ -87,16 +90,10 @@ function exciseDivByClass(html, className) {
 function clean(html) {
   let out = html;
 
-  // 1. <meta name="google-adsense-account" ...>
-  out = out.replace(/^[ \t]*<meta\s+name="google-adsense-account"[^>]*>\s*\n?/gim, "");
+  // 1–2. Loader script + google-adsense-account meta are NEEDED for AdSense
+  //      review and Auto Ads delivery. Do NOT strip them.
 
-  // 2. AdSense loader script tag
-  out = out.replace(
-    /^[ \t]*<script[^>]*pagead2\.googlesyndication\.com\/pagead\/js\/adsbygoogle\.js[^>]*><\/script>\s*\n?/gim,
-    ""
-  );
-
-  // 3. <!-- Google AdSense (...) --> comment line
+  // 3. <!-- Google AdSense (...) --> comment line (legacy decoration, safe to drop)
   out = out.replace(/^[ \t]*<!--\s*Google AdSense[^\n]*-->\s*\n?/gim, "");
 
   // 4. ADSENSE_RECOVERY_CSS <style> block

@@ -122,15 +122,19 @@ const toolsPageIssues = [];
 for (const locale of LOCALES) {
   const html = read(locale.toolsPath);
   if (!html.includes('rel="canonical"')) toolsPageIssues.push(`${locale.code}:missing canonical`);
-  // AdSense intentionally removed pending re-approval. Flag accidental reintroduction.
-  if (html.includes('google-adsense-account') || html.includes('adsbygoogle')) toolsPageIssues.push(`${locale.code}:adsense present (must stay removed until approved)`);
+  // AdSense Auto Ads loader is allowed (needed for review + Auto Ads delivery).
+  // Manual <ins class="adsbygoogle"> units and hidden ad placeholders are NOT —
+  // those triggered "hidden ads" / "low value content" risk in the previous review.
+  if (!/pagead2\.googlesyndication\.com\/pagead\/js\/adsbygoogle\.js/.test(html)) toolsPageIssues.push(`${locale.code}:missing adsense loader`);
+  if (/<ins\b[^>]*\bclass="[^"]*\badsbygoogle\b/.test(html)) toolsPageIssues.push(`${locale.code}:manual <ins> ad unit present (Auto Ads only)`);
+  if (html.includes('ADSENSE_RECOVERY_CSS') || /class="banner-ad"/.test(html) || /class="footer-ad"/.test(html) || /class="ad-slot"/.test(html)) toolsPageIssues.push(`${locale.code}:legacy ad-slot wrapper present`);
   for (const alt of LOCALES) {
     if (!shouldKeepHreflang(alt.hreflang)) continue;
     if (!html.includes(`hreflang="${alt.hreflang}"`)) toolsPageIssues.push(`${locale.code}:missing ${alt.hreflang}`);
   }
   if (!html.includes('hreflang="x-default"')) toolsPageIssues.push(`${locale.code}:missing x-default`);
 }
-addCheck('tools pages have canonical and hreflang alternates, and no AdSense (removed pending approval)', toolsPageIssues.length === 0, toolsPageIssues.join('; '));
+addCheck('tools pages have canonical, hreflang alternates, AdSense loader, and no legacy ad-slot markup', toolsPageIssues.length === 0, toolsPageIssues.join('; '));
 
 const allHtml = allHtmlFiles().map((file) => fs.readFileSync(file, 'utf8')).join('\n');
 addCheck('no www canonical remains', !/rel="canonical" href="https:\/\/www\.convertunlimited\.com/.test(allHtml));

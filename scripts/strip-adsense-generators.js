@@ -60,13 +60,11 @@ function exciseDivByClass(src, className) {
 
 function clean(src) {
   let out = src;
-  // adsense meta (literal or ${ADSENSE})
-  out = out.replace(/^[ \t]*<meta\s+name="google-adsense-account"[^>]*>\s*\n?/gim, "");
-  // loader script
-  out = out.replace(
-    /^[ \t]*<script[^>]*pagead2\.googlesyndication\.com\/pagead\/js\/adsbygoogle\.js[^>]*><\/script>\s*\n?/gim,
-    ""
-  );
+  // NOTE: <meta google-adsense-account> and the Auto Ads loader script are
+  // kept on production pages for AdSense review. We do NOT strip them here.
+  // (Generators currently don't emit them either — apply-adsense-loader.js
+  // handles loader insertion sitewide as a post-process.)
+
   // recovery css style block (literal)
   out = out.replace(/^[ \t]*<style id="ADSENSE_RECOVERY_CSS">[\s\S]*?<\/style>\s*\n?/gim, "");
   // ad div wrappers (balanced)
