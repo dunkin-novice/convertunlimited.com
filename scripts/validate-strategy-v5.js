@@ -83,6 +83,13 @@ function htmlFiles() {
   return walk(ROOT).filter((file) => file.endsWith("index.html"));
 }
 
+// Redirect stubs (consolidated converter-pair pages) intentionally have
+// minimal markup — no AEO summary, no hreflang alternates — so the content
+// checks below should skip them.
+function isRedirectStub(text) {
+  return /<meta\s+http-equiv="refresh"\s+content="0[^"]*"/i.test(text);
+}
+
 function rel(file) {
   return path.relative(ROOT, file).split(path.sep).join("/");
 }
@@ -111,11 +118,13 @@ function checkHtmlBasics() {
     if (!/<link rel="canonical" href="https:\/\/convertunlimited\.com\/[^"]*">/i.test(text)) {
       FINDINGS.push(`${rel(file)}: missing canonical`);
     }
-    if (!/hreflang="x-default"/i.test(text)) {
-      FINDINGS.push(`${rel(file)}: missing x-default hreflang`);
-    }
     if (!/application\/ld\+json/i.test(text)) {
       FINDINGS.push(`${rel(file)}: missing JSON-LD`);
+    }
+    // Skip content-shape checks on redirect stubs — they're intentionally minimal.
+    if (isRedirectStub(text)) continue;
+    if (!/hreflang="x-default"/i.test(text)) {
+      FINDINGS.push(`${rel(file)}: missing x-default hreflang`);
     }
     if (!/class="article aeo-summary"/i.test(text)) {
       FINDINGS.push(`${rel(file)}: missing AEO summary block`);
