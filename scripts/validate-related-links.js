@@ -37,15 +37,27 @@ function rel(file) {
   return path.relative(ROOT, file).split(path.sep).join("/");
 }
 
+// Format-pair converters consolidated into the homepage during AdSense recovery.
+// A data-destination-tool of "jpg-to-webp" (etc.) should now resolve to the
+// locale homepage just like "image-converter" does.
+const CONSOLIDATED_INTO_HOMEPAGE = new Set([
+  "image-converter",
+  "png-to-jpg",
+  "jpg-to-webp",
+  "webp-to-jpg",
+  "png-to-webp",
+  "webp-to-png",
+]);
+
 function slugPath(slug, locale) {
-  const registrySlug = slug === "image-converter" ? "" : slug;
+  const registrySlug = CONSOLIDATED_INTO_HOMEPAGE.has(slug) ? "" : slug;
   const prefix = locale.prefix ? `/${locale.prefix}` : "";
   if (!registrySlug) return `${prefix}/` || "/";
   return `${prefix}/${registrySlug}/`;
 }
 
 function filePath(slug, locale) {
-  const registrySlug = slug === "image-converter" ? "" : slug;
+  const registrySlug = CONSOLIDATED_INTO_HOMEPAGE.has(slug) ? "" : slug;
   const parts = [];
   if (locale.prefix) parts.push(locale.prefix);
   if (registrySlug) parts.push(registrySlug);

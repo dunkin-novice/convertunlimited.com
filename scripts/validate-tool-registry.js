@@ -20,16 +20,22 @@ const addCheck = (name, pass, detail = '', level = 'check') => {
 
 const read = (file) => fs.readFileSync(path.join(ROOT, file), 'utf8');
 
+// Format-pair converters were consolidated to the locale homepage during
+// AdSense recovery. Their slugs resolve to the homepage like image-converter.
+const CONSOLIDATED_INTO_HOMEPAGE = new Set([
+  'png-to-jpg', 'jpg-to-webp', 'webp-to-jpg', 'png-to-webp', 'webp-to-png',
+]);
+
 const slugPath = (slug, locale) => {
   const prefix = locale.prefix ? `/${locale.prefix}` : '';
-  if (!slug) return `${prefix}/` || '/';
+  if (!slug || CONSOLIDATED_INTO_HOMEPAGE.has(slug)) return `${prefix}/` || '/';
   return `${prefix}/${slug}/`;
 };
 
 const filePath = (slug, locale) => {
   const parts = [];
   if (locale.prefix) parts.push(locale.prefix);
-  if (slug) parts.push(slug);
+  if (slug && !CONSOLIDATED_INTO_HOMEPAGE.has(slug)) parts.push(slug);
   parts.push('index.html');
   return path.join(ROOT, ...parts);
 };

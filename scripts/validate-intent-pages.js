@@ -94,8 +94,11 @@ for (const page of INTENT_PAGES) {
   if (seenDescriptions.has(description)) FINDINGS.push(`${relative}: duplicate meta description with ${seenDescriptions.get(description)}`);
   else seenDescriptions.set(description, relative);
 
+  // Format-pair converters consolidated into the homepage during AdSense
+  // recovery — treat them like image-converter for related-tool resolution.
+  const CONSOLIDATED = new Set(["image-converter","png-to-jpg","jpg-to-webp","webp-to-jpg","png-to-webp","webp-to-png"]);
   for (const tool of page.relatedTools || []) {
-    const route = tool === "image-converter" ? "/" : `/${tool}/`;
+    const route = CONSOLIDATED.has(tool) ? "/" : `/${tool}/`;
     if (!routeExists(route)) FINDINGS.push(`${relative}: related tool route missing ${route}`);
     if (!html.includes(`href="${route}"`)) FINDINGS.push(`${relative}: related tool not linked ${route}`);
   }
