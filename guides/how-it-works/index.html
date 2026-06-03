@@ -11,8 +11,8 @@
     <script src="/analytics-events.js"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>How it Works: Private, Browser-Based File Processing | ConvertUnlimited</title>
-    <meta name="description" content="Learn how ConvertUnlimited processes your files locally in your browser. Browser-native local processing for supported workflows.">
+    <title>How browser-based file processing works (and what it can't do) | ConvertUnlimited</title>
+    <meta name="description" content="A technical walkthrough of how ConvertUnlimited processes files in the browser: the APIs involved (File, Canvas, WebAssembly, Web Crypto), why this works without a server, and where the local-only model breaks down.">
     <meta name="robots" content="index,follow,max-image-preview:large">
 <meta name="msvalidate.01" content="003FD42627CDC93A3D0D542D5D0513D4">
     <meta name="theme-color" content="#3aa17e">
@@ -59,8 +59,8 @@
     
 
     <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://convertunlimited.com/"},{"@type":"ListItem","position":2,"name":"Guides","item":"https://convertunlimited.com/guides/"},{"@type":"ListItem","position":3,"name":"How Local Processing Works","item":"https://convertunlimited.com/guides/how-it-works/"}]}</script>
-    <script type="application/ld+json">{"@context":"https://schema.org","@type":"AboutPage","headline":"How Local Processing Works","description":"Learn how ConvertUnlimited processes your files locally in your browser. Browser-native local processing for supported workflows.","author":[{"@type":"Person","name":"dunkin-novice","url":"https://github.com/dunkin-novice"},{"@type":"Organization","name":"ConvertUnlimited"}],"publisher":{"@type":"Organization","name":"ConvertUnlimited","logo":{"@type":"ImageObject","url":"https://convertunlimited.com/og-image.svg"}},"mainEntityOfPage":{"@type":"AboutPage","@id":"https://convertunlimited.com/guides/how-it-works/"},"dateModified":"2026-06-03"}</script>
-    <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Are my files safe?","acceptedAnswer":{"@type":"Answer","text":"Yes. Since your file contents are not intentionally uploaded by supported tools, they are as safe as they are on your own computer."}},{"@type":"Question","name":"Does this use my internet data?","acceptedAnswer":{"@type":"Answer","text":"Only to load the initial website (a few KB). After the static page is loaded, supported processing flows run locally in the browser."}}]}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"TechArticle","headline":"How browser-based file processing works (and what it can't do)","description":"A technical walkthrough of how ConvertUnlimited processes files in the browser: the APIs involved, why this works without a server, and where the local-only model breaks down.","inLanguage":"en","datePublished":"2026-05-21","dateModified":"2026-06-03","wordCount":910,"author":{"@type":"Person","name":"dunkin-novice","url":"https://github.com/dunkin-novice"},"publisher":{"@type":"Organization","name":"ConvertUnlimited","logo":{"@type":"ImageObject","url":"https://convertunlimited.com/og-image.svg"}},"mainEntityOfPage":{"@type":"WebPage","@id":"https://convertunlimited.com/guides/how-it-works/"},"about":[{"@type":"Thing","name":"Browser-native file processing"}]}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Why doesn't the browser need a server to convert images?","acceptedAnswer":{"@type":"Answer","text":"All the work a basic format conversion needs — reading bytes, decoding into pixels, re-encoding as a different format — is exposed by browser APIs that have existed since around 2014: File for reading, Canvas for decoding and re-encoding common image formats, and Blob URLs for downloading the result. A server is needed only when the format itself is unsupported by the browser, when the work is too heavy for the device, or when batch automation is required."}},{"@type":"Question","name":"Can ConvertUnlimited see my files?","acceptedAnswer":{"@type":"Answer","text":"For supported tools, no — there is no server-side upload endpoint in the conversion flow, and the page contains no code path that POSTs file bytes anywhere. You can verify this in DevTools by opening the Network panel before processing a file: no requests should appear during processing."}},{"@type":"Question","name":"What does WebAssembly add?","acceptedAnswer":{"@type":"Answer","text":"Some formats — HEIC, PDF parsing, AVIF encoding on older browsers — are not handled natively by the browser. WebAssembly lets us run a compiled C or Rust decoder for those formats inside the same browser tab, without leaving the tab. It costs a one-time download of the WASM bundle when you first open the relevant tool."}},{"@type":"Question","name":"Where does this model break down?","acceptedAnswer":{"@type":"Answer","text":"Very large files (multi-gigabyte), formats no browser library handles yet, batches of thousands of files at once, and pipelines that need server-side automation. For those, a desktop tool or a real backend is the right answer."}}]}</script>
     <script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"ConvertUnlimited","url":"https://convertunlimited.com","logo":"https://convertunlimited.com/og-image.svg","sameAs":["https://github.com/dunkin-novice/convertunlimited.com"]}</script>
 </head>
 <body data-page-type="guide">
@@ -117,20 +117,96 @@
         <main>
         
         <nav class="breadcrumbs" aria-label="Breadcrumb" style="margin-bottom: 24px; font-size: 14px; opacity: 0.8;">
-            <a href="/">Home</a> &gt; 
-            <span>Guides</span> &gt; 
-            <span>How Local Processing Works</span>
+            <a href="/">Home</a> &gt;
+            <a href="/guides/">Guides</a> &gt;
+            <span>How browser-based file processing works</span>
         </nav>
-<section class="hero"><h1 class="hero-title">How Local Processing Works</h1><p class="sub hero-sub">Unlike traditional online converters that upload your files to a server, ConvertUnlimited works entirely inside your web browser. Selected file contents are processed locally in your browser.</p></section>
 
-        <div class="guide-content"><section class="article"><h2>The Magic of Browser-Native Processing</h2><p>We use modern web technologies like the HTML5 Canvas API and WebAssembly (WASM) to decode and encode your images and documents locally. When you drop a file, your browser&#39;s own engine does the heavy lifting.</p></section><section class="article"><h2>Why This is Better for You</h2><div class="pros-cons-container"><div class="pc-block"><h3>LOCAL-FIRST</h3><ul class="pros"><li>✅ browser-native local processing (file contents are processed locally in your browser)</li><li>✅ No file-transfer wait after the page loads</li><li>✅ Work offline once the page is loaded</li></ul><ul class="cons"><li>❌ Limited by your device&#39;s RAM/CPU</li><li>❌ Extremely large files (2GB+) may struggle</li></ul></div><div class="pc-block"><h3>SERVER-BASED</h3><ul class="pros"><li>✅ Can handle massive enterprise-scale files</li></ul><ul class="cons"><li>❌ Files are uploaded to someone else&#39;s server</li><li>❌ Slower (upload/download required)</li><li>❌ server-side exposure risks</li></ul></div></div></section><section class="article"><h2>Privacy behavior</h2><p>ConvertUnlimited is designed to be local-processing. Supported processing flows run in the browser after the static page loads. The public site may still load ads and analytics; use the privacy build for privacy-sensitive workflows.</p></section>
-            <section class="article aeo-summary" id="tool-summary">
-                <h2>What this page does</h2>
-                <p>Learn how ConvertUnlimited processes your files locally in your browser. Browser-native local processing for supported workflows.</p>
-                <h2>Supported workflow</h2>
-                <p>Use this page to understand the workflow, then open the linked tool page when you are ready to process files.</p>
-            </section>
-<section id="faq" class="article"><h2>FAQ</h2><h3>Are my files safe?</h3><p>Yes. Since your file contents are not intentionally uploaded by supported tools, they are as safe as they are on your own computer.</p><h3>Does this use my internet data?</h3><p>Only to load the initial website (a few KB). After the static page is loaded, supported processing flows run locally in the browser.</p></section><section class="article CTA"><h3>Action</h3><p>Try the browser-native workflow. <a href="/">Try our bulk converter now</a>.</p></section></div></main>
+<section class="hero">
+    <p class="section-eyebrow">Guide</p>
+    <h1 class="hero-title">How browser-based file processing works (and what it can't do)</h1>
+    <p class="sub hero-sub">A technical walkthrough of the APIs that make in-browser conversion possible, why this works without a server, and where the model honestly breaks down.</p>
+    <p style="font-size:14px;opacity:0.7;margin-top:12px">By <a href="https://github.com/dunkin-novice" rel="author noopener">dunkin-novice</a> · Last updated 3 June 2026 · ~6 min read</p>
+</section>
+
+<div class="guide-content">
+
+<section class="article aeo-summary" id="answer-first">
+    <h2>Short answer</h2>
+    <p>When you drop a file on a ConvertUnlimited tool, the browser reads the bytes into local memory via the File API, decodes them with a native browser API (Canvas for common image formats) or a WebAssembly decoder (for HEIC, PDF, and similar), re-encodes them in the target format, and offers the result back as a Blob URL you can save. No server is involved in any step of this pipeline for supported workflows. The model breaks down on very large files, on formats no browser library handles, on batches of thousands, and on automation that needs a backend.</p>
+</section>
+
+<section class="article">
+    <h2>The browser APIs that make this possible</h2>
+    <p>Browser-based file processing is not new — it has been technically possible since around 2014 — but the right pieces only became reliable across all major browsers more recently. The pipeline ConvertUnlimited uses relies on four standards:</p>
+    <ul>
+        <li><b>File and Blob.</b> When you select a file or drop one onto a page, the browser exposes it as a <code>File</code> object — a stream of bytes in local memory with a name and a MIME type. Nothing has crossed the network.</li>
+        <li><b>Canvas.</b> The 2D Canvas API decodes JPEG, PNG, GIF, WebP, BMP, and (on modern browsers) AVIF. You draw the image to a canvas and call <code>canvas.toBlob('image/webp', 0.85)</code> to re-encode it. That single function call is the whole "image converter" for supported formats.</li>
+        <li><b>WebAssembly.</b> Some formats — HEIC, AVIF encoding on older browsers, PDF parsing — aren't covered by Canvas. WebAssembly lets us ship a compiled C or Rust decoder for those formats and run it in the same browser tab. Performance is within 1.5–2× of native code; for typical image sizes the difference is measured in tens of milliseconds.</li>
+        <li><b>Web Crypto.</b> Hashing, JWT verification, base64, and similar developer tools use the browser's built-in cryptographic primitives. SHA-256 of a file is a few milliseconds even on a mid-range phone, and the implementation has been hardened by every major browser team for years.</li>
+    </ul>
+</section>
+
+<section class="article">
+    <h2>The full pipeline, one image</h2>
+    <p>If you convert a single 3000×2000 JPEG to WebP on this site, here is exactly what happens, in order:</p>
+    <ol>
+        <li>You drop the file. The browser fires a <code>drop</code> event with a <code>FileList</code> containing one <code>File</code>.</li>
+        <li>The tool calls <code>file.arrayBuffer()</code> to get the bytes into memory. Nothing leaves the tab.</li>
+        <li>The bytes are wrapped in a <code>Blob</code> and a temporary URL is created via <code>URL.createObjectURL(blob)</code>. The URL points at the in-memory data and is only valid in this tab.</li>
+        <li>An invisible <code>&lt;img&gt;</code> element loads from that URL. The browser's native JPEG decoder turns the bytes into pixels.</li>
+        <li>The decoded pixels are drawn onto an offscreen <code>HTMLCanvasElement</code>.</li>
+        <li><code>canvas.toBlob('image/webp', 0.9)</code> re-encodes the pixels as WebP and returns a new <code>Blob</code>.</li>
+        <li>A second object URL is created and attached to a download anchor. You click it; the browser saves the new file.</li>
+    </ol>
+    <p>At no point does the file or the resulting WebP bytes leave the tab. You can verify this by opening DevTools → Network before dropping the file: the panel stays empty during processing.</p>
+</section>
+
+<section class="article">
+    <h2>How to verify the local-only behaviour yourself</h2>
+    <ol>
+        <li>Open the tool page in a clean browser profile, with extensions disabled.</li>
+        <li>Open DevTools → Network. Tick "Preserve log" and "Disable cache."</li>
+        <li>Clear the log so the panel is empty.</li>
+        <li>Drop a sample file and run the conversion.</li>
+        <li>Inspect the panel. You should see no new requests during processing. Static-asset requests (CSS, fonts, analytics) may appear at page load, but the file processing itself shouldn't trigger anything.</li>
+    </ol>
+    <p>For a deeper verification, the privacy build at <a href="https://privacy.convertunlimited.com/">privacy.convertunlimited.com</a> ships without ads, analytics, remote fonts, and third-party runtime scripts — a clean network log there is the strongest possible signal. The source code is open; clone it and run <code>npm run verify:privacy</code> against the artifact. See the <a href="/trust/verification/">verification guide</a> for the exact commands.</p>
+</section>
+
+<section class="article">
+    <h2>Where this model honestly doesn't work</h2>
+    <ul>
+        <li><b>Very large files.</b> Multi-gigabyte videos, hundred-megapixel images, large PDFs with thousands of pages — the browser has to hold the working set in memory, and at some point that exceeds what the device has. The browser will either fail or fall over.</li>
+        <li><b>Unsupported formats.</b> If neither Canvas nor a JavaScript library decodes the format you have, no amount of local-first will change that. Some obscure raster formats, certain CAD files, and proprietary formats fall into this bucket.</li>
+        <li><b>Batches of thousands.</b> Browsers will process them one at a time and the page will sit idle for a long time. A desktop tool or a real backend pipeline is faster and won't tie up your browser.</li>
+        <li><b>Automation and APIs.</b> If you want to convert images from a server-side process — a CMS publish step, an image-CDN, a CI pipeline — the browser is the wrong layer entirely. Reach for <code>libvips</code>, <code>sharp</code>, ImageMagick, or a managed image service.</li>
+    </ul>
+</section>
+
+<section class="article">
+    <h2>Why this matters</h2>
+    <p>The dominant pattern for "free online file tools" is upload-based: you upload, the server processes, you download the result. That model has been normalized to the point where most people assume there is no other way. But for the tasks most people actually need — converting an image, compressing a PDF, removing metadata, formatting JSON — the browser is now powerful enough to do the work locally. Keeping the file on the device removes a category of risk (server breaches, accidental retention, ambiguous data policies) and removes a category of cost (server bandwidth, queues), which is why ConvertUnlimited can offer everything for free without a sign-up.</p>
+</section>
+
+<section id="faq" class="article">
+    <h2>Frequently asked questions</h2>
+    <h3>Why doesn't the browser need a server to convert images?</h3>
+    <p>All the work a basic format conversion needs — reading bytes, decoding into pixels, re-encoding as a different format — is exposed by browser APIs that have existed since around 2014: File for reading, Canvas for decoding and re-encoding common image formats, and Blob URLs for downloading the result. A server is needed only when the format itself is unsupported by the browser, when the work is too heavy for the device, or when batch automation is required.</p>
+    <h3>Can ConvertUnlimited see my files?</h3>
+    <p>For supported tools, no — there is no server-side upload endpoint in the conversion flow, and the page contains no code path that POSTs file bytes anywhere. You can verify this in DevTools by opening the Network panel before processing a file: no requests should appear during processing.</p>
+    <h3>What does WebAssembly add?</h3>
+    <p>Some formats — HEIC, PDF parsing, AVIF encoding on older browsers — are not handled natively by the browser. WebAssembly lets us run a compiled C or Rust decoder for those formats inside the same browser tab, without leaving the tab. It costs a one-time download of the WASM bundle when you first open the relevant tool.</p>
+    <h3>Where does this model break down?</h3>
+    <p>Very large files (multi-gigabyte), formats no browser library handles yet, batches of thousands of files at once, and pipelines that need server-side automation. For those, a desktop tool or a real backend is the right answer.</p>
+</section>
+
+<section class="article">
+    <h3>Try it</h3>
+    <p>The ConvertUnlimited <a href="/">image converter</a> is the most-used surface for this model. Drop a file, open DevTools, and watch the Network panel stay empty.</p>
+</section>
+
+</div></main>
 
         <footer class="footer">
             <div>© <span id="copyright-year">2026</span> ConvertUnlimited.com — runs entirely in your browser.</div>
