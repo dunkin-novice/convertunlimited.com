@@ -2,13 +2,13 @@ const GUIDES = [
   {
     slug: 'webp-vs-png',
     en: {
-      title: "WebP vs PNG: Which Image Format is Better?",
+      title: "WebP vs PNG: Format Differences and Use Cases",
       description: "Comparison of WebP and PNG formats. Learn about file size, transparency, and when to use each for your website or design project.",
-      h1: "WebP vs PNG: The Ultimate Comparison",
-      intro: "Choosing between WebP and PNG depends on your specific needs: transparency, file size, or lossless quality. While PNG is a classic, WebP is the modern standard for the web.",
+      h1: "WebP vs PNG: format differences and use cases",
+      intro: "Choosing between WebP and PNG depends on transparency requirements, file size targets, browser support, and whether lossless output is required.",
       sections: [
         {
-          title: "What is the Difference?",
+          title: "Technical difference",
           content: "PNG is a lossless format that has been the standard for transparent images for decades. WebP is a newer format developed by Google that offers both lossy and lossless compression, often resulting in much smaller files than PNG."
         },
         {
@@ -19,33 +19,33 @@ const GUIDES = [
             ["Compression", "Lossy & Lossless", "Lossless"],
             ["Transparency", "Supported", "Supported"],
             ["File Size", "Smaller (up to 26% less)", "Larger"],
-            ["Best For", "Web performance, photos", "Logos, icons, text"]
+            ["Best for", "Web delivery, photos, mixed transparency use", "Logos, icons, screenshots, lossless graphics"]
           ]
         },
         {
           title: "Pros and Cons",
           prosCons: {
             webp: {
-              pros: ["Significantly smaller file size", "Supports both lossy and lossless", "Great browser support"],
+              pros: ["Often smaller file size", "Supports both lossy and lossless modes", "Strong browser support"],
               cons: ["Not ideal for high-end print", "Older software might lack support"]
             },
             png: {
               pros: ["Lossless quality (no data loss)", "Universal software support", "Perfect for sharp edges"],
-              cons: ["Very large file sizes", "Only supports lossless compression"]
+              cons: ["Often large file sizes", "Only supports lossless compression"]
             }
           }
         },
         {
           title: "When to Use Each",
-          content: "Use **WebP** for your website to improve loading speeds and SEO. Use **PNG** when you need absolute pixel-perfection for logos or when you need to edit the image multiple times without any quality degradation."
+          content: "Use **WebP** for modern web delivery when smaller files are useful and the publishing workflow supports the format. Use **PNG** when transparency, sharp edges, screenshots, or lossless graphics are more important than file size."
         }
       ],
       faq: [
         ["Does WebP support transparency like PNG?", "Yes, WebP supports alpha channel transparency just like PNG, but usually at a much smaller file size."],
-        ["Is WebP better than PNG for SEO?", "Yes, because WebP files are smaller, your pages load faster, which is a direct ranking factor for Google."],
-        ["Can I convert PNG to WebP easily?", "Absolutely. You can use our local-first converter to batch process PNGs into WebP instantly."]
+        ["Is WebP better than PNG for SEO?", "WebP can help performance when it produces smaller files, but SEO depends on many page-level factors. Use WebP when it improves delivery without breaking compatibility."],
+        ["Can I convert PNG to WebP in the browser?", "Yes. Use the ConvertUnlimited image converter to decode selected PNG files and write WebP output locally in the browser for supported workflows."]
       ],
-      cta: "Ready to switch? [Convert PNG to WebP now](/png-to-webp/)."
+      cta: "Convert PNG to WebP in the browser: [PNG to WebP](/png-to-webp/)."
     },
     th: {
       title: "WebP vs PNG: รูปแบบไฟล์ภาพไหนดีกว่ากัน?",
@@ -99,10 +99,10 @@ const GUIDES = [
   {
     slug: 'webp-vs-jpg',
     en: {
-      title: "WebP vs JPG: The Best Format for Photos",
+      title: "WebP vs JPG: Photo Format Tradeoffs",
       description: "Comparing WebP and JPG for photography and web use. Find out which format offers better compression and visual quality.",
-      h1: "WebP vs JPG: Which is Better for Your Site?",
-      intro: "JPG has been the king of photos for decades, but WebP is challenging that crown with better compression and modern features like transparency.",
+      h1: "WebP vs JPG: photo format tradeoffs",
+      intro: "JPG remains broadly compatible for photos. WebP can provide smaller web images at similar visual quality and also supports transparency.",
       sections: [
         {
           title: "Quality vs Size",
@@ -110,9 +110,9 @@ const GUIDES = [
         }
       ],
       faq: [
-        ["Should I replace all my JPGs with WebP?", "For web use, yes. It will significantly improve your PageSpeed scores and user experience."]
+        ["Should I replace all JPGs with WebP?", "Not automatically. Use WebP for modern web delivery when supported, and keep JPG fallbacks when compatibility matters."]
       ],
-      cta: "Optimize your photos. [Convert JPG to WebP now](/jpg-to-webp/)."
+      cta: "Convert JPG to WebP in the browser: [JPG to WebP](/jpg-to-webp/)."
     },
     es: {
       title: "WebP vs JPG: El mejor formato para fotos",
@@ -134,10 +134,10 @@ const GUIDES = [
   {
     slug: 'what-is-webp',
     en: {
-      title: "What is WebP? Everything You Need to Know",
-      description: "A comprehensive guide to the WebP image format. Discover why Google created it, how it works, and why you should use it.",
-      h1: "What is WebP? The Modern Image Format",
-      intro: "WebP is a modern image format that provides superior lossless and lossy compression for images on the web. It was created by Google to make the web faster.",
+      title: "What is WebP? Format Overview and Browser Support",
+      description: "A technical overview of the WebP image format, including compression behavior, browser support, and common use cases.",
+      h1: "What is WebP?",
+      intro: "WebP is a modern image format that supports lossy compression, lossless compression, transparency, and animation for web image workflows.",
       sections: [
         {
           title: "The Origin of WebP",
@@ -145,16 +145,16 @@ const GUIDES = [
         }
       ],
       faq: [
-        ["Which browsers support WebP?", "Currently, Chrome, Firefox, Edge, and Safari all have excellent support for WebP."]
+        ["Which browsers support WebP?", "Current versions of Chrome, Firefox, Edge, and Safari support WebP."]
       ],
-      cta: "Start using WebP today. [Try our free converter](/)."
+      cta: "Convert images to WebP in the browser: [Image Converter](/)."
     }
   },
   {
     slug: 'local-processing',
     en: {
       title: "Local Processing: How Browser-Native File Tools Work | ConvertUnlimited",
-      description: "Discover the technology behind local-first file processing. Learn how we use Canvas, WASM, and File APIs to process images and PDFs without server uploads.",
+      description: "Technical explanation of browser-native file processing, including Canvas, File APIs, Blob URLs, and local workflows that do not require a ConvertUnlimited upload endpoint.",
       h1: "How Local Processing Works",
       intro: "ConvertUnlimited is built around browser-native processing. Supported file tools process selected file contents locally in your browser using your own device's hardware.",
       sections: [
@@ -163,8 +163,8 @@ const GUIDES = [
           content: "Many online converters are upload services: files are sent to a remote server, processed there, and sent back. Local processing avoids that round trip for supported flows. Selected file contents are handled in browser memory by client-side scripts."
         },
         {
-          title: "The Browser APIs Behind the Scenes",
-          content: "We leverage modern web standards to provide desktop-class utility performance in a website:\n- **HTML5 Canvas API:** We redraw and re-encode images locally to change their formats.\n- **File & Blob APIs:** We handle your files as local data streams without triggering a network request.\n- **WebAssembly (WASM):** For heavy tasks like AVIF encoding or PDF manipulation, we run high-performance compiled code directly in your browser tab."
+          title: "Browser APIs used",
+          content: "ConvertUnlimited uses browser standards for supported local workflows:\n- **HTML5 Canvas API:** redraws and re-encodes images to change formats.\n- **File & Blob APIs:** handle selected files as local data streams.\n- **Object URLs:** create downloadable outputs in the browser tab.\n- **Vendored client-side libraries:** support selected PDF, archive, and image operations where browser APIs need help."
         },
         {
           title: "Comparison: Local vs. Upload",
@@ -179,8 +179,8 @@ const GUIDES = [
           ]
         },
         {
-          title: "Technical Advantages",
-          content: "Because there is no upload step, the speed of ConvertUnlimited is only limited by your computer's CPU and RAM. This is why we can support bulk processing of hundreds of files without a subscription fee—we don't have to pay for massive server bandwidth, and neither do you."
+          title: "Operational advantages and limits",
+          content: "For supported workflows, avoiding a server-side upload step reduces transfer time and file-exposure surface. Processing speed still depends on device CPU, available memory, browser support, and source file size."
         }
       ],
       faq: [

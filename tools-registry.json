@@ -17,7 +17,7 @@
         {
           "slug": "",
           "title": "Image Converter",
-          "description": "Convert bulk images to WebP, JPG, or PNG in seconds.",
+          "description": "Convert batches of images to WebP, JPG, or PNG in the browser.",
           "status": "live",
           "related": [
             "image-compressor",
@@ -28,7 +28,7 @@
         {
           "slug": "background-remover",
           "title": "Background Remover",
-          "description": "Remove white or solid backgrounds from images instantly.",
+          "description": "Remove white or solid-color image backgrounds using browser-side pixel processing.",
           "status": "live",
           "related": [
             "image-compressor",
@@ -242,7 +242,7 @@
         {
           "slug": "qr-generator",
           "title": "QR Generator",
-          "description": "Create static QR codes for URLs and text in your browser.",
+          "description": "Create static QR codes for URLs and text using browser-side generation.",
           "status": "live",
           "related": [
             "meta-preview-checker",
@@ -898,7 +898,7 @@
         {
           "slug": "png-to-webp",
           "title": "PNG to WebP Converter",
-          "description": "Convert PNG images to WebP locally in your browser. Free, bulk, and secure.",
+          "description": "Convert PNG images to WebP with local browser processing for supported files.",
           "status": "live",
           "related": [
             "image-compressor",
@@ -910,7 +910,7 @@
           "labels": {
             "en": {
               "title": "PNG to WebP Converter",
-              "description": "Convert PNG images to WebP locally in your browser. Free, bulk, and secure."
+              "description": "Convert PNG images to WebP with local browser processing for supported files."
             },
             "th": {
               "title": "ตัวแปลง PNG เป็น WebP",
@@ -945,7 +945,7 @@
         {
           "slug": "jpg-to-webp",
           "title": "JPG to WebP Converter",
-          "description": "Convert JPG images to WebP locally in your browser. Free, bulk, and secure.",
+          "description": "Convert JPG images to WebP with local browser processing for supported files.",
           "status": "live",
           "related": [
             "image-compressor",
@@ -957,7 +957,7 @@
           "labels": {
             "en": {
               "title": "JPG to WebP Converter",
-              "description": "Convert JPG images to WebP locally in your browser. Free, bulk, and secure."
+              "description": "Convert JPG images to WebP with local browser processing for supported files."
             },
             "th": {
               "title": "ตัวแปลง JPG เป็น WebP",
@@ -992,7 +992,7 @@
         {
           "slug": "webp-to-jpg",
           "title": "WebP to JPG Converter",
-          "description": "Convert WebP images to JPG locally in your browser. Free, bulk, and secure.",
+          "description": "Convert WebP images to JPG with local browser processing for supported files.",
           "status": "live",
           "related": [
             "image-compressor",
@@ -1004,7 +1004,7 @@
           "labels": {
             "en": {
               "title": "WebP to JPG Converter",
-              "description": "Convert WebP images to JPG locally in your browser. Free, bulk, and secure."
+              "description": "Convert WebP images to JPG with local browser processing for supported files."
             },
             "th": {
               "title": "ตัวแปลง WebP เป็น JPG",
@@ -1039,7 +1039,7 @@
         {
           "slug": "webp-to-png",
           "title": "WebP to PNG Converter",
-          "description": "Convert WebP images to PNG locally in your browser. Free, bulk, and secure.",
+          "description": "Convert WebP images to PNG with local browser processing for supported files.",
           "status": "live",
           "related": [
             "background-remover",
@@ -1050,7 +1050,7 @@
           "labels": {
             "en": {
               "title": "WebP to PNG Converter",
-              "description": "Convert WebP images to PNG locally in your browser. Free, bulk, and secure."
+              "description": "Convert WebP images to PNG with local browser processing for supported files."
             },
             "th": {
               "title": "ตัวแปลง WebP เป็น PNG",
@@ -1085,7 +1085,7 @@
         {
           "slug": "png-to-jpg",
           "title": "PNG to JPG Converter",
-          "description": "Convert PNG images to JPG locally in your browser. Free, bulk, and secure.",
+          "description": "Convert PNG images to JPG with local browser processing for supported files.",
           "status": "live",
           "related": [
             "image-compressor",
@@ -1097,7 +1097,7 @@
           "labels": {
             "en": {
               "title": "PNG to JPG Converter",
-              "description": "Convert PNG images to JPG locally in your browser. Free, bulk, and secure."
+              "description": "Convert PNG images to JPG with local browser processing for supported files."
             },
             "th": {
               "title": "ตัวแปลง PNG เป็น JPG",

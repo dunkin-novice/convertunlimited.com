@@ -11,13 +11,14 @@
     <script src="/analytics-events.js"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>What is WebP? A practical primer on Google's web image format | ConvertUnlimited</title>
-    <meta name="description" content="What WebP is, how it actually compresses images, the three modes (lossy, lossless, animated), browser support in 2026, and when it is and isn't the right choice.">
+    <title>What is WebP? Format Overview and Browser Support</title>
+    <meta name="description" content="A technical overview of the WebP image format, including compression behavior, browser support, and common use cases.">
     <meta name="robots" content="index,follow,max-image-preview:large">
 <meta name="msvalidate.01" content="003FD42627CDC93A3D0D542D5D0513D4">
     <meta name="theme-color" content="#3aa17e">
     <link rel="canonical" href="https://convertunlimited.com/guides/what-is-webp/">
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2823470980745945" crossorigin="anonymous"></script>
+    
 
     <!-- Hreflang: tells Google these are localised versions of each other -->
     <link rel="alternate" hreflang="en" href="https://convertunlimited.com/guides/what-is-webp/">
@@ -25,8 +26,8 @@
     <link rel="alternate" hreflang="x-default" href="https://convertunlimited.com/guides/what-is-webp/">
 
     <!-- Open Graph -->
-    <meta property="og:title" content="What is WebP? Everything You Need to Know">
-    <meta property="og:description" content="A comprehensive guide to the WebP image format. Discover why Google created it, how it works, and why you should use it.">
+    <meta property="og:title" content="What is WebP? Format Overview and Browser Support">
+    <meta property="og:description" content="A technical overview of the WebP image format, including compression behavior, browser support, and common use cases.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://convertunlimited.com/guides/what-is-webp/">
     <meta property="og:site_name" content="ConvertUnlimited">
@@ -34,12 +35,12 @@
     <meta property="og:image" content="https://convertunlimited.com/og-image.svg">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
-    <meta property="og:image:alt" content="ConvertUnlimited — free bulk image converter that runs in your browser.">
+    <meta property="og:image:alt" content="ConvertUnlimited — browser-native file tools with local processing for supported workflows.">
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Free Bulk Image Converter — JPG, PNG, WebP, GIF, BMP, SVG | ConvertUnlimited">
-    <meta name="twitter:description" content="Convert JPG, PNG, GIF, BMP, SVG, and WebP in bulk — free, unlimited, no signup. Runs in your browser.">
+    <meta name="twitter:title" content="ConvertUnlimited — Browser-native file tools">
+    <meta name="twitter:description" content="Browser-native file tools for images, PDFs, and developer workflows. Supported files are processed locally in your browser.">
     <meta name="twitter:image" content="https://convertunlimited.com/og-image.svg">
 
     <!-- Favicons -->
@@ -58,13 +59,13 @@
     <!-- Structured data: FAQPage (drives FAQ rich results in Google search) -->
     
 
-    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://convertunlimited.com/"},{"@type":"ListItem","position":2,"name":"Guides","item":"https://convertunlimited.com/guides/"},{"@type":"ListItem","position":3,"name":"What is WebP? The Modern Image Format","item":"https://convertunlimited.com/guides/what-is-webp/"}]}</script>
-    <script type="application/ld+json">{"@context":"https://schema.org","@type":"TechArticle","headline":"What is WebP? A practical primer on Google's web image format","description":"What WebP is, how it actually compresses images, the three modes (lossy, lossless, animated), browser support in 2026, and when it is and isn't the right choice.","inLanguage":"en","datePublished":"2026-05-21","dateModified":"2026-06-03","wordCount":860,"author":{"@type":"Person","name":"dunkin-novice","url":"https://github.com/dunkin-novice"},"publisher":{"@type":"Organization","name":"ConvertUnlimited","logo":{"@type":"ImageObject","url":"https://convertunlimited.com/og-image.svg"}},"mainEntityOfPage":{"@type":"WebPage","@id":"https://convertunlimited.com/guides/what-is-webp/"},"about":[{"@type":"Thing","name":"WebP image format"}]}</script>
-    <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","inLanguage":"en","mainEntity":[{"@type":"Question","name":"Which browsers support WebP in 2026?","acceptedAnswer":{"@type":"Answer","text":"Every current version of Chrome, Edge, Firefox, Safari (since 14, late 2020), Samsung Internet, and Opera decode WebP without intervention. Global browser support is around 98 percent."}},{"@type":"Question","name":"Is WebP lossless better than PNG?","acceptedAnswer":{"@type":"Answer","text":"On flat graphics with sharp edges — logos, screenshots, UI captures — lossless WebP is consistently smaller than PNG and visually identical. PNG remains the universally accepted format outside the browser, but for web delivery WebP lossless is strictly better."}},{"@type":"Question","name":"Does WebP support animation?","acceptedAnswer":{"@type":"Answer","text":"Yes. Animated WebP works like GIF but with much smaller files at the same visual quality. For most use cases a real video file is still the better choice, but animated WebP is a viable middle ground when GIF is what the workflow expects."}},{"@type":"Question","name":"Can I use WebP for print or archival?","acceptedAnswer":{"@type":"Answer","text":"Generally no. Print pipelines and archival workflows are still built around JPEG, PNG, and TIFF. WebP is a web delivery format. Convert to WebP at the edge of your pipeline, not at the source."}}]}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://convertunlimited.com/"},{"@type":"ListItem","position":2,"name":"Guides","item":"https://convertunlimited.com/guides/"},{"@type":"ListItem","position":3,"name":"What is WebP?","item":"https://convertunlimited.com/guides/what-is-webp/"}]}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"TechArticle","headline":"What is WebP?","description":"A technical overview of the WebP image format, including compression behavior, browser support, and common use cases.","inLanguage":"en","author":{"@type":"Organization","name":"ConvertUnlimited"},"publisher":{"@type":"Organization","name":"ConvertUnlimited","logo":{"@type":"ImageObject","url":"https://convertunlimited.com/og-image.svg"}},"mainEntityOfPage":{"@type":"WebPage","@id":"https://convertunlimited.com/guides/what-is-webp/"}}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","inLanguage":"en","mainEntity":[{"@type":"Question","name":"Which browsers support WebP?","acceptedAnswer":{"@type":"Answer","text":"Current versions of Chrome, Firefox, Edge, and Safari support WebP."}}]}</script>
     <script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"ConvertUnlimited","url":"https://convertunlimited.com","logo":"https://convertunlimited.com/og-image.svg","sameAs":["https://github.com/dunkin-novice/convertunlimited.com"]}</script>
     <meta name="translation-status" content="localized">
 </head>
-<body data-page-type="guide">
+<body data-tool="image-converter" data-page-type="home">
     <!-- Google Tag Manager (noscript) -->
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KQHC5ZGV"
     height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
@@ -120,87 +121,19 @@
         <nav class="breadcrumbs" aria-label="Breadcrumb" style="margin-bottom: 24px; font-size: 14px; opacity: 0.8;">
             <a href="/">Home</a> &gt; 
             <span>Guides</span> &gt; 
-            <span>What is WebP? The Modern Image Format</span>
+            <span>What is WebP?</span>
         </nav>
-<section class="hero">
-    <p class="section-eyebrow">Guide</p>
-    <h1 class="hero-title">What is WebP? A practical primer on Google's web image format</h1>
-    <p class="sub hero-sub">What WebP actually is, how it compresses, the three modes most people don't realise it has, and when it is and isn't the right choice in 2026.</p>
-    <p style="font-size:14px;opacity:0.7;margin-top:12px">By <a href="https://github.com/dunkin-novice" rel="author noopener">dunkin-novice</a> · Last updated 3 June 2026 · ~6 min read</p>
-</section>
+<section class="hero"><h1 class="hero-title">What is WebP?</h1><p class="sub hero-sub">WebP is a modern image format that supports lossy compression, lossless compression, transparency, and animation for web image workflows.</p></section>
 
-<div class="guide-content">
+        <section class="article trust-note" id="trust-transparency">
+            <h2>Trust and transparency</h2>
+            <p>Explore the <a href="/tools/">tools directory</a>, review the <a href="/trust/">Trust Center</a>, or read the <a href="/privacy/">Privacy Policy</a> before choosing a workflow.</p>
+        </section>
 
-<section class="article aeo-summary" id="answer-first">
-    <h2>Short answer</h2>
-    <p>WebP is a web image format Google released in 2010, built on the VP8 video codec. It compresses photographs better than JPEG, compresses graphics better than PNG, supports transparency and short animations, and is decoded by roughly 98% of browsers in 2026. For images that will be delivered to a web page, it should be your default. For images leaving the browser — print, archival, ingest into non-web software — JPEG and PNG are still the safer choices.</p>
-</section>
-
-<section class="article">
-    <h2>Where WebP came from</h2>
-    <p>Google announced WebP in September 2010. The motivation was straightforward: web pages were getting heavier, images dominated page weight, and the dominant photo formats — JPEG (1992) and PNG (1996) — had not had a meaningful upgrade in over a decade. Google had recently acquired On2 Technologies, the company behind the VP8 video codec, and engineers noticed that VP8's image-keyframe pipeline produced a better trade-off between compression and quality than JPEG's DCT-and-quantise approach.</p>
-    <p>The first cut of WebP was lossy-only and supported only RGB. Lossless WebP and an alpha channel were added in 2011, and animation support followed in 2012. The format is now a stable W3C standard and ships with libwebp, Google's open-source reference encoder and decoder.</p>
-</section>
-
-<section class="article">
-    <h2>How it actually compresses</h2>
-    <p>Lossy WebP works like a single keyframe of VP8 video. The encoder splits the image into macroblocks, predicts the contents of each block from its neighbours, and stores only the residual — the difference between the prediction and the actual pixels. The residual goes through a discrete transform, gets quantised against the quality setting, and is finally arithmetic-coded. The prediction step is where most of the savings against JPEG come from: JPEG processes each 8×8 block independently and cannot exploit patterns that span block boundaries.</p>
-    <p>Lossless WebP uses a different algorithm entirely. It applies one of several spatial predictors per pixel, encodes the result with a colour-space transform plus a small entropy coding step, and adds a dictionary for repeated colour patterns. For graphics with flat regions and limited colour palettes — logos, screenshots, line art — this beats PNG's deflate-based compression by 20–40% on typical files.</p>
-</section>
-
-<section class="article">
-    <h2>Three modes, picked by the encoder</h2>
-    <ul>
-        <li><b>Lossy.</b> The default for photographic content. Quality 0.75 is the standard sweet spot; 0.9 for hero images; 0.5 for thumbnails. Lossy WebP typically beats JPEG by 25–35% at equivalent visual quality.</li>
-        <li><b>Lossless.</b> The right choice for graphics with sharp edges or limited colour palettes. Lossless WebP beats PNG by roughly 25% on typical web graphics and is visually identical.</li>
-        <li><b>Animated.</b> Multiple frames in one file, with timing metadata. Treat it as a smaller, modern replacement for GIF — not as a substitute for a real video file like MP4 or AV1.</li>
-    </ul>
-    <p>Some encoders (including <code>cwebp</code> with the right flags) will pick the right mode automatically based on the input. The browser canvas API uses lossy by default; if you need lossless WebP from a browser, you usually have to specify it through a JavaScript encoder library.</p>
-</section>
-
-<section class="article">
-    <h2>Browser and OS support in 2026</h2>
-    <p>Every current major browser decodes WebP without intervention: Chrome (since 17, 2012), Firefox (since 65, 2019), Edge (since the Chromium switch in 2020), Safari (since 14 on macOS Big Sur and iOS 14, late 2020), Samsung Internet, Opera. <a href="https://caniuse.com/webp" rel="noopener">caniuse.com</a> puts global support at around 98%.</p>
-    <p>Outside the browser the picture is more mixed. macOS Finder previews WebP since Big Sur; Windows Explorer needs an extension (free, from the Microsoft Store). Photoshop has supported WebP since 23.2 (2022); GIMP has had it since 2.10. Older Office, older Outlook, and many corporate document tools still do not handle WebP gracefully.</p>
-</section>
-
-<section class="article">
-    <h2>Where WebP is the wrong choice</h2>
-    <ul>
-        <li><b>Print.</b> Print pipelines expect JPEG or TIFF. Send those, not WebP.</li>
-        <li><b>Archival.</b> JPEG and TIFF have decades of tooling depth and the format definitions will be readable in 50 years. WebP probably will be too, but if "definitely readable in 50 years" matters, pick the older format.</li>
-        <li><b>Ingest into older software.</b> If your image is heading into a workflow that touches older Photoshop, older Microsoft Office, or any corporate document tool, the safer default is JPEG or PNG.</li>
-        <li><b>Email attachments.</b> Modern clients render WebP fine. Some older corporate Outlook installs do not. Match the lowest-common-denominator client your recipient is likely to use.</li>
-    </ul>
-</section>
-
-<section class="article">
-    <h2>How to actually create WebP files</h2>
-    <p>For a handful of images, drop them on the ConvertUnlimited <a href="/">image converter</a>, pick WebP as the output format, and download. The conversion runs in your browser using the Canvas <code>toBlob</code> path; for supported workflows, selected file contents are processed locally in your browser.</p>
-    <p>For batches of thousands of images, a desktop encoder like <code>cwebp</code> or an image-pipeline service will be faster and gives you more control — encoder method (0–6), sharpness, near-lossless mode, alpha quality. The browser path is good enough for nearly every web use case; the desktop encoder is where you turn when bytes really matter or you want to script automation.</p>
-</section>
-
-<section id="faq" class="article">
-    <h2>Frequently asked questions</h2>
-    <h3>Which browsers support WebP in 2026?</h3>
-    <p>Every current version of Chrome, Edge, Firefox, Safari (since 14, late 2020), Samsung Internet, and Opera decode WebP without intervention. Global browser support is around 98%.</p>
-    <h3>Is WebP lossless better than PNG?</h3>
-    <p>On flat graphics with sharp edges — logos, screenshots, UI captures — lossless WebP is consistently smaller than PNG and visually identical. PNG remains the universally accepted format outside the browser, but for web delivery WebP lossless is strictly better.</p>
-    <h3>Does WebP support animation?</h3>
-    <p>Yes. Animated WebP works like GIF but with much smaller files at the same visual quality. For most use cases a real video file is still the better choice, but animated WebP is a viable middle ground when GIF is what the workflow expects.</p>
-    <h3>Can I use WebP for print or archival?</h3>
-    <p>Generally no. Print pipelines and archival workflows are still built around JPEG, PNG, and TIFF. WebP is a web delivery format. Convert to WebP at the edge of your pipeline, not at the source.</p>
-</section>
-
-<section class="article">
-    <h3>Convert images to WebP in your browser</h3>
-    <p>The ConvertUnlimited <a href="/">image converter</a> handles JPG, PNG, WebP, GIF, BMP and SVG. For supported workflows the selected file is processed locally in your browser.</p>
-</section>
-
-</div></main>
+        <div class="guide-content"><section class="article aeo-summary" id="guide-summary"><h2>What this guide explains</h2><p>WebP is a modern image format that supports lossy compression, lossless compression, transparency, and animation for web image workflows.</p><h2>Technical scope</h2><p>This guide describes browser-based file workflows, format tradeoffs, and ConvertUnlimited processing boundaries for supported tools.</p></section><section class="article"><h2>The Origin of WebP</h2><p>Google announced the WebP format in 2010. It is based on the VP8 video codec and uses predictive coding to encode images.</p></section><section id="faq" class="article"><h2>FAQ</h2><h3>Which browsers support WebP?</h3><p>Current versions of Chrome, Firefox, Edge, and Safari support WebP.</p></section><section class="article CTA"><h3>Action</h3><p>Convert images to WebP in the browser: <a href="/">Image Converter</a>.</p></section></div></main>
 
         <footer class="footer">
-            <div>© <span id="copyright-year">2026</span> ConvertUnlimited.com — runs entirely in your browser.</div>
+            <div>© <span id="copyright-year">2026</span> ConvertUnlimited.com — supported processing runs in your browser.</div>
                                     <nav class="links" aria-label="Footer">
                 <a href="/">Image Converter</a>
                 <a href="/background-remover/">Background Remover</a>
@@ -219,13 +152,14 @@
                 <a href="/#batches">Tips</a>
                 <a href="/#faq">FAQ</a>
                 <a href="/#privacy">Privacy</a>
+                <a href="/trust/">Trust Center</a>
+                <a href="/trust/verification/">Verification</a>
                 <a href="/#terms">Terms</a>
                         <a href="/about/">About</a>
                         <a href="/contact/">Contact</a>
                         <a href="/privacy/">Privacy</a>
                         <a href="/terms/">Terms</a>
                 <a href="/tools/">Tools</a>
-                <a href="/trust/">Trust Center</a>
             </nav>
         </footer>
     </div>

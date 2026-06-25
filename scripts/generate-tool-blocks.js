@@ -78,6 +78,13 @@ const START_RELATED = '<!-- RELATED_TOOLS_START -->';
 const END_RELATED = '<!-- RELATED_TOOLS_END -->';
 const START_GUIDES = '<!-- GUIDE_BLOCKS_START -->';
 const END_GUIDES = '<!-- GUIDE_BLOCKS_END -->';
+const CONSOLIDATED_IMAGE_CONVERSIONS = new Set([
+  'png-to-webp',
+  'jpg-to-webp',
+  'webp-to-jpg',
+  'webp-to-png',
+  'png-to-jpg',
+]);
 const RELATED_REASON_ALLOWLIST = new Set([
   'immediate_next_action',
   'same_file_type',
@@ -114,6 +121,7 @@ const decodeHtml = (value) => {
 
 const slugToPath = (slug, locale) => {
   const prefix = locale.prefix ? `/${locale.prefix}` : '';
+  if (CONSOLIDATED_IMAGE_CONVERSIONS.has(slug)) return `${prefix}/` || '/';
   if (!slug) return `${prefix}/` || '/';
   return `${prefix}/${slug}/`;
 };
@@ -398,10 +406,10 @@ const renderRelated = (registry, currentSlug, locale, labels) => {
   ].join('\n');
 };
 
-const guideSectionLabel = (guides) => {
-  if (guides.some((guide) => guide.type === 'troubleshooting')) return 'Troubleshooting';
-  if (guides.some((guide) => guide.reason === 'privacy_clarification')) return 'Privacy & processing';
-  return 'Helpful guides';
+const guideSectionLabel = (guides, locale) => {
+  if (guides.some((guide) => guide.type === 'troubleshooting')) return locale.troubleshootingLabel || 'Troubleshooting';
+  if (guides.some((guide) => guide.reason === 'privacy_clarification')) return locale.processingLabel || 'Privacy & processing';
+  return locale.helpfulGuidesLabel || 'Helpful guides';
 };
 
 const renderGuideBlocks = (currentSlug, locale) => {
@@ -409,7 +417,7 @@ const renderGuideBlocks = (currentSlug, locale) => {
   if (!guides.length) return '';
   return [
     '        <section class="guide-help-blocks" aria-label="Helpful guides">',
-    `            <div class="category-title">${escapeHtml(guideSectionLabel(guides))}</div>`,
+    `            <div class="category-title">${escapeHtml(guideSectionLabel(guides, locale))}</div>`,
     '            <div class="guide-help-grid">',
     ...guides.map((guide) => [
       `                <a href="${escapeHtml(guide.href)}" class="guide-help-card" data-track="guide-click" data-destination-guide="${escapeHtml(guide.slug)}" data-guide-type="${escapeHtml(guide.type)}" data-reason="${escapeHtml(guide.reason)}" data-position="${escapeHtml(guide.position)}">`,
@@ -458,6 +466,7 @@ const updateRelatedPage = (registry, file, locale, labels) => {
   const tools = toolBySlug(registry);
   if (!tools.has(slug)) return;
   const original = fs.readFileSync(file, 'utf8');
+  if (!original.includes('        </main>')) return;
   const content = renderRelated(registry, slug, locale, labels);
   if (!content) return;
   let next = replaceMarked(original, START_RELATED, END_RELATED, content);
@@ -476,6 +485,7 @@ const updateGuideBlocksPage = (registry, file, locale) => {
   const tools = toolBySlug(registry);
   if (!tools.has(slug)) return;
   const original = fs.readFileSync(file, 'utf8');
+  if (!original.includes('        </main>')) return;
   const content = renderGuideBlocks(slug, locale);
   if (!content) return;
   let next = replaceMarked(original, START_GUIDES, END_GUIDES, content);

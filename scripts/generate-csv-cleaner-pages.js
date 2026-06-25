@@ -226,7 +226,7 @@ ${t.faq.map(([q, a]) => `                <h3>${esc(q)}</h3>\n                <p>
 <!-- RELATED_TOOLS_START -->
 <!-- RELATED_TOOLS_END -->
         </main>
-        <footer class="footer"><div>© <span id="copyright-year">2026</span> ConvertUnlimited.com — runs entirely in your browser.</div><nav class="links" aria-label="Footer"><a href="${link(locale, 'tools')}">Tools</a><a href="${route(locale)}#how">Guide</a><a href="${route(locale)}#faq">FAQ</a><a href="${route(locale)}#privacy">Privacy</a><a href="${route(locale)}#terms">Terms</a></nav></footer>
+        <footer class="footer"><div>© <span id="copyright-year">2026</span> ConvertUnlimited.com — ${locale.footerProcessing || 'supported processing runs in your browser'}.</div><nav class="links" aria-label="Footer"><a href="${link(locale, 'tools')}">${locale.toolsLabel || 'Tools'}</a><a href="${route(locale)}#how">${locale.guideLabel || 'Guide'}</a><a href="${route(locale)}#faq">${locale.faqLabel || 'FAQ'}</a><a href="${route(locale)}#privacy">${locale.privacyLabel || 'Privacy'}</a><a href="${route(locale)}#terms">${locale.termsLabel || 'Terms'}</a></nav></footer>
     </div>
     <script src="/csv-cleaner/csv-cleaner.js"></script>
 </body>

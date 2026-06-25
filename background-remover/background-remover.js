@@ -10,6 +10,8 @@
   const toleranceValue = $("bg-tolerance-value");
   const feather = $("bg-feather");
   const featherValue = $("bg-feather-value");
+  const protection = $("bg-protection");
+  const protectionValue = $("bg-protection-value");
   const processBtn = $("bg-process-btn");
   const downloadBtn = $("bg-download-btn");
   const statusEl = $("bg-status");
@@ -75,6 +77,24 @@
     return [median(0), median(1), median(2)];
   }
 
+  function localContrast(data, w, h, x, y) {
+    const center = (y * w + x) * 4;
+    let maxDistance = 0;
+    const compare = (nx, ny) => {
+      if (nx < 0 || nx >= w || ny < 0 || ny >= h) return;
+      const i = (ny * w + nx) * 4;
+      const dr = data[center] - data[i];
+      const dg = data[center + 1] - data[i + 1];
+      const db = data[center + 2] - data[i + 2];
+      maxDistance = Math.max(maxDistance, Math.sqrt(dr * dr + dg * dg + db * db));
+    };
+    compare(x - 1, y);
+    compare(x + 1, y);
+    compare(x, y - 1);
+    compare(x, y + 1);
+    return maxDistance;
+  }
+
   function colorDistance(data, i, bg) {
     const dr = data[i] - bg[0];
     const dg = data[i + 1] - bg[1];
@@ -82,39 +102,40 @@
     return Math.sqrt(dr * dr + dg * dg + db * db);
   }
 
-  function removeSimpleBackground(imageData, floodTolerance, edgeFeather) {
+  function removeSimpleBackground(imageData, floodTolerance, edgeFeather, subjectProtection) {
     const { data, width: w, height: h } = imageData;
     const bg = estimateBackgroundColor(data, w, h);
     const mask = new Uint8Array(w * h);
     const queue = [];
     let qi = 0;
+    const protect = Math.max(0, subjectProtection);
     const idx = (x, y) => y * w + x;
-    const add = (x, y) => {
+    const add = (x, y, isSeed) => {
       const p = idx(x, y);
       if (mask[p]) return;
-      if (colorDistance(data, p * 4, bg) <= floodTolerance) {
-        mask[p] = 1;
-        queue.push(p);
-      }
+      if (colorDistance(data, p * 4, bg) > floodTolerance) return;
+      if (!isSeed && protect > 0 && localContrast(data, w, h, x, y) > protect) return;
+      mask[p] = 1;
+      queue.push(p);
     };
 
     for (let x = 0; x < w; x++) {
-      add(x, 0);
-      add(x, h - 1);
+      add(x, 0, true);
+      add(x, h - 1, true);
     }
     for (let y = 0; y < h; y++) {
-      add(0, y);
-      add(w - 1, y);
+      add(0, y, true);
+      add(w - 1, y, true);
     }
 
     while (qi < queue.length) {
       const p = queue[qi++];
       const x = p % w;
       const y = Math.floor(p / w);
-      if (x > 0) add(x - 1, y);
-      if (x + 1 < w) add(x + 1, y);
-      if (y > 0) add(x, y - 1);
-      if (y + 1 < h) add(x, y + 1);
+      if (x > 0) add(x - 1, y, false);
+      if (x + 1 < w) add(x + 1, y, false);
+      if (y > 0) add(x, y - 1, false);
+      if (y + 1 < h) add(x, y + 1, false);
     }
 
     const clear = Math.max(10, floodTolerance * 0.55);
@@ -179,8 +200,9 @@
       const ctx = canvas.getContext("2d", { willReadFrequently: true });
       ctx.drawImage(img, 0, 0, w, h);
       const imageData = ctx.getImageData(0, 0, w, h);
+      const protectionLevel = protection ? parseFloat(protection.value) : 34;
       ctx.putImageData(
-        removeSimpleBackground(imageData, parseFloat(tolerance.value), parseFloat(feather.value)),
+        removeSimpleBackground(imageData, parseFloat(tolerance.value), parseFloat(feather.value), protectionLevel),
         0,
         0
       );
@@ -249,6 +271,12 @@
     featherValue.textContent = feather.value;
     if (sourceFile) clearResult();
   });
+  if (protection && protectionValue) {
+    protection.addEventListener("input", () => {
+      protectionValue.textContent = protection.value;
+      if (sourceFile) clearResult();
+    });
+  }
   processBtn.addEventListener("click", processFile);
   downloadBtn.addEventListener("click", downloadPng);
 })();

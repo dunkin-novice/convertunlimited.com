@@ -24,8 +24,8 @@ function appSchema(t, locale, options = {}) {
     inLanguage: locale.hreflang,
     featureList: options.featureList || [
       t.panelTitle || t.hero || 'Browser-native utility workflow',
-      'Processed locally in your browser for supported operations',
-      'No account required',
+      locale.localProcessingFeature || 'Processed locally in your browser for supported operations',
+      locale.noAccountFeature || 'No account required',
     ],
     offers: {
       '@type': 'Offer',
@@ -56,14 +56,15 @@ function aeoSummary(t, esc) {
 }
 
 function withAeoDefaults(text, options = {}) {
+  const locale = options.locale || {};
   for (const value of Object.values(text)) {
     if (!value || typeof value !== 'object') continue;
-    value.aeoWhatTitle ||= options.aeoWhatTitle || 'What this tool does';
-    value.aeoPrivacyTitle ||= options.aeoPrivacyTitle || 'Privacy behavior';
-    value.aeoWorkflowTitle ||= options.aeoWorkflowTitle || 'Supported workflow';
+    value.aeoWhatTitle ||= options.aeoWhatTitle || locale.aeoWhatTitle || 'What this tool does';
+    value.aeoPrivacyTitle ||= options.aeoPrivacyTitle || locale.aeoPrivacyTitle || 'Privacy behavior';
+    value.aeoWorkflowTitle ||= options.aeoWorkflowTitle || locale.aeoWorkflowTitle || 'Supported workflow';
     value.aeoWhat ||= value.panelText || value.sub || value.description;
-    value.aeoPrivacy ||= 'Selected inputs are processed locally in your browser for this workflow. The public site may load ads and analytics; use the privacy build for privacy-sensitive workflows.';
-    value.aeoWorkflow ||= value.articleP1 || 'Use the controls on this page, review the output in your browser, then copy or download the result.';
+    value.aeoPrivacy ||= locale.aeoPrivacy || 'Selected inputs are processed locally in your browser for this workflow. The public site may load ads and analytics; use the privacy build for privacy-sensitive workflows.';
+    value.aeoWorkflow ||= value.articleP1 || locale.aeoWorkflow || 'Use the controls on this page, review the output in your browser, then copy or download the result.';
   }
   return text;
 }

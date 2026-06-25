@@ -11,7 +11,7 @@ const { aeoSummary, schemaScripts } = require('./data/page-helpers');
 const TEXT = {
   en: {
     title: 'AVIF Converter - Convert JPG, PNG & WebP to AVIF Online | ConvertUnlimited',
-    description: 'Convert JPG, PNG, and WebP images to AVIF online in your browser. Local-first, free, no signup, and no server uploads when your browser supports AVIF encoding.',
+    description: 'Convert JPG, PNG, and WebP images to AVIF in your browser. Supported AVIF conversion runs locally when the browser provides AVIF encoding.',
     hero: 'AVIF Converter',
     sub: 'Create modern, lightweight AVIF images in your browser.',
     eyebrow: 'Local-first AVIF conversion',
@@ -22,7 +22,7 @@ const TEXT = {
     quality: 'AVIF Quality',
     convert: 'Convert All',
     download: 'Download All (ZIP)',
-    status: 'Images are converted in your browser. Files are not uploaded.',
+    status: 'Images are converted in your browser when AVIF encoding is supported. ConvertUnlimited does not provide a server-side upload endpoint for this flow.',
     unsupported: 'AVIF encoding support varies by browser. The tool will show a message if local AVIF export is unavailable.',
     trustTitle: 'Why it is private',
     trustOne: '<b>Browser-based.</b> Images are decoded and encoded locally.',
@@ -454,15 +454,15 @@ ${text.faq.map(([question, answer]) => `                <h3>${htmlEscape(questio
 
 
         <footer class="footer">
-            <div>© <span id="copyright-year">2026</span> ConvertUnlimited.com — runs entirely in your browser.</div>
+            <div>© <span id="copyright-year">2026</span> ConvertUnlimited.com — ${locale.footerProcessing || 'supported processing runs in your browser'}.</div>
             <nav class="links" aria-label="Footer">
                 <a href="${home(locale)}">Image Converter</a>
                 <a href="${route(locale)}">${htmlEscape(text.hero)}</a>
                 <a href="${locale.prefix ? `/${locale.prefix}/tools/` : '/tools/'}">Tools</a>
                 <a href="${route(locale)}#how">AVIF guide</a>
-                <a href="${route(locale)}#faq">FAQ</a>
-                <a href="${route(locale)}#privacy">Privacy</a>
-                <a href="${route(locale)}#terms">Terms</a>
+                <a href="${route(locale)}#faq">${locale.faqLabel || 'FAQ'}</a>
+                <a href="${route(locale)}#privacy">${locale.privacyLabel || 'Privacy'}</a>
+                <a href="${route(locale)}#terms">${locale.termsLabel || 'Terms'}</a>
             </nav>
         </footer>
     </div>

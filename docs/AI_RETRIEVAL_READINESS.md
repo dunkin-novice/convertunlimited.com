@@ -6,6 +6,8 @@ AI Retrieval Readiness defines how ConvertUnlimited pages should be structured s
 
 This is not a prompt-engineering layer. It is page quality, information architecture, and source-of-truth discipline.
 
+Use the language rules in [LANGUAGE_STYLE.md](LANGUAGE_STYLE.md). ConvertUnlimited copy should sound like a technical utility site: formal, precise, scoped, and low-hype.
+
 ## Page Requirements
 
 Every important page should include:
@@ -37,6 +39,7 @@ Before publishing or localizing a page:
 - Canonical and hreflang rules pass validation.
 - The page links to the relevant workflow cluster.
 - No generated fallback page pretends to be fully localized.
+- Copy uses formal technical language instead of casual marketing language.
 
 ## Banned Vague Claims
 
@@ -50,6 +53,10 @@ Do not use:
 - "guaranteed secure"
 - totalizing privacy claims
 - maximum-privacy claims
+- broad "privacy-first" labels on public pages
+- "supported processing runs in your browser" on pages that may load ads, analytics, fonts, or CDN assets
+- "instant", "magic", "ultimate", "perfect", "fast and secure", or "free, bulk, and secure"
+- unqualified "no limits"
 
 Preferred wording:
 
@@ -58,6 +65,7 @@ Preferred wording:
 - "ConvertUnlimited does not provide a server-side upload endpoint for this processing flow."
 - "Use the privacy build for privacy-sensitive workflows."
 - "The privacy build does not intentionally load analytics, ads, or third-party runtime scripts."
+- "No software-imposed file count limit; browser memory and CPU still apply."
 
 ## Page Block Requirements
 

@@ -1,26 +1,22 @@
 <!DOCTYPE html>
 <html lang="zh-Hans">
 <head>
-    <!-- Google Tag Manager -->
-    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-KQHC5ZGV');</script>
-    <!-- End Google Tag Manager -->
-    <script src="/analytics-events.js"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CSV 清理工具 - 去重、去空行和修剪空白 | ConvertUnlimited</title>
     <meta name="description" content="在浏览器中清理 CSV。修剪空白、删除空行、移除重复行、预览数据、复制并下载，无需上传。">
-    <meta name="robots" content="noindex,follow">
+    <meta name="robots" content="index,follow,max-image-preview:large">
     <meta name="theme-color" content="#3aa17e">
 <link rel="canonical" href="https://convertunlimited.com/zh/csv-cleaner/">
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2823470980745945" crossorigin="anonymous"></script>
-    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"ConvertUnlimited","alternateName":"ConvertUnlimited.com","url":"https://convertunlimited.com/","logo":"https://convertunlimited.com/og-image.svg","sameAs":["https://github.com/dunkin-novice/convertunlimited.com","https://privacy.convertunlimited.com/"],"contactPoint":[{"@type":"ContactPoint","contactType":"customer support","url":"https://convertunlimited.com/contact/","email":"info@convertunlimited.com"}]}</script>
 
     <link rel="alternate" hreflang="en" href="https://convertunlimited.com/csv-cleaner/">
     <link rel="alternate" hreflang="th" href="https://convertunlimited.com/th/csv-cleaner/">
+    <link rel="alternate" hreflang="vi" href="https://convertunlimited.com/vi/csv-cleaner/">
+    <link rel="alternate" hreflang="zh-Hans" href="https://convertunlimited.com/zh/csv-cleaner/">
+    <link rel="alternate" hreflang="ja" href="https://convertunlimited.com/ja/csv-cleaner/">
+    <link rel="alternate" hreflang="ko" href="https://convertunlimited.com/ko/csv-cleaner/">
+    <link rel="alternate" hreflang="es" href="https://convertunlimited.com/es/csv-cleaner/">
+    <link rel="alternate" hreflang="fr" href="https://convertunlimited.com/fr/csv-cleaner/">
     <link rel="alternate" hreflang="x-default" href="https://convertunlimited.com/csv-cleaner/">
 
     <link rel="icon" type="image/svg+xml" href="/favicon.svg">
@@ -31,18 +27,14 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/style.css">
     <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","inLanguage":"zh-Hans","mainEntity":[{"@type":"Question","name":"这个 CSV 工具免费吗？","acceptedAnswer":{"@type":"Answer","text":"免费。无需注册即可粘贴、清理、预览、复制和下载 CSV。"}},{"@type":"Question","name":"CSV 文件会上传吗？","acceptedAnswer":{"@type":"Answer","text":"不会。CSV 会在浏览器本地读取和清理。"}},{"@type":"Question","name":"会应用哪些清理规则？","acceptedAnswer":{"@type":"Answer","text":"修剪单元格空白、删除空行、标准化换行，并删除完全相同的重复行。"}},{"@type":"Question","name":"会改变列顺序吗？","acceptedAnswer":{"@type":"Answer","text":"不会。列顺序会保留。"}},{"@type":"Question","name":"CSV 格式异常怎么办？","acceptedAnswer":{"@type":"Answer","text":"工具会显示友好警告并保留原始输入。"}}]}</script>
-    <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"CSV 清理工具","description":"在浏览器中清理 CSV。修剪空白、删除空行、移除重复行、预览数据、复制并下载，无需上传。","url":"https://convertunlimited.com/zh/csv-cleaner/","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","isAccessibleForFree":true,"inLanguage":"zh-Hans","featureList":["粘贴 CSV 并安全清理。","Processed locally in your browser for supported operations","No account required"],"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"CSV 清理工具","description":"在浏览器中清理 CSV。修剪空白、删除空行、移除重复行、预览数据、复制并下载，无需上传。","url":"https://convertunlimited.com/zh/csv-cleaner/","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","isAccessibleForFree":true,"inLanguage":"zh-Hans","featureList":["粘贴 CSV 并安全清理。","支持的操作在浏览器中处理","无需账户"],"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
 </head>
-<body data-tool="csv-cleaner" data-page-type="tool">
-    <!-- Google Tag Manager (noscript) -->
-    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KQHC5ZGV"
-    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-    <!-- End Google Tag Manager (noscript) -->
+<body>
     <div class="app">
         <header class="topbar">
             <a href="/zh/" class="brand" aria-label="ConvertUnlimited home"><span class="mark" aria-hidden="true"></span><span class="word"><b>Convert</b><span>Unlimited</span></span></a>
             <nav class="topnav" aria-label="Primary">
-                <span class="pill"><span class="dot"></span>Browser-native tools</span>
+                <span class="pill"><span class="dot"></span>100% free, no signup</span>
                 <details class="tools-dropdown"><summary aria-label="Tools">Tools <svg width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin-left: 2px; opacity: 0.5;"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></summary><div class="dropdown-menu" role="menu"><div class="dropdown-section">Developer Tools</div><a href="/zh/json-formatter/">JSON Formatter</a><a href="/zh/csv-cleaner/" aria-current="page">CSV Cleaner</a><div class="dropdown-section">SEO Tools</div><a href="/zh/meta-preview-checker/">Meta Preview Checker</a><a href="/zh/qr-generator/">QR Generator</a></div></details>
                 <details class="lang-switcher"><summary aria-label="Language"><span aria-hidden="true">🌐</span> 中文（简体）</summary><div class="lang-menu" role="menu">
                         <a href="/csv-cleaner/" hreflang="en" lang="en">English</a>
@@ -87,9 +79,11 @@
             </div>
 
             <section class="article aeo-summary" id="tool-summary">
-                <h2>What this tool does</h2>
+                <h2>此工具的用途</h2>
                 <p>修剪单元格、删除空行、标准化换行并移除完全重复的行，无需上传数据。</p>
-                <h2>Supported workflow</h2>
+                <h2>隐私处理方式</h2>
+                <p>所选输入会在浏览器中为此流程处理。公共网站可能加载广告和 analytics；隐私敏感流程请使用 privacy build。</p>
+                <h2>支持的流程</h2>
                 <p>CSV 导出常包含多余空格、空行、不一致换行或重复行。清理这些安全问题能让数据更容易导入、比较和检查。</p>
             </section>
             <section id="how" class="article"><h2>什么时候需要清理 CSV？</h2><p>CSV 导出常包含多余空格、空行、不一致换行或重复行。清理这些安全问题能让数据更容易导入、比较和检查。</p><p>本工具避免破坏性转换。除修剪空白、删除空行和删除完全重复行外，会保留列顺序和值。</p></section>
@@ -109,7 +103,7 @@
             <section id="terms" class="article"><h2>使用条款</h2><p>ConvertUnlimited 按原样提供。导入生产系统前请检查清理后的 CSV。</p></section>
 <!-- GUIDE_BLOCKS_START -->
         <section class="guide-help-blocks" aria-label="Helpful guides">
-            <div class="category-title">Privacy &amp; processing</div>
+            <div class="category-title">隐私与处理</div>
             <div class="guide-help-grid">
                 <a href="/proof-of-local-processing/" class="guide-help-card" data-track="guide-click" data-destination-guide="proof-of-local-processing" data-guide-type="trust_explainer" data-reason="privacy_clarification" data-position="1">
                     <span class="guide-help-type">trust explainer</span>
@@ -169,11 +163,7 @@
         </section>
 <!-- RELATED_TOOLS_END -->
         </main>
-        <footer class="footer"><div>© <span id="copyright-year">2026</span> ConvertUnlimited.com — runs entirely in your browser.</div><nav class="links" aria-label="Footer"><a href="/zh/tools/">Tools</a><a href="/zh/csv-cleaner/#how">Guide</a><a href="/zh/csv-cleaner/#faq">FAQ</a><a href="/zh/csv-cleaner/#privacy">Privacy</a><a href="/zh/csv-cleaner/#terms">Terms</a>
-                        <a href="/about/">About</a>
-                        <a href="/contact/">Contact</a>
-                        <a href="/privacy/">Privacy</a>
-                        <a href="/terms/">Terms</a></nav></footer>
+        <footer class="footer"><div>© <span id="copyright-year">2026</span> ConvertUnlimited.com — 支持的处理流程在浏览器中运行.</div><nav class="links" aria-label="Footer"><a href="/zh/tools/">工具</a><a href="/zh/csv-cleaner/#how">指南</a><a href="/zh/csv-cleaner/#faq">常见问题</a><a href="/zh/csv-cleaner/#privacy">隐私</a><a href="/zh/csv-cleaner/#terms">条款</a></nav></footer>
     </div>
     <script src="/csv-cleaner/csv-cleaner.js"></script>
 </body>

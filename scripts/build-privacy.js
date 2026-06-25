@@ -360,7 +360,7 @@ function stripThirdPartyRuntime(html, relPath = "") {
     `<meta name="robots" content="index,follow,max-image-preview:large">`
   );
   out = out.replace(
-    /<div>© <span id="copyright-year">2026<\/span> ConvertUnlimited\.com — runs entirely in your browser\.<\/div>/g,
+    /<div>© <span id="copyright-year">2026<\/span> ConvertUnlimited\.com — supported processing runs in your browser\.<\/div>/g,
     `<div>© <span id="copyright-year">2026</span> ConvertUnlimited privacy build — file processing runs in your browser.</div>`
   );
   out = standardizeLanguageSwitcher(out, relPath);

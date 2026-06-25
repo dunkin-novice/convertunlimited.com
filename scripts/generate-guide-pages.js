@@ -18,6 +18,10 @@ function htmlEscape(str) {
   })[m]);
 }
 
+function inlineFormat(str) {
+  return htmlEscape(str).replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+}
+
 function routeFor(locale, guideSlug) {
   return `${locale.prefix ? `/${locale.prefix}` : ''}/guides/${guideSlug}/`;
 }
@@ -25,7 +29,7 @@ function routeFor(locale, guideSlug) {
 function renderSection(section) {
   let html = `<section class="article"><h2>${htmlEscape(section.title)}</h2>`;
   if (section.content) {
-    html += `<p>${htmlEscape(section.content)}</p>`;
+    html += `<p>${inlineFormat(section.content)}</p>`;
   }
   if (section.isTable) {
     html += `<div class="table-container"><table class="comparison-table"><thead><tr>`;
@@ -43,8 +47,8 @@ function renderSection(section) {
     Object.keys(section.prosCons).forEach(key => {
       const pc = section.prosCons[key];
       html += `<div class="pc-block"><h3>${htmlEscape(key.toUpperCase())}</h3>`;
-      html += `<ul class="pros">` + pc.pros.map(p => `<li>✅ ${htmlEscape(p)}</li>`).join('') + `</ul>`;
-      html += `<ul class="cons">` + pc.cons.map(c => `<li>❌ ${htmlEscape(c)}</li>`).join('') + `</ul>`;
+      html += `<ul class="pros">` + pc.pros.map(p => `<li>${htmlEscape(p)}</li>`).join('') + `</ul>`;
+      html += `<ul class="cons">` + pc.cons.map(c => `<li>${htmlEscape(c)}</li>`).join('') + `</ul>`;
       html += `</div>`;
     });
     html += `</div>`;
@@ -71,10 +75,11 @@ function generate() {
       const newHero = `<section class="hero"><h1 class="hero-title">${htmlEscape(langData.h1)}</h1><p class="sub hero-sub">${htmlEscape(langData.intro)}</p></section>`;
       const sectionsHtml = langData.sections.map(s => renderSection(s)).join('');
       const fallbackHtml = hasLocalizedGuide ? '' : `<section class="article translation-status" data-translation-status="english-fallback"><h2>Translation status</h2><p>This guide is currently shown in English for this locale. Tool links still point to localized routes where available.</p></section>`;
+      const aeoHtml = `<section class="article aeo-summary" id="guide-summary"><h2>What this guide explains</h2><p>${htmlEscape(langData.intro)}</p><h2>Technical scope</h2><p>This guide describes browser-based file workflows, format tradeoffs, and ConvertUnlimited processing boundaries for supported tools.</p></section>`;
       const faqHtml = `<section id="faq" class="article"><h2>FAQ</h2>${langData.faq.map(([q, a]) => `<h3>${htmlEscape(q)}</h3><p>${htmlEscape(a)}</p>`).join('')}</section>`;
       const ctaHtml = `<section class="article CTA"><h3>Action</h3><p>${langData.cta ? langData.cta.replace(/\[(.*?)\]\((.*?)\)/g, '<a href="$2">$1</a>') : ''}</p></section>`;
       
-      const newContent = `<div class="guide-content">${fallbackHtml}${sectionsHtml}${faqHtml}${ctaHtml}</div></main>`;
+      const newContent = `<div class="guide-content">${fallbackHtml}${aeoHtml}${sectionsHtml}${faqHtml}${ctaHtml}</div></main>`;
 
       html = html.replace(heroRe, newHero);
       // We keep the main container but replace the inner grid

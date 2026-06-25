@@ -11,7 +11,7 @@
     <script src="/analytics-events.js"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ConvertUnlimited — Privacy-first browser file tools</title>
+    <title>ConvertUnlimited — Browser-native file tools</title>
     <meta name="description" content="ConvertUnlimited provides browser-native file tools for images, PDFs, and developer workflows. Supported files are processed locally in your browser, with a separate privacy build for sensitive work.">
     <meta name="robots" content="index,follow,max-image-preview:large">
 <meta name="msvalidate.01" content="003FD42627CDC93A3D0D542D5D0513D4">
@@ -26,7 +26,7 @@
     <link rel="alternate" hreflang="x-default" href="https://convertunlimited.com/">
 
     <!-- Open Graph -->
-    <meta property="og:title" content="ConvertUnlimited — Privacy-first browser file tools">
+    <meta property="og:title" content="ConvertUnlimited — Browser-native file tools">
     <meta property="og:description" content="Browser-native file tools for images, PDFs, and developer workflows. Supported files are processed locally in your browser.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://convertunlimited.com/">
@@ -39,7 +39,7 @@
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="ConvertUnlimited — Privacy-first browser file tools">
+    <meta name="twitter:title" content="ConvertUnlimited — Browser-native file tools">
     <meta name="twitter:description" content="Browser-native file tools for images, PDFs, and developer workflows. Supported files are processed locally in your browser.">
     <meta name="twitter:image" content="https://convertunlimited.com/og-image.svg">
 
@@ -67,7 +67,7 @@
           "name": "Are there any limits?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "No software-imposed cap. The only ceiling is what your browser and computer can handle. We suggest about 50 images at a time as a comfortable starting point — most modern laptops handle two or three times that without trouble."
+            "text": "There is no software-imposed file count limit. Practical limits depend on browser memory, CPU, source dimensions, and output format. For typical laptop workflows, start with about 50 images per batch."
           }
         },
         {
@@ -75,7 +75,7 @@
           "name": "Are my files uploaded to a server?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "No. ConvertUnlimited runs entirely inside your browser using the HTML canvas API. Selected file contents are processed locally in your browser — file contents are not intentionally uploaded by this tool."
+            "text": "For supported image conversion flows, selected file contents are decoded and re-encoded locally in your browser. ConvertUnlimited does not provide a server-side upload endpoint for this processing flow."
           }
         },
         {
@@ -91,7 +91,7 @@
           "name": "Why is it free?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "A small ad in the right rail and one in the footer cover hosting costs. Because file contents are not intentionally uploaded by this tool, there is no per-user storage bill — so we don't need a subscription model."
+            "text": "The public site may use advertising to support hosting and maintenance. Supported image conversion flows run in the browser, so ConvertUnlimited does not need a server-side upload service for those workflows."
           }
         },
         {
@@ -99,7 +99,7 @@
           "name": "What's the difference between WebP, JPEG, and PNG?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "WebP is smallest at equivalent quality and supports transparency — best default for the web. JPEG is universal and best for photos when compatibility is the priority. PNG is lossless and supports transparency — best for screenshots, logos, and icons."
+            "text": "WebP is usually smaller at comparable visual quality and supports transparency. JPEG remains useful for broad photo compatibility. PNG is lossless and works well for screenshots, logos, icons, and transparent graphics."
           }
         },
         {
@@ -107,7 +107,7 @@
           "name": "Does converting reduce image quality?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Lossy formats (WebP, JPEG) discard some information by design. At High or Original quality the loss is invisible at normal viewing sizes. PNG is lossless — converting from PNG to PNG produces a bit-for-bit equivalent file."
+            "text": "Lossy formats such as WebP and JPEG discard information by design. At high quality settings, the difference is often difficult to see at normal display sizes. PNG is lossless, but re-encoding can still change file metadata and container details."
           }
         },
         {
@@ -131,7 +131,7 @@
           "name": "What browsers are supported?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "All current browsers — Chrome, Edge, Firefox, Safari, and their mobile variants. There is no extension or plugin to install."
+            "text": "Current versions of Chrome, Edge, Firefox, Safari, and their mobile variants are supported. No browser extension or plugin is required."
           }
         },
         {
@@ -139,7 +139,7 @@
           "name": "Is there a desktop app?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "No, and we don't think there needs to be — the browser does everything an app would, with no install or update step. Just bookmark the page."
+            "text": "No. ConvertUnlimited is a website. Supported workflows run through browser APIs without a separate desktop installation."
           }
         }
       ]
@@ -199,8 +199,8 @@
 
         <main>
         <section class="hero">
-            <h1 class="hero-title">Privacy-first file tools that run in your browser.</h1>
-            <p class="sub hero-sub">Convert images, optimize files, clean metadata, work with PDFs, and use developer utilities without an upload queue. Supported file contents are processed locally in your browser, and sensitive workflows can use the separate privacy build.</p>
+            <h1 class="hero-title">Browser-native file tools with scoped local processing.</h1>
+            <p class="sub hero-sub">Convert images, optimize files, clean metadata, work with PDFs, and use developer utilities from the browser. Supported file contents are processed locally in your browser, and privacy-sensitive workflows should use the separate privacy build.</p>
         </section>
 
         <section class="article trust-note" id="trust-transparency">
@@ -243,7 +243,7 @@
                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
                             </div>
                             <div class="title">Drop images here, or click to browse</div>
-                            <div class="hint">JPG, PNG, GIF, SVG, WebP, BMP &nbsp;·&nbsp; we suggest up to ~50 at a time</div>
+                            <div class="hint">JPG, PNG, GIF, SVG, WebP, BMP &nbsp;·&nbsp; start with about 50 files per batch</div>
                             <div class="types">
                                 <span>JPG</span><span>PNG</span><span>GIF</span><span>SVG</span><span>WebP</span><span>BMP</span>
                             </div>
@@ -252,8 +252,8 @@
                     </div>
                     <div class="privacy">
                         <div class="item"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l8 4v6c0 5-3.5 9-8 10-4.5-1-8-5-8-10V6l8-4z"/><polyline points="9 12 11 14 15 10"/></svg> Local processing in your browser</div>
-                        <div class="item"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M18.6 6.6a4 4 0 0 0-5.66 0L12 7.5l-.94-.95a4 4 0 1 0 0 5.65L12 11.5l.94.95a4 4 0 1 0 0-5.65L12 7.5"/></svg> No file or count limits</div>
-                        <div class="item"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> No signup, no watermarks</div>
+                        <div class="item"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M18.6 6.6a4 4 0 0 0-5.66 0L12 7.5l-.94-.95a4 4 0 1 0 0 5.65L12 11.5l.94.95a4 4 0 1 0 0-5.65L12 7.5"/></svg> Browser memory defines practical batch size</div>
+                        <div class="item"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> No account required for tool use</div>
                     </div>
                 </div>
 
@@ -305,11 +305,11 @@
                     </div>
                     <div class="item">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M18.6 6.6a4 4 0 0 0-5.66 0L12 7.5l-.94-.95a4 4 0 1 0 0 5.65L12 11.5l.94.95a4 4 0 1 0 0-5.65L12 7.5"/></svg>
-                        <div><b>No limits.</b> Convert as many as you want, free.</div>
+                        <div><b>Batch-capable workflow.</b> There is no software-imposed file count limit; browser memory and CPU still apply.</div>
                     </div>
                     <div class="item">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-                        <div><b>No signup, no watermark.</b> Just convert and go.</div>
+                        <div><b>No account required.</b> Tool workflows are available without registration.</div>
                     </div>
                 </div>
 
@@ -329,49 +329,49 @@
             <h2>How ConvertUnlimited works</h2>
             <p>ConvertUnlimited is a browser-native utility site for common image, PDF, and developer tasks. For supported image workflows, the selected file is read by the browser, decoded with browser APIs such as Canvas, re-encoded in the selected output format, and offered back as a download from the same tab.</p>
             <p>This local-processing model means ConvertUnlimited does not provide a server-side upload endpoint for supported image conversion flows. It does not mean every browser can process every file: very large images, unsupported formats, limited memory, or browser encoder differences can still affect results.</p>
-            <p>Conversion uses your computer's CPU and memory. For most laptops, dragging in 30–80 photos at typical phone-camera resolutions feels instant. Very large batches — hundreds of high-megapixel images at once — will use more RAM and may slow your machine briefly while they encode. We suggest queuing roughly 50 images at a time as a comfortable middle ground, but the tool doesn't enforce a limit; use whatever your machine handles cleanly. See <a href="#batches">Tips for big batches</a> for guidance on larger jobs.</p>
+            <p>Conversion uses your computer's CPU and memory. Typical laptop workflows can handle moderate batches of phone-camera images, while hundreds of high-megapixel files can increase memory pressure and slow the browser tab. Start with roughly 50 images per batch and adjust based on device performance. See <a href="#batches">Tips for big batches</a> for larger jobs.</p>
             <p>Start with the <a href="/tools/">tools index</a> when you need a specific workflow, or read <a href="/trust/local-processing/">how local browser processing works</a> before using the site with sensitive files.</p>
         </section>
 
         <section id="formats" class="article">
             <h2>Image format guide</h2>
-            <p>Different image formats trade off file size, quality, transparency, and compatibility. Here's a quick rundown of the formats ConvertUnlimited reads and writes, and when to choose each.</p>
+            <p>Image formats differ by file size, quality behavior, transparency support, and compatibility. The notes below summarize the formats ConvertUnlimited reads and writes, and when each format is appropriate.</p>
 
             <h3>WebP</h3>
-            <p>Google's modern image format. At the same visual quality, WebP files are typically 25–35 % smaller than JPEG and 50 % smaller than PNG, and they support transparency. WebP is supported by every current browser, so it's the best default for the web. Choose WebP when you want maximum savings and your audience views images in a browser.</p>
+            <p>A modern image format developed by Google. At comparable visual quality, WebP files are often smaller than JPEG and PNG, and WebP supports transparency. Choose WebP for modern web delivery when the publishing system and target browsers support it.</p>
 
             <h3>JPEG</h3>
-            <p>The universal photo format. JPEG is lossy (it discards information to shrink the file), doesn't support transparency, and is supported absolutely everywhere — email, social media, printers, decade-old phones. Choose JPEG for photos when you need maximum compatibility, or when you're embedding into a system you don't control.</p>
+            <p>A broadly supported photo format. JPEG is lossy, does not support transparency, and remains compatible with most publishing systems, email clients, social platforms, printers, and older software. Choose JPEG when compatibility is the main requirement.</p>
 
             <h3>PNG</h3>
-            <p>Lossless and supports transparency. PNG is ideal for screenshots, logos, icons, and any image with sharp edges or solid-colour regions, because it compresses those without artefacts. The trade-off is file size: PNGs of photos are several times larger than the equivalent JPEG or WebP. Choose PNG when you need transparency or when image fidelity matters more than size.</p>
+            <p>A lossless format with transparency support. PNG is suitable for screenshots, logos, icons, and graphics with sharp edges or solid-colour regions. The tradeoff is file size: photographic PNG files are often much larger than equivalent JPEG or WebP outputs.</p>
 
             <h3>GIF</h3>
-            <p>A legacy format from the 1990s. It supports basic animation but compresses with a 256-colour palette, so it looks blocky on photos. For new work, prefer WebP for static images and MP4 / WebM for animation. ConvertUnlimited reads GIFs and converts the first frame — for animated GIFs, only that first frame is kept.</p>
+            <p>A legacy bitmap format with basic animation support and a 256-colour palette. GIF can be inefficient for photos and complex graphics. ConvertUnlimited reads GIF files and converts the first frame; animated GIF output is not preserved.</p>
 
             <h3>SVG</h3>
-            <p>A vector format made of XML drawing commands. ConvertUnlimited reads SVGs and rasterises them (turns them into pixel images) at the SVG's natural dimensions. Once a vector has been rasterised you can't scale it back up cleanly, so only convert SVG when you specifically need a raster output — for example, embedding a logo into a JPEG product photo.</p>
+            <p>A vector format based on XML drawing commands. ConvertUnlimited reads SVG files and rasterizes them at their natural dimensions. After rasterization, the output behaves like a pixel image, so convert SVG only when a raster output is required.</p>
 
             <h3>BMP</h3>
-            <p>An uncompressed bitmap format. BMPs are huge for what they store. There's almost never a reason to keep an image as BMP today — convert to WebP, JPEG, or PNG and save 80–95 % of the disk space.</p>
+            <p>An uncompressed bitmap format. BMP files are usually large relative to their visual content. For web or sharing workflows, convert BMP to WebP, JPEG, or PNG unless the target system specifically requires BMP.</p>
         </section>
 
         <section id="quality" class="article">
             <h2>Choosing the right quality</h2>
             <p>The quality dropdown only applies to lossy formats (WebP and JPEG). PNG is lossless, so the dropdown is automatically disabled when PNG is selected. The four presets translate roughly to:</p>
-            <p><b>Original (1.0).</b> Visually identical to the source for most images. Files are still smaller than the input because modern JPEG and WebP encoders are more efficient than older sources, but you give up almost no fidelity.</p>
-            <p><b>High (0.9).</b> Negligible visual difference for most photos. Good default for hero images, photography, anything where quality matters.</p>
-            <p><b>Recommended (0.75).</b> The sweet spot for web use. Files are typically 30–50 % smaller than High with no loss visible at normal viewing sizes. Use this for blog posts, product galleries, social media.</p>
-            <p><b>Compact (0.5).</b> Aggressive compression. Best for thumbnails, image grids, or when you need to email a folder of photos and bandwidth is the bottleneck. You'll notice softness in fine detail, especially on text-heavy or high-contrast images.</p>
+            <p><b>Original (1.0).</b> Highest available encoder quality. Output may still differ from the source because the browser writes a new file.</p>
+            <p><b>High (0.9).</b> High visual quality for photos and prominent web images, with moderate size reduction in many cases.</p>
+            <p><b>Recommended (0.75).</b> Balanced web output for articles, product images, and social media assets.</p>
+            <p><b>Compact (0.5).</b> Stronger compression for thumbnails, image grids, and bandwidth-constrained sharing. Text-heavy or high-contrast images may show artifacts sooner.</p>
         </section>
 
         <section id="batches" class="article">
             <h2>Tips for big batches</h2>
-            <p>A few things to know when you're converting more than a handful of files:</p>
-            <p><b>Batch size.</b> We recommend up to ~50 images at a time as a comfortable starting point. Most laptops handle 100–200 photo-sized images without complaint, but past that, your browser may briefly hang while it allocates memory. If it does, just wait — it's not crashed, it's working.</p>
-            <p><b>RAM matters more than CPU.</b> A 12-megapixel photo takes roughly 50 MB of RAM to decode. A batch of 100 such photos can momentarily peak at several gigabytes of memory. Closing other tabs helps if you hit the wall.</p>
+            <p>Use smaller batches when converting many large files:</p>
+            <p><b>Batch size.</b> Start with about 50 images at a time. Larger batches may work, but browser memory allocation can briefly make the tab unresponsive.</p>
+            <p><b>RAM matters more than CPU.</b> A 12-megapixel photo can require roughly 50 MB of memory after decoding. A batch of 100 such photos can temporarily require several gigabytes of memory. Closing other tabs can help on low-memory devices.</p>
             <p><b>Mobile.</b> Phones and tablets have less RAM and stricter background limits. Stick to smaller batches (10–20 images) on mobile devices.</p>
-            <p><b>ZIP downloads.</b> Once your batch is converted, the "Download all as ZIP" button bundles every file into one archive — much faster than clicking 50 individual save links.</p>
+            <p><b>ZIP downloads.</b> After conversion, the "Download all as ZIP" button bundles outputs into one archive for easier batch download.</p>
         </section>
             <section class="article aeo-summary" id="tool-summary">
                 <h2>What this page does</h2>
@@ -384,7 +384,7 @@
             <h2>Frequently asked questions</h2>
 
             <h3>Are there any limits?</h3>
-            <p>No software-imposed cap. The only ceiling is what your browser and computer can handle. We suggest about 50 images at a time as a comfortable starting point — most modern laptops handle two or three times that without trouble.</p>
+            <p>There is no software-imposed file count limit. Practical limits depend on browser memory, CPU, source dimensions, and output format. Start with about 50 images per batch and increase only if the browser remains responsive.</p>
 
             <h3>Are my files uploaded to a server?</h3>
             <p>For supported image conversion flows, ConvertUnlimited does not provide a server-side upload endpoint. The browser reads and re-encodes selected image contents locally, then creates downloadable results in the tab. See <a href="/trust/local-processing/">how local processing works</a> and <a href="/trust/verification/">how to verify it</a>.</p>
@@ -396,10 +396,10 @@
             <p>The public site may use ads to support hosting and maintenance. The core tools are static browser utilities, so supported processing flows do not require a ConvertUnlimited upload service. Use the privacy build when you need the no-ads, no-analytics version.</p>
 
             <h3>What's the difference between WebP, JPEG, and PNG?</h3>
-            <p>WebP is smallest at equivalent quality and supports transparency — best default for the web. JPEG is universal and best for photos when compatibility is the priority. PNG is lossless and supports transparency — best for screenshots, logos, and icons. The full breakdown is in our <a href="#formats">image format guide</a>.</p>
+            <p>WebP is usually smaller at comparable visual quality and supports transparency. JPEG remains useful for broad photo compatibility. PNG is lossless and works well for screenshots, logos, icons, and transparent graphics. The full breakdown is in the <a href="#formats">image format guide</a>.</p>
 
             <h3>Does converting reduce image quality?</h3>
-            <p>Lossy formats (WebP, JPEG) discard some information by design. At "High" or "Original" quality, the loss is invisible at normal viewing sizes. PNG is lossless — converting from PNG to PNG produces a bit-for-bit equivalent file.</p>
+            <p>Lossy formats such as WebP and JPEG discard information by design. At high quality settings, the difference is often difficult to see at normal display sizes. PNG is lossless, but re-encoding can still change file metadata and container details.</p>
 
             <h3>Can I convert HEIC, RAW, or PDF files?</h3>
             <p>Not currently. The browser canvas API only decodes image formats the browser natively supports. iPhone HEIC photos can be exported as JPEG from Photos.app and then converted here; PDFs need a dedicated PDF tool.</p>
@@ -408,10 +408,10 @@
             <p>This happens occasionally when you convert from a more efficient format (for example, WebP) to a less efficient one (for example, PNG), or when you ask for "Original" quality on an already-compressed source. The tool always shows the before / after sizes so you can decide whether the conversion was worth it.</p>
 
             <h3>What browsers are supported?</h3>
-            <p>All current browsers — Chrome, Edge, Firefox, Safari, and their mobile variants. There is no extension or plugin to install.</p>
+            <p>Current versions of Chrome, Edge, Firefox, Safari, and their mobile variants are supported. No browser extension or plugin is required.</p>
 
             <h3>Is there a desktop app?</h3>
-            <p>No, and we don't think there needs to be — the browser does everything an app would, with no install or update step. Just bookmark this page.</p>
+            <p>No. ConvertUnlimited is a website. Supported workflows run through browser APIs without a separate desktop installation.</p>
         </section>
 
         <section id="privacy" class="article">
@@ -485,14 +485,14 @@
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M17 3 21 7l-4 4"/><path d="M3 7h18"/><path d="M7 21l-4-4 4-4"/><path d="M21 17H3"/></svg>
                     </div>
                     <h3>PNG to WebP Converter</h3>
-                    <p>Convert PNG images to WebP locally in your browser. Free, bulk, and secure.</p>
+                    <p>Convert PNG images to WebP with local browser processing for supported files.</p>
                 </a>
                 <a href="/" class="tool-item" data-track="related-tool-click" data-destination-tool="jpg-to-webp" data-workflow-cluster="image-optimization" data-reason="immediate_next_action" data-workflow-stage="next_action" data-depth="2" data-position="5" data-tool="jpg-to-webp" data-category="image-conversions">
                     <div class="icon">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M17 3 21 7l-4 4"/><path d="M3 7h18"/><path d="M7 21l-4-4 4-4"/><path d="M21 17H3"/></svg>
                     </div>
                     <h3>JPG to WebP Converter</h3>
-                    <p>Convert JPG images to WebP locally in your browser. Free, bulk, and secure.</p>
+                    <p>Convert JPG images to WebP with local browser processing for supported files.</p>
                 </a>
             </div>
         </section>
@@ -500,7 +500,7 @@
         </main>
 
         <footer class="footer">
-            <div>© <span id="copyright-year">2026</span> ConvertUnlimited.com — runs entirely in your browser.</div>
+            <div>© <span id="copyright-year">2026</span> ConvertUnlimited.com — supported processing runs in your browser.</div>
                                     <nav class="links" aria-label="Footer">
                 <a href="/">Image Converter</a>
                 <a href="/background-remover/">Background Remover</a>

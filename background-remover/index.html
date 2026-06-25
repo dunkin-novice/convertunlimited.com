@@ -137,22 +137,22 @@
 
         <main>
             <section class="hero">
-                <h1 class="hero-title">Free simple background remover.</h1>
-                <p class="sub hero-sub">Remove white, off-white, or simple solid backgrounds in your browser. No signup or watermark. File contents are processed locally in your browser for supported workflows. Export a transparent PNG.</p>
+                <h1 class="hero-title">Free solid background remover.</h1>
+                <p class="sub hero-sub">Remove white, off-white, or simple edge-connected solid backgrounds in your browser. No signup or watermark. File contents are processed locally in your browser for supported workflows. Export a transparent PNG.</p>
             </section>
 
             <div class="grid" id="layout">
                 <section class="bg-tool" aria-label="Simple background remover">
                     <div class="bg-tool-head">
                         <div>
-                            <p class="section-eyebrow">Browser-only background remover</p>
-                            <h2>Best for plain backgrounds.</h2>
-                            <p>This tool is intentionally simple and free. It works best when the background is mostly one color and touches the image edges. It is not an AI portrait or hair remover yet.</p>
+                            <p class="section-eyebrow">Browser-only solid background remover</p>
+                            <h2>Best for plain, separated backgrounds.</h2>
+                            <p>This tool is intentionally lightweight and free. It works best when the background is mostly one color, touches the image edges, and is visually distinct from the subject. It is not an AI portrait or hair remover yet.</p>
                         </div>
                         <div class="bg-badges" aria-label="Background remover notes">
                             <span>Local processing</span>
                             <span>Transparent PNG</span>
-                            <span>Plain backgrounds</span>
+                            <span>Solid backgrounds</span>
                         </div>
                     </div>
 
@@ -185,13 +185,18 @@
                             <div class="bg-controls">
                                 <label class="range-field" for="bg-tolerance">
                                     <span>Tolerance</span>
-                                    <input id="bg-tolerance" type="range" min="18" max="90" value="52">
-                                    <span class="mono num" id="bg-tolerance-value">52</span>
+                                    <input id="bg-tolerance" type="range" min="18" max="90" value="42">
+                                    <span class="mono num" id="bg-tolerance-value">42</span>
                                 </label>
                                 <label class="range-field" for="bg-feather">
                                     <span>Edge softness</span>
                                     <input id="bg-feather" type="range" min="45" max="130" value="90">
                                     <span class="mono num" id="bg-feather-value">90</span>
+                                </label>
+                                <label class="range-field" for="bg-protection">
+                                    <span>Subject protection</span>
+                                    <input id="bg-protection" type="range" min="0" max="80" value="34">
+                                    <span class="mono num" id="bg-protection-value">34</span>
                                 </label>
                                 <button class="btn btn-accent" id="bg-process-btn" disabled>Remove background</button>
                                 <button class="btn btn-ghost" id="bg-download-btn" disabled>Download PNG</button>
@@ -200,8 +205,8 @@
                                data-ready-text="Ready. Works best when the background touches the image edges and is mostly one color."
                                data-processing-text="Removing background locally in your browser..."
                                data-done-text="Done. Export keeps the source dimensions: {w}x{h}px transparent PNG."
-                               data-error-text="Could not remove this background. Try an image with a simpler white or solid background.">
-                               Best for product shots, icons, generated images, and graphics with simple edge-connected backgrounds.
+                               data-error-text="Could not remove this background. Try an image with a simpler white, off-white, or solid-color background.">
+                               Best for product shots, icons, generated images, and graphics with simple edge-connected backgrounds. Lower tolerance if the subject starts disappearing.
                             </p>
                         </div>
                     </div>
@@ -239,14 +244,14 @@
             <section id="how" class="article">
                 <h2>How this background remover works</h2>
                 <p>This background remover runs entirely inside your browser. When you choose an image, the page decodes it locally using the browser's image engine and draws it to an HTML canvas. The tool then samples the pixels along the outside edges of the image to estimate the background color. That edge sample is important: most product photos, AI-generated icons, and catalog images have a background that reaches the border.</p>
-                <p>After estimating the background color, the tool flood-fills from the edges inward. Pixels connected to the outside that are close enough to the background color are treated as removable background. Pixels that are not connected to the outside are preserved, which helps avoid deleting light-colored details inside the subject. Finally, the tool softens the alpha channel around the cut edge and exports a transparent PNG.</p>
+                <p>After estimating the background color, the tool flood-fills from the edges inward. Pixels connected to the outside that are close enough to the background color are treated as removable background. A subject-protection pass checks local contrast while the fill expands, which helps stop the fill from leaking through textured clothing, product edges, and other detailed foreground areas. Finally, the tool softens the alpha channel around the cut edge and exports a transparent PNG.</p>
                 <p>No image is uploaded. There is no server queue, no cloud storage, and no account system. The work happens on your own computer using your browser's CPU and memory. That is why the tool can be free and unlimited, but it also means very large images may briefly slow your device while the canvas is processed.</p>
             </section>
 
             <section id="limits" class="article">
                 <h2>What it can and cannot remove</h2>
                 <p>This tool is designed for simple backgrounds: white product-photo backdrops, off-white generated art backgrounds, flat color fields, screenshots with empty margins, and simple graphics where the subject is clearly separated from the background. It is a practical utility for quick PNG cutouts, product mockups, marketplace images, stickers, icons, and generated artwork.</p>
-                <p>It is not the same as an AI portrait remover. Complex scenes, hair, fur, transparent glass, smoke, shadows, and backgrounds with many colors are harder because the tool is not identifying semantic objects. It only knows color distance and whether a pixel is connected to the edge. If the subject is almost the same color as the background, the tolerance may remove part of the subject. If the background has gradients or compression artifacts, you may need a higher tolerance or a softer edge.</p>
+                <p>It is not the same as an AI portrait remover. Complex scenes, hair, fur, transparent glass, smoke, shadows, and backgrounds with many colors are harder because the tool is not identifying semantic objects. It only knows color distance, local contrast, and whether a pixel is connected to the edge. If the subject and background are nearly identical, such as black clothing against a black backdrop with no visible boundary, no color-based remover can separate them reliably. Lower tolerance or raise subject protection when the subject starts disappearing.</p>
                 <p>For difficult photos, an AI model can do better because it tries to understand the foreground object. We may add a client-side AI mode later, but this first version stays small, fast, private, and cheap to host.</p>
             </section>
 
@@ -254,6 +259,7 @@
                 <h2>Tips for cleaner transparent PNGs</h2>
                 <p><b>Start with clean edges.</b> Images where the background touches all four sides usually work best. If the subject is cropped against the edge, the tool may treat some subject pixels as background.</p>
                 <p><b>Use tolerance carefully.</b> Increase tolerance when you still see background around the subject. Decrease it if the subject starts disappearing. The default is a middle ground for white and off-white backgrounds.</p>
+                <p><b>Use subject protection for similar colors.</b> Raise subject protection when dark clothing, product edges, or textured foreground areas are being removed with the background. Lower it if too much background remains near detailed edges.</p>
                 <p><b>Use edge softness for halos.</b> If the cutout has a harsh outline, increase edge softness. If it looks blurry, lower edge softness and process again.</p>
                 <p><b>Export PNG when you need transparency.</b> PNG preserves the alpha channel. JPEG cannot store transparency, and some apps flatten transparent areas back to white when exporting.</p>
                 <p><b>For batch conversion, use the main converter.</b> This page focuses on one cutout at a time. For format conversion and ZIP downloads, use the <a href="/">bulk image converter</a>.</p>
@@ -349,7 +355,7 @@
         </main>
 
         <footer class="footer">
-            <div>© <span id="copyright-year">2026</span> ConvertUnlimited.com — runs entirely in your browser.</div>
+            <div>© <span id="copyright-year">2026</span> ConvertUnlimited.com — supported processing runs in your browser.</div>
                                     <nav class="links" aria-label="Footer">
                 <a href="/">Image Converter</a>
                 <a href="/background-remover/">Background Remover</a>
