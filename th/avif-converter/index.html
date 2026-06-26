@@ -138,11 +138,11 @@
 
 
             <section class="article aeo-summary" id="tool-summary">
-                <h2>เครื่องมือนี้ทำอะไร</h2>
+                <h2>What this tool does</h2>
                 <p>อัปโหลด JPG, PNG, WebP หรือ AVIF แล้วส่งออกเป็นไฟล์ AVIF สำหรับเว็บไซต์ยุคใหม่ ไฟล์อยู่บนอุปกรณ์ของคุณเมื่อเบราว์เซอร์รองรับการแปลงในเครื่อง</p>
-                <h2>พฤติกรรมด้านความเป็นส่วนตัว</h2>
-                <p>ข้อมูลที่เลือกจะถูกประมวลผลในเบราว์เซอร์ของคุณสำหรับขั้นตอนนี้ เว็บไซต์สาธารณะอาจโหลดโฆษณาและการวิเคราะห์ข้อมูล ควรใช้บิลด์ส่วนตัวสำหรับขั้นตอนที่ต้องการความเป็นส่วนตัวสูง</p>
-                <h2>ขั้นตอนที่รองรับ</h2>
+                <h2>Privacy behavior</h2>
+                <p>Selected inputs are processed locally in your browser for this workflow. The public site may load ads and analytics; use the privacy build for privacy-sensitive workflows.</p>
+                <h2>Supported workflow</h2>
                 <p>AVIF เป็นฟอร์แมตรูปภาพสมัยใหม่ที่ออกแบบมาเพื่อส่งภาพบนเว็บอย่างมีประสิทธิภาพ ให้ไฟล์ขนาดเล็กพร้อมรักษารายละเอียดได้ดี</p>
             </section>
             <section id="how" class="article">
@@ -175,7 +175,66 @@
                 <p>ConvertUnlimited ให้บริการตามสภาพจริง คุณต้องรับผิดชอบไฟล์ที่ประมวลผลและตรวจสอบความเข้ากันได้ของ AVIF ก่อนเผยแพร่</p>
             </section>
 
+<!-- GUIDE_BLOCKS_START -->
+        <section class="guide-help-blocks" aria-label="Helpful guides">
+            <div class="category-title">ความเป็นส่วนตัวและการประมวลผล</div>
+            <div class="guide-help-grid">
+                <a href="/proof-of-local-processing/" class="guide-help-card" data-track="guide-click" data-destination-guide="proof-of-local-processing" data-guide-type="trust_explainer" data-reason="privacy_clarification" data-position="1">
+                    <span class="guide-help-type">trust explainer</span>
+                    <span class="guide-help-title">How to verify local processing</span>
+                </a>
+                <a href="/th/guides/how-it-works/" class="guide-help-card" data-track="guide-click" data-destination-guide="how-it-works" data-guide-type="trust_explainer" data-reason="understand_local_processing" data-position="2">
+                    <span class="guide-help-type">trust explainer</span>
+                    <span class="guide-help-title">How browser-based processing works</span>
+                </a>
+                <a href="/th/guides/webp-vs-png/" class="guide-help-card" data-track="guide-click" data-destination-guide="webp-vs-png" data-guide-type="comparison" data-reason="compare_formats" data-position="3">
+                    <span class="guide-help-type">comparison</span>
+                    <span class="guide-help-title">WebP vs PNG: when to use each format</span>
+                </a>
+            </div>
+        </section>
+<!-- GUIDE_BLOCKS_END -->
 <!-- RELATED_TOOLS_START -->
+        <section class="related-tools">
+            <div class="category-title">ขั้นตอนถัดไปที่แนะนำ</div>
+            <div class="tool-grid">
+                <a href="/th/image-resizer/" class="tool-item" data-track="related-tool-click" data-destination-tool="image-resizer" data-workflow-cluster="image-optimization" data-reason="optimization_cleanup" data-workflow-stage="cleanup" data-depth="2" data-position="1" data-tool="image-resizer" data-category="image">
+                    <div class="icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><polyline points="21 8 21 21 8 21"/><line x1="21" y1="21" x2="3" y2="3"/><polyline points="3 16 3 3 16 3"/></svg>
+                    </div>
+                    <h3>ปรับขนาดรูปภาพ</h3>
+                    <p>เปลี่ยนขนาดรูปภาพสำหรับโซเชียลมีเดียหรือเว็บไซต์</p>
+                </a>
+                <a href="/th/image-compressor/" class="tool-item" data-track="related-tool-click" data-destination-tool="image-compressor" data-workflow-cluster="image-optimization" data-reason="optimization_cleanup" data-workflow-stage="cleanup" data-depth="2" data-position="2" data-tool="image-compressor" data-category="image">
+                    <div class="icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 14h6c1.1 0 2-0.9 2-2V6c0-1.1-0.9-2-2-2H4C2.9 4 2 4.9 2 6v6C2 13.1 2.9 14 4 14z"/><path d="M20 14h-6c-1.1 0-2-0.9-2-2V6c0-1.1 0.9-2 2-2h6c1.1 0 2 0.9 2 2v6C22 13.1 21.1 14 20 14z"/><path d="M4 22h6c1.1 0 2-0.9 2-2v-6c0-1.1-0.9-2-2-2H4c-1.1 0-2 0.9-2 2v6C2 21.1 2.9 22 4 22z"/><path d="M20 22h-6c-1.1 0-2-0.9-2-2v-6c0-1.1 0.9-2 2-2h6c1.1 0 2 0.9 2 2v6C22 21.1 21.1 22 20 22z"/></svg>
+                    </div>
+                    <h3>บีบอัดรูปภาพ</h3>
+                    <p>ลดขนาดไฟล์รูปภาพในขณะที่ยังรักษาคุณภาพของภาพไว้</p>
+                </a>
+                <a href="/th/metadata-remover/" class="tool-item" data-track="related-tool-click" data-destination-tool="metadata-remover" data-workflow-cluster="image-optimization" data-reason="optimization_cleanup" data-workflow-stage="cleanup" data-depth="2" data-position="3" data-tool="metadata-remover" data-category="image">
+                    <div class="icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+                    </div>
+                    <h3>ตัวลบข้อมูลเมตา</h3>
+                    <p>ลบข้อมูล EXIF, GPS และข้อมูลส่วนตัวออกจากรูปภาพ</p>
+                </a>
+                <a href="/th/" class="tool-item" data-track="related-tool-click" data-destination-tool="image-converter" data-workflow-cluster="image-optimization" data-reason="immediate_next_action" data-workflow-stage="next_action" data-depth="2" data-position="4" data-tool="image-converter" data-category="image">
+                    <div class="icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                    </div>
+                    <h3>ตัวแปลง JPG เป็น WebP</h3>
+                    <p>แปลงรูปภาพ JPG เป็น WebP ในเครื่องผ่านเบราว์เซอร์ของคุณ ฟรี และปลอดภัย</p>
+                </a>
+                <a href="/th/" class="tool-item" data-track="related-tool-click" data-destination-tool="png-to-webp" data-workflow-cluster="image-optimization" data-reason="immediate_next_action" data-workflow-stage="next_action" data-depth="2" data-position="5" data-tool="png-to-webp" data-category="image-conversions">
+                    <div class="icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M17 3 21 7l-4 4"/><path d="M3 7h18"/><path d="M7 21l-4-4 4-4"/><path d="M21 17H3"/></svg>
+                    </div>
+                    <h3>ตัวแปลง PNG เป็น WebP</h3>
+                    <p>แปลงรูปภาพ PNG เป็น WebP ในเครื่องผ่านเบราว์เซอร์ของคุณ ฟรี และปลอดภัย</p>
+                </a>
+            </div>
+        </section>
 <!-- RELATED_TOOLS_END -->
         </main>
 

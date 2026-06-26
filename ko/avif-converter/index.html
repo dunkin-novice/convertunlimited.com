@@ -138,11 +138,11 @@
 
 
             <section class="article aeo-summary" id="tool-summary">
-                <h2>이 도구의 기능</h2>
+                <h2>What this tool does</h2>
                 <p>JPG, PNG, WebP 또는 지원되는 AVIF 이미지를 업로드하고 최신 웹사이트용 AVIF 파일로 내보냅니다. 지원 브라우저에서는 파일이 기기에 남아 있습니다.</p>
-                <h2>개인정보 처리 방식</h2>
-                <p>선택한 입력은 이 워크플로에서 브라우저 안에서 처리됩니다. 공개 사이트는 광고와 analytics를 로드할 수 있으므로 민감한 작업에는 privacy build를 사용하세요.</p>
-                <h2>지원되는 워크플로</h2>
+                <h2>Privacy behavior</h2>
+                <p>Selected inputs are processed locally in your browser for this workflow. The public site may load ads and analytics; use the privacy build for privacy-sensitive workflows.</p>
+                <h2>Supported workflow</h2>
                 <p>AVIF는 효율적인 웹 전송을 위한 최신 이미지 형식입니다. 사진과 복잡한 그래픽에서 작은 파일 크기와 좋은 디테일을 기대할 수 있습니다.</p>
             </section>
             <section id="how" class="article">
@@ -175,7 +175,66 @@
                 <p>ConvertUnlimited는 있는 그대로 제공됩니다. 처리하는 파일과 AVIF 게시 전 호환성 확인은 사용자 책임입니다.</p>
             </section>
 
+<!-- GUIDE_BLOCKS_START -->
+        <section class="guide-help-blocks" aria-label="Helpful guides">
+            <div class="category-title">개인정보 및 처리</div>
+            <div class="guide-help-grid">
+                <a href="/proof-of-local-processing/" class="guide-help-card" data-track="guide-click" data-destination-guide="proof-of-local-processing" data-guide-type="trust_explainer" data-reason="privacy_clarification" data-position="1">
+                    <span class="guide-help-type">trust explainer</span>
+                    <span class="guide-help-title">How to verify local processing</span>
+                </a>
+                <a href="/ko/guides/how-it-works/" class="guide-help-card" data-track="guide-click" data-destination-guide="how-it-works" data-guide-type="trust_explainer" data-reason="understand_local_processing" data-position="2">
+                    <span class="guide-help-type">trust explainer</span>
+                    <span class="guide-help-title">How browser-based processing works</span>
+                </a>
+                <a href="/ko/guides/webp-vs-png/" class="guide-help-card" data-track="guide-click" data-destination-guide="webp-vs-png" data-guide-type="comparison" data-reason="compare_formats" data-position="3">
+                    <span class="guide-help-type">comparison</span>
+                    <span class="guide-help-title">WebP vs PNG: when to use each format</span>
+                </a>
+            </div>
+        </section>
+<!-- GUIDE_BLOCKS_END -->
 <!-- RELATED_TOOLS_START -->
+        <section class="related-tools">
+            <div class="category-title">추천 다음 단계</div>
+            <div class="tool-grid">
+                <a href="/ko/image-resizer/" class="tool-item" data-track="related-tool-click" data-destination-tool="image-resizer" data-workflow-cluster="image-optimization" data-reason="optimization_cleanup" data-workflow-stage="cleanup" data-depth="2" data-position="1" data-tool="image-resizer" data-category="image">
+                    <div class="icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><polyline points="21 8 21 21 8 21"/><line x1="21" y1="21" x2="3" y2="3"/><polyline points="3 16 3 3 16 3"/></svg>
+                    </div>
+                    <h3>이미지 크기 조정</h3>
+                    <p>소셜 미디어나 웹사이트에 맞게 이미지 크기를 변경합니다.</p>
+                </a>
+                <a href="/ko/image-compressor/" class="tool-item" data-track="related-tool-click" data-destination-tool="image-compressor" data-workflow-cluster="image-optimization" data-reason="optimization_cleanup" data-workflow-stage="cleanup" data-depth="2" data-position="2" data-tool="image-compressor" data-category="image">
+                    <div class="icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 14h6c1.1 0 2-0.9 2-2V6c0-1.1-0.9-2-2-2H4C2.9 4 2 4.9 2 6v6C2 13.1 2.9 14 4 14z"/><path d="M20 14h-6c-1.1 0-2-0.9-2-2V6c0-1.1 0.9-2 2-2h6c1.1 0 2 0.9 2 2v6C22 13.1 21.1 14 20 14z"/><path d="M4 22h6c1.1 0 2-0.9 2-2v-6c0-1.1-0.9-2-2-2H4c-1.1 0-2 0.9-2 2v6C2 21.1 2.9 22 4 22z"/><path d="M20 22h-6c-1.1 0-2-0.9-2-2v-6c0-1.1 0.9-2 2-2h6c1.1 0 2 0.9 2 2v6C22 21.1 21.1 22 20 22z"/></svg>
+                    </div>
+                    <h3>이미지 압축</h3>
+                    <p>시각적 품질을 유지하면서 이미지 파일 크기를 줄입니다.</p>
+                </a>
+                <a href="/ko/metadata-remover/" class="tool-item" data-track="related-tool-click" data-destination-tool="metadata-remover" data-workflow-cluster="image-optimization" data-reason="optimization_cleanup" data-workflow-stage="cleanup" data-depth="2" data-position="3" data-tool="metadata-remover" data-category="image">
+                    <div class="icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+                    </div>
+                    <h3>메타데이터 제거</h3>
+                    <p>사진에서 EXIF, GPS 및 개인 정보를 제거합니다.</p>
+                </a>
+                <a href="/ko/" class="tool-item" data-track="related-tool-click" data-destination-tool="image-converter" data-workflow-cluster="image-optimization" data-reason="immediate_next_action" data-workflow-stage="next_action" data-depth="2" data-position="4" data-tool="image-converter" data-category="image">
+                    <div class="icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                    </div>
+                    <h3>JPG를 WebP로 변환</h3>
+                    <p>브라우저에서 JPG 이미지를 WebP로 변환합니다. 무료, 대량, 안전.</p>
+                </a>
+                <a href="/ko/" class="tool-item" data-track="related-tool-click" data-destination-tool="png-to-webp" data-workflow-cluster="image-optimization" data-reason="immediate_next_action" data-workflow-stage="next_action" data-depth="2" data-position="5" data-tool="png-to-webp" data-category="image-conversions">
+                    <div class="icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M17 3 21 7l-4 4"/><path d="M3 7h18"/><path d="M7 21l-4-4 4-4"/><path d="M21 17H3"/></svg>
+                    </div>
+                    <h3>PNG를 WebP로 변환</h3>
+                    <p>브라우저에서 PNG 이미지를 WebP로 변환합니다. 무료, 대량, 안전.</p>
+                </a>
+            </div>
+        </section>
 <!-- RELATED_TOOLS_END -->
         </main>
 

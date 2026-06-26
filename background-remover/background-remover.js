@@ -15,6 +15,21 @@
   const processBtn = $("bg-process-btn");
   const downloadBtn = $("bg-download-btn");
   const statusEl = $("bg-status");
+  const modeRadios = document.querySelectorAll('input[name="bg-mode"]');
+  const simpleControls = $("bg-simple-controls");
+
+  if (modeRadios.length > 0) {
+    modeRadios.forEach(r => r.addEventListener('change', () => {
+       const mode = document.querySelector('input[name="bg-mode"]:checked').value;
+       if (mode === 'ai') {
+          if (simpleControls) simpleControls.style.display = 'none';
+          setStatus("AI Deep Cutout selected. A ~40MB model will be downloaded on first use.");
+       } else {
+          if (simpleControls) simpleControls.style.display = 'block';
+          setStatus(statusEl.dataset.readyText || "Ready. Works best when the background touches the image edges and is mostly one color.");
+       }
+    }));
+  }
 
   let sourceFile = null;
   let resultBlob = null;
@@ -189,35 +204,79 @@
     if (!sourceFile) return;
     processBtn.disabled = true;
     downloadBtn.disabled = true;
-    setStatus(statusEl.dataset.processingText || "Removing background locally in your browser...");
+    
+    const mode = document.querySelector('input[name="bg-mode"]:checked')?.value || 'simple';
+
     try {
-      const img = await loadImageFromFile(sourceFile);
-      const w = img.naturalWidth || img.width || 1024;
-      const h = img.naturalHeight || img.height || 1024;
-      const canvas = document.createElement("canvas");
-      canvas.width = w;
-      canvas.height = h;
-      const ctx = canvas.getContext("2d", { willReadFrequently: true });
-      ctx.drawImage(img, 0, 0, w, h);
-      const imageData = ctx.getImageData(0, 0, w, h);
-      const protectionLevel = protection ? parseFloat(protection.value) : 34;
-      ctx.putImageData(
-        removeSimpleBackground(imageData, parseFloat(tolerance.value), parseFloat(feather.value), protectionLevel),
-        0,
-        0
-      );
-      resultPreview.innerHTML = "";
-      resultPreview.appendChild(canvas);
-      resultBlob = await new Promise((resolve) => canvas.toBlob(resolve, "image/png"));
-      if (!resultBlob) throw new Error("PNG export failed");
-      downloadBtn.disabled = false;
-      
-      let doneText = statusEl.dataset.doneText || "Done. Export keeps the source dimensions: {w}x{h}px transparent PNG.";
-      doneText = doneText.replace("{w}", w).replace("{h}", h);
-      setStatus(doneText);
-      
-      if (typeof window.cuTrack === "function") window.cuTrack("processing_completed", { bytes: sourceFile.size || 0, width: w, height: h, file_count: 1 });
+      if (mode === 'ai') {
+        setStatus("Loading AI model and removing background (this may take a few seconds)...");
+        if (!window.imglyRemoveBackground) {
+           await new Promise((resolve, reject) => {
+               const script = document.createElement('script');
+               script.src = "https://cdn.jsdelivr.net/npm/@imgly/background-removal@1.4.3/dist/imgly-background-removal.browser.min.js";
+               script.onload = resolve;
+               script.onerror = reject;
+               document.head.appendChild(script);
+           });
+        }
+        
+        resultBlob = await window.imglyRemoveBackground(sourceFile);
+        
+        const img = new Image();
+        img.src = URL.createObjectURL(resultBlob);
+        await new Promise(r => img.onload = r);
+        const w = img.naturalWidth;
+        const h = img.naturalHeight;
+        
+        const canvas = document.createElement("canvas");
+        canvas.width = w;
+        canvas.height = h;
+        const ctx = canvas.getContext("2d");
+        ctx.drawImage(img, 0, 0);
+        
+        resultPreview.innerHTML = "";
+        resultPreview.appendChild(canvas);
+        URL.revokeObjectURL(img.src);
+
+        downloadBtn.disabled = false;
+        
+        let doneText = statusEl.dataset.doneText || "Done. Export keeps the source dimensions: {w}x{h}px transparent PNG.";
+        doneText = doneText.replace("{w}", w).replace("{h}", h);
+        setStatus(doneText);
+        
+        if (typeof window.cuTrack === "function") window.cuTrack("processing_completed", { bytes: sourceFile.size || 0, width: w, height: h, file_count: 1, mode: 'ai' });
+
+      } else {
+        setStatus(statusEl.dataset.processingText || "Removing background locally in your browser...");
+        const img = await loadImageFromFile(sourceFile);
+        const w = img.naturalWidth || img.width || 1024;
+        const h = img.naturalHeight || img.height || 1024;
+        const canvas = document.createElement("canvas");
+        canvas.width = w;
+        canvas.height = h;
+        const ctx = canvas.getContext("2d", { willReadFrequently: true });
+        ctx.drawImage(img, 0, 0, w, h);
+        const imageData = ctx.getImageData(0, 0, w, h);
+        const protectionLevel = protection ? parseFloat(protection.value) : 34;
+        ctx.putImageData(
+          removeSimpleBackground(imageData, parseFloat(tolerance.value), parseFloat(feather.value), protectionLevel),
+          0,
+          0
+        );
+        resultPreview.innerHTML = "";
+        resultPreview.appendChild(canvas);
+        resultBlob = await new Promise((resolve) => canvas.toBlob(resolve, "image/png"));
+        if (!resultBlob) throw new Error("PNG export failed");
+        downloadBtn.disabled = false;
+        
+        let doneText = statusEl.dataset.doneText || "Done. Export keeps the source dimensions: {w}x{h}px transparent PNG.";
+        doneText = doneText.replace("{w}", w).replace("{h}", h);
+        setStatus(doneText);
+        
+        if (typeof window.cuTrack === "function") window.cuTrack("processing_completed", { bytes: sourceFile.size || 0, width: w, height: h, file_count: 1, mode: 'simple' });
+      }
     } catch (error) {
+      console.error(error);
       clearResult();
       setStatus(statusEl.dataset.errorText || "Could not remove this background. Try an image with a simpler white or solid background.");
       if (typeof window.cuTrack === "function") window.cuTrack("error_shown", { error_type: "unknown" });

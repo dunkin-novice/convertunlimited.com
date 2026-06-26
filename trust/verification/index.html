@@ -16,8 +16,6 @@
     <meta name="robots" content="index,follow,max-image-preview:large">
     <meta name="theme-color" content="#3aa17e">
 <link rel="canonical" href="https://convertunlimited.com/trust/verification/">
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2823470980745945" crossorigin="anonymous"></script>
-    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"ConvertUnlimited","alternateName":"ConvertUnlimited.com","url":"https://convertunlimited.com/","logo":"https://convertunlimited.com/og-image.svg","sameAs":["https://github.com/dunkin-novice/convertunlimited.com","https://privacy.convertunlimited.com/"],"contactPoint":[{"@type":"ContactPoint","contactType":"customer support","url":"https://convertunlimited.com/contact/","email":"info@convertunlimited.com"}]}</script>
     <link rel="alternate" hreflang="en" href="https://convertunlimited.com/trust/verification/">
     <link rel="alternate" hreflang="x-default" href="https://convertunlimited.com/trust/verification/">
     <meta property="og:title" content="Verification | ConvertUnlimited">
@@ -39,7 +37,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/style.css">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://convertunlimited.com/"},{"@type":"ListItem","position":2,"name":"Trust Center","item":"https://convertunlimited.com/trust/"},{"@type":"ListItem","position":3,"name":"How to verify local processing","item":"https://convertunlimited.com/trust/verification/"}]}</script>
-    <script type="application/ld+json">{"@context":"https://schema.org","@type":"TechArticle","headline":"How to verify local processing","name":"How to verify local processing","description":"Verification steps for checking ConvertUnlimited privacy build behavior in DevTools and with repository tests.","inLanguage":"en","dateModified":"2026-05-19","author":[{"@type":"Person","name":"dunkin-novice","url":"https://github.com/dunkin-novice"},{"@type":"Organization","name":"ConvertUnlimited"}],"publisher":{"@type":"Organization","name":"ConvertUnlimited","logo":{"@type":"ImageObject","url":"https://convertunlimited.com/og-image.svg"}},"mainEntityOfPage":{"@type":"WebPage","@id":"https://convertunlimited.com/trust/verification/"}}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"TechArticle","headline":"How to verify local processing","name":"How to verify local processing","description":"Verification steps for checking ConvertUnlimited privacy build behavior in DevTools and with repository tests.","inLanguage":"en","dateModified":"2026-05-19","author":{"@type":"Organization","name":"ConvertUnlimited"},"publisher":{"@type":"Organization","name":"ConvertUnlimited","logo":{"@type":"ImageObject","url":"https://convertunlimited.com/og-image.svg"}},"mainEntityOfPage":{"@type":"WebPage","@id":"https://convertunlimited.com/trust/verification/"}}</script>
     <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","inLanguage":"en","mainEntity":[{"@type":"Question","name":"What should I look for in the Network panel?","acceptedAnswer":{"@type":"Answer","text":"Look for unexpected upload, analytics, ad, CDN, or beacon requests during processing."}},{"@type":"Question","name":"Does a clean Network panel prove all security properties?","acceptedAnswer":{"@type":"Answer","text":"No. It verifies a narrow behavior: whether the tested processing flow caused network requests."}},{"@type":"Question","name":"Can browser extensions affect the result?","acceptedAnswer":{"@type":"Answer","text":"Yes. Extensions can inject scripts or inspect page data depending on their permissions."}}]}</script>
 </head>
 <body data-page-type="trust">
@@ -54,9 +52,7 @@
                 <span class="word"><b>Convert</b><span>Unlimited</span></span>
             </a>
             <nav class="topnav" aria-label="Primary">
-                <span class="pill"><span class="dot"></span>
-                <a href="/about/">About</a>
-                <a href="/trust/">Trust</a>Trust documentation</span>
+                <span class="pill"><span class="dot"></span>Trust documentation</span>
                 <a href="/tools/">Tools</a>
                 <a href="/guides/">Guides</a>
                 <a href="/proof-of-local-processing/">Proof</a>
@@ -96,13 +92,11 @@
 
 <section class="article">
 <h2>Repository checks</h2>
-<p>The site and the privacy build are open source. You can read the code, clone it, and run the same checks the maintainer runs. The repository is here: <a href="https://github.com/dunkin-novice/convertunlimited.com" rel="noopener">github.com/dunkin-novice/convertunlimited.com</a>.</p>
-<p>The repository includes static and runtime checks for the privacy artifact. The static audit (<code>audit:privacy</code>) scans the built artifact for known third-party runtime references. The runtime test (<code>test:privacy-network</code>) blocks common network APIs in a headless browser, processes a sample image, and fails if any network request is made during processing.</p>
-<pre><code>git clone https://github.com/dunkin-novice/convertunlimited.com
-cd convertunlimited.com
-npm install
-npm run verify:privacy   # build:privacy + audit:privacy + test:privacy-network</code></pre>
-<p>The exact scripts these commands run are defined in <a href="https://github.com/dunkin-novice/convertunlimited.com/blob/main/package.json" rel="noopener">package.json</a>, and the network-isolation test lives in <a href="https://github.com/dunkin-novice/convertunlimited.com/blob/main/tests/no-network-processing.js" rel="noopener">tests/no-network-processing.js</a>. If you do not run code locally, the browser DevTools check above requires no tooling and verifies the same property for a given workflow.</p>
+<p>The repository includes static and runtime checks for the privacy artifact. The static audit scans for known third-party runtime references. The runtime test blocks common network APIs while exercising representative processing flows.</p>
+<pre><code>npm run build:privacy
+npm run audit:privacy
+npm run test:privacy-network
+npm run verify:privacy</code></pre>
 </section>
 
 <section class="article">
